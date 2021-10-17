@@ -26,7 +26,7 @@ SECRET_KEY = '9pes^lsk09gbfpty)!%p7n**a%m)ybl4l*ofod1bqq2m6f_231'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', 'robofiui.herokuapp.com']
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True
 
