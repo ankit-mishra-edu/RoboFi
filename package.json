@@ -6,7 +6,7 @@
     "e2e": "ng e2e",
     "test": "ng test",
     "lint": "ng lint",
-    "build": "ng build",
+    "build": "ng build --prod --output-path ./backend/static/robofi --deploy-url /static/robofi/ --watch --output-hashing none",
     "start": "node server.js",
     "postinstall": "ng build --aot"
   },
