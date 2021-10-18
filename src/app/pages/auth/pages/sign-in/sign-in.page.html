@@ -1,0 +1,80 @@
+<div class="container flex flex-col items-center justify-center h-full">
+  <p class="mt-4 mb-6 text-5xl text-center">You're not logged in!</p>
+  <div class="form-wrapper">
+    <form [formGroup]="signInForm">
+      <div class="mt-5 mb-5 form-group">
+        <h2 class="text-3xl form-heading">Sign In</h2>
+        <div class="mt-3 form-group">
+          <label for="username" class="form-label required">Username</label>
+          <input
+            autofocus
+            type="text"
+            id="username"
+            class="form-control highlight"
+            autocomplete="username"
+            formControlName="username"
+            [ngClass]="{
+              'is-invalid': isInValid(value('username')),
+              'is-valid': isValid(value('username'))
+            }"
+          />
+
+          <small
+            *ngIf="
+              value('username').touched &&
+              value('username').errors?.required
+            "
+            class="invalid-feedback"
+            >{{ "Username is Mandatory." }}</small
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label required">Password</label>
+          <input
+            required
+            id="password"
+            type="password"
+            class="form-control highlight"
+            formControlName="password"
+            [ngClass]="{
+              'is-invalid': isInValid(value('password')),
+              'is-valid': isValid(value('password'))
+            }"
+          />
+
+          <small
+            *ngIf="
+              value('password').touched &&
+              value('password').errors?.required
+            "
+            class="invalid-feedback"
+            >{{ "Password is Mandatory." }}</small
+          >
+        </div>
+
+        <div class="form-group">
+          <button
+            type="submit"
+            (click)="onClickSignIn()"
+            class="btn"
+            [disabled]="signInForm.invalid"
+            [ngClass]="{
+              'form-valid': !signInForm.invalid,
+              'form-invalid': signInForm.invalid
+            }"
+          >
+            Sign in
+          </button>
+        </div>
+
+        <small class="form-group"
+          >Not registered yet?
+          <a class="link" [routerLink]="['/auth/register']"
+            >Register Here</a
+          ></small
+        >
+      </div>
+    </form>
+  </div>
+</div>

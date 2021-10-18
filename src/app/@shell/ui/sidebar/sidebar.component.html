@@ -1,0 +1,71 @@
+<div
+  class="flex flex-col h-full bg-gray-300 dark:bg-gray-500"
+  [ngClass]="isSidebarOpen ? 'w-40' : 'w-12'"
+>
+  <button
+    type="button"
+    class="flex p-2 ml-auto"
+    (click)="isSidebarOpen = !isSidebarOpen"
+  >
+    <svg
+      *ngIf="isSidebarOpen"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-6 h-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
+      />
+    </svg>
+    <svg
+      *ngIf="!isSidebarOpen"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-6 h-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M13 5l7 7-7 7M5 5l7 7-7 7"
+      />
+    </svg>
+  </button>
+
+  <div class="flex flex-col pb-4">
+    <p class="p-2 font-semibold">Technologies</p>
+    <div class="flex flex-col cursor-pointer">
+      <a
+        [routerLink]="technology.value"
+        *ngFor="let technology of technologies | keyvalue"
+        class="h-8 pl-4 hover:bg-gray-100"
+        >{{ technology.key }}</a
+      >
+      <hr />
+      <a
+        [routerLink]="[configPath.settings.root]"
+        class="h-8 pl-4 hover:bg-gray-100"
+        >{{ 'Settings' }}</a
+      >
+      <a
+        [routerLink]="[
+          (isLoggedIn$ | async) ? configPath.user.root : configPath.auth.root
+        ]"
+        class="h-8 pl-4 hover:bg-gray-100"
+        >{{ (isLoggedIn$ | async) ? 'User' : 'Auth' }}</a
+      >
+      <!-- <a
+        [routerLink]="[configPath.user.root]"
+        class="h-8 pl-4 hover:bg-gray-100"
+        >{{ 'User' }}</a
+      > -->
+    </div>
+  </div>
+</div>

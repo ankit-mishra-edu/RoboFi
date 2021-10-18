@@ -3,8 +3,8 @@ from django.contrib.auth import authenticate
 
 from rest_framework import serializers
 from rest_framework import exceptions as drf_exceptions
-from backend.pages.users.models import User, Token
-from backend.pages.users.detail.serializers import UserSerializer
+from pages.users.models import User, Token
+from pages.users.detail.serializers import UserSerializer
 
 
 class SignUpSerializer(serializers.ModelSerializer):

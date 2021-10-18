@@ -1,0 +1,165 @@
+// @import "~bootstrap-icons/font/bootstrap-icons.css";
+
+:root {
+  --color-primary: #fe4066;
+  // --color-secondary: #c5fe40;
+  --color-secondary: #428bca;
+  --color-ternary: #22242a;
+  // --color-primary: #22242a;
+  // --color-secondary: #19b3d3;
+  // --color-ternary: #22242a;428bca
+}
+
+html,
+body {
+  height: 100%;
+}
+
+// body {
+//   font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial,
+//     Lucida Grande, sans-serif;
+// }
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
+}
+
+.primary {
+  color: #0d6efd;
+}
+
+.secondary {
+  color: #6c757d;
+}
+
+.success {
+  color: green;
+}
+
+.danger {
+  color: #dc3545;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
+
+.btn-highlight {
+  transition: 0.1s;
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(134, 38, 195);
+  border-width: initial !important;
+  border-style: none !important;
+  border-color: initial !important;
+  border-image: initial !important;
+}
+
+.box {
+  position: relative;
+  border-radius: 3px;
+  background: #ffffff;
+  border-top: 4px solid #d2d6de;
+  margin-bottom: 20px;
+  width: 100%;
+  inline-size: 100%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+  .box-body {
+    border: 0 3px;
+    padding: 10px;
+    inline-size: 100%;
+  }
+}
+
+.box-primary {
+  border-top-color: #3c8dbc;
+}
+
+.form-wrapper {
+  // display: flex;
+  // justify-content: center;
+
+  form {
+    margin: 0 16px 0px;
+
+    .form-group {
+      padding-block-end: 16px;
+    }
+
+    .form-control {
+      // inline-size: 100%;
+      inline-size: max(240px, 40%);
+    }
+
+    .highlight {
+      border: 1px solid;
+      color: var(--color-primary);
+    }
+
+    textarea {
+      inline-size: max(240px, 40%);
+    }
+
+    .form-heading {
+      // color: #428bca;
+      font-weight: bold;
+    }
+
+    .form-label {
+      font-size: 17px;
+      font-weight: bold;
+      color: var(--color-secondary);
+    }
+
+    .form-label.required:after {
+      content: '*';
+      color: red;
+      font-size: 17px;
+      margin-left: 5px;
+      font-weight: bold;
+    }
+
+    .is-valid {
+      border: 1px solid #42a948;
+      border-left: 5px solid #42a948 !important;
+    }
+
+    .is-invalid {
+      border: 1px solid #a94442;
+      border-left: 5px solid #a94442 !important;
+    }
+
+    .form-valid {
+      border-radius: 3px 17px;
+      background-color: #28a745;
+      color: rgb(255, 255, 255) !important;
+    }
+
+    .form-invalid {
+      border-radius: 5px 15px;
+      background-color: red;
+      color: rgb(255, 255, 255) !important;
+    }
+  }
+}
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  @import '01-base/font.scss';
+  @import '01-base/document.scss';
+  @import '01-base/headings.scss';
+}
+
+@layer components {
+  @import '02-components/link.scss';
+}
+
+@layer utilities {
+}

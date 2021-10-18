@@ -1,0 +1,68 @@
+<header
+  class="fixed top-0 w-full h-16 shadow-md  bg-gray-50 dark:bg-gray-700 backdrop-blur-lg backdrop-filter"
+>
+  <nav
+    class="container flex items-center justify-between h-full py-3 mx-auto  center"
+  >
+    <a
+      [routerLink]="[path.base.home]"
+      class="text-2xl font-bold no-underline cursor-pointer"
+    >
+      <span class="text-gray-400">Robo</span>Fi
+    </a>
+
+    <app-navbar></app-navbar>
+
+    <div class="relative ml-3">
+      <button
+        *ngIf="isLoggedIn$ | async"
+        type="button"
+        class="flex items-center max-w-xs text-sm bg-gray-800 rounded-full cursor-pointer  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+        id="userProfileMenuButton"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Open user menu</span>
+        <img
+          class="w-12 h-12 rounded-full"
+          src="../../../../assets/auth/profile/default.jpg"
+          alt=""
+        />
+      </button>
+
+      <div
+        class="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white border-none rounded-md shadow-lg  dropdown-menu ring-1 ring-black ring-opacity-5 focus:outline-none"
+        role="menu"
+        aria-orientation="vertical"
+        aria-labelledby="userProfileMenuButton"
+        tabindex="-1"
+      >
+        <a
+          href="#"
+          class="block px-4 py-2 text-sm text-gray-700"
+          role="menuitem"
+          tabindex="-1"
+          id="user-menu-item-0"
+          >Your Profile</a
+        >
+
+        <a
+          tabindex="-1"
+          id="user-menu-item-1"
+          [routerLink]="[path.settings.root]"
+          class="block px-4 py-2 text-sm text-gray-700 cursor-pointer"
+          >Settings</a
+        >
+
+        <a
+          tabindex="-1"
+          role="menuitem"
+          id="user-menu-item-2"
+          class="block px-4 py-2 text-sm text-gray-700 cursor-pointer"
+          (click)="onClickSignOut()"
+          >Sign out</a
+        >
+      </div>
+    </div>
+  </nav>
+</header>

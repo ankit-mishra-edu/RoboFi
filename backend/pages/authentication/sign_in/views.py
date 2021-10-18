@@ -10,7 +10,7 @@ from django.contrib.sites.shortcuts import get_current_site
 
 from .serializers import SignInSerializer
 
-from backend.pages.users.models import User
+from pages.users.models import User
 from rest_framework.response import Response
 from rest_framework import views
 

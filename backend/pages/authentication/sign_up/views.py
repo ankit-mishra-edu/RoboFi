@@ -8,7 +8,7 @@ from django.contrib.auth import login as django_login
 from django.contrib.auth import logout as django_logout
 from django.contrib.sites.shortcuts import get_current_site
 
-from backend.pages.users.models import User, Token
+from pages.users.models import User, Token
 
 from .serializers import ActivationSerializer, SignUpSerializer
 

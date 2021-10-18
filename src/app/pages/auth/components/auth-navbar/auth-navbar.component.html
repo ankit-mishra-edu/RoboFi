@@ -1,0 +1,28 @@
+<div class="flex space-x-4">
+  <a
+    [routerLink]="[authPath.root, authPath.signIn]"
+    routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 hover:text-white"
+    >Sign In</a
+  >
+
+  <a
+    [routerLink]="[authPath.root, authPath.signUp]"
+    routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 hover:text-white"
+    >Sign Up</a
+  >
+
+  <a
+    [routerLink]="[authPath.root, authPath.forgotPassword]"
+    routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 hover:text-white"
+    >Forgot Password</a
+  >
+  <a
+    [routerLink]="[authPath.root, authPath.passwordReset]"
+    routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 hover:text-white"
+    >Password Reset</a
+  >
+</div>

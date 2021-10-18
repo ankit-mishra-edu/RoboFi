@@ -1,7 +1,7 @@
 from django.urls import path, re_path, include
 from rest_framework import routers
 # from .views import UserAPI, UserDetails, UserDetailsView, ProfileDetailsView
-from backend.pages.users.detail.views import UserDetailView
+from pages.users.detail.views import UserDetailView
 
 router = routers.DefaultRouter()
 router.register(r'', UserDetailView)

@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'backend.pages.users',
-    'backend.pages.users.detail',
+    'pages.users',
+    'pages.users.detail',
 
     'rest_framework',
     'rest_framework.authtoken',
@@ -59,12 +59,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'backend.robofi.urls'
+ROOT_URLCONF = 'robofi.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'backend.robofi.wsgi.application'
+WSGI_APPLICATION = 'robofi.wsgi.application'
 
 
 # Database
@@ -145,6 +145,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    BASE_DIR / "static/robofi",
+]
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

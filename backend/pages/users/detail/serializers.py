@@ -1,8 +1,6 @@
 from django.db import models
-
+from pages.users.models import Address, Profile, Token, User
 from rest_framework import serializers
-from backend.pages.users.models import User, Token, Profile, Address
-
 
 # Serializers define the API representation.
 
