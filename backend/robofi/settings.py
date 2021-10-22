@@ -150,6 +150,10 @@ STATICFILES_DIRS = [
     BASE_DIR / "static/robofi",
 ]
 
+MEDIA_DIR = F'{BASE_DIR}/media'
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
+
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
