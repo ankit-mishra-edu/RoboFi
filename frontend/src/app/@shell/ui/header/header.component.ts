@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTER_UTILS } from '@app/@core/utils/router.utils';
 import { AuthService } from '@app/pages/auth/services/auth.service';
+import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
   path = ROUTER_UTILS.config;
+  media_url = environment.MEDIA_BASE_URL;
   isLoggedIn$!: Observable<boolean>;
 
   constructor(private router: Router, private _authService: AuthService) {}
