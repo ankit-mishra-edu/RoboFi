@@ -16,12 +16,10 @@ export class ProxyInterceptor implements HttpInterceptor {
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     request = request.clone({
-      url: request.url.startsWith(`/${ENDPOINT_UTILS.config.base.home}`)
-        ? `${environment.API_BASE_URL}/${request.url.replace(
-            `/${ENDPOINT_UTILS.config.base.home}/`,
-            '',
-          )}`
-        : 'https://pibeedjango.herokuapp.com/api/login/',
+      url: `${environment.API_BASE_URL}/${request.url.replace(
+        `/${ENDPOINT_UTILS.config.base.home}/`,
+        '',
+      )}`,
     });
     return next.handle(request);
   }
