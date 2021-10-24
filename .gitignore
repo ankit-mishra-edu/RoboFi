@@ -41,3 +41,5 @@ target/
 
 # Virtual environment
 venv/
+
+node_modules/
