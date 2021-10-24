@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'whitenoise.runserver_nostatic',
-    'django.contrib.staticfiles',
 
     'pages.users',
     'pages.users.detail',
