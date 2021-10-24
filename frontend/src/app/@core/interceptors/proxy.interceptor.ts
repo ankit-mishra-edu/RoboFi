@@ -21,7 +21,11 @@ export class ProxyInterceptor implements HttpInterceptor {
         `/${ENDPOINT_UTILS.config.base.home}/`,
         '',
       )}`;
-    } else if (request.url.startsWith(`/${ENDPOINT_UTILS.config.base.media}`)) {
+    } else if (
+      request.url.startsWith(
+        `${environment.API_BASE_URL}/${ENDPOINT_UTILS.config.base.media}`,
+      )
+    ) {
       formatted_url = `${environment.MEDIA_BASE_URL}/${request.url.replace(
         `/${ENDPOINT_UTILS.config.base.media}/`,
         '',
