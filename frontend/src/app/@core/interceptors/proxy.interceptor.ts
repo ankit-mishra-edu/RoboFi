@@ -15,19 +15,9 @@ export class ProxyInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    console.log(request.url);
-    // request = request.clone({
-    //   url: request.url.startsWith(`/${ENDPOINT_UTILS.config.base.home}`)
-    //     ? `${window.location.origin}/v1/${request.url.replace(
-    //         `/${ENDPOINT_UTILS.config.base.home}/`,
-    //         '',
-    //       )}`
-    //     : 'https://pibeedjango.herokuapp.com/api/login/',
-    // });
-
     request = request.clone({
       url: request.url.startsWith(`/${ENDPOINT_UTILS.config.base.home}`)
-        ? `${environment.API_BASE_URL}${request.url.replace(
+        ? `${environment.API_BASE_URL}/${request.url.replace(
             `/${ENDPOINT_UTILS.config.base.home}/`,
             '',
           )}`
