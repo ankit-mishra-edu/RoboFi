@@ -8,7 +8,7 @@
     "lint": "ng lint",
     "build": "ng build --prod --output-path ./backend/static/robofi --deploy-url /static/robofi/ --watch --output-hashing none",
     "start": "node server.js",
-    "postinstall": "ng build --aot"
+    "postinstall": "cd ./frontend/ && ng build --aot"
   },
   "private": true,
   "dependencies": {
