@@ -16,10 +16,16 @@ export class ProxyInterceptor implements HttpInterceptor {
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     let formatted_url = request.url;
+    console.log(request.url);
     if (request.url.startsWith(`/${ENDPOINT_UTILS.config.base.home}`)) {
       formatted_url = `${environment.API_BASE_URL}/${request.url.replace(
         `/${ENDPOINT_UTILS.config.base.home}/`,
         '',
+      )}`;
+    } else if (request.url.startsWith(`/${ENDPOINT_UTILS.config.base.media}`)) {
+      formatted_url = `${environment.MEDIA_BASE_URL}/${request.url.replace(
+        `/${ENDPOINT_UTILS.config.base.media}/`,
+        ``,
       )}`;
     } else if (
       request.url.startsWith(
@@ -27,8 +33,8 @@ export class ProxyInterceptor implements HttpInterceptor {
       )
     ) {
       formatted_url = `${environment.MEDIA_BASE_URL}/${request.url.replace(
-        `/${ENDPOINT_UTILS.config.base.media}/`,
-        '',
+        `${environment.API_BASE_URL}/${ENDPOINT_UTILS.config.base.media}/`,
+        ``,
       )}`;
     }
 
