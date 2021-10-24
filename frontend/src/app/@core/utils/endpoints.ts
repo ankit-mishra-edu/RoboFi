@@ -2,6 +2,7 @@ export const ENDPOINT_UTILS = {
   config: {
     base: {
       home: 'backend',
+      media: 'media',
     },
     auth: {
       root: 'authentication',
