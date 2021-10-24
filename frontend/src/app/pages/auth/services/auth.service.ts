@@ -10,6 +10,7 @@ import { distinctUntilChanged, share, tap } from 'rxjs/operators';
 })
 export class AuthService {
   AUTH_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.auth.root}/`;
+
   isLoggedIn$ = new BehaviorSubject<boolean>(!!getItem(StorageItem.Auth));
 
   get isLoggedIn(): boolean {
@@ -17,6 +18,17 @@ export class AuthService {
   }
 
   constructor(private _http: HttpClient) {}
+
+  GetCSRFToken(cookieKey: string): string {
+    const cookies = document.cookie.split(';');
+    for (const index in cookies) {
+      const cookie = cookies[index];
+      if (cookie.includes(cookieKey)) {
+        return cookie.split('=')[1];
+      }
+    }
+    return '';
+  }
 
   signIn(signInData: IUser): Observable<IToken> {
     return this._http

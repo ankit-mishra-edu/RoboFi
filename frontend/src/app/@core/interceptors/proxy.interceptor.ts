@@ -27,7 +27,7 @@ export class ProxyInterceptor implements HttpInterceptor {
 
     request = request.clone({
       url: request.url.startsWith(`/${ENDPOINT_UTILS.config.base.home}`)
-        ? `${environment.apiUrl}${request.url.replace(
+        ? `${environment.API_BASE_URL}${request.url.replace(
             `/${ENDPOINT_UTILS.config.base.home}/`,
             '',
           )}`

@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '9pes^lsk09gbfpty)!%p7n**a%m)ybl4l*ofod1bqq2m6f_231'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', 'robofiui.herokuapp.com']
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -88,10 +88,21 @@ WSGI_APPLICATION = 'robofi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dcfdm4u37uivqj',
+        'USER': 'wkiudgpclsuzwa',
+        'PASSWORD': 'd7de63db31774943273da4fdaf9628b5069f6f9add25bc350e5fc79427c30a29',
+        'HOST': 'ec2-3-231-103-217.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
+#     }
+# }
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -114,9 +125,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CLOUDINARY = {
-    'cloud_name': 'hyh8ot57n',
-    'api_key': '996932211246411',
-    'api_secret': 'okBHFdK0lL2SBPOjs7BT96w805M',
+    'cloud_name': 'hnose3kua',
+    'api_key': '611855176564475',
+    'api_secret': '1dyOb3vDkrMxz2qUQk1N6ioTJDQ',
 }
 
 CACHES = {
@@ -164,8 +175,8 @@ MEDIA_URL = '/media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = os.environ.get('EMAIL')
-EMAIL_HOST_PASSWORD = os.environ.get('PASSWORD')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

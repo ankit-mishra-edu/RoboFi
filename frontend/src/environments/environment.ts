@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://robofiui.herokuapp.com/',
+  API_BASE_URL: process.env?.API_BASE_URL
+    ? process.env.API_BASE_URL
+    : 'https://robofiui.herokuapp.com',
 };
 
 /*
