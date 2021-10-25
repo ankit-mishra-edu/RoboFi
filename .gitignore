@@ -3,6 +3,7 @@
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 
@@ -43,3 +44,6 @@ target/
 venv/
 
 node_modules/
+
+backend/static/**
+backend/robofi/environment.py

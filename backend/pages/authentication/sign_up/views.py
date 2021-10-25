@@ -1,19 +1,16 @@
-from django.http import HttpResponseRedirect
-from django.utils.encoding import force_text, force_bytes
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
-
-from django.core.mail import EmailMessage
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as django_login
 from django.contrib.auth import logout as django_logout
 from django.contrib.sites.shortcuts import get_current_site
-
-from pages.users.models import User, Token
-
-from .serializers import ActivationSerializer, SignUpSerializer
-
+from django.core.mail import EmailMessage
+from django.http import HttpResponseRedirect
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from pages.users.models import Token, User
 from rest_framework import views
 from rest_framework.response import Response
+
+from .serializers import ActivationSerializer, SignUpSerializer
 
 
 class SignUpView(views.APIView):
@@ -111,4 +108,4 @@ class ActivationView(views.APIView):
 
         user.is_active = True
         user.save()
-        return HttpResponseRedirect(f'http://{get_current_site(request).domain}/')
+        return HttpResponseRedirect(f'https://{get_current_site(request).domain}/')

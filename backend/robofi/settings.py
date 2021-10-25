@@ -17,19 +17,6 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', True)
-
-ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS', 'localhost')]
-CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_ALLOW_ALL = True
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -63,6 +50,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'robofi.urls'
+AUTH_USER_MODEL = 'users.User'
+WSGI_APPLICATION = 'robofi.wsgi.application'
+
 
 TEMPLATES = [
     {
@@ -79,32 +69,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'robofi.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dcfdm4u37uivqj',
-        'USER': 'wkiudgpclsuzwa',
-        'PASSWORD': 'd7de63db31774943273da4fdaf9628b5069f6f9add25bc350e5fc79427c30a29',
-        'HOST': 'ec2-3-231-103-217.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
-#     }
-# }
-
-AUTH_USER_MODEL = 'users.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -124,22 +88,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CLOUDINARY = {
-    'cloud_name': 'hnose3kua',
-    'api_key': '611855176564475',
-    'api_secret': '1dyOb3vDkrMxz2qUQk1N6ioTJDQ',
-}
-
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": os.environ.get('REDIS_URL'),
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient"
-        }
-    }
-}
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -153,6 +101,53 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# Setting Environment variables
+
+if (os.path.exists(os.path.join(Path(__file__).resolve().parent, 'environment.py'))):
+    from .environment import environment
+    print(environment)
+else:
+    environment = os.environ
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
+DEBUG = environment.get('DEBUG')
+
+SECRET_KEY = environment.get('SECRET_KEY')
+
+ALLOWED_HOSTS = [environment.get('ALLOWED_HOSTS')]
+
+# Database
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': environment.get('DATABASE_URL').split(':')[-1].split('/')[1],
+        'USER': environment.get('DATABASE_URL').split(':')[1][2:],
+        'PASSWORD': environment.get('DATABASE_URL').split(':')[-2].split('@')[0],
+        'HOST': environment.get('DATABASE_URL').split(':')[-2].split('@')[1],
+        'PORT': environment.get('DATABASE_URL').split(':')[-1].split('/')[0],
+    }
+}
+
+CLOUDINARY = {
+    'cloud_name': environment.get('CLOUDINARY_URL').split(':')[2].split('@')[1],
+    'api_key': environment.get('CLOUDINARY_URL').split(':')[1][2:],
+    'api_secret': environment.get('CLOUDINARY_URL').split(':')[2].split('@')[0],
+}
+
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": environment.get('REDIS_URL'),
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient"
+#         }
+#     }
+# }
 
 
 # Static files (CSS, JavaScript, Images)
@@ -168,15 +163,16 @@ STATICFILES_DIRS = [
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_DIR = F'{BASE_DIR}/media'
+MEDIA_DIR = f'{BASE_DIR}/media'
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = environment.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = environment.get('EMAIL_HOST_PASSWORD', '')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
