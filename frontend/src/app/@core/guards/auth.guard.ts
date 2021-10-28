@@ -47,8 +47,6 @@ export class AuthGuard implements CanLoad, CanActivate {
 
     const returnUrl = state.url;
 
-    // const returnUrl = segments.map((s) => s.path).join('/');
-
     const { root, signIn } = ROUTER_UTILS.config.auth;
 
     this.router.navigate(['/', root, signIn], {

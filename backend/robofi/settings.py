@@ -106,7 +106,6 @@ USE_TZ = True
 
 if (os.path.exists(os.path.join(Path(__file__).resolve().parent, 'environment.py'))):
     from .environment import environment
-    print(environment)
 else:
     environment = os.environ
 

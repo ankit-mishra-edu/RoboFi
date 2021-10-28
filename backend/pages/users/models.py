@@ -1,11 +1,8 @@
+from cloudinary.models import CloudinaryField
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
-from django.contrib.auth.models import UserManager
-from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
-from cloudinary.models import CloudinaryField
-
 from rest_framework.authtoken.models import Token
 
 
@@ -40,15 +37,13 @@ class Address(models.Model):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(
+    user: User = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True)
-    bio = models.TextField(max_length=500, default="")
-    address = models.OneToOneField(
+    address: Address = models.OneToOneField(
         Address, on_delete=models.CASCADE, null=True)
+    bio: str = models.TextField(max_length=500, default="", blank=True)
     birth_date = models.DateField(null=True, default=None)
-    email_confirmed = models.BooleanField(default=False)
-    # image = models.ImageField(default='profile/default.jpg',
-    #                           upload_to='profile')
+    email_confirmed: bool = models.BooleanField(default=False)
     image = CloudinaryField('image')
 
     def __str__(self):

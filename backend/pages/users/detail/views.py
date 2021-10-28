@@ -1,12 +1,11 @@
 from django.http import Http404
-
+from pages.users.models import Profile, User
+from rest_framework import authentication, permissions, status, views, viewsets
+from rest_framework.decorators import action
 # All rest framework imports
 from rest_framework.response import Response
-from rest_framework.decorators import action
-from rest_framework import authentication, permissions, status, views, viewsets
 
-from pages.users.models import User, Profile
-from .serializers import UserSerializer, PasswordSerializer, ProfileSerializer
+from .serializers import UserSerializer
 
 
 class UserDetailView(viewsets.ModelViewSet):

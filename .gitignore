@@ -43,7 +43,8 @@ target/
 # Virtual environment
 venv/
 
-node_modules/
+frontend/node_modules/
+frontend/node_modules_old/
 
 backend/static/**
 backend/robofi/environment.py

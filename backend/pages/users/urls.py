@@ -1,14 +1,14 @@
-from django.urls import path, re_path, include
+from django.urls import include, path, re_path
 from rest_framework import routers
-# from .views import UserAPI, UserDetails, UserDetailsView, ProfileDetailsView
-from pages.users.detail.views import UserDetailView
+
+from .views import UserDetailView, UserProfileView
 
 router = routers.DefaultRouter()
-router.register(r'', UserDetailView)
+router.register(r'detail', UserDetailView)
 
 urlpatterns = [
-    # path(r'profiles/', ProfileView.as_view(), name="user-profiles-all"),
-    # path(r'profiles/<int:pk>/', ProfileView.as_view(), name="user-profiles"),
+    path(r'profiles/', UserProfileView.as_view(), name="user-profiles-all"),
+    path(r'profiles/<int:pk>/', UserProfileView.as_view(), name="user-profiles"),
 
     path('', include(router.urls)),
 ]
