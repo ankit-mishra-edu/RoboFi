@@ -15,17 +15,16 @@ export class ProxyInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    let formatted_url = request.url;
-    console.log(request.url);
+    let proxy_url = request.url;
     if (request.url.startsWith(`/${ENDPOINT_UTILS.config.base.home}`)) {
-      formatted_url = `${environment.API_BASE_URL}/${request.url.replace(
+      proxy_url = `${environment.API_BASE_URL}/${request.url.replace(
         `/${ENDPOINT_UTILS.config.base.home}/`,
         '',
       )}`;
     }
 
     request = request.clone({
-      url: formatted_url,
+      url: proxy_url,
     });
     return next.handle(request);
   }

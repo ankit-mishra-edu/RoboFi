@@ -58,7 +58,7 @@ export class AuthenticationForms {
 }
 
 export class UserDetailsForms {
-  public static ConfirmUserForm(currentUser: IUser) {
+  public static ConfirmUserForm(currentUser: IUser): FormGroup {
     return new FormBuilder().group({
       username: [currentUser.username],
       password: ['', [Validators.required]],
@@ -66,7 +66,10 @@ export class UserDetailsForms {
     });
   }
 
-  public static EditDetailsForm(currentUser: IUser, allUsers: IUser[]) {
+  public static EditDetailsForm(
+    currentUser: IUser,
+    allUsers: IUser[],
+  ): FormGroup {
     return new FormBuilder().group({
       id: [{ value: null, disabled: false }],
       username: [
@@ -93,7 +96,7 @@ export class UserDetailsForms {
     });
   }
 
-  public static EditProfileForm(currentUser: IUser) {
+  public static EditProfileForm(currentUser: IUser): FormGroup {
     return new FormBuilder().group({
       user: [currentUser?.id],
       bio: ['', [Validators.maxLength(150)]],

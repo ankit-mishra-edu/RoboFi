@@ -3,23 +3,53 @@ import { Injectable } from '@angular/core';
 import { getItem, removeItem, setItem, StorageItem } from '@app/@core/utils';
 import { ENDPOINT_UTILS } from '@core/utils/endpoints';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { distinctUntilChanged, share, tap } from 'rxjs/operators';
+import { share, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  AUTH_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.auth.root}/`;
-
-  isLoggedIn$ = new BehaviorSubject<boolean>(!!getItem(StorageItem.Auth));
-
-  get isLoggedIn(): boolean {
-    return this.isLoggedIn$.getValue();
+  constructor(private _http: HttpClient) {
+    window.onbeforeunload = () => {
+      setItem(StorageItem.User, this.loggedInUser);
+    };
+    if (this.isLoggedIn && getItem(StorageItem.User)) {
+      this.loggedInUser = <IUser>getItem(StorageItem.User);
+    }
+    removeItem(StorageItem.User);
   }
 
-  constructor(private _http: HttpClient) {}
+  AUTH_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.auth.root}/`;
 
-  GetCSRFToken(cookieKey: string): string {
+  private _isLoggedInSubject$ = new BehaviorSubject<boolean>(
+    !!getItem(StorageItem.Token),
+  );
+  private _isLoggedIn$ = this._isLoggedInSubject$.asObservable();
+
+  get isLoggedIn(): boolean {
+    return this._isLoggedInSubject$.getValue();
+  }
+
+  get isLoggedIn$(): Observable<boolean> {
+    return this._isLoggedIn$;
+  }
+
+  private _loggedInUserSubject$ = new BehaviorSubject<IUser>(<IUser>{});
+  private _loggedInUser$ = this._loggedInUserSubject$.asObservable();
+
+  get loggedInUser(): IUser {
+    return this._loggedInUserSubject$.getValue();
+  }
+
+  set loggedInUser(value: IUser) {
+    this._loggedInUserSubject$.next(value);
+  }
+
+  get loggedInUser$(): Observable<IUser> {
+    return this._loggedInUser$;
+  }
+
+  GetCSRFToken = (cookieKey: string): string => {
     const cookies = document.cookie.split(';');
     for (const index in cookies) {
       const cookie = cookies[index];
@@ -28,9 +58,9 @@ export class AuthService {
       }
     }
     return '';
-  }
+  };
 
-  signIn(signInData: IUser): Observable<IToken> {
+  signIn = (signInData: IUser): Observable<IToken> => {
     return this._http
       .post<IToken>(
         this.AUTH_URL + `${ENDPOINT_UTILS.config.auth.signIn}/`,
@@ -38,23 +68,24 @@ export class AuthService {
       )
       .pipe(
         tap((token: IToken) => {
-          setItem(StorageItem.Auth, token.key);
-          this.isLoggedIn$.next(true);
+          setItem(StorageItem.Token, token.key);
+          this._isLoggedInSubject$.next(true);
+          this.loggedInUser = token.user;
         }),
         share(),
       );
-  }
+  };
 
-  signUp(userData: IUser): Observable<IToken> {
+  signUp = (userData: IUser): Observable<IToken> => {
     return this._http
       .post<IToken>(
         this.AUTH_URL + `${ENDPOINT_UTILS.config.auth.signUp}/`,
         userData,
       )
       .pipe(share());
-  }
+  };
 
-  signOut(): Observable<boolean> {
+  signOut = (): Observable<boolean> => {
     return this._http
       .post<boolean>(
         this.AUTH_URL + `${ENDPOINT_UTILS.config.auth.signOut}/`,
@@ -62,31 +93,11 @@ export class AuthService {
       )
       .pipe(
         tap(() => {
-          removeItem(StorageItem.Auth);
-          this.isLoggedIn$.next(false);
+          removeItem(StorageItem.Token);
+          this._isLoggedInSubject$.next(false);
+          this.loggedInUser = <IUser>{};
         }),
         share(),
       );
-  }
-
-  // Subject for All Users
-  private _allUsersSubject$: BehaviorSubject<IUser[]> = new BehaviorSubject<
-    IUser[]
-  >([]);
-  private _allUsers$: Observable<IUser[]> = <Observable<IUser[]>>(
-    this._allUsersSubject$
-      .asObservable()
-      .pipe(
-        distinctUntilChanged(
-          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr),
-        ),
-      )
-  );
-
-  get allUsers$(): Observable<IUser[]> {
-    return this._allUsers$;
-  }
-  set allUsers(value: IUser[]) {
-    this._allUsersSubject$.next(value);
-  }
+  };
 }

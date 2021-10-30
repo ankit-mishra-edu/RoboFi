@@ -222,7 +222,10 @@
       </div>
     </form>
   </div>
-  <div *ngIf="(allUsers$ | async)  === undefined" class="text-center">
-    <div class="fa fa-spinner fa-spin"></div>
-  </div>
+  <app-spinner
+    class="mt-4"
+    spinnerSize="2rem"
+    *ngIf="(allUsers$ | async)  === null"
+    >{{ "Fetching required details" }}</app-spinner
+  >
 </div>

@@ -12,5 +12,10 @@ export const ENDPOINT_UTILS = {
       forgotPassword: 'forgot-password',
       passwordReset: 'password-reset',
     },
+    user: {
+      root: 'users',
+      detail: 'details',
+      profile: 'profiles',
+    },
   },
 };

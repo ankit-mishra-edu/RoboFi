@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '@app/pages/user/services/user.service';
 import { Observable, Subscription, timer } from 'rxjs';
 import { share, switchMap, tap } from 'rxjs/operators';
 import { AuthenticationForms } from '../../forms/auth.form';
@@ -24,11 +25,15 @@ export class SignUpPage implements OnInit, OnDestroy {
     return this.signUpForm.controls[controlName];
   }
 
-  constructor(private _authService: AuthService, private _router: Router) {}
+  constructor(
+    private _router: Router,
+    private _authService: AuthService,
+    private _userService: UserService,
+  ) {}
 
   ngOnInit(): void {
-    this.allUsers$ = timer(0, 5000).pipe(
-      switchMap(() => this._authService.allUsers$),
+    this.allUsers$ = timer(0, 10000).pipe(
+      switchMap(() => this._userService.allUsers$),
       tap((allUsers: IUser[]) => {
         if (!this.signUpForm) {
           this.signUpForm = AuthenticationForms.SignUpForm(allUsers);

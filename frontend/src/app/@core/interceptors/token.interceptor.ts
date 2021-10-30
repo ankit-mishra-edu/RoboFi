@@ -18,7 +18,7 @@ export class TokenInterceptor implements HttpInterceptor {
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     const isLoggedIn = true;
-    const token = getItem(StorageItem.Auth);
+    const token = getItem(StorageItem.Token);
     const csrfToken = this._authService.GetCSRFToken('csrftoken');
     const isApiUrl = request.url.startsWith(environment.API_BASE_URL);
 
