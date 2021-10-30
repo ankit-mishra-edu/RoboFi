@@ -20,16 +20,13 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class AddressSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
-
     class Meta:
         model = Address
         fields = ['user', 'city', 'state', 'street', 'zip_code']
 
-    extra_kwargs = {
-        'user': {'validators': []}
-    }
-    depth = 1
+        extra_kwargs = {
+            'user': {'read_only': True}
+        }
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -41,15 +38,13 @@ class ProfileSerializer(serializers.ModelSerializer):
                   'birth_date', 'email_confirmed', 'image']
 
         extra_kwargs = {
+            'user': {'read_only': True},
             'address.user': {'validators': []}
         }
-
-        depth = 1
 
     def update(self, instance, validated_data):
         for field in validated_data:
             if (field == 'address'):
-                validated_data.get('address').pop('user')
                 for field_address in validated_data['address']:
                     instance.address.__setattr__(
                         field_address, validated_data['address'].get(field_address))

@@ -50,17 +50,15 @@ class Profile(models.Model):
         return ("{}'s Profile".format(self.user.username))
 
 
-@receiver(post_save, sender=Address)
-def update_user_profile(sender, instance, created, **kwargs):
+@receiver(post_save, sender=User)
+def create_address_for_user(sender, instance, created, **kwargs):
     if created:
-        print('Signal for Profile creation', instance.user)
+        address = Address.objects.create(user=instance)
+
+
+@receiver(post_save, sender=Address)
+def create_profile_for_user(sender, instance, created, **kwargs):
+    if created:
         profile = Profile.objects.create(user=instance.user)
         profile.address = instance
         profile.save()
-
-
-@receiver(post_save, sender=User)
-def update_user_address(sender, instance, created, **kwargs):
-    if created:
-        address = Address.objects.create(user=instance)
-    instance.address.save()
