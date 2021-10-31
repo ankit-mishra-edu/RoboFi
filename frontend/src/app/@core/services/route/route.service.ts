@@ -8,14 +8,14 @@ import { filter, map } from 'rxjs/operators';
 })
 export class RouteService {
   constructor(private _router: Router) {}
-  // Data storage for which navigation bar to show
-  private _currentRouteURL$: Observable<NavigationEnd> =
-    this._router.events.pipe(
-      filter((event: Event) => event instanceof NavigationEnd),
-      map((event: Event) => <NavigationEnd>event),
-    );
 
-  get currentRouteURL$(): Observable<NavigationEnd> {
+  // Data storage for URl of current route
+  private _currentRouteURL$: Observable<string> = this._router.events.pipe(
+    filter((event: Event) => event instanceof NavigationEnd),
+    map((event: Event) => (<NavigationEnd>event).url),
+  );
+
+  get currentRouteURL$(): Observable<string> {
     return this._currentRouteURL$;
   }
 }

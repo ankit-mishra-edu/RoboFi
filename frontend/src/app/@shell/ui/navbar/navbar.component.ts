@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationStart } from '@angular/router';
 import { RouteService } from '@app/@core/services/route';
+import { SearchBoxService } from '@app/@core/services/search-box/search-box.service';
 import { ROUTER_UTILS } from '@app/@core/utils/router.utils';
 import { AuthService } from '@app/pages/auth/services/auth.service';
 import { Observable } from 'rxjs';
@@ -11,29 +11,33 @@ import { Observable } from 'rxjs';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  isLoggedIn$!: Observable<boolean>;
   configPath = ROUTER_UTILS.config;
-  currentRouteURL$!: Observable<NavigationStart>;
+  currentRouteURL$!: Observable<string>;
 
   constructor(
     private _routeService: RouteService,
     private _authService: AuthService,
+    private _searchBoxService: SearchBoxService,
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn$ = this._authService.isLoggedIn$;
     this.currentRouteURL$ = this._routeService.currentRouteURL$;
   }
 
   routeIsHomeURL(currentRouteURL: string): boolean {
-    return currentRouteURL.startsWith('/') && currentRouteURL.endsWith('/')
-      ? true
-      : false;
+    if (
+      currentRouteURL.startsWith(`/${this.configPath.base.home}`) &&
+      currentRouteURL.endsWith(`/${this.configPath.base.home}`)
+    ) {
+      this._searchBoxService.placeholder = 'Home';
+      return true;
+    }
+    return false;
   }
 
   routeIsSettingsURL(currentRouteURL: string): boolean {
     if (currentRouteURL.includes(`/${this.configPath.settings.root}`)) {
-      // this._navbarService.placeholder = 'Schedule';
+      this._searchBoxService.placeholder = 'Settings';
       return true;
     }
     return false;

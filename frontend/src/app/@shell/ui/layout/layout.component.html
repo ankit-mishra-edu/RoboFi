@@ -1,12 +1,14 @@
 <div class="flex flex-col h-screen overflow-hidden">
-  <div>
-    <app-header></app-header>
-  </div>
+  <app-header></app-header>
   <div class="flex flex-row h-full mt-16">
     <app-sidebar></app-sidebar>
 
     <div class="flex flex-col flex-auto overflow-x-hidden">
-      <ng-content></ng-content>
+      <app-spinner class="mt-6" spinnerSize="2rem" *ngIf="routingIsDelayed"
+        >Loading resources for requested page...</app-spinner
+      >
+      <ng-content *ngIf="!routingIsDelayed"></ng-content>
+
       <app-footer
         style="
           background-image: url('https://res.cloudinary.com/hnose3kua/image/upload/v1635607470/footer.jpg');
