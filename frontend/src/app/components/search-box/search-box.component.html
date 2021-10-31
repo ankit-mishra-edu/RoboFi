@@ -1,0 +1,17 @@
+<div
+  *ngIf="placeholder$ | async as placeholder"
+  class="d-flex justify-content-center align-items-center"
+>
+  <div class="form">
+    <input
+      type="search"
+      class="text-black dark:text-white"
+      [ngModel]="searchBoxKeywords$ | async"
+      (ngModelChange)="searchBoxTypedKeywords = $event"
+      [placeholder]="'Search ' + placeholder + '...'"
+    />
+    <span class="btn left-pan" (click)="listenClicks = '1'"
+      ><i class="fa fa-microphone"></i
+    ></span>
+  </div>
+</div>
