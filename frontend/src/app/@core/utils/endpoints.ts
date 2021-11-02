@@ -6,11 +6,12 @@ export const ENDPOINT_UTILS = {
     },
     auth: {
       root: 'authentication',
-      signIn: 'sign-in',
+      signIn: 'token',
       signUp: 'sign-up',
       signOut: 'sign-out',
       forgotPassword: 'forgot-password',
       passwordReset: 'password-reset',
+      refreshToken: 'refresh',
     },
     user: {
       root: 'users',

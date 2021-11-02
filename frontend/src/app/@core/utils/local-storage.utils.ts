@@ -1,6 +1,7 @@
 export enum StorageItem {
   Theme = 'App/theme',
-  Token = 'App/token',
+  AccessToken = 'App/token/access',
+  RefreshToken = 'App/token/refresh',
   User = 'App/user',
 }
 

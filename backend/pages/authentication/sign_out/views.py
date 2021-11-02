@@ -1,16 +1,14 @@
-from django.shortcuts import render
-from rest_framework import authentication, permissions
-from rest_framework.response import Response
 from django.contrib.auth import logout as django_logout
-
-from rest_framework import views
+from django.shortcuts import render
+from rest_framework import authentication, permissions, views
+from rest_framework.response import Response
 
 # Create your views here.
 
 
 class SignOutView(views.APIView):
     permission_classes = (permissions.IsAuthenticated, )
-    authentication_classes = (authentication.TokenAuthentication, )
+    # authentication_classes = (authentication.TokenAuthentication, )
 
     def post(self, request):
         try:

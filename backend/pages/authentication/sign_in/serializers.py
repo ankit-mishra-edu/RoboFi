@@ -4,6 +4,7 @@ from pages.users.detail.serializers import UserSerializer
 from pages.users.models import Token, User
 from rest_framework import exceptions as drf_exceptions
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
 class SignInSerializer(serializers.Serializer):
@@ -56,3 +57,13 @@ class TokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Token
         fields = ('key', 'user')
+
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        token['user'] = UserSerializer(user).data
+
+        return token

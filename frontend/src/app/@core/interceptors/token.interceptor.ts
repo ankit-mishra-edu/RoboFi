@@ -18,14 +18,14 @@ export class TokenInterceptor implements HttpInterceptor {
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     const isLoggedIn = true;
-    const token = getItem(StorageItem.Token);
+    const token = getItem(StorageItem.AccessToken);
     const csrfToken = this._authService.GetCSRFToken('csrftoken');
     const isApiUrl = request.url.startsWith(environment.API_BASE_URL);
 
     if (isLoggedIn && isApiUrl) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Token ${token}`,
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
           'X-CSRFToken': csrfToken,
         },

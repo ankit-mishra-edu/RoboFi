@@ -17,12 +17,19 @@ export class AuthService {
       this.loggedInUser = <IUser>getItem(StorageItem.User);
     }
     removeItem(StorageItem.User);
+
+    // this._isLoggedIn$
+    //   .pipe(
+    //     tap(console.log),
+    //     switchMap(() => this.refreshToken(getItem(StorageItem.AccessToken))),
+    //   )
+    //   .subscribe();
   }
 
   AUTH_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.auth.root}/`;
 
   private _isLoggedInSubject$ = new BehaviorSubject<boolean>(
-    !!getItem(StorageItem.Token),
+    !!getItem(StorageItem.AccessToken),
   );
   private _isLoggedIn$ = this._isLoggedInSubject$.asObservable();
 
@@ -68,9 +75,12 @@ export class AuthService {
       )
       .pipe(
         tap((token: IToken) => {
-          setItem(StorageItem.Token, token.key);
+          setItem(StorageItem.AccessToken, token.access);
+          setItem(StorageItem.RefreshToken, token.refresh);
           this._isLoggedInSubject$.next(true);
-          this.loggedInUser = token.user;
+          this.loggedInUser = <IUser>(
+            JSON.parse(atob(token.access.split('.')[1])).user
+          );
         }),
         share(),
       );
@@ -93,9 +103,25 @@ export class AuthService {
       )
       .pipe(
         tap(() => {
-          removeItem(StorageItem.Token);
+          removeItem(StorageItem.AccessToken);
+          removeItem(StorageItem.RefreshToken);
           this._isLoggedInSubject$.next(false);
           this.loggedInUser = <IUser>{};
+        }),
+        share(),
+      );
+  };
+
+  refreshToken = (refreshToken: string | unknown): Observable<IToken> => {
+    return this._http
+      .post<IToken>(
+        this.AUTH_URL +
+          `${ENDPOINT_UTILS.config.auth.signIn}/${ENDPOINT_UTILS.config.auth.refreshToken}/`,
+        refreshToken,
+      )
+      .pipe(
+        tap((token: IToken) => {
+          setItem(StorageItem.AccessToken, token.access);
         }),
         share(),
       );

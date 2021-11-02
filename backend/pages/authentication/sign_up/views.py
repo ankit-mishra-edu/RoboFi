@@ -16,8 +16,7 @@ from .serializers import ActivationSerializer, SignUpSerializer
 class SignUpView(views.APIView):
     queryset = User.objects.all()
     serializer_class = SignUpSerializer
-    # authentication_classes = (authentication.TokenAuthentication, )
-    # permission_classes = [IsAuthenticated,]
+    authentication_classes = []
 
     @classmethod
     def get_extra_actions(cls):

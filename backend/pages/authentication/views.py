@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from pages.authentication.sign_in.views import SignInView
+from pages.authentication.sign_in.views import SignInView, CustomTokenObtainPairView
 from pages.authentication.sign_out.views import SignOutView
 from pages.authentication.sign_up.views import ActivationView, SignUpView
 

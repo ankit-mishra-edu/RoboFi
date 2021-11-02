@@ -1,18 +1,17 @@
-from django.http import HttpResponseRedirect
-from django.utils.encoding import force_text, force_bytes
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
-
-from django.core.mail import EmailMessage
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as django_login
 from django.contrib.auth import logout as django_logout
 from django.contrib.sites.shortcuts import get_current_site
-
-from .serializers import SignInSerializer
-
+from django.core.mail import EmailMessage
+from django.http import HttpResponseRedirect
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from pages.users.models import User
-from rest_framework.response import Response
 from rest_framework import views
+from rest_framework.response import Response
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+from .serializers import CustomTokenObtainPairSerializer, SignInSerializer
 
 
 class SignInView(views.APIView):
@@ -46,3 +45,7 @@ class SignInView(views.APIView):
                 django_login(request, user)
                 # print("Serializer Data", serializer_class.data)
                 return(Response(serializer_class.data, status=200))
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer

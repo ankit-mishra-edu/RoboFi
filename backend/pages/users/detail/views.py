@@ -13,6 +13,7 @@ class UserDetailView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    authentication_classes = []
 
 
 # class UserDetailView(views.APIView):

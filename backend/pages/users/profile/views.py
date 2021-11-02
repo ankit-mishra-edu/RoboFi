@@ -9,7 +9,7 @@ from .serializers import ProfileSerializer
 class UserProfileView(views.APIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    # permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = (permissions.IsAuthenticated, )
     # authentication_classes = (authentication.TokenAuthentication,)
 
     def get(self, request, pk=None, *args, **kwargs):
