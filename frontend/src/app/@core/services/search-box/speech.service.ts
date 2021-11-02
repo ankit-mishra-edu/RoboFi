@@ -8,9 +8,14 @@ export class SpeechService {
   speechRecognition: any;
 
   constructor() {
-    const { webkitSpeechRecognition } = window as any;
+    const { webkitSpeechRecognition, SpeechRecognition } = window as any;
 
-    this.speechRecognition = new webkitSpeechRecognition();
+    try {
+      this.speechRecognition =
+        new webkitSpeechRecognition() || new SpeechRecognition();
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   // Subject for Search Box Spoken text
