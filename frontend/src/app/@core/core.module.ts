@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import {
+  CsrfInterceptor,
+  JwtInterceptor,
   ProxyInterceptor,
   ServerErrorInterceptor,
-  TokenInterceptor,
 } from './interceptors';
 import { BytesModule } from './pipes/bytes/bytes.module';
 
@@ -18,7 +19,8 @@ import { BytesModule } from './pipes/bytes/bytes.module';
       multi: true,
     },
     { provide: HTTP_INTERCEPTORS, useClass: ProxyInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: CsrfInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   exports: [BytesModule],
 })

@@ -17,13 +17,6 @@ export class AuthService {
       this.loggedInUser = <IUser>getItem(StorageItem.User);
     }
     removeItem(StorageItem.User);
-
-    // this._isLoggedIn$
-    //   .pipe(
-    //     tap(console.log),
-    //     switchMap(() => this.refreshToken(getItem(StorageItem.AccessToken))),
-    //   )
-    //   .subscribe();
   }
 
   AUTH_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.auth.root}/`;
@@ -75,12 +68,9 @@ export class AuthService {
       )
       .pipe(
         tap((token: IToken) => {
-          setItem(StorageItem.AccessToken, token.access);
-          setItem(StorageItem.RefreshToken, token.refresh);
+          this.addTokenToLocalStorage(token.access, token.refresh);
           this._isLoggedInSubject$.next(true);
-          this.loggedInUser = <IUser>(
-            JSON.parse(atob(token.access.split('.')[1])).user
-          );
+          this.loggedInUser = <IUser>this.decodeJWT(token.access).user;
         }),
         share(),
       );
@@ -103,8 +93,7 @@ export class AuthService {
       )
       .pipe(
         tap(() => {
-          removeItem(StorageItem.AccessToken);
-          removeItem(StorageItem.RefreshToken);
+          this.removeTokenToLocalStorage();
           this._isLoggedInSubject$.next(false);
           this.loggedInUser = <IUser>{};
         }),
@@ -112,18 +101,34 @@ export class AuthService {
       );
   };
 
-  refreshToken = (refreshToken: string | unknown): Observable<IToken> => {
+  refreshToken = (): Observable<IToken> => {
     return this._http
       .post<IToken>(
         this.AUTH_URL +
           `${ENDPOINT_UTILS.config.auth.signIn}/${ENDPOINT_UTILS.config.auth.refreshToken}/`,
-        refreshToken,
+        <IToken>{ refresh: getItem(StorageItem.RefreshToken) },
       )
       .pipe(
         tap((token: IToken) => {
-          setItem(StorageItem.AccessToken, token.access);
+          this.addTokenToLocalStorage(
+            token.access,
+            <string>getItem(StorageItem.RefreshToken),
+          );
         }),
-        share(),
       );
+  };
+
+  addTokenToLocalStorage = (access: string, refresh: string): void => {
+    setItem(StorageItem.AccessToken, access);
+    setItem(StorageItem.RefreshToken, refresh);
+  };
+
+  removeTokenToLocalStorage = (): void => {
+    removeItem(StorageItem.AccessToken);
+    removeItem(StorageItem.RefreshToken);
+  };
+
+  decodeJWT = (accessToken: string): any => {
+    return JSON.parse(atob(accessToken.split('.')[1]));
   };
 }

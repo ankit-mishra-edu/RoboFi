@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_BASE_URL: 'http://localhost:8000',
+  API_BASE_URL: 'http://localhost:8000/api',
   MEDIA_BASE_URL: 'https://res.cloudinary.com/hnose3kua/',
 };
 

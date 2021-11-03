@@ -24,7 +24,7 @@ from . import settings
 urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [
     path('admin/', admin.site.urls),
 
-    path('users/', include('pages.users.urls')),
-    path('authentication/', include('pages.authentication.urls')),
+    path('api/users/', include('pages.users.urls')),
+    path('api/authentication/', include('pages.authentication.urls')),
     url(r'^.*', TemplateView.as_view(template_name="home.html"), name="home"),
 ]

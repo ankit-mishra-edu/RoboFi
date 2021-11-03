@@ -2,8 +2,6 @@ from django.db import models
 from pages.users.models import Address, Profile, Token, User
 from rest_framework import serializers
 
-# Serializers define the API representation.
-
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -16,4 +14,3 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'username': {'validators': []},
             'email': {'validators': []}
         }
-        # abstract = False
