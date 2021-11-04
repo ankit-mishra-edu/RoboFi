@@ -35,11 +35,4 @@ export class HeaderComponent implements OnInit {
       ),
     );
   }
-
-  onClickSignOut(): void {
-    this._authService.signOut().subscribe(() => {
-      const { root, signIn } = ROUTER_UTILS.config.auth;
-      this._router.navigate(['/', root, signIn]);
-    });
-  }
 }

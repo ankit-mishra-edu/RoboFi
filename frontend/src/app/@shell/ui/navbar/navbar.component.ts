@@ -75,7 +75,8 @@ export class NavbarComponent implements OnInit {
   }
 
   routeIsUserURL(currentRouteURL: string): boolean {
-    if (currentRouteURL.startsWith('/user')) {
+    if (currentRouteURL.includes(`/${this.configPath.user.root}`)) {
+      this._searchBoxService.placeholder = 'Users';
       return true;
     }
     return false;

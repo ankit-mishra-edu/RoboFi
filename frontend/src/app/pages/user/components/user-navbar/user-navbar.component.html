@@ -1,0 +1,22 @@
+<div class="flex space-x-4">
+  <a
+    [routerLink]="[userPath.root, userPath.profile]"
+    routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 hover:text-white"
+    >Profile</a
+  >
+
+  <a
+    [routerLink]="[userPath.root, userPath.overview]"
+    routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 hover:text-white"
+    >Overview</a
+  >
+
+  <a
+    [routerLink]="[authPath.root, authPath.signOut]"
+    routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 hover:text-white"
+    >Sign Out</a
+  >
+</div>

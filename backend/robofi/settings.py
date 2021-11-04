@@ -157,7 +157,7 @@ CLOUDINARY = {
 # }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=environment.get('TOKEN_EXPIRATION_TIME')),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=int(environment.get('TOKEN_EXPIRATION_TIME'))),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'UPDATE_LAST_LOGIN': True,
 }

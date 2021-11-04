@@ -8,4 +8,7 @@
   <div *ngIf="routeIsAuthURL(currentRouteURL)">
     <app-auth-navbar></app-auth-navbar>
   </div>
+  <div *ngIf="routeIsUserURL(currentRouteURL)">
+    <app-user-navbar></app-user-navbar>
+  </div>
 </div>
