@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { getItem, removeItem, setItem, StorageItem } from '@app/@core/utils';
+import { ROUTER_UTILS } from '@app/@core/utils/router.utils';
 import { ENDPOINT_UTILS } from '@core/utils/endpoints';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { share, tap } from 'rxjs/operators';
@@ -9,7 +11,7 @@ import { share, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient, private _router: Router) {
     window.onbeforeunload = () => {
       setItem(StorageItem.User, this.loggedInUser);
     };
@@ -96,6 +98,8 @@ export class AuthService {
           this.removeTokenToLocalStorage();
           this._isLoggedInSubject$.next(false);
           this.loggedInUser = <IUser>{};
+          const { root, signIn } = ROUTER_UTILS.config.auth;
+          this._router.navigate(['/', root, signIn]);
         }),
         share(),
       );

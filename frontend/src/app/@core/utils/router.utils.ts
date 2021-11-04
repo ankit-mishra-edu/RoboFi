@@ -19,7 +19,6 @@ export const ROUTER_UTILS = {
       root: 'auth',
       signIn: 'sign-in',
       signUp: 'sign-up',
-      signOut: 'sign-out',
       forgotPassword: 'forgot-password',
       forgotPasswordEmailSent: 'forgot-password-email-sent',
       passwordReset: 'password-reset',
@@ -39,7 +38,8 @@ export const ROUTER_UTILS = {
     user: {
       root: 'users',
       overview: 'overview',
-      profile: ':username',
+      signOut: 'sign-out',
+      profile: 'profile',
     },
     errorResponse: {
       notFound: '404',

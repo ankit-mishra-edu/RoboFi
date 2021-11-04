@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ROUTER_UTILS } from '@app/@core/utils/router.utils';
+import { AuthService } from '@pages/auth/services/auth.service';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   templateUrl: './sign-out.page.html',
@@ -14,11 +13,7 @@ export class SignOutPage implements OnInit, OnDestroy {
   constructor(private _router: Router, private _authService: AuthService) {}
 
   ngOnInit(): void {
-    this.signOutSub = this._authService.signOut().subscribe(() => {
-      console.log('In Sign Out page');
-      const { root, signIn } = ROUTER_UTILS.config.auth;
-      this._router.navigate(['/', root, signIn]);
-    });
+    this.signOutSub = this._authService.signOut().subscribe();
   }
 
   ngOnDestroy(): void {

@@ -5,7 +5,7 @@ import { AuthService } from '@app/pages/auth/services/auth.service';
 import { UserService } from '@app/pages/user/services/user.service';
 import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
-import { filter, switchMap } from 'rxjs/operators';
+import { filter, share, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -24,11 +24,13 @@ export class HeaderComponent implements OnInit {
   media_url = environment.MEDIA_BASE_URL;
 
   isLoggedIn$!: Observable<boolean>;
+  loggedInUser$!: Observable<IUser>;
   userProfile$!: Observable<IProfile>;
 
   ngOnInit(): void {
     this.isLoggedIn$ = this._authService.isLoggedIn$;
-    this.userProfile$ = this._authService.loggedInUser$.pipe(
+    this.loggedInUser$ = this._authService.loggedInUser$.pipe(share());
+    this.userProfile$ = this.loggedInUser$.pipe(
       filter((loggedInUser: IUser) => loggedInUser.id !== undefined),
       switchMap((loggedInUser: IUser) =>
         this._userService.profileById$(loggedInUser.id),

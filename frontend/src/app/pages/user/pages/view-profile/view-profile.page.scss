@@ -1,0 +1,44 @@
+.content {
+  padding: 5px;
+  margin-left: auto;
+  min-height: 250px;
+  margin-right: auto;
+  overflow-x: hidden;
+
+  .box {
+    position: relative;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 4px solid #d2d6de;
+    margin-bottom: 20px;
+    width: 100%;
+    inline-size: 100%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+    .box-body {
+      border: 0 3px;
+      padding: 10px;
+      inline-size: 100%;
+    }
+  }
+
+  .box-primary {
+    border-top-color: #3c8dbc;
+  }
+
+  .profile-user-img {
+    margin: 0 auto;
+    inline-size: 100px;
+    padding: 3px;
+    border: 3px solid #d2d6de;
+  }
+
+  #image {
+    line-height: 1.5em;
+    list-style-image: url('/static/ui/assets/auth/profile/tree.png');
+
+    li {
+      padding-block-end: 0.2em;
+    }
+  }
+}

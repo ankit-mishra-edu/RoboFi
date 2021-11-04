@@ -1,6 +1,6 @@
-<div class="flex space-x-4">
+<div *ngIf="loggedInUser$ | async as loggedInUser" class="flex space-x-4">
   <a
-    [routerLink]="[userPath.root, userPath.profile]"
+    [routerLink]="[userPath.root, userPath.profile, loggedInUser.id]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
     class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 hover:text-white"
     >Profile</a
@@ -14,7 +14,7 @@
   >
 
   <a
-    [routerLink]="[authPath.root, authPath.signOut]"
+    [routerLink]="[userPath.root, userPath.signOut]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
     class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 hover:text-white"
     >Sign Out</a
