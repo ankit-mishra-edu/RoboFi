@@ -1,5 +1,8 @@
 <section class="content">
-  <div class="row" *ngIf="userProfile$ | async as userProfile">
+  <div
+    class="row"
+    *ngIf="userProfile$ | async as userProfile; else profileDataNotFetched"
+  >
     <div class="col-md-4 col-sm-12">
       <div class="box box-primary">
         <div class="box-body">
@@ -116,10 +119,9 @@
     </div>
   </div>
 
-  <app-spinner
-    [spinnerColor]="'#428bca'"
-    [spinnerSize]="'1.5rem'"
-    *ngIf="(userProfile$ | async) !== undefined"
-    >{{ " Fetching data from backend....." }}</app-spinner
-  >
+  <ng-template #profileDataNotFetched>
+    <app-spinner [spinnerSize]="'1.5rem'"
+      >{{ " Fetching profile data from backend....." }}</app-spinner
+    >
+  </ng-template>
 </section>
