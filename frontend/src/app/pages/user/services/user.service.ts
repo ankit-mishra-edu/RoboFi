@@ -70,7 +70,7 @@ export class UserService {
   changePassword(userData: IUser): Observable<IUser> {
     return this._http
       .patch<IUser>(
-        `${this._USER_URL}/${userData.id}/${ENDPOINT_UTILS.config.user.changePassword}`,
+        `${this._USER_URL}/${this._authService.loggedInUser.id}/${ENDPOINT_UTILS.config.user.changePassword}`,
         userData,
       )
       .pipe(
