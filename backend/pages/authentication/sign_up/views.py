@@ -65,7 +65,7 @@ class SignUpView(views.APIView):
 
         uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
         current_site = get_current_site(request)
-        activation_link = f"http://{current_site.domain}/authentication/activation/{uidb64}/{token}/"
+        activation_link = f"https://{current_site.domain}/api/authentication/activation/{uidb64}/{token}/"
 
         subject = "Activation link for RoboFi Application."
         body = f"""Hi {user.username},
