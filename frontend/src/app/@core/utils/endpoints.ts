@@ -17,6 +17,7 @@ export const ENDPOINT_UTILS = {
       root: 'users',
       detail: 'details',
       profile: 'profiles',
+      changePassword: 'change-password',
     },
   },
 };

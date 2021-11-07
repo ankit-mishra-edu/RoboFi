@@ -65,7 +65,7 @@ export class AuthService {
   signIn = (signInData: IUser): Observable<IToken> => {
     return this._http
       .post<IToken>(
-        this.AUTH_URL + `${ENDPOINT_UTILS.config.auth.signIn}/`,
+        this.AUTH_URL + `${ENDPOINT_UTILS.config.auth.signIn}`,
         signInData,
       )
       .pipe(
@@ -81,7 +81,7 @@ export class AuthService {
   signUp = (userData: IUser): Observable<IToken> => {
     return this._http
       .post<IToken>(
-        this.AUTH_URL + `${ENDPOINT_UTILS.config.auth.signUp}/`,
+        this.AUTH_URL + `${ENDPOINT_UTILS.config.auth.signUp}`,
         userData,
       )
       .pipe(share());
@@ -90,7 +90,7 @@ export class AuthService {
   signOut = (): Observable<boolean> => {
     return this._http
       .post<boolean>(
-        this.AUTH_URL + `${ENDPOINT_UTILS.config.auth.signOut}/`,
+        this.AUTH_URL + `${ENDPOINT_UTILS.config.auth.signOut}`,
         '',
       )
       .pipe(
@@ -109,7 +109,7 @@ export class AuthService {
     return this._http
       .post<IToken>(
         this.AUTH_URL +
-          `${ENDPOINT_UTILS.config.auth.signIn}/${ENDPOINT_UTILS.config.auth.refreshToken}/`,
+          `${ENDPOINT_UTILS.config.auth.signIn}/${ENDPOINT_UTILS.config.auth.refreshToken}`,
         <IToken>{ refresh: getItem(StorageItem.RefreshToken) },
       )
       .pipe(

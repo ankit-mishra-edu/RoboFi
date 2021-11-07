@@ -1,0 +1,126 @@
+<div class="edit-profile">
+  <ng-container *ngIf="userProfile$ | async; else userProfileNotFetched">
+    <div class="form-wrapper">
+      <div class="row">
+        <div class="col-lg-1 col-md-1"></div>
+        <div class="col-md-8 col-lg-5">
+          <form class="form-group" [formGroup]="editProfileForm">
+            <div class="form-group">
+              <h3 class="form-heading">Edit Profile</h3>
+              <div class="form-group">
+                <label for="bio" class="form-label">Bio</label>
+                <textarea
+                  id="bio"
+                  rows="2"
+                  cols="60"
+                  class="form-control highlight"
+                  formControlName="bio"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="birth_date" class="form-label">Birth date</label>
+                <input
+                  type="date"
+                  id="birth_date"
+                  class="form-control highlight"
+                  formControlName="birth_date"
+                />
+              </div>
+
+              <div class="form-group" formGroupName="address">
+                <h4>Address</h4>
+
+                <div class="form-group">
+                  <label for="street" class="form-label">Street</label>
+                  <input
+                    id="street"
+                    type="text"
+                    class="form-control highlight"
+                    formControlName="street"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="city" class="form-label">City</label>
+                  <input
+                    id="city"
+                    type="text"
+                    class="form-control highlight"
+                    formControlName="city"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="state" class="form-label">State</label>
+                  <input
+                    id="state"
+                    type="text"
+                    class="form-control highlight"
+                    formControlName="state"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="zip_code" class="form-label">Zip Code</label>
+                  <input
+                    id="zip_code"
+                    type="number"
+                    class="form-control highlight"
+                    formControlName="zip_code"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group form-check form-switch">
+                <input
+                  type="checkbox"
+                  id="email_confirmed"
+                  class="form-check-input"
+                  formControlName="email_confirmed"
+                />
+                <label for="email_confirmed" class="form-check-label form-label"
+                  >Email confirmed</label
+                >
+              </div>
+
+              <div class="form-group form-file">
+                <label for="image" class="form-label">Profile photo</label>
+                <br />
+                <input
+                  id="image"
+                  class="form-control form-control-file"
+                  type="file"
+                  formControlName="image"
+                />
+              </div>
+
+              <button
+                (click)="editProfile()"
+                type="button"
+                class="btn"
+                [disabled]="editProfileForm.invalid"
+                [ngClass]="{
+                  'form-valid': !editProfileForm.invalid,
+                  'form-invalid': editProfileForm.invalid
+                }"
+              >
+                Save profile
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-3 col-lg-6"></div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #userProfileNotFetched>
+    <app-spinner
+      [spinnerColor]="'var(--color-secondary)'"
+      [spinnerSize]="'1.5rem'"
+    >
+      Fetching User profile details from backend...
+    </app-spinner>
+  </ng-template>
+</div>

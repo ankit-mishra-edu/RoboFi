@@ -25,7 +25,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     if (
       request.url.indexOf(
-        `${ENDPOINT_UTILS.config.auth.signIn}/${ENDPOINT_UTILS.config.auth.refreshToken}/`,
+        `${ENDPOINT_UTILS.config.auth.signIn}/${ENDPOINT_UTILS.config.auth.refreshToken}`,
       ) > -1
     ) {
       return next.handle(request);

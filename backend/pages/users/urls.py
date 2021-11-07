@@ -1,14 +1,14 @@
-from django.urls import include, path
-from rest_framework import routers
+from django.urls import path
 
 from .views import *
 
-router = routers.DefaultRouter()
-router.register(r'details', UserDetailView)
-
 urlpatterns = [
-    path(r'profiles/', UserProfileView.as_view(), name="profiles"),
-    path(r'profiles/<int:pk>/', UserProfileView.as_view(), name="user-profile"),
+    path(r'profiles', UserProfileView.as_view(), name="profiles"),
+    path(r'<int:pk>/profiles', UserProfileView.as_view(), name="user-profile"),
 
-    path('', include(router.urls)),
+    path(r'details', UsersDetailsView.as_view(), name="details"),
+    path(r'<int:pk>/details', UserDetailView.as_view(), name="user-detail"),
+
+    path(r'<int:pk>/change-password',
+         ChangePassowordView.as_view(), name="change-password"),
 ]

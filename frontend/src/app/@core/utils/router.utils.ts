@@ -40,6 +40,9 @@ export const ROUTER_UTILS = {
       overview: 'overview',
       signOut: 'sign-out',
       profile: 'profile',
+      editProfile: 'edit',
+      editDetails: 'edit',
+      changePassword: 'change-password',
     },
     errorResponse: {
       notFound: '404',
