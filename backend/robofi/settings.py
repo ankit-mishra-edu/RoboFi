@@ -17,9 +17,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'corsheaders',
     'django.contrib.admin',
@@ -96,19 +94,14 @@ REST_FRAMEWORK = {
     )
 }
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'Asia/Kolkata'
-
-USE_I18N = True
-
-USE_L10N = True
-
 USE_TZ = True
+USE_I18N = True
+USE_L10N = True
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'Asia/Kolkata'
 
 # Setting Environment variables
 
@@ -117,7 +110,7 @@ if (os.path.exists(os.path.join(Path(__file__).resolve().parent, 'environment.py
 else:
     environment = os.environ
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = True
 
 DEBUG = environment.get('DEBUG')
@@ -125,25 +118,30 @@ DEBUG = environment.get('DEBUG')
 SECRET_KEY = environment.get('SECRET_KEY')
 
 ALLOWED_HOSTS = [environment.get('ALLOWED_HOSTS')]
+CORS_ORIGIN_WHITELIST = environment.get('ALLOWED_ORIGINS').split(',')
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+SPLITTED_DB_URL = environment.get('DATABASE_URL').split(':')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': environment.get('DATABASE_URL').split(':')[-1].split('/')[1],
-        'USER': environment.get('DATABASE_URL').split(':')[1][2:],
-        'PASSWORD': environment.get('DATABASE_URL').split(':')[-2].split('@')[0],
-        'HOST': environment.get('DATABASE_URL').split(':')[-2].split('@')[1],
-        'PORT': environment.get('DATABASE_URL').split(':')[-1].split('/')[0],
+        'NAME': SPLITTED_DB_URL[-1].split('/')[1],
+        'USER': SPLITTED_DB_URL[1][2:],
+        'PASSWORD': SPLITTED_DB_URL[-2].split('@')[0],
+        'HOST': SPLITTED_DB_URL[-2].split('@')[1],
+        'PORT': SPLITTED_DB_URL[-1].split('/')[0],
     }
 }
 
+SPLITTED_CLOUDINARY_URL = environment.get('CLOUDINARY_URL').split(':')
+
 CLOUDINARY = {
-    'cloud_name': environment.get('CLOUDINARY_URL').split(':')[2].split('@')[1],
-    'api_key': environment.get('CLOUDINARY_URL').split(':')[1][2:],
-    'api_secret': environment.get('CLOUDINARY_URL').split(':')[2].split('@')[0],
+    'cloud_name': SPLITTED_CLOUDINARY_URL[2].split('@')[1],
+    'api_key': SPLITTED_CLOUDINARY_URL[1][2:],
+    'api_secret': SPLITTED_CLOUDINARY_URL[2].split('@')[0],
 }
 
 # CACHES = {
