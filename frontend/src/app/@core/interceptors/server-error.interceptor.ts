@@ -7,13 +7,13 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@app/pages/auth/services/auth.service';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ROUTER_UTILS } from '../utils/router.utils';
 
 @Injectable()
 export class ServerErrorInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private _authService: AuthService) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -21,16 +21,10 @@ export class ServerErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        error.error
-          ? alert(error.error)
-          : error.statusText
-          ? alert(error.statusText)
-          : 'Server Error';
+        alert(error.error.detail || error.statusText || 'Server Error');
 
         if ([401, 403].includes(error.status)) {
-          const { root, signIn } = ROUTER_UTILS.config.auth;
-          this.router.navigate(['/', root, signIn]);
-          // this.router.navigateByUrl(ROUTER_UTILS.config.auth.signIn);
+          this._authService.cleanUpUserDataOnSignOut();
           return throwError(error);
         } else if (error.status === 500) {
           console.error(error);

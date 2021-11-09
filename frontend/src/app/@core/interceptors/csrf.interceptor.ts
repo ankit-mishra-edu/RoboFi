@@ -18,7 +18,8 @@ export class CsrfInterceptor implements HttpInterceptor {
     return next.handle(
       request.clone({
         setHeaders: {
-          'Content-Type': 'application/json',
+          'Content-Type':
+            request.headers.get('Content-Type') || 'application/json',
           'X-CSRFToken': this._authService.GetCSRFToken('csrftoken'),
         },
       }),

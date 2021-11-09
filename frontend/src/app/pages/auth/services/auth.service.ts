@@ -32,6 +32,10 @@ export class AuthService {
     return this._isLoggedInSubject$.getValue();
   }
 
+  set isLoggedIn(value: boolean) {
+    this._isLoggedInSubject$.next(value);
+  }
+
   get isLoggedIn$(): Observable<boolean> {
     return this._isLoggedIn$;
   }
@@ -95,11 +99,7 @@ export class AuthService {
       )
       .pipe(
         tap(() => {
-          this.removeTokenToLocalStorage();
-          this._isLoggedInSubject$.next(false);
-          this.loggedInUser = <IUser>{};
-          const { root, signIn } = ROUTER_UTILS.config.auth;
-          this._router.navigate(['/', root, signIn]);
+          this.cleanUpUserDataOnSignOut();
         }),
         share(),
       );
@@ -127,7 +127,7 @@ export class AuthService {
     setItem(StorageItem.RefreshToken, refresh);
   };
 
-  removeTokenToLocalStorage = (): void => {
+  removeTokenFromLocalStorage = (): void => {
     removeItem(StorageItem.AccessToken);
     removeItem(StorageItem.RefreshToken);
   };
@@ -135,4 +135,12 @@ export class AuthService {
   decodeJWT = (accessToken: string): any => {
     return JSON.parse(atob(accessToken.split('.')[1]));
   };
+
+  cleanUpUserDataOnSignOut(): void {
+    this.removeTokenFromLocalStorage();
+    this._isLoggedInSubject$.next(false);
+    this.loggedInUser = <IUser>{};
+    const { root, signIn } = ROUTER_UTILS.config.auth;
+    this._router.navigate(['/', root, signIn]);
+  }
 }

@@ -13,14 +13,14 @@ import { BytesModule } from './pipes/bytes/bytes.module';
   declarations: [],
   imports: [CommonModule, HttpClientModule, BytesModule],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ProxyInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: CsrfInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerErrorInterceptor,
       multi: true,
     },
-    { provide: HTTP_INTERCEPTORS, useClass: ProxyInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: CsrfInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   exports: [BytesModule],
 })
