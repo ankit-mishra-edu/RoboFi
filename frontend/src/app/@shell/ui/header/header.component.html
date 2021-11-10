@@ -15,10 +15,13 @@
 
     <div class="relative ml-3">
       <ng-container
-        *ngIf="(isLoggedIn$ | async) && (userProfile$ | async) as userProfile"
+        *ngIf="
+          (isLoggedIn$ | async) &&
+          (loggedInUser$ | async) &&
+          (userProfile$ | async) as userProfile
+        "
       >
         <button
-          *ngIf="isLoggedIn$ | async"
           type="button"
           class="flex items-center max-w-xs text-sm bg-gray-800 rounded-full cursor-pointer  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
           id="userProfileMenuButton"

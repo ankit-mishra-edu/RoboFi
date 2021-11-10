@@ -46,7 +46,7 @@ export class UserService {
   editProfile$ = (profileData: IProfile): Observable<IProfile> => {
     return this._http
       .patch<IProfile>(
-        `${this._USER_URL}/${profileData.user}/${ENDPOINT_UTILS.config.user.profile}`,
+        `${this._USER_URL}/${this._authService.loggedInUser.id}/${ENDPOINT_UTILS.config.user.profile}`,
         profileData,
       )
       .pipe(
@@ -58,7 +58,7 @@ export class UserService {
   editUserDetails(userData: IUser): Observable<IUser> {
     return this._http
       .patch<IUser>(
-        `${this._USER_URL}/${userData.id}/${ENDPOINT_UTILS.config.user.detail}`,
+        `${this._USER_URL}/${this._authService.loggedInUser.id}/${ENDPOINT_UTILS.config.user.detail}`,
         userData,
       )
       .pipe(

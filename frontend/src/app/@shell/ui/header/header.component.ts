@@ -29,12 +29,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn$ = this._authService.isLoggedIn$;
-    this.loggedInUser$ = this._authService.loggedInUser$.pipe(share());
+    this.loggedInUser$ = this._authService.loggedInUser$;
     this.userProfile$ = this.loggedInUser$.pipe(
       filter((loggedInUser: IUser) => loggedInUser.id !== undefined),
       switchMap((loggedInUser: IUser) =>
         this._userService.profileById$(loggedInUser.id),
       ),
+      share(),
     );
   }
 }
