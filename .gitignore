@@ -48,5 +48,5 @@ venv/
 
 frontend/node_modules/
 
-backend/static/**
+backend/static/robofi
 backend/robofi/environment.py

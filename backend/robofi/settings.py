@@ -57,7 +57,7 @@ WSGI_APPLICATION = 'robofi.wsgi.application'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'static', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -174,9 +174,9 @@ STATICFILES_DIRS = [
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_DIR = f'{BASE_DIR}/media'
-MEDIA_ROOT = MEDIA_DIR
-MEDIA_URL = '/media/'
+# MEDIA_DIR = f'{BASE_DIR}/media'
+# MEDIA_ROOT = MEDIA_DIR
+# MEDIA_URL = '/media/'
 
 
 EMAIL_PORT = 587

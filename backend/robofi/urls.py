@@ -21,10 +21,10 @@ from django.views.generic.base import TemplateView
 
 from . import settings
 
-urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [
-    path('admin/', admin.site.urls),
+urlpatterns = [
+    path('admin/', admin.site.urls, name='admin'),
 
-    path('api/users/', include('pages.users.urls')),
-    path('api/authentication/', include('pages.authentication.urls')),
-    url(r'^.*', TemplateView.as_view(template_name="home.html"), name="home"),
+    path('api/users/', include('pages.users.urls'), name='users-api'),
+    path('api/authentication/', include('pages.authentication.urls'), name='auth-api'),
+    url(r'^.*', TemplateView.as_view(template_name="frontend.html"), name="frontend"),
 ]
