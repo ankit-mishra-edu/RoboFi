@@ -13,5 +13,7 @@
   },
   "css.validate": false,
   "scss.validate": false,
-  "editor.guides.bracketPairs": true
+  "editor.guides.bracketPairs": true,
+  "editor.hover.above": false,
+  "html.completion.attributeDefaultValue": "doublequotes",
 }
