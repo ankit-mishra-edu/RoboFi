@@ -14,6 +14,8 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -52,6 +54,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'robofi.urls'
 AUTH_USER_MODEL = 'users.User'
 WSGI_APPLICATION = 'robofi.wsgi.application'
+ASGI_APPLICATION = 'robofi.asgi.application'
 
 
 TEMPLATES = [
@@ -123,18 +126,13 @@ CORS_ORIGIN_WHITELIST = environment.get('ALLOWED_ORIGINS').split(',')
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-SPLITTED_DB_URL = environment.get('DATABASE_URL').split(':')
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': SPLITTED_DB_URL[-1].split('/')[1],
-        'USER': SPLITTED_DB_URL[1][2:],
-        'PASSWORD': SPLITTED_DB_URL[-2].split('@')[0],
-        'HOST': SPLITTED_DB_URL[-2].split('@')[1],
-        'PORT': SPLITTED_DB_URL[-1].split('/')[0],
-    }
+    'default': {}
 }
+
+DATABASES['default'] = dj_database_url.parse(
+    environment.get('DATABASE_URL'), conn_max_age=600)
 
 SPLITTED_CLOUDINARY_URL = environment.get('CLOUDINARY_URL').split(':')
 
