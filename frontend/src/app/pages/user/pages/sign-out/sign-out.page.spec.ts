@@ -8,9 +8,10 @@ describe('SignOutPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SignOutPage],
-      imports: [RouterTestingModule],
-    }).compileComponents();
+    declarations: [SignOutPage],
+    imports: [RouterTestingModule],
+    teardown: { destroyAfterEach: false }
+}).compileComponents();
   });
 
   beforeEach(() => {

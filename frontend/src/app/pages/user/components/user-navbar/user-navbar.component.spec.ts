@@ -7,8 +7,9 @@ describe('UserNavbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserNavbarComponent],
-    }).compileComponents();
+    declarations: [UserNavbarComponent],
+    teardown: { destroyAfterEach: false }
+}).compileComponents();
   });
 
   beforeEach(() => {

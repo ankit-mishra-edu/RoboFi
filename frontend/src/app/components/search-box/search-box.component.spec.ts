@@ -8,8 +8,9 @@ describe('SearchBoxComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchBoxComponent ]
-    })
+    declarations: [SearchBoxComponent],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   });
 

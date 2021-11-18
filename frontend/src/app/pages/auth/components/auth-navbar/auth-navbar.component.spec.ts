@@ -8,8 +8,9 @@ describe('AuthNavbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthNavbarComponent ]
-    })
+    declarations: [AuthNavbarComponent],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   });
 

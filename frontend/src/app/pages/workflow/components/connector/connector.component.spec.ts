@@ -8,8 +8,9 @@ describe('ConnectorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConnectorComponent ]
-    })
+    declarations: [ConnectorComponent],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   });
 

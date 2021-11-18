@@ -5,7 +5,7 @@ describe('RouteService', () => {
   let service: TechnologyService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({ teardown: { destroyAfterEach: false } });
     service = TestBed.inject(TechnologyService);
   });
 
