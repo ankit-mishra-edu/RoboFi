@@ -123,6 +123,10 @@ SECRET_KEY = environment.get('SECRET_KEY')
 ALLOWED_HOSTS = [environment.get('ALLOWED_HOSTS')]
 CORS_ORIGIN_WHITELIST = environment.get('ALLOWED_ORIGINS').split(',')
 
+if DEBUG:
+    import mimetypes
+    mimetypes.add_type("application/javascript", ".js", True)
+
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -162,8 +166,8 @@ SIMPLE_JWT = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [
@@ -171,11 +175,6 @@ STATICFILES_DIRS = [
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# MEDIA_DIR = f'{BASE_DIR}/media'
-# MEDIA_ROOT = MEDIA_DIR
-# MEDIA_URL = '/media/'
-
 
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

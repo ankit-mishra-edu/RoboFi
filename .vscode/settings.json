@@ -16,4 +16,5 @@
   "editor.guides.bracketPairs": true,
   "editor.hover.above": false,
   "html.completion.attributeDefaultValue": "doublequotes",
+  "python.formatting.autopep8Args": ["--ignore=E402"],
 }
