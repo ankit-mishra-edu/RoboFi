@@ -20,8 +20,8 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-AUTOMATE_PATH = os.path.join(
-    Path(__file__).resolve().parent.parent, "automate")
+AUTOMATE_PATH = os.path.join(BASE_DIR, "automate")
+print(f"AUTOMATE_PATH : {AUTOMATE_PATH}")
 
 sys.path.append(os.path.join(
     AUTOMATE_PATH, "microbots", "python"))
