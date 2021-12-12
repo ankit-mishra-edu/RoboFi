@@ -1,0 +1,54 @@
+{
+    "Name": "DeleteFile",
+    "Technology": "Python",
+    "Description": "Deletes a file from a given folder.",
+    "Version": "1.0.0",
+    "Category": "FILE",
+    "Inputs": [
+        {
+            "Name": "folderPath",
+            "Type": "string",
+            "DefaultValue": "None",
+            "Description": "Folder path from where a file has to be deleted"
+        },
+        {
+            "Name": "fileName",
+            "Type": "string",
+            "DefaultValue": "None",
+            "Description": "Name of file to be deleted"
+        }
+    ],
+    "Outputs": [
+        {
+            "Name": "deletionStatus",
+            "Type": "boolean",
+            "Description": "Status if the file is deleted or not"
+        }
+    ],
+    "Dependencies": [
+        {
+            "Name": "os",
+            "Type": "module",
+            "Description": "For interaction with System directories"
+        }
+    ],
+    "Authors": [
+        {
+            "Name": "Ankit Mishra",
+            "Email": "ankit.mishra@robofi.com",
+            "Contact": "+919816777240"
+        }
+    ],
+    "Errors": [
+        {
+            "Message": "FILE_NOT_FOUND",
+            "Code": "1000000000",
+            "Description": "File not found"
+        },
+        {
+            "Message": "FOLDER_NOT_FOUND",
+            "Code": "1000000001",
+            "Description": "Folder not found"
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+    "Name": "DeleteFolder",
+    "Technology": "Python",
+    "Description": "Deletes a folder from a parent folder.",
+    "Version": "1.0.0",
+    "Category": "FOLDER",
+    "Inputs": [
+        {
+            "Name": "parentFolderPath",
+            "Type": "string",
+            "DefaultValue": "None",
+            "Description": "Parent Folder path from where a folder has to be deleted"
+        },
+        {
+            "Name": "folderToBeDeleted",
+            "Type": "string",
+            "DefaultValue": "None",
+            "Description": "Name of folder to be deleted"
+        }
+    ],
+    "Outputs": [
+        {
+            "Name": "deletionStatus",
+            "Type": "boolean",
+            "Description": "Status if the file is deleted or not"
+        }
+    ],
+    "Dependencies": [
+        {
+            "Name": "os",
+            "Type": "module",
+            "Description": "For interaction with System directories"
+        }
+    ],
+    "Authors": [
+        {
+            "Name": "Ankit Mishra",
+            "Email": "ankit.mishra@robofi.com",
+            "Contact": "+919816777240"
+        }
+    ],
+    "Errors": [
+        {
+            "Message": "FOLDER_NOT_FOUND",
+            "Code": "1000000000",
+            "Description": "Folder not found"
+        }
+    ]
+}
