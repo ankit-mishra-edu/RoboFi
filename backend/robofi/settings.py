@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
+import sys
 from datetime import timedelta
 from pathlib import Path
 
@@ -18,6 +19,12 @@ import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+AUTOMATE_PATH = os.path.join(
+    Path(__file__).resolve().parent.parent, "Automate")
+
+sys.path.append(os.path.join(
+    AUTOMATE_PATH, "Microbots", "Python"))
 
 # Application definition
 INSTALLED_APPS = [
@@ -33,6 +40,7 @@ INSTALLED_APPS = [
 
     'pages.users',
     'pages.users.detail',
+    'pages.automation',
 
     'rest_framework',
     'rest_framework.authtoken',
@@ -132,11 +140,9 @@ if DEBUG:
 
 
 DATABASES = {
-    'default': {}
+    'default': dj_database_url.parse(
+        environment.get('DATABASE_URL'), conn_max_age=600)
 }
-
-DATABASES['default'] = dj_database_url.parse(
-    environment.get('DATABASE_URL'), conn_max_age=600)
 
 SPLITTED_CLOUDINARY_URL = environment.get('CLOUDINARY_URL').split(':')
 
