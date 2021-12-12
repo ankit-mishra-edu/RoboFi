@@ -7,12 +7,15 @@ from .config import configurations
 
 
 def create_details_file(microbot_details: dict = None):
+    print(microbot_details)
     microbot_path = os.path.join(settings.AUTOMATE_PATH, "microbots", "python", "BotCodes", microbot_details.get(
         'Name'), f"V{microbot_details.get('Version').replace('.', '')}")
+    print(f"MICROBOT_PATH : {microbot_path}")
     os.makedirs(microbot_path, exist_ok=True)
 
     details_file_path = os.path.join(
         microbot_path, configurations.get("DETAILS_FILE_NAME"))
+    print(f"DETAILS_FILE_PATH : {details_file_path}")
 
     try:
         microbot_details.get("specification").pop("Version")
@@ -24,8 +27,8 @@ def create_details_file(microbot_details: dict = None):
             for field_detail in microbot_details.get(field):
                 field_detail.pop("id")
 
-    except:
-        pass
+    except Exception as e:
+        print(f"Exception Occured : {e}")
 
     try:
         mode = 'x'
