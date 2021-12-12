@@ -21,10 +21,10 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 AUTOMATE_PATH = os.path.join(
-    Path(__file__).resolve().parent.parent, "Automate")
+    Path(__file__).resolve().parent.parent, "automate")
 
 sys.path.append(os.path.join(
-    AUTOMATE_PATH, "Microbots", "Python"))
+    AUTOMATE_PATH, "microbots", "python"))
 
 # Application definition
 INSTALLED_APPS = [

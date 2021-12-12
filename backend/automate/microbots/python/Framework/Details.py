@@ -7,7 +7,7 @@ from .config import configurations
 
 
 def create_details_file(microbot_details: dict = None):
-    microbot_path = os.path.join(settings.AUTOMATE_PATH, "Microbots", "Python", "BotCodes", microbot_details.get(
+    microbot_path = os.path.join(settings.AUTOMATE_PATH, "microbots", "python", "BotCodes", microbot_details.get(
         'Name'), f"V{microbot_details.get('Version').replace('.', '')}")
     os.makedirs(microbot_path, exist_ok=True)
 
