@@ -1,10 +1,11 @@
 from copy import deepcopy
 
 from django.conf import settings
-from rest_framework import permissions, status, views
+from rest_framework import permissions, serializers, status, views
 from rest_framework.response import Response
 
-from ..Framework.DetailsJSON import create_details_file
+from ..Framework.DetailsJSON import (create_details_file, delete_details_file,
+                                     update_details_file)
 from ..models import Microbot
 from .serializers import MicrobotSerializer
 
@@ -56,6 +57,7 @@ class MicrobotDetail(views.APIView):
                 microbot, data=request.data, partial=True)
             if serializer.is_valid(raise_exception=False):
                 serializer.save()
+                update_details_file(deepcopy(serializer.data))
                 return Response(serializer.data)
             return Response(serializer.errors)
         except Exception as exception:
@@ -67,5 +69,7 @@ class MicrobotDetail(views.APIView):
         except Microbot.DoesNotExist:
             return Response(data={'detail': f"Invalid id {pk} for Microbot"}, status=404)
 
+        serializer = self.serializer_class(microbot_to_be_deleted)
+        delete_details_file(deepcopy(serializer.data))
         microbot_to_be_deleted.delete()
-        return Response(status=204)
+        return Response(serializer.data, status=204)

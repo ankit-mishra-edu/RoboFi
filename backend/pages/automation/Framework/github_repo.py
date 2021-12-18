@@ -24,3 +24,31 @@ def create_file_with_content(path: str = None, message: str = None, content: str
 
         status = repo.create_file(
             path=path, message=message, content=content)
+
+
+def update_file(path: str = None, message: str = None, content: str = None):
+    if path is not None and message is not None and content is not None:
+        token: str = settings.AUTOMATION_TOKEN
+        repo_name: str = settings.AUTOMATION_REPO
+        github: Github = Github(token)
+
+        repo: Repository = github.get_repo(repo_name)
+
+        repo_contents = repo.get_contents(path=path)
+
+        status = repo.update_file(
+            path=path, message=message, content=content, sha=repo_contents.sha)
+
+
+def delete_file(path: str = None, message: str = None):
+    if path is not None and message is not None:
+        token: str = settings.AUTOMATION_TOKEN
+        repo_name: str = settings.AUTOMATION_REPO
+        github: Github = Github(token)
+
+        repo: Repository = github.get_repo(repo_name)
+
+        repo_contents = repo.get_contents(path=path)
+
+        status = repo.delete_file(
+            path=path, message=message, sha=repo_contents.sha)
