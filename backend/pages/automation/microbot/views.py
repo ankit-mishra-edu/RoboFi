@@ -4,7 +4,7 @@ from django.conf import settings
 from rest_framework import permissions, status, views
 from rest_framework.response import Response
 
-from ..Framework.DetailsJSON import create_microbot
+from ..Framework.DetailsJSON import create_details_file
 from ..models import Microbot
 from .serializers import MicrobotSerializer
 
@@ -26,7 +26,7 @@ class MicrobotList(views.APIView):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            create_microbot(deepcopy(serializer.data))
+            create_details_file(deepcopy(serializer.data))
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
