@@ -21,6 +21,8 @@ def create_file_with_content(path: str = None, message: str = None, content: str
         github: Github = Github(token)
 
         repo: Repository = github.get_repo(repo_name)
+        print(repo.name)
 
-        repo.create_file(
+        status = repo.create_file(
             path=path, message=message, content=content)
+        print(status.__dict__)
