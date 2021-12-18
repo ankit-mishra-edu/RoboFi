@@ -10,6 +10,7 @@ def create_details_file(microbot_details: dict = None):
 
     try:
         microbot_details.get("specification").pop("Version")
+        microbot_details.get("specification").pop("Description")
         microbot_details.update(**microbot_details.pop("specification"))
 
         microbot_details.pop("id")
