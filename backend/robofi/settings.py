@@ -20,12 +20,6 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-AUTOMATE_PATH = os.path.join(BASE_DIR, "automate")
-print(f"AUTOMATE_PATH : {AUTOMATE_PATH}")
-
-sys.path.append(os.path.join(
-    AUTOMATE_PATH, "microbots", "python"))
-
 # Application definition
 INSTALLED_APPS = [
     'corsheaders',
@@ -134,6 +128,13 @@ CORS_ORIGIN_WHITELIST = environment.get('ALLOWED_ORIGINS').split(',')
 if DEBUG:
     import mimetypes
     mimetypes.add_type("application/javascript", ".js", True)
+
+# Automation Variables
+
+AUTOMATION_REPO = environment.get("AUTOMATION_REPO")
+AUTOMATION_TOKEN = environment.get("AUTOMATION_TOKEN")
+AUTOMATION_README_FILE_NAME = environment.get("AUTOMATION_DETAILS_FILE_NAME")
+AUTOMATION_DETAILS_FILE_NAME = environment.get("AUTOMATION_DETAILS_FILE_NAME")
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

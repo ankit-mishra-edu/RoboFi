@@ -1,21 +1,12 @@
-import json
-import os
-
 from django.conf import settings
 
-from .config import configurations
+from .github_repo import create_file_with_content
 
 
 def create_details_file(microbot_details: dict = None):
     print(microbot_details)
-    microbot_path = os.path.join(settings.AUTOMATE_PATH, "microbots", "python", "BotCodes", microbot_details.get(
-        'Name'), f"V{microbot_details.get('Version').replace('.', '')}")
-    print(f"MICROBOT_PATH : {microbot_path}")
-    os.makedirs(microbot_path, exist_ok=True)
 
-    details_file_path = os.path.join(
-        microbot_path, configurations.get("DETAILS_FILE_NAME"))
-    print(f"DETAILS_FILE_PATH : {details_file_path}")
+    details_file_path = f"microbots/python/BotCodes/{microbot_details.get('Name')}/V{microbot_details.get('Version').replace('.', '')}/{settings.AUTOMATION_DETAILS_FILE_NAME}"
 
     try:
         microbot_details.get("specification").pop("Version")
@@ -31,12 +22,8 @@ def create_details_file(microbot_details: dict = None):
         print(f"Exception Occured : {e}")
 
     try:
-        mode = 'x'
-        if os.path.exists(details_file_path):
-            mode = 'w'
-
-        with open(details_file_path, mode) as details_file_obj:
-            details_file_obj.write(json.dumps(microbot_details, indent=4))
+        create_file_with_content(
+            path=details_file_path, message=f"Create {settings.AUTOMATION_DETAILS_FILE_NAME}", content=microbot_details)
 
     except Exception as e:
         print(
