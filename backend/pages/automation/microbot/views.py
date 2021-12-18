@@ -72,4 +72,4 @@ class MicrobotDetail(views.APIView):
         serializer = self.serializer_class(microbot_to_be_deleted)
         delete_details_file(deepcopy(serializer.data))
         microbot_to_be_deleted.delete()
-        return Response(serializer.data, status=204)
+        return Response(serializer.data, status=200)
