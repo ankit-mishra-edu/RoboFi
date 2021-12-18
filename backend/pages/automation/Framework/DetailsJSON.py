@@ -6,8 +6,6 @@ from .github_repo import create_file_with_content
 
 
 def create_details_file(microbot_details: dict = None):
-    print(microbot_details)
-
     details_file_path = f"microbots/python/BotCodes/{microbot_details.get('Name')}/V{microbot_details.get('Version').replace('.', '')}/{settings.AUTOMATION_DETAILS_FILE_NAME}"
 
     try:
@@ -25,10 +23,9 @@ def create_details_file(microbot_details: dict = None):
 
     try:
         create_file_with_content(
-            path=details_file_path, message=f"Create {settings.AUTOMATION_DETAILS_FILE_NAME}", content=json.dumps(microbot_details))
+            path=details_file_path, message=f"Create {settings.AUTOMATION_DETAILS_FILE_NAME}", content=json.dumps(microbot_details, indent=4))
 
     except Exception as e:
-        print(str(e))
         print(
             f"Exception while creating Details file for {microbot_details.get('Name')} : {e.__str__()}")
         return False
