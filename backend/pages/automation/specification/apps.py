@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AutomationConfig(AppConfig):
+class SpecificationConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'pages.automation'
+    name = 'pages.automation.specification'

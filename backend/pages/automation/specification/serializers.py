@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from ..models import (Author, Dependency, Error, Input, Microbot, Output,
-                      Specification)
+from .models import Author, Dependency, Error, Input, Output, Specification
 
 
 class InputSerializer(serializers.ModelSerializer):
@@ -56,23 +55,23 @@ class SpecificationSerializer(serializers.ModelSerializer):
         authors = validated_data.pop("Authors")
         errors = validated_data.pop("Errors")
 
-        microbot: Microbot = super().create(validated_data)
+        specification: Specification = super().create(validated_data)
 
-        microbot.Inputs.add(
+        specification.Inputs.add(
             *(Input.objects.create(**input).id for input in inputs))
 
-        microbot.Outputs.add(
+        specification.Outputs.add(
             *(Output.objects.create(**output).id for output in outputs))
 
-        microbot.Dependencies.add(
+        specification.Dependencies.add(
             *(Dependency.objects.create(**dependency).id for dependency in dependencies))
 
-        microbot.Authors.add(
+        specification.Authors.add(
             *(Author.objects.create(**author).id for author in authors))
 
-        microbot.Errors.add(
+        specification.Errors.add(
             *(Error.objects.create(**error).id for error in errors))
 
-        microbot.save()
+        specification.save()
 
-        return microbot
+        return specification

@@ -32,7 +32,9 @@ INSTALLED_APPS = [
 
     'pages.users',
     'pages.users.detail',
-    'pages.automation',
+    # 'pages.automation',
+    'pages.automation.microbot',
+    'pages.automation.specification',
 
     'rest_framework',
     'rest_framework.authtoken',

@@ -6,7 +6,7 @@ from rest_framework.response import Response
 
 from ..Framework.DetailsJSON import (create_details_file, delete_details_file,
                                      update_details_file)
-from ..models import Microbot
+from .models import Microbot
 from .serializers import MicrobotSerializer
 
 # Create your views here.
