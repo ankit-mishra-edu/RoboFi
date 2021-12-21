@@ -43,6 +43,14 @@ export class NavbarComponent implements OnInit {
     return false;
   }
 
+  routeIsAutomationURL(currentRouteURL: string): boolean {
+    if (currentRouteURL.includes(`/${this.configPath.automation.root}`)) {
+      this._searchBoxService.placeholder = 'Automation';
+      return true;
+    }
+    return false;
+  }
+
   routeIsTriggerURL(currentRouteURL: string): boolean {
     if (currentRouteURL.includes('/trigger')) {
       // this._navbarService.placeholder = 'Trigger';

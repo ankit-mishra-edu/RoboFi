@@ -42,6 +42,16 @@ const APP_ROUTES: Routes = [
     loadChildren: async () =>
       import('@pages/workflow/workflow.module').then((m) => m.WorkflowModule),
   },
+
+  {
+    path: ROUTER_UTILS.config.automation.root,
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard],
+    loadChildren: async () =>
+      import('@pages/automation/automation.module').then(
+        (m) => m.AutomationModule,
+      ),
+  },
   {
     path: '**',
     loadChildren: async () =>

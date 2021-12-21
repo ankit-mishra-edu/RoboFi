@@ -11,4 +11,7 @@
   <div *ngIf="routeIsUserURL(currentRouteURL)">
     <app-user-navbar></app-user-navbar>
   </div>
+  <div *ngIf="routeIsAutomationURL(currentRouteURL)">
+    <app-automation-navbar></app-automation-navbar>
+  </div>
 </div>

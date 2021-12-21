@@ -1,0 +1,14 @@
+.view-all-specifications {
+  .flex {
+    .specification {
+      transition: 0.3s;
+      box-shadow: 4px 3px 8px 0px gray;
+
+      &:hover {
+        // border-radius: 5px 0px 0px 5px;
+        transform: translateY(-3px);
+        box-shadow: 4px 3px 11px 6px gray;
+      }
+    }
+  }
+}

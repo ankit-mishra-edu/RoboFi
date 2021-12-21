@@ -9,21 +9,26 @@
       <a
         [routerLink]="technology.value"
         *ngFor="let technology of technologies | keyvalue"
-        class="h-8 pl-4 hover:bg-gray-100"
+        class="h-8 pt-1 pl-3 ml-3 rounded-l-2xl hover:bg-gray-100"
         >{{ technology.key }}</a
       >
-      <hr />
+      <hr class="py-2" />
       <a
         [routerLink]="[configPath.settings.root]"
-        class="h-8 pl-4 hover:bg-gray-100"
+        class="h-8 pt-1 pl-3 ml-3 rounded-l-2xl hover:bg-gray-100"
         >{{ 'Settings' }}</a
       >
       <a
         [routerLink]="[
           (isLoggedIn$ | async) ? configPath.user.root : configPath.auth.root
         ]"
-        class="h-8 pl-4 hover:bg-gray-100"
+        class="h-8 pt-1 pl-3 ml-3 rounded-l-2xl hover:bg-gray-100"
         >{{ (isLoggedIn$ | async) ? 'User' : 'Auth' }}</a
+      >
+      <a
+        [routerLink]="[configPath.automation.root]"
+        class="h-8 pt-1 pl-3 ml-3 rounded-l-2xl hover:bg-gray-100"
+        >{{ 'Automation' }}</a
       >
     </div>
   </div>

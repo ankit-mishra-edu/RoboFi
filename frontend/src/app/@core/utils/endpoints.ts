@@ -19,5 +19,10 @@ export const ENDPOINT_UTILS = {
       profile: 'profiles',
       changePassword: 'change-password',
     },
+    automation: {
+      root: 'automation',
+      microbot: 'microbots',
+      specification: 'specifications',
+    },
   },
 };

@@ -51,5 +51,22 @@ export const ROUTER_UTILS = {
       root: 'workflow',
       editor: 'editor',
     },
+    automation: {
+      root: 'automation',
+      home: 'home',
+      dashboard: 'dashboard',
+      microbot: {
+        root: 'microbots',
+        create: 'create',
+        viewAll: 'view-all',
+        viewOrEdit: 'view-or-edit',
+      },
+      specification: {
+        root: 'specifications',
+        create: 'create',
+        viewAll: 'view-all',
+        viewOrEdit: 'view-or-edit',
+      },
+    },
   },
 };
