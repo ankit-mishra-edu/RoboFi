@@ -92,7 +92,7 @@ body {
 
     .form-control {
       // inline-size: 100%;
-      inline-size: max(240px, 40%);
+      inline-size: min(300px, 70%);
     }
 
     .highlight {
@@ -100,8 +100,8 @@ body {
       color: var(--color-primary);
     }
 
-    textarea {
-      inline-size: max(240px, 40%);
+    .extended-control {
+      inline-size: 100%;
     }
 
     .form-heading {

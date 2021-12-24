@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
 export class SideBarComponent implements OnInit {
   configPath = ROUTER_UTILS.config;
   isLoggedIn$!: Observable<boolean>;
-  isSidebarOpen = true;
+  isSidebarOpen = false;
   technologies!: {
     Python: string;
     Java: string;

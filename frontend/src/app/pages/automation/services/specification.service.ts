@@ -18,4 +18,16 @@ export class SpecificationService {
         `${ENDPOINT_UTILS.config.automation.specification}`,
     )
     .pipe(share());
+
+  CreateSpecification$ = (
+    specification: ISpecification,
+  ): Observable<ISpecification> => {
+    return this._http
+      .post<ISpecification>(
+        this.SPECIFICATION_URL +
+          `${ENDPOINT_UTILS.config.automation.specification}`,
+        specification,
+      )
+      .pipe(share());
+  };
 }

@@ -1,6 +1,7 @@
 <div class="flex flex-col m-4 view-all-specifications">
   <div class="m-2 create-specification-button right">
     <button
+      [routerLink]="['../../', specificationPath.root, specificationPath.create]"
       class="inline-flex items-center px-4 py-2 font-bold text-gray-800 bg-gray-300 rounded  hover:bg-gray-400"
     >
       <svg
@@ -33,10 +34,12 @@
         ></div>
 
         <div
-          class="flex flex-col justify-between w-auto h-48 p-3 leading-normal bg-white border-b border-l border-r border-gray-400  lg:w-2/3 lg:border-l-0 lg:border-t lg:border-gray-400"
+          class="flex flex-col justify-between w-auto h-48 p-2 leading-normal bg-white border-b border-l border-r border-gray-400  lg:w-2/3 lg:border-l-0 lg:border-t lg:border-gray-400"
         >
           <div class="mb-4">
-            <div class="mb-2 text-xl font-bold text-gray-900">
+            <div
+              class="mx-1 mb-2 text-xl font-bold text-center text-gray-900 bg-gray-200  rounded-3xl"
+            >
               {{specification.Name}}
             </div>
             <p class="h-20 overflow-y-auto text-base text-gray-700">
@@ -45,14 +48,12 @@
           </div>
           <div class="flex items-center">
             <p class="pr-1 text-gray-900">- By</p>
-            <div class="text-sm">
-              <p
-                *ngFor="let author of specification.Authors"
-                class="leading-none text-gray-900"
-              >
-                {{ " " + author.Name }}
-              </p>
-            </div>
+            <p
+              *ngFor="let author of specification.Authors"
+              class="leading-none text-gray-900"
+            >
+              {{ " " + author.Name }}
+            </p>
           </div>
         </div>
       </div>

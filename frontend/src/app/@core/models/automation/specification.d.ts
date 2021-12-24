@@ -15,9 +15,9 @@ interface ISpecificationOutput {
 
 interface ISpecificationError {
   id: number;
-  Name: string;
-  Code: string;
   Message: string;
+  Code: string;
+  Description: string;
 }
 
 interface ISpecificationDependency {
