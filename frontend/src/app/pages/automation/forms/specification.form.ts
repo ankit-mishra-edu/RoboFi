@@ -1,12 +1,12 @@
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-export class CreateSpecificationForm {
+export class SpecificationForm {
   constructor(private _formBuilder: FormBuilder) {}
 
-  createSpecificationForm!: FormGroup;
+  specificationForm!: FormGroup;
 
   public InitForm() {
-    this.createSpecificationForm = this._formBuilder.group({
+    this.specificationForm = this._formBuilder.group({
       Name: ['', [Validators.required]],
       Description: ['', [Validators.required]],
       Category: ['', [Validators.required]],
@@ -18,7 +18,7 @@ export class CreateSpecificationForm {
       Dependencies: new FormBuilder().array([]),
       Authors: new FormBuilder().array([]),
     });
-    return this.createSpecificationForm;
+    return this.specificationForm;
   }
 
   public initInputRow(
@@ -69,7 +69,7 @@ export class CreateSpecificationForm {
 
   // Input Parameters
   public get inputFormsArr(): FormArray {
-    return this.createSpecificationForm.get('Inputs') as FormArray;
+    return this.specificationForm.get('Inputs') as FormArray;
   }
 
   AddSpecificationInput(...inputs: [string, string, string, string]) {
@@ -90,7 +90,7 @@ export class CreateSpecificationForm {
 
   // Output Parameters
   public get outputFormsArr(): FormArray {
-    return this.createSpecificationForm.get('Outputs') as FormArray;
+    return this.specificationForm.get('Outputs') as FormArray;
   }
 
   AddSpecificationOutput(...outputs: [string, string, string]) {
@@ -111,7 +111,7 @@ export class CreateSpecificationForm {
 
   // Errors
   public get errorFormsArr(): FormArray {
-    return this.createSpecificationForm.get('Errors') as FormArray;
+    return this.specificationForm.get('Errors') as FormArray;
   }
 
   AddSpecificationError(...errors: [string, string, string]) {
@@ -132,7 +132,7 @@ export class CreateSpecificationForm {
 
   // Dependencies
   public get dependencyFormsArr(): FormArray {
-    return this.createSpecificationForm.get('Dependencies') as FormArray;
+    return this.specificationForm.get('Dependencies') as FormArray;
   }
 
   AddSpecificationDependency(...dependencies: [string, string, string]) {
@@ -153,7 +153,7 @@ export class CreateSpecificationForm {
 
   // Authors
   public get authorFormsArr(): FormArray {
-    return this.createSpecificationForm.get('Authors') as FormArray;
+    return this.specificationForm.get('Authors') as FormArray;
   }
 
   AddSpecificationAuthor(...authors: [string, string, string]) {
