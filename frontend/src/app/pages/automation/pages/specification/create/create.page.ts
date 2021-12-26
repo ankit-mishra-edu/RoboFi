@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ROUTER_UTILS } from '@app/@core/utils/router.utils';
-import { CreateSpecificationForm } from '@app/pages/automation/forms';
+import { SpecificationForm } from '@app/pages/automation/forms';
 import { SpecificationService } from '@app/pages/automation/services/specification.service';
 import { isInValid, isValid } from '../../../validators/custom.validator';
 
@@ -20,20 +20,48 @@ export class CreateSpecificationPage implements OnInit {
   isValid = isValid;
   isInValid = isInValid;
   createSpecificationForm!: FormGroup;
-  createSpecificationFormObj!: CreateSpecificationForm;
+  createSpecificationFormObj!: SpecificationForm;
   specificationPath = ROUTER_UTILS.config.automation.specification;
 
   ngOnInit() {
-    this.createSpecificationFormObj = new CreateSpecificationForm(
-      this._formBuilder,
-    );
+    this.createSpecificationFormObj = new SpecificationForm(this._formBuilder);
     this.createSpecificationFormObj.InitForm();
     this.createSpecificationForm =
-      this.createSpecificationFormObj.createSpecificationForm;
+      this.createSpecificationFormObj.specificationForm;
   }
 
   value(controlName: string): AbstractControl {
     return this.createSpecificationForm.controls[controlName];
+  }
+
+  value_i(index: number, controlName: string): AbstractControl {
+    return (<FormGroup>(
+      this.createSpecificationForm.controls['Inputs'].get([index])
+    )).controls[controlName];
+  }
+
+  value_o(index: number, controlName: string): AbstractControl {
+    return (<FormGroup>(
+      this.createSpecificationForm.controls['Outputs'].get([index])
+    )).controls[controlName];
+  }
+
+  value_e(index: number, controlName: string): AbstractControl {
+    return (<FormGroup>(
+      this.createSpecificationForm.controls['Errors'].get([index])
+    )).controls[controlName];
+  }
+
+  value_d(index: number, controlName: string): AbstractControl {
+    return (<FormGroup>(
+      this.createSpecificationForm.controls['Dependencies'].get([index])
+    )).controls[controlName];
+  }
+
+  value_a(index: number, controlName: string): AbstractControl {
+    return (<FormGroup>(
+      this.createSpecificationForm.controls['Authors'].get([index])
+    )).controls[controlName];
   }
 
   CreateSpecification() {

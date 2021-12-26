@@ -105,10 +105,10 @@
             <button
               type="button"
               (click)="AddSpecificationInput('', '', '', '')"
-              class="btn btn-success pull-right"
+              class="btn pull-right"
               [disabled]="createSpecificationForm.invalid"
               [ngClass]="{
-                'form-valid': !createSpecificationForm.invalid,
+                'form-valid': createSpecificationForm.valid,
                 'form-invalid': createSpecificationForm.invalid
               }"
             >
@@ -119,44 +119,80 @@
 
         <div formArrayName="Inputs" class="form-group">
           <div
-            *ngFor="let itemrow of inputFormsArr.controls; let i = index"
             class="form-group"
             [formGroupName]="i"
+            *ngFor="let itemrow of inputFormsArr.controls; let i = index"
           >
             <div class="flex flex-wrap -mx-1">
-              <div class="p-1 md:w-3/12 sm:w-full">
+              <div class="p-1 md:w-3/12 sm:w-full form-group">
+                <label [for]="'Input-Name-' + i" class="form-label">Name</label>
                 <textarea
                   rows="1"
                   formControlName="Name"
+                  [id]="'Input-Name-' + i"
                   placeholder="Name of input..."
                   class="form-control extended-control highlight"
+                  [ngClass]="{
+                    'is-invalid': isInValid(value_i(i, 'Name')),
+                    'is-valid': isValid(value_i(i, 'Name'))
+                  }"
                 ></textarea>
+                <small
+                  *ngIf="
+                  value_i(i, 'Name').touched &&
+                  value_i(i, 'Name').errors?.required
+                "
+                  class="invalid-feedback"
+                  >{{ "Input name is Mandatory." }}</small
+                >
               </div>
-              <div class="p-1 md:w-2/12 sm:w-full">
+              <div class="p-1 md:w-2/12 sm:w-full form-group">
+                <label [for]="'Input-Type-' + i" class="form-label">Type</label>
                 <textarea
                   rows="1"
-                  formControlName="Type"
                   placeholder="Type..."
+                  formControlName="Type"
+                  [id]="'Input-Type-' + i"
                   class="form-control extended-control highlight"
+                  [ngClass]="{
+                    'is-invalid': isInValid(value_i(i, 'Type')),
+                    'is-valid': isValid(value_i(i, 'Type'))
+                  }"
                 ></textarea>
+                <small
+                  *ngIf="
+                  value_i(i, 'Type').touched &&
+                  value_i(i, 'Type').errors?.required
+                "
+                  class="invalid-feedback"
+                  >{{ "Input type is Mandatory." }}</small
+                >
               </div>
-              <div class="p-1 md:w-2/12 sm:w-full">
+              <div class="p-1 md:w-2/12 sm:w-full form-group">
+                <label [for]="'Input-DefaultValue-' + i" class="form-label"
+                  >DefaultValue</label
+                >
                 <textarea
                   rows="1"
                   formControlName="DefaultValue"
                   placeholder="Default value..."
+                  [id]="'Input-DefaultValue-' + i"
                   class="form-control extended-control highlight"
                 ></textarea>
               </div>
-              <div class="p-1 md:w-4/12 sm:w-full">
+              <div class="p-1 md:w-4/12 sm:w-full form-group">
+                <label [for]="'Input-Description-' + i" class="form-label"
+                  >Description</label
+                >
                 <textarea
                   rows="1"
                   formControlName="Description"
+                  [id]="'Input-Description-' + i"
                   placeholder="Description for input param..."
                   class="form-control extended-control highlight"
                 ></textarea>
               </div>
-              <div class="p-1 text-center md:w-1/12 sm:w-full">
+              <div class="p-1 text-center md:w-1/12 sm:w-full form-group">
                 <i
                   type="button"
                   class="fa fa-remove"
@@ -175,7 +211,7 @@
             <button
               type="button"
               (click)="AddSpecificationOutput('', '', '')"
-              class="btn btn-success pull-right"
+              class="btn pull-right"
               [disabled]="createSpecificationForm.invalid"
               [ngClass]="{
                 'form-valid': !createSpecificationForm.invalid,
@@ -194,31 +230,67 @@
             [formGroupName]="i"
           >
             <div class="flex flex-wrap -mx-1">
-              <div class="p-1 md:w-3/12 sm:w-full">
+              <div class="p-1 md:w-3/12 sm:w-full form-group">
+                <label [for]="'Output-Name-' + i" class="form-label"
+                  >Name</label
+                >
                 <textarea
                   rows="1"
                   formControlName="Name"
+                  [id]="'Output-Name-' + i"
                   placeholder="Name of output..."
                   class="form-control extended-control highlight"
+                  [ngClass]="{
+                    'is-invalid': isInValid(value_o(i, 'Name')),
+                    'is-valid': isValid(value_o(i, 'Name'))
+                  }"
                 ></textarea>
+                <small
+                  *ngIf="
+                  value_o(i, 'Name').touched &&
+                  value_o(i, 'Name').errors?.required
+                "
+                  class="invalid-feedback"
+                  >{{ "Output name is Mandatory." }}</small
+                >
               </div>
-              <div class="p-1 md:w-2/12 sm:w-full">
+              <div class="p-1 md:w-2/12 sm:w-full form-group">
+                <label [for]="'Output-Type-' + i" class="form-label"
+                  >Type</label
+                >
                 <textarea
                   rows="1"
                   formControlName="Type"
                   placeholder="Type..."
+                  [id]="'Output-Type-' + i"
                   class="form-control extended-control highlight"
+                  [ngClass]="{
+                    'is-invalid': isInValid(value_o(i, 'Type')),
+                    'is-valid': isValid(value_o(i, 'Type'))
+                  }"
                 ></textarea>
+                <small
+                  *ngIf="
+                  value_o(i, 'Type').touched &&
+                  value_o(i, 'Type').errors?.required
+                "
+                  class="invalid-feedback"
+                  >{{ "Output type is Mandatory." }}</small
+                >
               </div>
-              <div class="p-1 md:w-6/12 sm:w-full">
+              <div class="p-1 md:w-6/12 sm:w-full form-group">
+                <label [for]="'Output-Description-' + i" class="form-label"
+                  >Description</label
+                >
                 <textarea
                   rows="1"
                   formControlName="Description"
+                  [id]="'Output-Description-' + i"
                   placeholder="Description for input param..."
                   class="form-control extended-control highlight"
                 ></textarea>
               </div>
-              <div class="p-1 text-center md:w-1/12 sm:w-full">
+              <div class="p-1 text-center md:w-1/12 sm:w-full form-group">
                 <i
                   type="button"
                   class="fa fa-remove"
@@ -237,7 +309,7 @@
             <button
               type="button"
               (click)="AddSpecificationError('', '', '')"
-              class="btn btn-success pull-right"
+              class="btn pull-right"
               [disabled]="createSpecificationForm.invalid"
               [ngClass]="{
                 'form-valid': !createSpecificationForm.invalid,
@@ -256,31 +328,65 @@
             [formGroupName]="i"
           >
             <div class="flex flex-wrap -mx-1">
-              <div class="p-1 md:w-3/12 sm:w-full">
+              <div class="p-1 md:w-3/12 sm:w-full form-group">
+                <label [for]="'Error-Message-' + i" class="form-label"
+                  >Message</label
+                >
                 <textarea
                   rows="1"
                   formControlName="Message"
+                  [id]="'Error-Message-' + i"
                   placeholder="Error Message..."
                   class="form-control extended-control highlight"
+                  [ngClass]="{
+                    'is-invalid': isInValid(value_e(i, 'Message')),
+                    'is-valid': isValid(value_e(i, 'Message'))
+                  }"
                 ></textarea>
+                <small
+                  *ngIf="
+                  value_e(i, 'Message').touched &&
+                  value_e(i, 'Message').errors?.required
+                "
+                  class="invalid-feedback"
+                  >{{ "Error message is Mandatory." }}</small
+                >
               </div>
-              <div class="p-1 md:w-2/12 sm:w-full">
+              <div class="p-1 md:w-2/12 sm:w-full form-group">
+                <label [for]="'Error-Code-' + i" class="form-label">Code</label>
                 <textarea
                   rows="1"
                   formControlName="Code"
+                  [id]="'Error-Code-' + i"
                   placeholder="Error Code..."
                   class="form-control extended-control highlight"
+                  [ngClass]="{
+                    'is-invalid': isInValid(value_e(i, 'Code')),
+                    'is-valid': isValid(value_e(i, 'Code'))
+                  }"
                 ></textarea>
+                <small
+                  *ngIf="
+                  value_e(i, 'Code').touched &&
+                  value_e(i, 'Code').errors?.required
+                "
+                  class="invalid-feedback"
+                  >{{ "Error code is Mandatory." }}</small
+                >
               </div>
-              <div class="p-1 md:w-6/12 sm:w-full">
+              <div class="p-1 md:w-6/12 sm:w-full form-group">
+                <label [for]="'Error-Description-' + i" class="form-label"
+                  >Description</label
+                >
                 <textarea
                   rows="1"
                   formControlName="Description"
+                  [id]="'Error-Description-' + i"
                   placeholder="Error Description..."
                   class="form-control extended-control highlight"
                 ></textarea>
               </div>
-              <div class="p-1 text-center md:w-1/12 sm:w-full">
+              <div class="p-1 text-center md:w-1/12 sm:w-full form-group">
                 <i
                   type="button"
                   class="fa fa-remove"
@@ -299,7 +405,7 @@
             <button
               type="button"
               (click)="AddSpecificationDependency('', '', '')"
-              class="btn btn-success pull-right"
+              class="btn pull-right"
               [disabled]="createSpecificationForm.invalid"
               [ngClass]="{
                 'form-valid': !createSpecificationForm.invalid,
@@ -318,31 +424,67 @@
             [formGroupName]="i"
           >
             <div class="flex flex-wrap -mx-1">
-              <div class="p-1 md:w-3/12 sm:w-full">
+              <div class="p-1 md:w-3/12 sm:w-full form-group">
+                <label [for]="'Dependency-Name-' + i" class="form-label"
+                  >Name</label
+                >
                 <textarea
                   rows="1"
                   formControlName="Name"
+                  [id]="'Dependency-Name-' + i"
                   placeholder="Name of Dependency..."
                   class="form-control extended-control highlight"
+                  [ngClass]="{
+                    'is-invalid': isInValid(value_d(i, 'Name')),
+                    'is-valid': isValid(value_d(i, 'Name'))
+                  }"
                 ></textarea>
+                <small
+                  *ngIf="
+                  value_d(i, 'Name').touched &&
+                  value_d(i, 'Name').errors?.required
+                "
+                  class="invalid-feedback"
+                  >{{ "Dependency name is Mandatory." }}</small
+                >
               </div>
-              <div class="p-1 md:w-2/12 sm:w-full">
+              <div class="p-1 md:w-2/12 sm:w-full form-group">
+                <label [for]="'Dependency-Type-' + i" class="form-label"
+                  >Type</label
+                >
                 <textarea
                   rows="1"
                   formControlName="Type"
                   placeholder="Type..."
+                  [id]="'Dependency-Type-' + i"
                   class="form-control extended-control highlight"
+                  [ngClass]="{
+                    'is-invalid': isInValid(value_d(i, 'Type')),
+                    'is-valid': isValid(value_d(i, 'Type'))
+                  }"
                 ></textarea>
+                <small
+                  *ngIf="
+                  value_d(i, 'Type').touched &&
+                  value_d(i, 'Type').errors?.required
+                "
+                  class="invalid-feedback"
+                  >{{ "Dependency type is Mandatory." }}</small
+                >
               </div>
-              <div class="p-1 md:w-6/12 sm:w-full">
+              <div class="p-1 md:w-6/12 sm:w-full form-group">
+                <label [for]="'Dependency-Description-' + i" class="form-label"
+                  >Description</label
+                >
                 <textarea
                   rows="1"
                   formControlName="Description"
+                  [id]="'Dependency-Description-' + i"
                   placeholder="Description for input param..."
                   class="form-control extended-control highlight"
                 ></textarea>
               </div>
-              <div class="p-1 text-center md:w-1/12 sm:w-full">
+              <div class="p-1 text-center md:w-1/12 sm:w-full form-group">
                 <i
                   type="button"
                   class="fa fa-remove"
@@ -361,7 +503,7 @@
             <button
               type="button"
               (click)="AddSpecificationAuthor('', '', '')"
-              class="btn btn-success pull-right"
+              class="btn pull-right"
               [disabled]="createSpecificationForm.invalid"
               [ngClass]="{
                 'form-valid': !createSpecificationForm.invalid,
@@ -380,31 +522,67 @@
             [formGroupName]="i"
           >
             <div class="flex flex-wrap -mx-1">
-              <div class="p-1 md:w-3/12 sm:w-full">
+              <div class="p-1 md:w-3/12 sm:w-full form-group">
+                <label [for]="'Author-Name-' + i" class="form-label"
+                  >Name</label
+                >
                 <textarea
                   rows="1"
                   formControlName="Name"
+                  [id]="'Author-Name-' + i"
                   placeholder="Name of author..."
                   class="form-control extended-control highlight"
+                  [ngClass]="{
+                    'is-invalid': isInValid(value_a(i, 'Name')),
+                    'is-valid': isValid(value_a(i, 'Name'))
+                  }"
                 ></textarea>
+                <small
+                  *ngIf="
+                  value_a(i, 'Name').touched &&
+                  value_a(i, 'Name').errors?.required
+                "
+                  class="invalid-feedback"
+                  >{{ "Author name is Mandatory." }}</small
+                >
               </div>
-              <div class="p-1 md:w-2/12 sm:w-full">
+              <div class="p-1 md:w-4/12 sm:w-full form-group">
+                <label [for]="'Author-Email-' + i" class="form-label"
+                  >Email</label
+                >
                 <textarea
                   rows="1"
                   formControlName="Email"
                   placeholder="Email Id..."
+                  [id]="'Author-Email-' + i"
                   class="form-control extended-control highlight"
+                  [ngClass]="{
+                    'is-invalid': isInValid(value_a(i, 'Email')),
+                    'is-valid': isValid(value_a(i, 'Email'))
+                  }"
                 ></textarea>
+                <small
+                  *ngIf="
+                  value_a(i, 'Email').touched &&
+                  value_a(i, 'Email').errors?.required
+                "
+                  class="invalid-feedback"
+                  >{{ "Author email is Mandatory." }}</small
+                >
               </div>
-              <div class="p-1 md:w-6/12 sm:w-full">
+              <div class="p-1 md:w-4/12 sm:w-full form-group">
+                <label [for]="'Author-Contact-' + i" class="form-label"
+                  >Contact</label
+                >
                 <textarea
                   rows="1"
                   formControlName="Contact"
+                  [id]="'Author-Contact-' + i"
                   placeholder="Contact number..."
                   class="form-control extended-control highlight"
                 ></textarea>
               </div>
-              <div class="p-1 text-center md:w-1/12 sm:w-full">
+              <div class="p-1 text-center md:w-1/12 sm:w-full form-group">
                 <i
                   type="button"
                   class="fa fa-remove"
