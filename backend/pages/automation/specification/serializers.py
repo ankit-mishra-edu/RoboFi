@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from .models import Author, Dependency, Error, Input, Output, Specification
+from .models import Author, Dependency, Error, Input, Output
+from ..models import Specification
 
 
 class InputSerializer(serializers.ModelSerializer):

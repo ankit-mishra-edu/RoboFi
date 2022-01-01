@@ -1,7 +1,11 @@
+from copy import deepcopy
+
 from rest_framework import permissions, status, views
 from rest_framework.response import Response
 
-from .models import Specification
+from ..models import Specification
+from .details import (create_details_file, delete_details_file,
+                      update_details_file)
 from .serializers import SpecificationSerializer
 
 # Create your views here.
@@ -10,7 +14,7 @@ from .serializers import SpecificationSerializer
 class SpecificationList(views.APIView):
     queryset = Specification.objects.all()
     serializer_class = SpecificationSerializer
-    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     authentication_classes = []
 
     def get(self, request, *args, **kwargs):
@@ -22,6 +26,7 @@ class SpecificationList(views.APIView):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
+            create_details_file(deepcopy(serializer.data))
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

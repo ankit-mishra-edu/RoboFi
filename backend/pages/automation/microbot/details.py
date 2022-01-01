@@ -2,7 +2,7 @@ import json
 
 from django.conf import settings
 
-from .github_repo import create_file_with_content, delete_file, update_file
+from ..Framework.github_repo import create_file_with_content, delete_file, update_file
 
 
 def create_details_file(microbot_details: dict = None):

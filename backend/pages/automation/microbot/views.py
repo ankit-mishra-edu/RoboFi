@@ -4,9 +4,9 @@ from django.conf import settings
 from rest_framework import permissions, serializers, status, views
 from rest_framework.response import Response
 
-from ..Framework.DetailsJSON import (create_details_file, delete_details_file,
-                                     update_details_file)
-from .models import Microbot
+from ..models import Microbot
+from .details import (create_details_file, delete_details_file,
+                      update_details_file)
 from .serializers import MicrobotSerializer
 
 # Create your views here.
@@ -15,7 +15,7 @@ from .serializers import MicrobotSerializer
 class MicrobotList(views.APIView):
     queryset = Microbot.objects.all()
     serializer_class = MicrobotSerializer
-    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     authentication_classes = []
 
     def get(self, request, *args, **kwargs):

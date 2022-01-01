@@ -1,8 +1,8 @@
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
 
+from ..models import Microbot, Specification
 from ..specification.serializers import SpecificationSerializer
-from .models import Microbot, Specification
 
 
 class MicrobotSerializer(serializers.ModelSerializer):
