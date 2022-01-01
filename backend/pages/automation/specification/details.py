@@ -10,9 +10,6 @@ def create_details_file(specification_details: dict = None):
     try:
         details_file_path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{settings.AUTOMATION_DETAILS_FILE_NAME}"
 
-        specification_details.get("specification").pop("Version")
-        specification_details.get("specification").pop("Description")
-
         specification_details.pop("id")
 
         for field in ("Inputs", "Outputs", "Dependencies", "Authors", "Errors"):
@@ -39,9 +36,6 @@ def create_details_file(specification_details: dict = None):
 def update_details_file(specification_details: dict = None):
     try:
         details_file_path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{settings.AUTOMATION_DETAILS_FILE_NAME}"
-
-        specification_details.get("specification").pop("Version")
-        specification_details.get("specification").pop("Description")
 
         specification_details.pop("id")
 
