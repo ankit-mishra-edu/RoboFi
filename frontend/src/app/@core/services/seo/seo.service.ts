@@ -44,7 +44,7 @@ export class SeoService implements OnDestroy {
 
   private setTitle(rootTitle: string, title: string): void {
     if (title) {
-      this.titleService.setTitle(`${rootTitle} - ${title}`);
+      this.titleService.setTitle(`${rootTitle} | ${title}`);
     }
   }
 

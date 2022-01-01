@@ -2,12 +2,43 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@app/@core/guards';
 import { ROUTER_UTILS } from '@app/@core/utils/router.utils';
+import { AutomationConfigurationPage } from './pages/configuration/configuration.page';
+import { AutomationDashboardPage } from './pages/dashboard/dashboard.page';
+import { AutomationHomePage } from './pages/home/home.page';
 
 const automationRoutes: Routes = [
+  {
+    path: ROUTER_UTILS.config.automation.home,
+    component: AutomationHomePage,
+    data: {
+      title: 'Automation | Home',
+      robots: 'noindex, nofollow',
+    },
+  },
+  {
+    path: ROUTER_UTILS.config.automation.dashboard,
+    component: AutomationDashboardPage,
+    data: {
+      title: 'Automation | Dashboard',
+      robots: 'noindex, nofollow',
+    },
+  },
+  {
+    path: ROUTER_UTILS.config.automation.configuration,
+    component: AutomationConfigurationPage,
+    data: {
+      title: 'Configuration',
+      robots: 'noindex, nofollow',
+    },
+  },
   {
     path: ROUTER_UTILS.config.automation.specification.root,
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],
+    data: {
+      title: 'Specification',
+      robots: 'noindex, nofollow',
+    },
     loadChildren: async () =>
       import('./pages/specification/specification.module').then(
         (m) => m.SpecificationModule,
@@ -17,6 +48,10 @@ const automationRoutes: Routes = [
     path: ROUTER_UTILS.config.automation.microbot.root,
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],
+    data: {
+      title: 'Microbot',
+      robots: 'noindex, nofollow',
+    },
     loadChildren: async () =>
       import('./pages/microbot/microbot.module').then((m) => m.MicrobotModule),
   },

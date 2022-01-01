@@ -55,6 +55,7 @@ export const ROUTER_UTILS = {
       root: 'automation',
       home: 'home',
       dashboard: 'dashboard',
+      configuration: 'configuration',
       microbot: {
         root: 'microbots',
         create: 'create',
