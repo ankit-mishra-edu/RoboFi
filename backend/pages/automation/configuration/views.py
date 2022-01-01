@@ -3,6 +3,7 @@ from copy import deepcopy
 from rest_framework import permissions, status, views
 from rest_framework.response import Response
 
+from ...users.models import User
 from ..models import Configuration
 from .serializers import ConfigurationSerializer
 
@@ -12,11 +13,25 @@ from .serializers import ConfigurationSerializer
 class ConfigurationList(views.APIView):
     queryset = Configuration.objects.all()
     serializer_class = ConfigurationSerializer
-    permission_classes = (permissions.IsAdminUser,)
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, *args, **kwargs):
-        configurations = Configuration.objects.all()
-        serializer = self.serializer_class(configurations, many=True)
+        user_id = self.request.query_params.get('user')
+        if user_id is not None:
+            try:
+                user: User = User.objects.get(pk=user_id)
+            except User.DoesNotExist:
+                return Response(data={'detail': f"Invalid id {user_id} for User"}, status=404)
+            try:
+                configurations = Configuration.objects.filter(
+                    user=user).first()
+            except Configuration.DoesNotExist:
+                return Response(data={'detail': f"Invalid user id {user_id} for Configuration"}, status=404)
+
+            serializer = self.serializer_class(configurations)
+        else:
+            configurations = Configuration.objects.all()
+            serializer = self.serializer_class(configurations, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):
