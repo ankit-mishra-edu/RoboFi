@@ -1,7 +1,7 @@
 from typing import List
 
 from django.db import models
-from django.db.models.signals import pre_delete
+from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 
 from ..users.models import User
@@ -15,19 +15,20 @@ class Configuration(models.Model):
         verbose_name = "configuration"
         verbose_name_plural = "configurations"
 
+    id: int = models.AutoField(primary_key=True)
     user: User = models.ForeignKey(
         User, db_index=True, on_delete=models.CASCADE)
 
-    gitRemoteRepo = models.CharField(max_length=300, null=False, blank=False)
-    gitRemoteToken = models.CharField(max_length=120, null=False, blank=False)
+    gitRemoteRepo = models.CharField(max_length=300, null=True, blank=False)
+    gitRemoteToken = models.CharField(max_length=120, null=True, blank=False)
     specificationReadmeFileName = models.CharField(
-        max_length=300, null=False, blank=False)
+        max_length=300, null=True, blank=False, default="README.md")
     specificationDetailsFileName = models.CharField(
-        max_length=300, null=False, blank=False)
+        max_length=300, null=True, blank=False, default="Details.json")
     microbotReadmeFileName = models.CharField(
-        max_length=300, null=False, blank=False)
+        max_length=300, null=True, blank=False, default="README.md")
     microbotDetailsFileName = models.CharField(
-        max_length=300, null=False, blank=False)
+        max_length=300, null=True, blank=False, default="Details.json")
 
     def __str__(self) -> str:
         return f"{self.user.username}'s automation configurations"
@@ -71,6 +72,12 @@ class Microbot(models.Model):
 
     def __str__(self) -> str:
         return f"{self.Name}_{self.Technology}_V{self.Version.replace('.', '_')}"
+
+
+@receiver(post_save, sender=User)
+def create_address_for_user(sender, instance: User, created, **kwargs):
+    if created:
+        address = Configuration.objects.create(user=instance)
 
 
 @receiver(pre_delete, sender=Specification)

@@ -14,8 +14,7 @@ from .serializers import SpecificationSerializer
 class SpecificationList(views.APIView):
     queryset = Specification.objects.all()
     serializer_class = SpecificationSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    authentication_classes = []
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, *args, **kwargs):
         specifications = Specification.objects.all()
@@ -34,7 +33,7 @@ class SpecificationList(views.APIView):
 class SpecificationDetail(views.APIView):
     queryset = Specification.objects.all()
     serializer_class = SpecificationSerializer
-    # permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, pk, *args, **kwargs):
         try:

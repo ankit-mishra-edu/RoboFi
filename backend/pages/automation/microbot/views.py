@@ -15,8 +15,7 @@ from .serializers import MicrobotSerializer
 class MicrobotList(views.APIView):
     queryset = Microbot.objects.all()
     serializer_class = MicrobotSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    authentication_classes = []
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, *args, **kwargs):
         microbots = Microbot.objects.all()
@@ -35,7 +34,7 @@ class MicrobotList(views.APIView):
 class MicrobotDetail(views.APIView):
     queryset = Microbot.objects.all()
     serializer_class = MicrobotSerializer
-    # permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, pk, *args, **kwargs):
         try:
