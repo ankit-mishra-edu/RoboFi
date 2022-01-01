@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AutomationConfigurationPage } from './configuration.page';
+import { AutomationViewAllConfigurationPage } from './view-all.page';
 
-describe('AutomationConfigurationPage', () => {
-  let component: AutomationConfigurationPage;
-  let fixture: ComponentFixture<AutomationConfigurationPage>;
+describe('AutomationViewAllConfigurationPage', () => {
+  let component: AutomationViewAllConfigurationPage;
+  let fixture: ComponentFixture<AutomationViewAllConfigurationPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AutomationConfigurationPage],
+      declarations: [AutomationViewAllConfigurationPage],
       teardown: { destroyAfterEach: false },
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AutomationConfigurationPage);
+    fixture = TestBed.createComponent(AutomationViewAllConfigurationPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

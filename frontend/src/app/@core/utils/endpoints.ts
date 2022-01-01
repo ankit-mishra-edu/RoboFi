@@ -21,6 +21,7 @@ export const ENDPOINT_UTILS = {
     },
     automation: {
       root: 'automation',
+      configuration: 'configurations',
       microbot: 'microbots',
       specification: 'specifications',
     },

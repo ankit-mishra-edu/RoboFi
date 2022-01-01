@@ -1,35 +1,85 @@
 <div
-  class="flex flex-col justify-between h-full bg-gray-300 dark:bg-gray-500"
-  [ngClass]="isSidebarOpen ? 'w-48' : 'w-12'"
+  class="flex flex-col justify-around h-full bg-gray-300 dark:bg-gray-500"
+  [ngClass]="isSidebarOpen ? 'w-48' : 'w-14'"
 >
-  <div class="flex flex-col pb-4">
+  <div class="flex flex-col pb-4 text-black">
     <app-search-box class="my-2" *ngIf="isSidebarOpen"></app-search-box>
-    <p class="p-2 font-semibold">Technologies</p>
+    <p *ngIf="isSidebarOpen" class="p-2 font-semibold">Technologies</p>
+    <p *ngIf="!isSidebarOpen" class="p-2 font-semibold">Tech</p>
     <div class="flex flex-col cursor-pointer">
       <a
         [routerLink]="technology.value"
         *ngFor="let technology of technologies | keyvalue"
-        class="h-8 pt-1 pl-3 ml-3 rounded-l-2xl hover:bg-gray-100"
-        >{{ technology.key }}</a
+        [ngClass]="isSidebarOpen ? 'h-8' : 'h-10'"
+        class="pt-1 pl-2 my-1.5 ml-3 rounded-l-3xl hover:bg-gray-100"
       >
+        <span
+          *ngIf="!isSidebarOpen"
+          class="px-1 text-2xl bg-gray-100 rounded-2xl"
+        >
+          {{ technology.key[0] | titlecase }}
+        </span>
+        <span *ngIf="isSidebarOpen">
+          {{ technology.key }}
+        </span>
+      </a>
       <hr class="py-2" />
       <a
         [routerLink]="[configPath.settings.root]"
-        class="h-8 pt-1 pl-3 ml-3 rounded-l-2xl hover:bg-gray-100"
-        >{{ 'Settings' }}</a
+        [ngClass]="isSidebarOpen ? 'h-8' : 'h-10'"
+        class="pt-1 pl-2 my-1.5 ml-3 rounded-l-3xl hover:bg-gray-100"
       >
+        <span
+          *ngIf="!isSidebarOpen"
+          class="px-1 text-2xl bg-gray-100 rounded-lg"
+        >
+          <i class="fa fa-cog" aria-hidden="true"></i>
+        </span>
+        <span *ngIf="isSidebarOpen">
+          {{ 'Settings' }}
+        </span>
+      </a>
       <a
         [routerLink]="[
           (isLoggedIn$ | async) ? configPath.user.root : configPath.auth.root
         ]"
-        class="h-8 pt-1 pl-3 ml-3 rounded-l-2xl hover:bg-gray-100"
-        >{{ (isLoggedIn$ | async) ? 'User' : 'Auth' }}</a
+        [ngClass]="isSidebarOpen ? 'h-8' : 'h-10'"
+        class="pt-1 pl-2 my-1.5 ml-3 rounded-l-3xl hover:bg-gray-100"
       >
+        <span
+          *ngIf="!isSidebarOpen"
+          class="px-1 text-2xl bg-gray-100 rounded-lg"
+        >
+          <i
+            *ngIf="isLoggedIn$ | async"
+            class="fa fa-user-circle"
+            aria-hidden="true"
+          ></i>
+          <i
+            *ngIf="(isLoggedIn$ | async) === undefined"
+            class="fa fa-registered"
+            aria-hidden="true"
+          ></i>
+        </span>
+        <span *ngIf="isSidebarOpen">
+          {{ (isLoggedIn$ | async) ? 'User' : 'Auth' }}
+        </span>
+      </a>
       <a
         [routerLink]="[configPath.automation.root]"
-        class="h-8 pt-1 pl-3 ml-3 rounded-l-2xl hover:bg-gray-100"
-        >{{ 'Automation' }}</a
+        [ngClass]="isSidebarOpen ? 'h-8' : 'h-10'"
+        class="pt-1 pl-2 my-1.5 ml-3 rounded-l-3xl hover:bg-gray-100"
       >
+        <span
+          *ngIf="!isSidebarOpen"
+          class="px-1 text-2xl bg-gray-100 rounded-lg"
+        >
+          <i class="fa fa-cogs" aria-hidden="true"></i>
+        </span>
+        <span *ngIf="isSidebarOpen">
+          {{ 'Automation' }}
+        </span>
+      </a>
     </div>
   </div>
 
