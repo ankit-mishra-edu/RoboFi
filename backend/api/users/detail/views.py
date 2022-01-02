@@ -1,8 +1,8 @@
-from pages.users.models import User
 from rest_framework import permissions, views
 # All rest framework imports
 from rest_framework.response import Response
 
+from ..models import User
 from .serializers import ChangePasswordSerializer, UserDetailSerializer
 
 

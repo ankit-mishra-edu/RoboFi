@@ -1,9 +1,7 @@
-from django.contrib.auth import authenticate
-from django.db import models
-from pages.users.detail.serializers import UserSerializer
-from pages.users.models import Token, User
-from rest_framework import exceptions as drf_exceptions
 from rest_framework import serializers
+
+from ...users.detail.serializers import UserSerializer
+from ...users.models import Token, User
 
 
 class SignUpSerializer(serializers.ModelSerializer):

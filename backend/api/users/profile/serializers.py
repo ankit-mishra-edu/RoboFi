@@ -1,6 +1,7 @@
 from django.db import models
-from pages.users.models import Address, Profile, User
 from rest_framework import serializers
+
+from ..models import Address, Profile, User
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

@@ -20,9 +20,9 @@ from django.views.generic.base import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
 
-    path('api/users/', include('pages.users.urls'), name='users-api'),
-    path('api/authentication/', include('pages.authentication.urls'), name='auth-api'),
-    path('api/automation/', include('pages.automation.urls'), name='automation-api'),
+    path('api/users/', include('api.users.urls'), name='users-api'),
+    path('api/authentication/', include('api.authentication.urls'), name='auth-api'),
+    path('api/automation/', include('api.automation.urls'), name='automation-api'),
     re_path(r'^.*', TemplateView.as_view(template_name="frontend.html"),
             name="frontend"),
 ]

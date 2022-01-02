@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class MicrobotConfig(AppConfig):
+class SpecificationConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'pages.automation.microbot'
+    name = 'api.automation.specification'

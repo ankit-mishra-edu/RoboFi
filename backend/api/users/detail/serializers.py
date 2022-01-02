@@ -1,7 +1,8 @@
 from django.db import models
-from pages.users.models import Address, Profile, Token, User
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
+
+from ..models import User
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

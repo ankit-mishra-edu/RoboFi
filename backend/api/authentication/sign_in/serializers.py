@@ -1,5 +1,6 @@
-from pages.users.detail.serializers import UserSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+from ...users.detail.serializers import UserSerializer
 
 
 class SignInSerializer(TokenObtainPairSerializer):

@@ -3,10 +3,10 @@ from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
-from pages.users.models import Token, User
 from rest_framework import permissions, views
 from rest_framework.response import Response
 
+from ...users.models import Token, User
 from .serializers import ActivationSerializer, SignUpSerializer
 
 
