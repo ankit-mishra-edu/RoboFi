@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
 
+from ...users.detail.serializers import UserSerializer
 from ...users.models import User
 from ..models import Configuration
 from .models import Entry
@@ -13,6 +14,7 @@ class ConfigurationEntrySerializer(serializers.ModelSerializer):
 
 
 class ConfigurationSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
     entries = ConfigurationEntrySerializer(many=True, read_only=False)
 
     class Meta:
