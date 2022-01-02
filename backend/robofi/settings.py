@@ -31,9 +31,10 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
 
     'api.users',
-    'api.automation',
     'api.automation.microbot',
     'api.automation.specification',
+    'api.automation.configuration',
+    'api.automation',
 
     'rest_framework',
     'rest_framework.authtoken',

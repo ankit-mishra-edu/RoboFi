@@ -20,11 +20,11 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let configuration of configurationByUserId | keyvalue; let i = index"
+          *ngFor="let configurationEntry of configurationByUserId.entries; let i = index"
         >
           <td>{{i}}</td>
-          <td>{{configuration.key}}</td>
-          <td>{{configuration.value}}</td>
+          <td>{{configurationEntry.name}}</td>
+          <td>{{configurationEntry.value}}</td>
           <td><i class="fa fa-eye" aria-hidden="true"></i></td>
           <td><i class="fa fa-pencil" aria-hidden="true"></i></td>
           <td><i class="fa fa-remove" aria-hidden="true"></i></td>

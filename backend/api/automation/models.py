@@ -5,6 +5,7 @@ from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 
 from ..users.models import User
+from .configuration.models import Entry
 from .specification.models import Author, Dependency, Error, Input, Output
 
 # Create your models here.
@@ -19,19 +20,11 @@ class Configuration(models.Model):
     user: User = models.ForeignKey(
         User, db_index=True, on_delete=models.CASCADE)
 
-    gitRemoteRepo = models.CharField(max_length=300, null=True, blank=False)
-    gitRemoteToken = models.CharField(max_length=120, null=True, blank=False)
-    specificationReadmeFileName = models.CharField(
-        max_length=300, null=True, blank=False, default="README.md")
-    specificationDetailsFileName = models.CharField(
-        max_length=300, null=True, blank=False, default="Details.json")
-    microbotReadmeFileName = models.CharField(
-        max_length=300, null=True, blank=False, default="README.md")
-    microbotDetailsFileName = models.CharField(
-        max_length=300, null=True, blank=False, default="Details.json")
+    entries: List[Entry] = models.ManyToManyField(
+        Entry, related_name='microbot_outputs', blank=True)
 
     def __str__(self) -> str:
-        return f"{self.user.username}'s automation configurations"
+        return f"{self.user.username}'s automation config entries"
 
 
 class Specification(models.Model):
@@ -88,5 +81,29 @@ def delete_all_many_to_many(sender, instance: Specification, using, **kwargs):
         instance.Inputs.all().delete()
         instance.Outputs.all().delete()
         instance.Errors.all().delete()
+    except:
+        pass
+
+
+@receiver(post_save, sender=Configuration)
+def delete_all_many_to_many(sender, instance: Configuration, created, **kwargs):
+    try:
+        if created:
+            entries = [
+                Entry.objects.create(
+                    user=instance.user, name="gitRemoteRepo", value=None),
+                Entry.objects.create(
+                    user=instance.user, name="gitRemoteToken", value=None),
+                Entry.objects.create(
+                    user=instance.user, name="specificationReadmeFileName", value="README.md"),
+                Entry.objects.create(
+                    user=instance.user, name="specificationDetailsFileName", value="Details.json"),
+                Entry.objects.create(
+                    user=instance.user, name="microbotReadmeFileName", value="README.md"),
+                Entry.objects.create(
+                    user=instance.user, name="microbotDetailsFileName", value="Details.json")
+            ]
+            for entry in entries:
+                instance.entries.add(entry)
     except:
         pass

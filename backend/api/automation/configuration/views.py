@@ -13,7 +13,7 @@ from .serializers import ConfigurationSerializer
 class ConfigurationList(views.APIView):
     queryset = Configuration.objects.all()
     serializer_class = ConfigurationSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get(self, request, *args, **kwargs):
         user_id = self.request.query_params.get('user')
