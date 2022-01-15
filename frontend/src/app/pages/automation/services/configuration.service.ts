@@ -13,9 +13,10 @@ export class ConfigurationService {
 
   CONFIGURATION_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.automation.root}/${ENDPOINT_UTILS.config.automation.configuration}`;
 
-  configurationByUserId$: Observable<IConfiguration> = this._http
-    .get<IConfiguration>(this.CONFIGURATION_URL, {
-      params: new HttpParams().set('user', this._authService.loggedInUser.id),
-    })
-    .pipe(share());
+  automationConfigurationByUserId$: Observable<IAutomationConfiguration> =
+    this._http
+      .get<IAutomationConfiguration>(this.CONFIGURATION_URL, {
+        params: new HttpParams().set('user', this._authService.loggedInUser.id),
+      })
+      .pipe(share());
 }

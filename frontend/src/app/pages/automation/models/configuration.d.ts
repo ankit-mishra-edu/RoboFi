@@ -1,4 +1,4 @@
-interface IConfiguration {
+interface IAutomationConfiguration {
   id: number;
   user: IUser;
   entries: IAutomationConfigurationEntry[];

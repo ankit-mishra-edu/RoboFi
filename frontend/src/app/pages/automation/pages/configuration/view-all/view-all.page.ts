@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { share } from 'rxjs/operators';
 import { ConfigurationService } from '../../../services/configuration.service';
 
 @Component({
@@ -8,10 +9,10 @@ import { ConfigurationService } from '../../../services/configuration.service';
 })
 export class AutomationViewAllConfigurationPage implements OnInit {
   constructor(private _configurationService: ConfigurationService) {}
-  configurationByUserId$!: Observable<IConfiguration>;
+  automationConfigurationByUserId$!: Observable<IAutomationConfiguration>;
 
   ngOnInit(): void {
-    this.configurationByUserId$ =
-      this._configurationService.configurationByUserId$;
+    this.automationConfigurationByUserId$ =
+      this._configurationService.automationConfigurationByUserId$.pipe(share());
   }
 }

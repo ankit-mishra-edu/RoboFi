@@ -1,14 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
 import { AutomationRoutingModule } from './automation-routing.module';
-
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    AutomationRoutingModule
-  ]
+  imports: [CommonModule, AutomationRoutingModule],
 })
-export class AutomationModule { }
+export class AutomationModule {}
