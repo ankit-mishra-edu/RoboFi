@@ -2,10 +2,11 @@ import json
 
 from django.conf import settings
 
-from ..Framework.git_remote_repo import create_file_with_content, delete_file, update_file
+from ..Framework.git_remote_repo import (create_file_with_content, delete_file,
+                                         update_file)
 
 
-def create_details_file(microbot_details: dict = None):
+def create_details_file(request, microbot_details: dict = None):
     try:
         details_file_path = f"microbots/python/BotCodes/{microbot_details.get('Name')}/V{microbot_details.get('Version').replace('.', '')}/{settings.AUTOMATION_DETAILS_FILE_NAME}"
 
@@ -26,7 +27,7 @@ def create_details_file(microbot_details: dict = None):
         content = json.dumps(microbot_details, indent=4)
         commit_message = f"Create {settings.AUTOMATION_DETAILS_FILE_NAME} V{microbot_details.get('Version')}"
         create_file_with_content(
-            path=details_file_path, message=commit_message, content=content)
+            path=details_file_path, message=commit_message, content=content, user=request.user)
 
     except Exception as e:
         print(
@@ -36,7 +37,7 @@ def create_details_file(microbot_details: dict = None):
     return True
 
 
-def update_details_file(microbot_details: dict = None):
+def update_details_file(request, microbot_details: dict = None):
     try:
         details_file_path = f"microbots/python/BotCodes/{microbot_details.get('Name')}/V{microbot_details.get('Version').replace('.', '')}/{settings.AUTOMATION_DETAILS_FILE_NAME}"
 
@@ -57,7 +58,7 @@ def update_details_file(microbot_details: dict = None):
         content = json.dumps(microbot_details, indent=4)
         commit_message = f"Update {settings.AUTOMATION_DETAILS_FILE_NAME} V{microbot_details.get('Version')}"
         update_file(path=details_file_path,
-                    message=commit_message, content=content)
+                    message=commit_message, content=content, user=request.user)
 
     except Exception as e:
         print(
@@ -67,7 +68,7 @@ def update_details_file(microbot_details: dict = None):
     return True
 
 
-def delete_details_file(microbot_details: dict = None):
+def delete_details_file(request, microbot_details: dict = None):
     details_file_path = f"microbots/python/BotCodes/{microbot_details.get('Name')}/V{microbot_details.get('Version').replace('.', '')}/{settings.AUTOMATION_DETAILS_FILE_NAME}"
 
     try:
@@ -86,7 +87,7 @@ def delete_details_file(microbot_details: dict = None):
 
     try:
         commit_message = f"Delete {settings.AUTOMATION_DETAILS_FILE_NAME} V{microbot_details.get('Version')}"
-        delete_file(path=details_file_path, message=commit_message)
+        delete_file(path=details_file_path, message=commit_message, user=request.user)
 
     except Exception as e:
         print(

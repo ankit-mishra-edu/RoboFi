@@ -1,7 +1,7 @@
 from typing import List
 
 from django.db import models
-from django.db.models.signals import post_save, pre_delete
+from django.db.models.signals import post_save, pre_delete, pre_save
 from django.dispatch import receiver
 
 from ..users.models import User
@@ -17,11 +17,10 @@ class Configuration(models.Model):
         verbose_name_plural = "configurations"
 
     id: int = models.AutoField(primary_key=True)
-    user: User = models.ForeignKey(
+    user: User = models.OneToOneField(
         User, db_index=True, on_delete=models.CASCADE)
 
-    entries: List[Entry] = models.ManyToManyField(
-        Entry, related_name='microbot_outputs', blank=True)
+    entries: List[Entry] = models.ManyToManyField(Entry, blank=True)
 
     def __str__(self) -> str:
         return f"{self.user.username}'s automation config entries"
@@ -67,12 +66,6 @@ class Microbot(models.Model):
         return f"{self.Name}_{self.Technology}_V{self.Version.replace('.', '_')}"
 
 
-@receiver(post_save, sender=User)
-def create_address_for_user(sender, instance: User, created, **kwargs):
-    if created:
-        address = Configuration.objects.create(user=instance)
-
-
 @receiver(pre_delete, sender=Specification)
 def delete_all_many_to_many(sender, instance: Specification, using, **kwargs):
     try:
@@ -85,25 +78,55 @@ def delete_all_many_to_many(sender, instance: Specification, using, **kwargs):
         pass
 
 
-@receiver(post_save, sender=Configuration)
-def delete_all_many_to_many(sender, instance: Configuration, created, **kwargs):
+@receiver(post_save, sender=User)
+def create_address_for_user(sender, instance: User, created, **kwargs):
+    if created:
+        address = Configuration.objects.create(user=instance)
+
+
+@receiver(pre_delete, sender=Configuration)
+def delete_all_many_to_many(sender, instance: Configuration, using, **kwargs):
     try:
-        if created:
-            entries = [
-                Entry.objects.create(
-                    user=instance.user, name="gitRemoteRepo", value=None),
-                Entry.objects.create(
-                    user=instance.user, name="gitRemoteToken", value=None),
-                Entry.objects.create(
-                    user=instance.user, name="specificationReadmeFileName", value="README.md"),
-                Entry.objects.create(
-                    user=instance.user, name="specificationDetailsFileName", value="Details.json"),
-                Entry.objects.create(
-                    user=instance.user, name="microbotReadmeFileName", value="README.md"),
-                Entry.objects.create(
-                    user=instance.user, name="microbotDetailsFileName", value="Details.json")
-            ]
-            for entry in entries:
-                instance.entries.add(entry)
+        instance.entries.all().delete()
     except:
         pass
+
+
+@receiver(post_save, sender=Configuration)
+def create_default_entries(sender, instance: Configuration, created, **kwargs):
+    if created:
+        default_entries = [
+            {"name": "gitRemoteRepo", "value": None},
+            {'name': "gitRemoteToken", "value": None},
+            {'name': "specificationReadmeFileName", 'value': "README.md"},
+            {'name': "specificationDetailsFileName", 'value': "Details.json"},
+            {'name': "microbotReadmeFileName", 'value': "README.md"},
+            {'name': "microbotDetailsFileName", 'value': "Details.json"},
+        ]
+        entries = tuple(Entry.objects.create(user=instance.user, name=entry.get(
+            'name'), value=entry.get('value')) for entry in default_entries)
+        instance.entries.add(*entries)
+        instance.save()
+
+# @receiver(pre_save, sender=Configuration)
+# def create_default_entries(sender, instance: Configuration, **kwargs):
+#     if instance.id is not None:
+#         default_entries = [
+#             {"name": "gitRemoteRepo", "value": None},
+#             {'name': "gitRemoteToken", "value": None},
+#             {'name': "specificationReadmeFileName", 'value': "README.md"},
+#             {'name': "specificationDetailsFileName", 'value': "Details.json"},
+#             {'name': "microbotReadmeFileName", 'value': "README.md"},
+#             {'name': "microbotDetailsFileName", 'value': "Details.json"},
+#         ]
+#         print('Creating Entries')
+#         print(instance)
+#         print(instance.id, instance.user)
+#         print(instance.entries.all())
+#         entries = tuple(Entry.objects.create(user=instance.user, name=entry.get(
+#             'name'), value=entry.get('value')) for entry in default_entries)
+#         instance.entries.add(*entries)
+#         print(instance.entries.all())
+#         # instance.save()
+#         # instance.save_base()
+#         print(instance.entries.all())

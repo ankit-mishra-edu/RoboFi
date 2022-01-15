@@ -1,3 +1,5 @@
+from typing import List
+
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
 
@@ -10,7 +12,7 @@ from .models import Entry
 class ConfigurationEntrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Entry
-        fields = '__all__'
+        fields = ['id', 'user', 'value', 'name']
 
 
 class ConfigurationSerializer(serializers.ModelSerializer):
@@ -39,9 +41,27 @@ class ConfigurationSerializer(serializers.ModelSerializer):
 
         configuration: Configuration = super().create(validated_data)
 
-        for entry in entries:
-            configuration.entries.add(Entry.objects.create(**entry).id)
+        configuration.entries.add(
+            *tuple(Entry.objects.create(**entry).id for entry in entries))
 
         configuration.save()
 
         return configuration
+
+    def update(self, instance: Configuration, validated_data):
+        updated_entries = validated_data.pop("entries")
+        entries = instance.entries.all()
+
+        instance: Configuration = super().update(instance, validated_data)
+        for updated_entry in updated_entries:
+            entry: Entry = entries.filter(user=updated_entry.get(
+                'user'), name=updated_entry.get('name')).first()
+            if entry is not None:
+                entry.name = updated_entry.get('name', None)
+                entry.value = updated_entry.get('value', None)
+                entry.save()
+            else:
+                instance.entries.add(Entry.objects.create(**updated_entry).id)
+
+        instance.save()
+        return instance

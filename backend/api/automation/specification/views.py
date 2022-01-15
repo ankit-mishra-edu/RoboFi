@@ -25,7 +25,7 @@ class SpecificationList(views.APIView):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            create_details_file(deepcopy(serializer.data))
+            create_details_file(request, deepcopy(serializer.data))
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -55,7 +55,7 @@ class SpecificationDetail(views.APIView):
                 specification, data=request.data, partial=True)
             if serializer.is_valid(raise_exception=False):
                 serializer.save()
-                update_details_file(deepcopy(serializer.data))
+                update_details_file(request, deepcopy(serializer.data))
                 return Response(serializer.data)
             return Response(serializer.errors)
         except Exception as exception:
@@ -69,6 +69,6 @@ class SpecificationDetail(views.APIView):
             return Response(data={'detail': f"Invalid id {pk} for Specification"}, status=404)
 
         serializer = self.serializer_class(specification_to_be_deleted)
-        delete_details_file(deepcopy(serializer.data))
+        delete_details_file(request, deepcopy(serializer.data))
         specification_to_be_deleted.delete()
         return Response(serializer.data, status=200)
