@@ -1,6 +1,6 @@
 <div
   class="flex flex-col h-full bg-gray-300 dark:bg-gray-500"
-  [ngClass]="isSidebarOpen ? 'w-48' : 'w-14'"
+  [ngClass]="isSidebarOpen ? 'w-48' : 'w-16'"
 >
   <button
     type="button"
@@ -40,12 +40,13 @@
       <a
         [routerLink]="technology.value"
         *ngFor="let technology of technologies | keyvalue"
-        [ngClass]="isSidebarOpen ? 'h-8' : 'h-10'"
-        class="pt-1 pl-2 my-1.5 ml-3 rounded-l-3xl hover:bg-gray-100"
+        [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
+        class="pt-1 pl-2 my-1.5 rounded-l-3xl hover:bg-gray-100"
       >
         <span
           *ngIf="!isSidebarOpen"
-          class="px-1 text-2xl bg-gray-100 rounded-2xl"
+          class="px-2 text-3xl bg-gray-100"
+          style="border-radius: 50%"
         >
           {{ technology.key[0] | titlecase }}
         </span>
@@ -56,12 +57,13 @@
       <hr class="py-2" />
       <a
         [routerLink]="[configPath.settings.root]"
-        [ngClass]="isSidebarOpen ? 'h-8' : 'h-10'"
-        class="pt-1 pl-2 my-1.5 ml-3 rounded-l-3xl hover:bg-gray-100"
+        [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
+        class="pt-1 pl-2 my-1.5 rounded-l-3xl hover:bg-gray-100"
       >
         <span
           *ngIf="!isSidebarOpen"
-          class="px-1 text-2xl bg-gray-100 rounded-lg"
+          class="px-2 text-3xl bg-gray-100"
+          style="border-radius: 50%"
         >
           <i class="fa fa-cog" aria-hidden="true"></i>
         </span>
@@ -73,12 +75,13 @@
         [routerLink]="[
           (isLoggedIn$ | async) ? configPath.user.root : configPath.auth.root
         ]"
-        [ngClass]="isSidebarOpen ? 'h-8' : 'h-10'"
-        class="pt-1 pl-2 my-1.5 ml-3 rounded-l-3xl hover:bg-gray-100"
+        [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
+        class="pt-1 pl-2 my-1.5 rounded-l-3xl hover:bg-gray-100"
       >
         <span
           *ngIf="!isSidebarOpen"
-          class="px-1 text-2xl bg-gray-100 rounded-lg"
+          class="px-2 text-3xl bg-gray-100"
+          style="border-radius: 50%"
         >
           <i
             *ngIf="isLoggedIn$ | async"
@@ -97,12 +100,13 @@
       </a>
       <a
         [routerLink]="[configPath.automation.root]"
-        [ngClass]="isSidebarOpen ? 'h-8' : 'h-10'"
-        class="pt-1 pl-2 my-1.5 ml-3 rounded-l-3xl hover:bg-gray-100"
+        [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
+        class="pt-1 pl-2 my-1.5 rounded-l-3xl hover:bg-gray-100"
       >
         <span
           *ngIf="!isSidebarOpen"
-          class="px-1 text-2xl bg-gray-100 rounded-lg"
+          class="px-2 text-3xl bg-gray-100"
+          style="border-radius: 50%"
         >
           <i class="fa fa-cogs" aria-hidden="true"></i>
         </span>

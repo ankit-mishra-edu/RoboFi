@@ -18,12 +18,14 @@ export class FilterAutomationSpecificationPipe implements PipeTransform {
       this._searchBoxService.searchBoxKeywords$,
     ]).pipe(
       map(([automationSpecifications, searchTerm]) =>
-        automationSpecifications.filter(
-          (automationSpecifications: ISpecification) =>
-            automationSpecifications.Name.replaceAll(' ', '')
-              .toUpperCase()
-              .includes(searchTerm.replaceAll(' ', '').toUpperCase()),
-        ),
+        searchTerm === ''
+          ? automationSpecifications
+          : automationSpecifications.filter(
+              (automationSpecifications: ISpecification) =>
+                automationSpecifications.Name.replaceAll(' ', '')
+                  .toUpperCase()
+                  .includes(searchTerm.replaceAll(' ', '').toUpperCase()),
+            ),
       ),
     );
   }
