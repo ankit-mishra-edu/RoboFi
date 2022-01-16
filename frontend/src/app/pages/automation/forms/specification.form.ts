@@ -21,49 +21,44 @@ export class SpecificationForm {
     return this.specificationForm;
   }
 
-  public initInputRow(
-    Name: string,
-    Type: string,
-    DefaultValue: string,
-    Description: string,
-  ) {
+  public initInputRow() {
     return this._formBuilder.group({
-      Name: [Name, Validators.required],
-      Type: [Type, Validators.required],
-      DefaultValue: [DefaultValue],
-      Description: [Description],
+      Name: [null, Validators.required],
+      Type: [null, Validators.required],
+      DefaultValue: [null],
+      Description: [null],
     });
   }
 
-  public initOutputRow(Name: string, Type: string, Description: string) {
+  public initOutputRow() {
     return this._formBuilder.group({
-      Name: [Name, Validators.required],
-      Type: [Type, Validators.required],
-      Description: [Description],
+      Name: [null, Validators.required],
+      Type: [null, Validators.required],
+      Description: [null],
     });
   }
 
-  public initErrorRow(Message: string, Code: string, Description: string) {
+  public initErrorRow() {
     return this._formBuilder.group({
-      Message: [Message, Validators.required],
-      Code: [Code, Validators.required],
-      Description: [Description],
+      Message: [null, Validators.required],
+      Code: [null, Validators.required],
+      Description: [null],
     });
   }
 
-  public initDependencyRow(Name: string, Type: string, Description: string) {
+  public initDependencyRow() {
     return this._formBuilder.group({
-      Name: [Name, Validators.required],
-      Type: [Type, Validators.required],
-      Description: [Description],
+      Name: [null, Validators.required],
+      Type: [null, Validators.required],
+      Description: [null],
     });
   }
 
-  public initAuthorRow(Name: string, Email: string, Contact: string) {
+  public initAuthorRow() {
     return this._formBuilder.group({
-      Name: [Name, Validators.required],
-      Email: [Email, Validators.required],
-      Contact: [Contact],
+      Name: [null, Validators.required],
+      Email: [null, Validators.required],
+      Contact: [null],
     });
   }
 
@@ -72,8 +67,8 @@ export class SpecificationForm {
     return this.specificationForm.get('Inputs') as FormArray;
   }
 
-  AddSpecificationInput(...inputs: [string, string, string, string]) {
-    this.inputFormsArr.push(this.initInputRow(...inputs));
+  AddSpecificationInput() {
+    this.inputFormsArr.push(this.initInputRow());
   }
 
   DeleteSpecificationInput(index: number) {
@@ -93,8 +88,8 @@ export class SpecificationForm {
     return this.specificationForm.get('Outputs') as FormArray;
   }
 
-  AddSpecificationOutput(...outputs: [string, string, string]) {
-    this.outputFormsArr.push(this.initOutputRow(...outputs));
+  AddSpecificationOutput() {
+    this.outputFormsArr.push(this.initOutputRow());
   }
 
   DeleteSpecificationOutput(index: number) {
@@ -114,8 +109,8 @@ export class SpecificationForm {
     return this.specificationForm.get('Errors') as FormArray;
   }
 
-  AddSpecificationError(...errors: [string, string, string]) {
-    this.errorFormsArr.push(this.initErrorRow(...errors));
+  AddSpecificationError() {
+    this.errorFormsArr.push(this.initErrorRow());
   }
 
   DeleteSpecificationError(index: number) {
@@ -135,8 +130,8 @@ export class SpecificationForm {
     return this.specificationForm.get('Dependencies') as FormArray;
   }
 
-  AddSpecificationDependency(...dependencies: [string, string, string]) {
-    this.dependencyFormsArr.push(this.initDependencyRow(...dependencies));
+  AddSpecificationDependency() {
+    this.dependencyFormsArr.push(this.initDependencyRow());
   }
 
   DeleteSpecificationDependency(index: number) {
@@ -156,8 +151,8 @@ export class SpecificationForm {
     return this.specificationForm.get('Authors') as FormArray;
   }
 
-  AddSpecificationAuthor(...authors: [string, string, string]) {
-    this.authorFormsArr.push(this.initAuthorRow(...authors));
+  AddSpecificationAuthor() {
+    this.authorFormsArr.push(this.initAuthorRow());
   }
 
   DeleteSpecificationAuthor(index: number) {

@@ -15,8 +15,13 @@ export class AuthService {
     window.onbeforeunload = () => {
       setItem(StorageItem.User, this.loggedInUser);
     };
-    if (this.isLoggedIn && getItem(StorageItem.User)) {
+    if (
+      this.isLoggedIn &&
+      (<IUser>getItem(StorageItem.User)).username != undefined
+    ) {
       this.loggedInUser = <IUser>getItem(StorageItem.User);
+    } else {
+      this.cleanUpUserDataOnSignOut();
     }
     removeItem(StorageItem.User);
   }

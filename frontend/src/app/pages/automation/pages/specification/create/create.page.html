@@ -104,7 +104,7 @@
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
-              (click)="AddSpecificationInput('', '', '', '')"
+              (click)="AddSpecificationInput()"
               class="btn pull-right"
               [disabled]="createSpecificationForm.invalid"
               [ngClass]="{
@@ -210,7 +210,7 @@
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
-              (click)="AddSpecificationOutput('', '', '')"
+              (click)="AddSpecificationOutput()"
               class="btn pull-right"
               [disabled]="createSpecificationForm.invalid"
               [ngClass]="{
@@ -286,7 +286,7 @@
                   rows="1"
                   formControlName="Description"
                   [id]="'Output-Description-' + i"
-                  placeholder="Description for input param..."
+                  placeholder="Description for output param..."
                   class="form-control extended-control highlight"
                 ></textarea>
               </div>
@@ -308,7 +308,7 @@
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
-              (click)="AddSpecificationError('', '', '')"
+              (click)="AddSpecificationError()"
               class="btn pull-right"
               [disabled]="createSpecificationForm.invalid"
               [ngClass]="{
@@ -404,7 +404,7 @@
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
-              (click)="AddSpecificationDependency('', '', '')"
+              (click)="AddSpecificationDependency()"
               class="btn pull-right"
               [disabled]="createSpecificationForm.invalid"
               [ngClass]="{
@@ -480,7 +480,7 @@
                   rows="1"
                   formControlName="Description"
                   [id]="'Dependency-Description-' + i"
-                  placeholder="Description for input param..."
+                  placeholder="Description for dependency param..."
                   class="form-control extended-control highlight"
                 ></textarea>
               </div>
@@ -502,7 +502,7 @@
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
-              (click)="AddSpecificationAuthor('', '', '')"
+              (click)="AddSpecificationAuthor()"
               class="btn pull-right"
               [disabled]="createSpecificationForm.invalid"
               [ngClass]="{

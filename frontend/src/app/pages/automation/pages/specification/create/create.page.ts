@@ -78,8 +78,8 @@ export class CreateSpecificationPage implements OnInit {
     return this.createSpecificationFormObj.inputFormsArr;
   }
 
-  AddSpecificationInput(...inputs: [string, string, string, string]) {
-    this.createSpecificationFormObj.AddSpecificationInput(...inputs);
+  AddSpecificationInput() {
+    this.createSpecificationFormObj.AddSpecificationInput();
   }
 
   DeleteSpecificationInput(index: number) {
@@ -95,8 +95,8 @@ export class CreateSpecificationPage implements OnInit {
     return this.createSpecificationFormObj.outputFormsArr;
   }
 
-  AddSpecificationOutput(...outputs: [string, string, string]) {
-    this.createSpecificationFormObj.AddSpecificationOutput(...outputs);
+  AddSpecificationOutput() {
+    this.createSpecificationFormObj.AddSpecificationOutput();
   }
 
   DeleteSpecificationOutput(index: number) {
@@ -112,8 +112,8 @@ export class CreateSpecificationPage implements OnInit {
     return this.createSpecificationFormObj.errorFormsArr;
   }
 
-  AddSpecificationError(...errors: [string, string, string]) {
-    this.createSpecificationFormObj.AddSpecificationError(...errors);
+  AddSpecificationError() {
+    this.createSpecificationFormObj.AddSpecificationError();
   }
 
   DeleteSpecificationError(index: number) {
@@ -129,8 +129,8 @@ export class CreateSpecificationPage implements OnInit {
     return this.createSpecificationFormObj.dependencyFormsArr;
   }
 
-  AddSpecificationDependency(...dependencies: [string, string, string]) {
-    this.createSpecificationFormObj.AddSpecificationDependency(...dependencies);
+  AddSpecificationDependency() {
+    this.createSpecificationFormObj.AddSpecificationDependency();
   }
 
   DeleteSpecificationDependency(index: number) {
@@ -146,8 +146,8 @@ export class CreateSpecificationPage implements OnInit {
     return this.createSpecificationFormObj.authorFormsArr;
   }
 
-  AddSpecificationAuthor(...authors: [string, string, string]) {
-    this.createSpecificationFormObj.AddSpecificationAuthor(...authors);
+  AddSpecificationAuthor() {
+    this.createSpecificationFormObj.AddSpecificationAuthor();
   }
 
   DeleteSpecificationAuthor(index: number) {

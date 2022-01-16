@@ -4,24 +4,23 @@ import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Pipe({
-  name: 'filterAutomationConfigurations',
+  name: 'filterAutomationSpecification',
 })
-export class FilterAutomationConfigurationsPipe implements PipeTransform {
+export class FilterAutomationSpecificationPipe implements PipeTransform {
   constructor(private _searchBoxService: SearchBoxService) {}
 
   transform(
-    automationConfiguration$: Observable<IAutomationConfiguration>,
-  ): Observable<IAutomationConfigurationEntry[]> {
+    automationSpecifications$: Observable<ISpecification[]>,
+  ): Observable<ISpecification[]> {
     this._searchBoxService.searchBoxTypedKeywords = '';
     return combineLatest([
-      automationConfiguration$,
+      automationSpecifications$,
       this._searchBoxService.searchBoxKeywords$,
     ]).pipe(
-      map(([automationConfiguration, searchTerm]) =>
-        automationConfiguration.entries.filter(
-          (configEntry: IAutomationConfigurationEntry) =>
-            configEntry.name
-              .replaceAll(' ', '')
+      map(([automationSpecifications, searchTerm]) =>
+        automationSpecifications.filter(
+          (automationSpecifications: ISpecification) =>
+            automationSpecifications.Name.replaceAll(' ', '')
               .toUpperCase()
               .includes(searchTerm.replaceAll(' ', '').toUpperCase()),
         ),

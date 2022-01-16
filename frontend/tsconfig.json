@@ -16,7 +16,7 @@
     "importHelpers": true,
     "target": "es2017",
     "module": "es2020",
-    "lib": ["es2018", "dom"],
+    "lib": ["dom", "ES2021"],
     "paths": {
       "@app/*": ["src/app/*"],
       "@components/*": ["src/app/components/*"],

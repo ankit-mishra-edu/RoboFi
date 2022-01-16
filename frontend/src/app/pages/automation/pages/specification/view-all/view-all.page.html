@@ -2,7 +2,17 @@
   <div class="m-2 create-specification-button right">
     <button
       [routerLink]="['../../', specificationPath.root, specificationPath.create]"
-      class="inline-flex items-center px-4 py-2 font-bold text-gray-800 bg-gray-300 rounded  hover:bg-gray-400"
+      class="
+        inline-flex
+        items-center
+        px-4
+        py-2
+        font-bold
+        text-gray-800
+        bg-gray-300
+        rounded
+        hover:bg-gray-400
+      "
     >
       <svg
         width="20"
@@ -22,46 +32,80 @@
     </button>
   </div>
   <ng-container
-    *ngIf="allSpecifications$ | async as allSpecifications; else specificationDataNotFetched"
+    *ngIf="allSpecifications$ | async; else specificationDataNotFetched"
   >
-    <div class="flex flex-wrap">
-      <div
-        *ngFor="let specification of allSpecifications"
-        class="w-full max-w-sm m-2 specification md:w-1/3 lg:flex"
-      >
+    <ng-container
+      *ngIf="allSpecifications$ | filterAutomationSpecification | async as filteredSpecifications; else filteredSpecificationsDataNotAvailable"
+    >
+      <div class="flex flex-wrap">
         <div
-          class="h-24 text-center bg-pink-500 bg-cover rounded-t  lg:h-48 lg:rounded-t-none lg:rounded-l lg:w-1/3"
-        ></div>
-
-        <div
-          class="flex flex-col justify-between w-auto h-48 p-2 leading-normal bg-white border-b border-l border-r border-gray-400  lg:w-2/3 lg:border-l-0 lg:border-t lg:border-gray-400"
+          *ngFor="let specification of filteredSpecifications"
+          class="w-full max-w-sm m-2 specification md:w-1/3 lg:flex"
         >
-          <div class="mb-4">
-            <div
-              class="mx-1 mb-2 text-xl font-bold text-center text-gray-900 bg-gray-200  rounded-3xl"
-            >
-              {{specification.Name}}
+          <div
+            class="
+              h-24
+              text-center
+              bg-pink-500 bg-cover
+              rounded-t
+              lg:h-48 lg:rounded-t-none lg:rounded-l lg:w-1/3
+            "
+          ></div>
+
+          <div
+            class="
+              flex flex-col
+              justify-between
+              w-full
+              h-48
+              p-2
+              leading-normal
+              bg-white
+              border-b border-l border-r border-gray-400
+              lg:w-2/3 lg:border-l-0 lg:border-t lg:border-gray-400
+            "
+          >
+            <div class="mb-4">
+              <div
+                class="
+                  mx-1
+                  mb-2
+                  text-xl
+                  font-bold
+                  text-center text-gray-900
+                  bg-gray-200
+                  rounded-3xl
+                "
+              >
+                {{specification.Name}}
+              </div>
+              <p class="h-20 overflow-y-auto text-base text-gray-700">
+                {{specification.Description}}
+              </p>
             </div>
-            <p class="h-20 overflow-y-auto text-base text-gray-700">
-              {{specification.Description}}
-            </p>
-          </div>
-          <div class="flex items-center">
-            <p class="pr-1 text-gray-900">- By</p>
-            <p
-              *ngFor="let author of specification.Authors"
-              class="leading-none text-gray-900"
-            >
-              {{ " " + author.Name }}
-            </p>
+            <div class="flex items-center">
+              <p class="pr-1 text-gray-900">- By</p>
+              <p
+                *ngFor="let author of specification.Authors"
+                class="leading-none text-gray-900"
+              >
+                {{ " " + author.Name }}
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </ng-container>
   </ng-container>
   <ng-template #specificationDataNotFetched>
     <app-spinner [spinnerSize]="'1.5rem'"
       >{{ " Fetching Specification data from backend....." }}</app-spinner
+    >
+  </ng-template>
+
+  <ng-template #filteredSpecificationsDataNotAvailable>
+    <app-spinner [spinnerSize]="'1.5rem'"
+      >{{ " Applying filter based on keyword....." }}</app-spinner
     >
   </ng-template>
 </div>
