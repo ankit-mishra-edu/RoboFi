@@ -23,4 +23,22 @@ export class SpecificationService {
       .post<ISpecification>(this.SPECIFICATION_URL, specification)
       .pipe(share());
   };
+
+  specificationById$ = (id: number): Observable<ISpecification> => {
+    return this._http
+      .get<ISpecification>(`${this.SPECIFICATION_URL}/${id}`)
+      .pipe(share());
+  };
+
+  updateSpecification$ = (
+    id: number,
+    updatedSpecification: ISpecification,
+  ): Observable<ISpecification> => {
+    return this._http
+      .patch<ISpecification>(
+        `${this.SPECIFICATION_URL}/${id}`,
+        updatedSpecification,
+      )
+      .pipe(share());
+  };
 }

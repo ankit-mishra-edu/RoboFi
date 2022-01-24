@@ -19,7 +19,7 @@ const specificationRoutes: Routes = [
     component: CreateSpecificationPage,
   },
   {
-    path: `${ROUTER_UTILS.config.automation.specification}/:id/:mode`,
+    path: `${ROUTER_UTILS.config.automation.specification.viewOrEdit}/:id/:mode`,
     component: ViewOrEditSpecificationPage,
   },
 ];
