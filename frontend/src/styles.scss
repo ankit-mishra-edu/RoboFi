@@ -73,9 +73,6 @@ body {
 }
 
 .form-wrapper {
-  // display: flex;
-  // justify-content: center;
-
   form {
     margin: 16px 16px 0px;
 
@@ -84,7 +81,6 @@ body {
     }
 
     .form-control {
-      // inline-size: 100%;
       inline-size: min(300px, 70%);
     }
 
@@ -98,7 +94,6 @@ body {
     }
 
     .form-heading {
-      // color: #428bca;
       font-weight: bold;
     }
 
