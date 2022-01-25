@@ -2,21 +2,21 @@
   <!-- <a
     [routerLink]="[userPath.root, userPath.overview]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
-    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 hover:text-white"
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
     >Overview</a
   > -->
 
   <a
     [routerLink]="[userPath.root, userPath.changePassword]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
-    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 hover:text-white"
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
     >{{ 'Change Password' }}</a
   >
 
   <a
     [routerLink]="[userPath.root, userPath.editDetails]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
-    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 hover:text-white"
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
     >{{ 'Edit Details' }}</a
   >
 
@@ -28,7 +28,7 @@
       userPath.editProfile
     ]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
-    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 hover:text-white"
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
     >{{ 'Edit Profile' }}</a
   >
 
@@ -36,14 +36,14 @@
     [routerLinkActiveOptions]="{ exact: true }"
     [routerLink]="[userPath.root, userPath.profile, loggedInUser.id]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
-    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 hover:text-white"
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
     >{{ 'View Profile' }}</a
   >
 
   <a
     [routerLink]="[userPath.root, userPath.signOut]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
-    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600 hover:text-white"
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
     >{{ 'Sign Out' }}</a
   >
 </div>
