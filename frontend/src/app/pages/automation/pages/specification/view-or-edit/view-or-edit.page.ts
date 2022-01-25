@@ -23,6 +23,7 @@ export class ViewOrEditSpecificationPage implements OnInit, OnDestroy {
     private _specificationService: SpecificationService,
   ) {}
 
+  mode!: 'edit' | 'view';
   routeParams$!: Observable<Params>;
   specification$!: Observable<ISpecification>;
   specificationPath = ROUTER_UTILS.config.automation.specification;
@@ -36,6 +37,7 @@ export class ViewOrEditSpecificationPage implements OnInit, OnDestroy {
     this.routeParams$ = this._route.params;
 
     this.specification$ = this.routeParams$.pipe(
+      tap((routeParams: Params) => (this.mode = routeParams.mode)),
       switchMap((routeParams: Params) =>
         this._specificationService.specificationById$(routeParams.id).pipe(
           tap((specification: ISpecification) => {
@@ -60,7 +62,11 @@ export class ViewOrEditSpecificationPage implements OnInit, OnDestroy {
   UpdateSpecification = (id: number): void => {
     this._specificationService
       .updateSpecification$(id, this.viewOrEditSpecificationForm.value)
-      .subscribe(() => this._router.navigate([this.specificationPath.viewAll]));
+      .subscribe(() =>
+        this._router.navigate([this.specificationPath.viewAll], {
+          relativeTo: this._route.parent,
+        }),
+      );
   };
 
   value(controlName: string): AbstractControl {

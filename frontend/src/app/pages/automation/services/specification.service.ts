@@ -41,4 +41,10 @@ export class SpecificationService {
       )
       .pipe(share());
   };
+
+  deleteSpecification$ = (id: number): Observable<ISpecification> => {
+    return this._http
+      .delete<ISpecification>(`${this.SPECIFICATION_URL}/${id}`)
+      .pipe(share());
+  };
 }

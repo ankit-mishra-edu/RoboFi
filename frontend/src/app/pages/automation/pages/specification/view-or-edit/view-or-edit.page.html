@@ -13,6 +13,7 @@
                 id="Name"
                 type="text"
                 formControlName="Name"
+                [readonly]="mode === 'view'"
                 class="form-control highlight"
                 [ngClass]="{
                   'is-invalid': isInValid(value('Name')),
@@ -58,6 +59,7 @@
                 type="text"
                 id="Category"
                 formControlName="Category"
+                [readonly]="mode === 'view'"
                 class="form-control highlight"
                 [ngClass]="{
                   'is-invalid': isInValid(value('Category')),
@@ -82,6 +84,7 @@
                 type="text"
                 id="Description"
                 formControlName="Description"
+                [readonly]="mode === 'view'"
                 class="form-control highlight"
                 [ngClass]="{
                   'is-invalid': isInValid(value('Description')),
@@ -108,7 +111,7 @@
               type="button"
               (click)="AddSpecificationInput()"
               class="btn pull-right"
-              [disabled]="viewOrEditSpecificationForm.invalid"
+              [disabled]="viewOrEditSpecificationForm.invalid || (mode === 'view')"
               [ngClass]="{
                 'form-valid': viewOrEditSpecificationForm.valid,
                 'form-invalid': viewOrEditSpecificationForm.invalid
@@ -132,6 +135,7 @@
                   rows="1"
                   formControlName="Name"
                   [id]="'Input-Name-' + i"
+                  [readonly]="mode === 'view'"
                   placeholder="Name of input..."
                   class="form-control extended-control highlight"
                   [ngClass]="{
@@ -155,6 +159,7 @@
                   placeholder="Type..."
                   formControlName="Type"
                   [id]="'Input-Type-' + i"
+                  [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
                     'is-invalid': isInValid(value_i(i, 'Type')),
@@ -179,6 +184,7 @@
                   formControlName="DefaultValue"
                   placeholder="Default value..."
                   [id]="'Input-DefaultValue-' + i"
+                  [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                 ></textarea>
               </div>
@@ -190,6 +196,7 @@
                   rows="1"
                   formControlName="Description"
                   [id]="'Input-Description-' + i"
+                  [readonly]="mode === 'view'"
                   placeholder="Description for input param..."
                   class="form-control extended-control highlight"
                 ></textarea>
@@ -198,6 +205,7 @@
                 <i
                   type="button"
                   class="fa fa-remove"
+                  *ngIf="mode === 'edit'"
                   (click)="DeleteSpecificationInput(i)"
                 >
                 </i>
@@ -214,7 +222,7 @@
               type="button"
               (click)="AddSpecificationOutput()"
               class="btn pull-right"
-              [disabled]="viewOrEditSpecificationForm.invalid"
+              [disabled]="viewOrEditSpecificationForm.invalid || (mode === 'view')"
               [ngClass]="{
                 'form-valid': !viewOrEditSpecificationForm.invalid,
                 'form-invalid': viewOrEditSpecificationForm.invalid
@@ -241,6 +249,7 @@
                   formControlName="Name"
                   [id]="'Output-Name-' + i"
                   placeholder="Name of output..."
+                  [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
                     'is-invalid': isInValid(value_o(i, 'Name')),
@@ -265,6 +274,7 @@
                   formControlName="Type"
                   placeholder="Type..."
                   [id]="'Output-Type-' + i"
+                  [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
                     'is-invalid': isInValid(value_o(i, 'Type')),
@@ -288,6 +298,7 @@
                   rows="1"
                   formControlName="Description"
                   [id]="'Output-Description-' + i"
+                  [readonly]="mode === 'view'"
                   placeholder="Description for output param..."
                   class="form-control extended-control highlight"
                 ></textarea>
@@ -296,6 +307,7 @@
                 <i
                   type="button"
                   class="fa fa-remove"
+                  *ngIf="mode === 'edit'"
                   (click)="DeleteSpecificationOutput(i)"
                 >
                 </i>
@@ -312,7 +324,7 @@
               type="button"
               (click)="AddSpecificationError()"
               class="btn pull-right"
-              [disabled]="viewOrEditSpecificationForm.invalid"
+              [disabled]="viewOrEditSpecificationForm.invalid || (mode === 'view')"
               [ngClass]="{
                 'form-valid': !viewOrEditSpecificationForm.invalid,
                 'form-invalid': viewOrEditSpecificationForm.invalid
@@ -339,6 +351,7 @@
                   formControlName="Message"
                   [id]="'Error-Message-' + i"
                   placeholder="Error Message..."
+                  [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
                     'is-invalid': isInValid(value_e(i, 'Message')),
@@ -361,6 +374,7 @@
                   formControlName="Code"
                   [id]="'Error-Code-' + i"
                   placeholder="Error Code..."
+                  [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
                     'is-invalid': isInValid(value_e(i, 'Code')),
@@ -392,6 +406,7 @@
                 <i
                   type="button"
                   class="fa fa-remove"
+                  *ngIf="mode === 'edit'"
                   (click)="DeleteSpecificationError(i)"
                 >
                 </i>
@@ -408,7 +423,7 @@
               type="button"
               (click)="AddSpecificationDependency()"
               class="btn pull-right"
-              [disabled]="viewOrEditSpecificationForm.invalid"
+              [disabled]="viewOrEditSpecificationForm.invalid || (mode === 'view')"
               [ngClass]="{
                 'form-valid': !viewOrEditSpecificationForm.invalid,
                 'form-invalid': viewOrEditSpecificationForm.invalid
@@ -435,6 +450,7 @@
                   formControlName="Name"
                   [id]="'Dependency-Name-' + i"
                   placeholder="Name of Dependency..."
+                  [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
                     'is-invalid': isInValid(value_d(i, 'Name')),
@@ -459,6 +475,7 @@
                   formControlName="Type"
                   placeholder="Type..."
                   [id]="'Dependency-Type-' + i"
+                  [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
                     'is-invalid': isInValid(value_d(i, 'Type')),
@@ -482,6 +499,7 @@
                   rows="1"
                   formControlName="Description"
                   [id]="'Dependency-Description-' + i"
+                  [readonly]="mode === 'view'"
                   placeholder="Description for dependency param..."
                   class="form-control extended-control highlight"
                 ></textarea>
@@ -490,6 +508,7 @@
                 <i
                   type="button"
                   class="fa fa-remove"
+                  *ngIf="mode === 'edit'"
                   (click)="DeleteSpecificationDependency(i)"
                 >
                 </i>
@@ -506,7 +525,7 @@
               type="button"
               (click)="AddSpecificationAuthor()"
               class="btn pull-right"
-              [disabled]="viewOrEditSpecificationForm.invalid"
+              [disabled]="viewOrEditSpecificationForm.invalid || (mode === 'view')"
               [ngClass]="{
                 'form-valid': !viewOrEditSpecificationForm.invalid,
                 'form-invalid': viewOrEditSpecificationForm.invalid
@@ -533,6 +552,7 @@
                   formControlName="Name"
                   [id]="'Author-Name-' + i"
                   placeholder="Name of author..."
+                  [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
                     'is-invalid': isInValid(value_a(i, 'Name')),
@@ -557,6 +577,7 @@
                   formControlName="Email"
                   placeholder="Email Id..."
                   [id]="'Author-Email-' + i"
+                  [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
                     'is-invalid': isInValid(value_a(i, 'Email')),
@@ -581,6 +602,7 @@
                   formControlName="Contact"
                   [id]="'Author-Contact-' + i"
                   placeholder="Contact number..."
+                  [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                 ></textarea>
               </div>
@@ -588,6 +610,7 @@
                 <i
                   type="button"
                   class="fa fa-remove"
+                  *ngIf="mode === 'edit'"
                   (click)="DeleteSpecificationAuthor(i)"
                 >
                 </i>
@@ -597,16 +620,17 @@
         </div>
 
         <button
-          (click)="UpdateSpecification(specification.id)"
-          type="submit"
           class="btn"
+          type="submit"
+          *ngIf="mode === 'edit'"
           [disabled]="viewOrEditSpecificationForm.invalid"
+          (click)="UpdateSpecification(specification.id)"
           [ngClass]="{
             'form-valid': !viewOrEditSpecificationForm.invalid,
             'form-invalid': viewOrEditSpecificationForm.invalid
           }"
         >
-          Create
+          Update
         </button>
       </div>
     </form>

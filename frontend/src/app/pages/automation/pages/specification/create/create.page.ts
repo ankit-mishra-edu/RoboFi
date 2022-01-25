@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@app/@core/utils/router.utils';
 import { SpecificationForm } from '@app/pages/automation/forms';
 import { SpecificationService } from '@app/pages/automation/services/specification.service';
@@ -13,6 +13,7 @@ import { isInValid, isValid } from '../../../validators/custom.validator';
 export class CreateSpecificationPage implements OnInit {
   constructor(
     private _router: Router,
+    private _route: ActivatedRoute,
     private _formBuilder: FormBuilder,
     private _specificationService: SpecificationService,
   ) {}
@@ -28,6 +29,17 @@ export class CreateSpecificationPage implements OnInit {
     this.createSpecificationFormObj.InitForm();
     this.createSpecificationForm =
       this.createSpecificationFormObj.specificationForm;
+  }
+
+  CreateSpecification() {
+    console.log(this.createSpecificationForm.value);
+    this._specificationService
+      .CreateSpecification$(this.createSpecificationForm.value)
+      .subscribe((createSpecificationResponse: ISpecification) =>
+        this._router.navigate([this.specificationPath.viewAll], {
+          relativeTo: this._route.parent,
+        }),
+      );
   }
 
   value(controlName: string): AbstractControl {
@@ -62,15 +74,6 @@ export class CreateSpecificationPage implements OnInit {
     return (<FormGroup>(
       this.createSpecificationForm.controls['Authors'].get([index])
     )).controls[controlName];
-  }
-
-  CreateSpecification() {
-    console.log(this.createSpecificationForm.value);
-    this._specificationService
-      .CreateSpecification$(this.createSpecificationForm.value)
-      .subscribe((createSpecificationResponse: ISpecification) =>
-        this._router.navigate(['../', this.specificationPath.viewAll]),
-      );
   }
 
   // Input Parameters
