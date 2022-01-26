@@ -5,7 +5,7 @@ import { AuthService } from '@app/pages/auth/services/auth.service';
 import { UserService } from '@app/pages/user/services/user.service';
 import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
-import { filter, share, switchMap } from 'rxjs/operators';
+import { filter, map, share, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -33,7 +33,18 @@ export class HeaderComponent implements OnInit {
     this.userProfile$ = this.loggedInUser$.pipe(
       filter((loggedInUser: IUser) => loggedInUser.id !== undefined),
       switchMap((loggedInUser: IUser) =>
-        this._userService.profileById$(loggedInUser.id),
+        this._userService.profileById$(loggedInUser.id).pipe(
+          map((userProfile: IProfile) => {
+            userProfile.image =
+              userProfile.image?.split('/')?.slice(0, 2)?.join('/') +
+              '/w_48,h_48,c_scale/' +
+              userProfile.image
+                ?.split('/')
+                ?.slice(2, userProfile.image?.split('/')?.length)
+                ?.join('/');
+            return userProfile;
+          }),
+        ),
       ),
       share(),
     );
