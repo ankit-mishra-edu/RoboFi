@@ -76,12 +76,12 @@
         <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
           <i
             *ngIf="isLoggedIn$ | async"
-            class="bi bi-person-circle"
+            class="bi bi-person"
             aria-hidden="true"
           ></i>
           <i
             *ngIf="(isLoggedIn$ | async) === false"
-            class="bi bi-person-circle"
+            class="bi bi-person"
             aria-hidden="true"
           ></i>
         </span>
@@ -100,6 +100,23 @@
         </span>
         <span *ngIf="isSidebarOpen">
           {{ 'Automation' }}
+        </span>
+      </a>
+
+      <a
+        target="_blank"
+        class="nav-link"
+        [href]="ADMIN_URL"
+        rel="noopener noreferrer"
+        routerLinkActive="bg-gray-100"
+        [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
+        class="pt-1 pl-1 my-1.5 rounded-l-3xl hover:bg-gray-100"
+      >
+        <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
+          <i class="bi bi-people" aria-hidden="true"></i>
+        </span>
+        <span *ngIf="isSidebarOpen">
+          {{ 'Admin' }}
         </span>
       </a>
     </div>

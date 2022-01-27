@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ROUTER_UTILS } from '@app/@core/utils/router.utils';
 import { AuthService } from '@app/pages/auth/services/auth.service';
 import { TechnologyService } from '@core/services/route';
+import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -19,6 +20,7 @@ export class SideBarComponent implements OnInit {
     Java: string;
     'Dot NET': string;
   };
+  ADMIN_URL = environment.ADMIN_URL;
 
   technologyPath$!: Observable<any>;
 
