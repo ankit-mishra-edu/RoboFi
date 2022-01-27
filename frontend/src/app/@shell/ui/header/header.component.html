@@ -1,12 +1,12 @@
 <header
-  class="fixed top-0 w-full h-16 shadow-md bg-gray-50 dark:bg-gray-600 backdrop-blur-lg backdrop-filter"
+  class="fixed top-0 w-full shadow-md min-h-fit bg-gray-50 dark:bg-gray-600 backdrop-blur-lg backdrop-filter"
 >
   <nav
-    class="container flex items-center justify-between h-full py-3 mx-auto center"
+    class="container flex items-center justify-between h-full py-2 mx-auto center"
   >
     <a
       [routerLink]="[path.base.home]"
-      class="flex flex-row text-2xl font-bold no-underline cursor-pointer"
+      class="flex flex-row px-2 text-2xl font-bold no-underline cursor-pointer"
     >
       <img
         [src]="media_url + 'v1643117127/robofi/ui/favicon.ico'"
@@ -17,6 +17,14 @@
     </a>
 
     <app-navbar></app-navbar>
+
+    <button
+      type="button"
+      class="md:hidden navbar-toggler collapsed"
+      (click)="ToggleNavbar()"
+    >
+      <i class="bi bi-list" aria-hidden="true"></i>
+    </button>
 
     <div class="relative ml-3">
       <ng-container

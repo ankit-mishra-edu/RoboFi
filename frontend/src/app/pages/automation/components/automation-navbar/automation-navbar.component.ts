@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ROUTER_UTILS } from '@app/@core/utils/router.utils';
 
 @Component({
@@ -8,4 +8,6 @@ import { ROUTER_UTILS } from '@app/@core/utils/router.utils';
 })
 export class AutomationNavbarComponent {
   automationPath = ROUTER_UTILS.config.automation;
+
+  @Input('isSidebarOpen') isSidebarOpen: boolean = false;
 }

@@ -1,46 +1,81 @@
-<div class="flex space-x-4">
+<div class="flex flex-col space-x-4 md:flex-row">
   <a
     [routerLink]="[settingsPath.root, settingsPath.appearance]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
     class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
-    >Appearance</a
+    ><span class="px-1">
+      <i class="bi bi-cloud-moon" aria-hidden="true"></i>
+    </span>
+    <span class="d-none d-md-inline-block">
+      {{ 'Appearence' }}
+    </span></a
   >
 
   <a
     [routerLink]="[settingsPath.root, settingsPath.account]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
     class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
-    >Account</a
+    ><span class="px-1">
+      <i class="bi bi-person-square" aria-hidden="true"></i>
+    </span>
+    <span class="d-none d-md-inline-block">
+      {{ 'Acount' }}
+    </span></a
   >
 
   <a
     [routerLink]="[settingsPath.root, settingsPath.billing]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
     class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
-    >Billing</a
+    ><span class="px-1">
+      <i class="bi bi-bank2" aria-hidden="true"></i>
+    </span>
+    <span class="d-none d-md-inline-block">
+      {{ 'Billing' }}
+    </span></a
   >
   <a
     [routerLink]="[settingsPath.root, settingsPath.blockedUsers]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
     class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
-    >Blocked Users</a
+    ><span class="px-1">
+      <i class="bi bi-person-x" aria-hidden="true"></i>
+    </span>
+    <span class="d-none d-md-inline-block">
+      {{ 'Blocked Users' }}
+    </span></a
   >
   <a
     [routerLink]="[settingsPath.root, settingsPath.notifications]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
     class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
-    >Notifications</a
+    ><span class="px-1">
+      <i class="bi bi-bell" aria-hidden="true"></i>
+    </span>
+    <span class="d-none d-md-inline-block">
+      {{ 'Notification' }}
+    </span></a
   >
   <a
     [routerLink]="[settingsPath.root, settingsPath.security]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
     class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
-    >Security</a
+    ><span class="px-1">
+      <i class="bi bi-shield-lock" aria-hidden="true"></i>
+    </span>
+    <span class="d-none d-md-inline-block">
+      {{ 'Security' }}
+    </span></a
   >
   <a
     [routerLink]="[settingsPath.root, settingsPath.securityLog]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
     class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
-    >Security Log</a
+    ><span class="px-1">
+      <i class="bi bi-shield-check" aria-hidden="true"></i>
+    </span>
+    <span class="d-none d-md-inline-block">
+      {{ 'Security Log' }}
+    </span></a
   >
 </div>

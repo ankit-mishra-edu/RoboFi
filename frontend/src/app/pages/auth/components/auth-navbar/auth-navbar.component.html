@@ -1,76 +1,48 @@
-<div class="flex space-x-4">
+<div class="flex flex-col space-x-4 md:flex-row">
   <a
     [routerLink]="[authPath.root, authPath.signIn]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
-    class="
-      px-2
-      py-2
-      text-sm
-      font-medium
-      text-gray-700
-      rounded-md
-      whitespace-nowrap
-      dark:text-gray-300
-      hover:bg-gray-400
-      dark:hover:bg-gray-500
-      hover:text-white
-    "
-    >Sign In</a
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
+    ><span class="px-1">
+      <i class="bi bi-person-badge" aria-hidden="true"></i>
+    </span>
+    <span class="d-none d-md-inline-block">
+      {{ 'Sign In' }}
+    </span></a
   >
 
   <a
     [routerLink]="[authPath.root, authPath.signUp]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
-    class="
-      px-2
-      py-2
-      text-sm
-      font-medium
-      text-gray-700
-      rounded-md
-      whitespace-nowrap
-      dark:text-gray-300
-      hover:bg-gray-400
-      dark:hover:bg-gray-500
-      hover:text-white
-    "
-    >Sign Up</a
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
+    ><span class="px-1">
+      <i class="bi bi-person-plus" aria-hidden="true"></i>
+    </span>
+    <span class="d-none d-md-inline-block">
+      {{ 'Sign Up' }}
+    </span></a
   >
 
   <a
     [routerLink]="[authPath.root, authPath.forgotPassword]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
-    class="
-      px-2
-      py-2
-      text-sm
-      font-medium
-      text-gray-700
-      rounded-md
-      whitespace-nowrap
-      dark:text-gray-300
-      hover:bg-gray-400
-      dark:hover:bg-gray-500
-      hover:text-white
-    "
-    >Forgot Password</a
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
+    ><span class="px-1">
+      <i class="bi bi-key" aria-hidden="true"></i>
+    </span>
+    <span class="d-none d-md-inline-block">
+      {{ 'Forgot Password' }}
+    </span></a
   >
   <a
     [routerLink]="[authPath.root, authPath.passwordReset]"
     routerLinkActive="text-white dark:text-gray-900 bg-gray-600 hover:bg-gray-600 dark:bg-gray-800 dark:hover:bg-gray-800"
-    class="
-      px-2
-      py-2
-      text-sm
-      font-medium
-      text-gray-700
-      rounded-md
-      whitespace-nowrap
-      dark:text-gray-300
-      hover:bg-gray-400
-      dark:hover:bg-gray-500
-      hover:text-white
-    "
-    >Password Reset</a
+    class="px-2 py-2 text-sm font-medium text-gray-700 rounded-md  whitespace-nowrap dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-500 hover:text-white"
+    ><span class="px-1">
+      <i class="bi bi-key" aria-hidden="true"></i>
+    </span>
+    <span class="d-none d-md-inline-block">
+      {{ 'Password Reset' }}
+    </span></a
   >
 </div>

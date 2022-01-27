@@ -22,6 +22,9 @@ export class HeaderComponent implements OnInit {
 
   path = ROUTER_UTILS.config;
   media_url = environment.MEDIA_BASE_URL;
+  isNavbarOpen: boolean = false;
+  navbarClassList: DOMTokenList | undefined =
+    document.querySelector('app-navbar')?.classList;
 
   isLoggedIn$!: Observable<boolean>;
   loggedInUser$!: Observable<IUser>;
@@ -48,5 +51,13 @@ export class HeaderComponent implements OnInit {
       ),
       share(),
     );
+  }
+
+  ToggleNavbar() {
+    document.querySelector('app-navbar')?.classList?.add('collapse');
+    this.isNavbarOpen
+      ? document.querySelector('app-navbar')?.classList?.remove('show')
+      : document.querySelector('app-navbar')?.classList?.add('show');
+    this.isNavbarOpen = !this.isNavbarOpen;
   }
 }
