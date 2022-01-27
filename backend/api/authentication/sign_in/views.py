@@ -10,10 +10,7 @@ class SignInView(TokenObtainPairView):
     serializer_class = SignInSerializer
 
     def post(self, request, *args, **kwargs):
-        print(request.__dict__)
         returnValue: Response = super().post(request, *args, **kwargs)
-        print(request.__dict__)
-        print(returnValue.__dict__)
         try:
             user = User.objects.get(username=request.data['username'])
         except User.DoesNotExist:
