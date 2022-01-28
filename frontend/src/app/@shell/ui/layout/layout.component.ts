@@ -7,7 +7,6 @@ import {
   NavigationStart,
   Router,
 } from '@angular/router';
-import { RouteService } from '@core/services/route';
 import { AuthService } from '@pages/auth/services/auth.service';
 import { Observable } from 'rxjs';
 
@@ -21,11 +20,7 @@ export class LayoutComponent implements OnInit {
   routingIsDelayed!: boolean;
   isLoggedIn$!: Observable<boolean>;
 
-  constructor(
-    private authService: AuthService,
-    private _routeServices: RouteService,
-    private _router: Router,
-  ) {}
+  constructor(private _router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.isLoggedIn$ = this.authService.isLoggedIn$;

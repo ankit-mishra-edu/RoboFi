@@ -1,0 +1,23 @@
+a.navbar-link {
+  @apply px-2;
+  @apply py-2;
+  @apply text-sm;
+  @apply rounded-md;
+  @apply font-medium;
+  @apply text-gray-700;
+  @apply whitespace-nowrap;
+  @apply dark:text-gray-300;
+  @apply dark:hover:bg-gray-500;
+
+  &:hover {
+    @apply text-white;
+    @apply bg-gray-400;
+  }
+
+  &.active {
+    @apply text-white;
+    @apply bg-gray-600;
+    @apply dark:bg-gray-800;
+    @apply dark:hover:bg-gray-800;
+  }
+}
