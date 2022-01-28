@@ -26,7 +26,7 @@ class SignUpSerializer(serializers.ModelSerializer):
         """
         user = User.objects.create_user(**validated_data['user'])
         user.is_active = False
-        token = Token.objects.filter(user=user).first()
+        token: Token = Token.objects.create(user=user)
         user.save()
         return(token)
 
