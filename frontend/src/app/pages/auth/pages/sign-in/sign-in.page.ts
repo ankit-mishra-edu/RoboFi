@@ -18,6 +18,7 @@ export class SignInPage implements OnInit {
 
   returnUrl!: string;
   signInForm!: FormGroup;
+  authenticationPath = ROUTER_UTILS.config.auth;
 
   constructor(
     private _router: Router,
