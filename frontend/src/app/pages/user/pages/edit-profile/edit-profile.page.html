@@ -89,9 +89,10 @@
                 <br />
                 <input
                   id="image"
-                  class="form-control form-control-file"
                   type="file"
                   formControlName="image"
+                  (change)="onFileSelect($event)"
+                  class="form-control form-control-file"
                 />
               </div>
 

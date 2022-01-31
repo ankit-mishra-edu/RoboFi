@@ -57,6 +57,16 @@ export class EditProfilePage implements OnInit, OnDestroy {
       .subscribe();
   }
 
+  onFileSelect(event: any) {
+    if (event.target.files.length > 0) {
+      const formData = new FormData();
+      formData.append('image', event.target.files[0]);
+      this.editProfileSubs = this._userService
+        .uploadProfilePhoto$(formData)
+        .subscribe();
+    }
+  }
+
   ngOnDestroy(): void {
     if (this.editProfileSubs) {
       this.editProfileSubs.unsubscribe();

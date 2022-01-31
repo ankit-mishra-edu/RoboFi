@@ -55,6 +55,18 @@ export class UserService {
       );
   };
 
+  uploadProfilePhoto$ = (profileFormData: FormData): Observable<IProfile> => {
+    return this._http
+      .patch<IProfile>(
+        `${this._USER_URL}/${this._authService.loggedInUser.id}/${ENDPOINT_UTILS.config.user.profile}`,
+        profileFormData,
+      )
+      .pipe(
+        tap(() => alert('Profile picture has been updated.')),
+        share(),
+      );
+  };
+
   editUserDetails(userData: IUser): Observable<IUser> {
     return this._http
       .patch<IUser>(
