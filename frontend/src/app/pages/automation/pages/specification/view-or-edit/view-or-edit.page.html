@@ -36,6 +36,7 @@
                 type="text"
                 id="Version"
                 formControlName="Version"
+                [readonly]="mode === 'view'"
                 class="form-control highlight"
                 [ngClass]="{
                   'is-invalid': isInValid(value('Version')),
@@ -396,6 +397,7 @@
                 >
                 <textarea
                   rows="1"
+                  [readonly]="mode === 'view'"
                   formControlName="Description"
                   [id]="'Error-Description-' + i"
                   placeholder="Error Description..."
