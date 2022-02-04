@@ -42,10 +42,44 @@ export class ViewOrEditSpecificationPage implements OnInit, OnDestroy {
         this._specificationService.specificationById$(routeParams.id).pipe(
           tap((specification: ISpecification) => {
             this.viewOrEditSpecificationForm.patchValue(specification);
-            for (let index = 0; index < specification.Inputs.length; index++) {
-              let input = specification.Inputs[index];
-              // this.addProcessInput(input['Name'], input['value']);
-            }
+            specification.Inputs.forEach((input: ISpecificationInput) => {
+              this.AddSpecificationInput(
+                input.Name,
+                input.Type,
+                input.DefaultValue,
+                input.Description,
+              );
+            });
+            specification.Outputs.forEach((output: ISpecificationOutput) => {
+              this.AddSpecificationOutput(
+                output.Name,
+                output.Type,
+                output.Description,
+              );
+            });
+            specification.Errors.forEach((error: ISpecificationError) => {
+              this.AddSpecificationError(
+                error.Code,
+                error.Message,
+                error.Description,
+              );
+            });
+            specification.Dependencies.forEach(
+              (dependency: ISpecificationDependency) => {
+                this.AddSpecificationDependency(
+                  dependency.Name,
+                  dependency.Type,
+                  dependency.Description,
+                );
+              },
+            );
+            specification.Authors.forEach((authors: ISpecificationAuthor) => {
+              this.AddSpecificationAuthor(
+                authors.Name,
+                authors.Email,
+                authors.Contact,
+              );
+            });
           }),
         ),
       ),
@@ -108,8 +142,8 @@ export class ViewOrEditSpecificationPage implements OnInit, OnDestroy {
     return this.viewOrEditSpecificationFormObj.inputFormsArr;
   }
 
-  AddSpecificationInput() {
-    this.viewOrEditSpecificationFormObj.AddSpecificationInput();
+  AddSpecificationInput(...input: [string?, string?, string?, string?]) {
+    this.viewOrEditSpecificationFormObj.AddSpecificationInput(...input);
   }
 
   DeleteSpecificationInput(index: number) {
@@ -125,8 +159,8 @@ export class ViewOrEditSpecificationPage implements OnInit, OnDestroy {
     return this.viewOrEditSpecificationFormObj.outputFormsArr;
   }
 
-  AddSpecificationOutput() {
-    this.viewOrEditSpecificationFormObj.AddSpecificationOutput();
+  AddSpecificationOutput(...outputs: [string, string, string]) {
+    this.viewOrEditSpecificationFormObj.AddSpecificationOutput(...outputs);
   }
 
   DeleteSpecificationOutput(index: number) {
@@ -142,8 +176,8 @@ export class ViewOrEditSpecificationPage implements OnInit, OnDestroy {
     return this.viewOrEditSpecificationFormObj.errorFormsArr;
   }
 
-  AddSpecificationError() {
-    this.viewOrEditSpecificationFormObj.AddSpecificationError();
+  AddSpecificationError(...errors: [string, string, string]) {
+    this.viewOrEditSpecificationFormObj.AddSpecificationError(...errors);
   }
 
   DeleteSpecificationError(index: number) {
@@ -159,8 +193,10 @@ export class ViewOrEditSpecificationPage implements OnInit, OnDestroy {
     return this.viewOrEditSpecificationFormObj.dependencyFormsArr;
   }
 
-  AddSpecificationDependency() {
-    this.viewOrEditSpecificationFormObj.AddSpecificationDependency();
+  AddSpecificationDependency(...dependencies: [string, string, string]) {
+    this.viewOrEditSpecificationFormObj.AddSpecificationDependency(
+      ...dependencies,
+    );
   }
 
   DeleteSpecificationDependency(index: number) {
@@ -176,8 +212,8 @@ export class ViewOrEditSpecificationPage implements OnInit, OnDestroy {
     return this.viewOrEditSpecificationFormObj.authorFormsArr;
   }
 
-  AddSpecificationAuthor() {
-    this.viewOrEditSpecificationFormObj.AddSpecificationAuthor();
+  AddSpecificationAuthor(...authors: [string, string, string]) {
+    this.viewOrEditSpecificationFormObj.AddSpecificationAuthor(...authors);
   }
 
   DeleteSpecificationAuthor(index: number) {

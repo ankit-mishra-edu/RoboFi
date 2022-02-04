@@ -204,8 +204,8 @@
               <div class="p-1 text-center md:w-1/12 sm:w-full form-group">
                 <i
                   type="button"
-                  class="fa fa-remove"
                   *ngIf="mode === 'edit'"
+                  class="bi bi-archive-fill danger"
                   (click)="DeleteSpecificationInput(i)"
                 >
                 </i>
@@ -220,7 +220,7 @@
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
-              (click)="AddSpecificationOutput()"
+              (click)="AddSpecificationOutput('','','')"
               class="btn pull-right"
               [disabled]="viewOrEditSpecificationForm.invalid || (mode === 'view')"
               [ngClass]="{
@@ -306,7 +306,7 @@
               <div class="p-1 text-center md:w-1/12 sm:w-full form-group">
                 <i
                   type="button"
-                  class="fa fa-remove"
+                  class="bi bi-archive-fill danger"
                   *ngIf="mode === 'edit'"
                   (click)="DeleteSpecificationOutput(i)"
                 >
@@ -322,7 +322,7 @@
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
-              (click)="AddSpecificationError()"
+              (click)="AddSpecificationError('','','')"
               class="btn pull-right"
               [disabled]="viewOrEditSpecificationForm.invalid || (mode === 'view')"
               [ngClass]="{
@@ -405,7 +405,7 @@
               <div class="p-1 text-center md:w-1/12 sm:w-full form-group">
                 <i
                   type="button"
-                  class="fa fa-remove"
+                  class="bi bi-archive-fill danger"
                   *ngIf="mode === 'edit'"
                   (click)="DeleteSpecificationError(i)"
                 >
@@ -421,7 +421,7 @@
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
-              (click)="AddSpecificationDependency()"
+              (click)="AddSpecificationDependency('','','')"
               class="btn pull-right"
               [disabled]="viewOrEditSpecificationForm.invalid || (mode === 'view')"
               [ngClass]="{
@@ -507,7 +507,7 @@
               <div class="p-1 text-center md:w-1/12 sm:w-full form-group">
                 <i
                   type="button"
-                  class="fa fa-remove"
+                  class="bi bi-archive-fill danger"
                   *ngIf="mode === 'edit'"
                   (click)="DeleteSpecificationDependency(i)"
                 >
@@ -523,7 +523,7 @@
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
-              (click)="AddSpecificationAuthor()"
+              (click)="AddSpecificationAuthor('','','')"
               class="btn pull-right"
               [disabled]="viewOrEditSpecificationForm.invalid || (mode === 'view')"
               [ngClass]="{
@@ -609,7 +609,7 @@
               <div class="p-1 text-center md:w-1/12 sm:w-full form-group">
                 <i
                   type="button"
-                  class="fa fa-remove"
+                  class="bi bi-archive-fill danger"
                   *ngIf="mode === 'edit'"
                   (click)="DeleteSpecificationAuthor(i)"
                 >

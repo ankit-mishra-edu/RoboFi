@@ -21,44 +21,49 @@ export class SpecificationForm {
     return this.specificationForm;
   }
 
-  public initInputRow() {
+  public initInputRow(
+    Name?: string,
+    Type?: string,
+    DefaultValue?: string,
+    Description?: string,
+  ) {
     return this._formBuilder.group({
-      Name: [null, Validators.required],
-      Type: [null, Validators.required],
-      DefaultValue: [null],
-      Description: [null],
+      Name: [Name, Validators.required],
+      Type: [Type, Validators.required],
+      DefaultValue: [DefaultValue],
+      Description: [Description],
     });
   }
 
-  public initOutputRow() {
+  public initOutputRow(Name?: string, Type?: string, Description?: string) {
     return this._formBuilder.group({
-      Name: [null, Validators.required],
-      Type: [null, Validators.required],
-      Description: [null],
+      Name: [Name, Validators.required],
+      Type: [Type, Validators.required],
+      Description: [Description],
     });
   }
 
-  public initErrorRow() {
+  public initErrorRow(Message?: string, Code?: string, Description?: string) {
     return this._formBuilder.group({
-      Message: [null, Validators.required],
-      Code: [null, Validators.required],
-      Description: [null],
+      Message: [Message, Validators.required],
+      Code: [Code, Validators.required],
+      Description: [Description],
     });
   }
 
-  public initDependencyRow() {
+  public initDependencyRow(Name?: string, Type?: string, Description?: string) {
     return this._formBuilder.group({
-      Name: [null, Validators.required],
-      Type: [null, Validators.required],
-      Description: [null],
+      Name: [Name, Validators.required],
+      Type: [Type, Validators.required],
+      Description: [Description],
     });
   }
 
-  public initAuthorRow() {
+  public initAuthorRow(Name?: string, Email?: string, Contact?: string) {
     return this._formBuilder.group({
-      Name: [null, Validators.required],
-      Email: [null, Validators.required],
-      Contact: [null],
+      Name: [Name, Validators.required],
+      Email: [Email, Validators.required],
+      Contact: [Contact],
     });
   }
 
@@ -67,8 +72,8 @@ export class SpecificationForm {
     return this.specificationForm.get('Inputs') as FormArray;
   }
 
-  AddSpecificationInput() {
-    this.inputFormsArr.push(this.initInputRow());
+  AddSpecificationInput(...inputs: [string?, string?, string?, string?]) {
+    this.inputFormsArr.push(this.initInputRow(...inputs));
   }
 
   DeleteSpecificationInput(index: number) {
@@ -88,8 +93,8 @@ export class SpecificationForm {
     return this.specificationForm.get('Outputs') as FormArray;
   }
 
-  AddSpecificationOutput() {
-    this.outputFormsArr.push(this.initOutputRow());
+  AddSpecificationOutput(...outputs: [string?, string?, string?]) {
+    this.outputFormsArr.push(this.initOutputRow(...outputs));
   }
 
   DeleteSpecificationOutput(index: number) {
@@ -109,8 +114,8 @@ export class SpecificationForm {
     return this.specificationForm.get('Errors') as FormArray;
   }
 
-  AddSpecificationError() {
-    this.errorFormsArr.push(this.initErrorRow());
+  AddSpecificationError(...errors: [string?, string?, string?]) {
+    this.errorFormsArr.push(this.initErrorRow(...errors));
   }
 
   DeleteSpecificationError(index: number) {
@@ -130,8 +135,8 @@ export class SpecificationForm {
     return this.specificationForm.get('Dependencies') as FormArray;
   }
 
-  AddSpecificationDependency() {
-    this.dependencyFormsArr.push(this.initDependencyRow());
+  AddSpecificationDependency(...dependencies: [string?, string?, string?]) {
+    this.dependencyFormsArr.push(this.initDependencyRow(...dependencies));
   }
 
   DeleteSpecificationDependency(index: number) {
@@ -151,8 +156,8 @@ export class SpecificationForm {
     return this.specificationForm.get('Authors') as FormArray;
   }
 
-  AddSpecificationAuthor() {
-    this.authorFormsArr.push(this.initAuthorRow());
+  AddSpecificationAuthor(...authors: [string?, string?, string?]) {
+    this.authorFormsArr.push(this.initAuthorRow(...authors));
   }
 
   DeleteSpecificationAuthor(index: number) {
