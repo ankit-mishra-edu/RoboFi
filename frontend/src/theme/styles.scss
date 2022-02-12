@@ -13,5 +13,6 @@
 }
 
 @layer utilities {
+  @import 'utilities/form.scss';
   @import 'utilities/navbar.scss';
 }

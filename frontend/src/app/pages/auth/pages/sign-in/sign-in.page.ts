@@ -34,6 +34,9 @@ export class SignInPage implements OnInit {
   }
 
   onClickSignIn(): void {
+    this.returnUrl =
+      this._activatedRoute.snapshot.queryParamMap.get('returnUrl') ||
+      `/${ROUTER_UTILS.config.base.home}`;
     this._authService
       .signIn(this.signInForm.value)
       .subscribe(() => this._router.navigate([this.returnUrl]));

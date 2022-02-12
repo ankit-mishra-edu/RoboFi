@@ -19,19 +19,26 @@ export class ServerErrorInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    return next.handle(request).pipe(
+    return next
+      .handle(request)
+      .pipe((source: Observable<HttpEvent<any>>) =>
+        this.handleAuthErrors(source),
+      );
+  }
+
+  handleAuthErrors(
+    source: Observable<HttpEvent<any>>,
+  ): Observable<HttpEvent<any>> {
+    return source.pipe(
       catchError((error: HttpErrorResponse) => {
         alert(error.error.detail || error.statusText || 'Server Error');
 
         if ([401, 403].includes(error.status)) {
           this._authService.cleanUpUserDataOnSignOut();
-          return throwError(error);
         } else if (error.status === 500) {
           console.error(error);
-          return throwError(error);
-        } else {
-          return throwError(error);
         }
+        return throwError(error);
       }),
     );
   }
