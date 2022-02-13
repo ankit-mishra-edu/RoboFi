@@ -1,49 +1,41 @@
 <ng-container
-  *ngIf="automationConfigurationByUserId$ | async; else configurationDataNotFetched"
+  *ngIf="configurationByUserId$ | async as configurationByUserId; else configurationDataNotFetched"
 >
   <ng-container
-    *ngIf="automationConfigurationByUserId$ | filterAutomationConfigurations | async as filteredConfigurationEntries; else filteredConfigurationDataNotAvailable"
+    *ngIf="configurationByUserId$ | filterAutomationConfigurations | async as filteredConfigEntries; else filteredConfigurationDataNotAvailable"
   >
-    <div class="mx-5 my-2 table-responsive">
-      <table
-        class="table w-full text-sm text-white bg-gray-700 border-collapse  dark:text-black table-hover dark:bg-gray-300 caption-top"
-      >
-        <caption>
-          Configuration Entry List
-        </caption>
-        <thead>
-          <tr class="rounded-xl">
-            <th>#</th>
-            <th>Key</th>
-            <th>Value</th>
-            <th>View</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="let filteredConfigurationEntry of filteredConfigurationEntries; let i = index"
-          >
-            <td>{{i}}</td>
-            <td>{{filteredConfigurationEntry.name}}</td>
-            <td>{{filteredConfigurationEntry.value}}</td>
-            <td><i class="bi bi-eye-fill primary" aria-hidden="true"></i></td>
-            <td>
-              <i class="bi bi-pencil-square secondary" aria-hidden="true"></i>
-            </td>
-            <td>
-              <i class="bi bi-archive-fill danger" aria-hidden="true"></i>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <app-config-entry
+      class="my-4"
+      *ngFor="let filteredConfigEntry of filteredConfigEntries; let indexOfConfigEntry = index"
+      [filteredConfigEntry]="filteredConfigEntry"
+      [filteredConfigEntryIndex]="indexOfConfigEntry"
+      (deletedConfigEntry)="onConfigEntryDelete($event)"
+    ></app-config-entry>
+
+    <div class="no-matching-trigger row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <h4
+          *ngIf="
+          !((configurationByUserId.entries| json) == '[]') &&
+          (filteredConfigEntries | json) == '[]'
+        "
+        >
+          No Configuration entries found as per the searched keyword. Try with
+          some different keyword.
+        </h4>
+        <h4 *ngIf="(configurationByUserId.entries| json) == '[]'">
+          No Configuration entry found to display
+        </h4>
+      </div>
+      <div class="col-md-2"></div>
     </div>
   </ng-container>
 </ng-container>
 <ng-template #configurationDataNotFetched>
   <app-spinner [spinnerSize]="'1.5rem'"
-    >{{ " Fetching Configuration data from backend....." }}</app-spinner
+    >{{ " Fetching Automation Configuration data from backend....."
+    }}</app-spinner
   >
 </ng-template>
 

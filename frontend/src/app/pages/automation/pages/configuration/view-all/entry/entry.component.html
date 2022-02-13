@@ -1,0 +1,30 @@
+<div class="mx-5 my-3 table-responsive">
+  <table
+    class="table w-full text-sm bg-gray-300 border-collapse  dark:text-white dark:bg-gray-700"
+  >
+    <thead>
+      <tr class="rounded-xl">
+        <th>#</th>
+        <th>Key</th>
+        <th>Value</th>
+        <th>View</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ configEntryIndex }}</td>
+        <td>{{ configEntry.name }}</td>
+        <td>{{ configEntry.value }}</td>
+        <td><i class="bi bi-eye-fill primary" aria-hidden="true"></i></td>
+        <td>
+          <i class="bi bi-pencil-square secondary" aria-hidden="true"></i>
+        </td>
+        <td>
+          <i class="bi bi-archive-fill danger" aria-hidden="true"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

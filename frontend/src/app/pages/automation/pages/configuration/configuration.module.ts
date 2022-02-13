@@ -4,10 +4,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/components/shared.module';
 import { AutomationPipeModule } from '../../pipes/automation-pipe.module';
 import { ConfigurationRoutingModule } from './configuration-routing.module';
+import { AutomationConfigEntryComponent } from './view-all/entry/entry.component';
 import { AutomationViewAllConfigurationPage } from './view-all/view-all.page';
 
 @NgModule({
-  declarations: [AutomationViewAllConfigurationPage],
+  declarations: [
+    AutomationViewAllConfigurationPage,
+    AutomationConfigEntryComponent,
+  ],
   imports: [
     CommonModule,
     ConfigurationRoutingModule,

@@ -8,15 +8,40 @@ import { share } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class ConfigurationService {
+export class AutomationConfigurationService {
   constructor(private _http: HttpClient, private _authService: AuthService) {}
 
   CONFIGURATION_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.automation.root}/${ENDPOINT_UTILS.config.automation.configuration}`;
 
-  automationConfigurationByUserId$: Observable<IAutomationConfiguration> =
-    this._http
-      .get<IAutomationConfiguration>(this.CONFIGURATION_URL, {
-        params: new HttpParams().set('user', this._authService.loggedInUser.id),
-      })
+  configurationByUserId$: Observable<IAutomationConfiguration> = this._http
+    .get<IAutomationConfiguration>(this.CONFIGURATION_URL, {
+      params: new HttpParams().set('user', this._authService.loggedInUser.id),
+    })
+    .pipe(share());
+
+  configEntryById$ = (id: number): Observable<IAutomationConfiguration> => {
+    return this._http
+      .get<IAutomationConfiguration>(`${this.CONFIGURATION_URL}/${id}`)
       .pipe(share());
+  };
+
+  updateConfigEntry$ = (
+    id: number,
+    updatedConfigEntry: IAutomationConfigurationEntry,
+    originalConfiguration: IAutomationConfiguration,
+  ): Observable<IAutomationConfiguration> => {
+    // originalConfiguration.entries
+    return this._http
+      .patch<IAutomationConfiguration>(
+        `${this.CONFIGURATION_URL}/${id}`,
+        updatedConfigEntry,
+      )
+      .pipe(share());
+  };
+
+  deleteSpecification$ = (id: number): Observable<IAutomationConfiguration> => {
+    return this._http
+      .delete<IAutomationConfiguration>(`${this.CONFIGURATION_URL}/${id}`)
+      .pipe(share());
+  };
 }

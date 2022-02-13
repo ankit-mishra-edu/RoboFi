@@ -1,18 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
-import { ConfigurationService } from '../../../services/configuration.service';
+import { AutomationConfigurationService } from '../../../services/configuration.service';
 
 @Component({
   templateUrl: './view-all.page.html',
   styleUrls: ['./view-all.page.scss'],
 })
 export class AutomationViewAllConfigurationPage implements OnInit {
-  constructor(private _configurationService: ConfigurationService) {}
-  automationConfigurationByUserId$!: Observable<IAutomationConfiguration>;
+  constructor(private _autoConfigService: AutomationConfigurationService) {}
+  configurationByUserId$!: Observable<IAutomationConfiguration>;
 
   ngOnInit(): void {
-    this.automationConfigurationByUserId$ =
-      this._configurationService.automationConfigurationByUserId$.pipe(share());
+    this.configurationByUserId$ =
+      this._autoConfigService.configurationByUserId$.pipe(share());
+  }
+
+  onConfigEntryDelete(_: IAutomationConfigurationEntry) {
+    this.ngOnInit();
   }
 }
