@@ -1,6 +1,33 @@
 <ng-container
   *ngIf="configurationByUserId$ | async as configurationByUserId; else configurationDataNotFetched"
 >
+  <div class="flex flex-row-reverse flex-wrap m-4 configuration-buttons">
+    <button
+      *ngIf="configurationByUserId.user"
+      class="text-red-700 border-red-500 hover:bg-red-500"
+      (click)="onDeleteConfigurationOfUser(configurationByUserId.id)"
+    >
+      <i class="px-1 bi bi-plus-lg" aria-hidden="true"></i>
+      <span>Delete User Automation Configuration</span>
+    </button>
+    <button
+      (click)="onCreateConfigurationOfUser()"
+      *ngIf="configurationByUserId.user == undefined"
+      class="text-green-700 border-green-500 hover:bg-green-500"
+    >
+      <i class="px-1 bi bi-plus-lg" aria-hidden="true"></i>
+      <span>Create User Automation Configuration</span>
+    </button>
+    <button
+      *ngIf="configurationByUserId.user"
+      (click)="onAddConfigEntryForUser()"
+      class="text-green-700 border-green-500 hover:bg-green-500"
+    >
+      <i class="px-1 bi bi-plus-lg" aria-hidden="true"></i>
+      <span>Add Configuration Entry</span>
+    </button>
+  </div>
+
   <ng-container
     *ngIf="configurationByUserId$ | filterAutomationConfigurations | async as filteredConfigEntries; else filteredConfigurationDataNotAvailable"
   >
@@ -9,7 +36,7 @@
       *ngFor="let filteredConfigEntry of filteredConfigEntries; let indexOfConfigEntry = index"
       [filteredConfigEntry]="filteredConfigEntry"
       [filteredConfigEntryIndex]="indexOfConfigEntry"
-      (deletedConfigEntry)="onConfigEntryDelete($event)"
+      (onConfigurationChange)="onConfigurationChange($event)"
     ></app-config-entry>
 
     <div class="no-matching-trigger row">

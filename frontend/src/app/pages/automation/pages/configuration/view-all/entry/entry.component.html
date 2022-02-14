@@ -17,12 +17,23 @@
         <td>{{ configEntryIndex }}</td>
         <td>{{ configEntry.name }}</td>
         <td>{{ configEntry.value }}</td>
-        <td><i class="bi bi-eye-fill primary" aria-hidden="true"></i></td>
-        <td>
-          <i class="bi bi-pencil-square secondary" aria-hidden="true"></i>
+        <td (click)="DeleteConfigEntry(configEntry)">
+          <i
+            aria-hidden="true"
+            class="cursor-pointer bi bi-eye-fill primary"
+          ></i>
         </td>
-        <td>
-          <i class="bi bi-archive-fill danger" aria-hidden="true"></i>
+        <td (click)="DeleteConfigEntry(configEntry)">
+          <i
+            aria-hidden="true"
+            class="cursor-pointer bi bi-pencil-square secondary"
+          ></i>
+        </td>
+        <td (click)="DeleteConfigEntry(configEntry)">
+          <i
+            aria-hidden="true"
+            class="cursor-pointer bi bi-archive-fill danger"
+          ></i>
         </td>
       </tr>
     </tbody>

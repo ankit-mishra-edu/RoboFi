@@ -11,6 +11,8 @@ from .models import Entry
 
 
 class ConfigurationEntrySerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
     class Meta:
         model = Entry
         fields = ['id', 'user', 'value', 'name']
@@ -28,7 +30,11 @@ class ConfigurationSerializer(WritableNestedModelSerializer):
     def to_internal_value(self, data):
         internal_data = super().to_internal_value(data)
         try:
-            user = User.objects.get(pk=data.get('user'))
+            user_id = data.get('user').get('id')
+        except:
+            user_id = data.get('user')
+        try:
+            user = User.objects.get(pk=user_id)
         except User.DoesNotExist:
             raise ValidationError(
                 {'user': ['Invalid user primary key']},

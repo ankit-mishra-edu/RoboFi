@@ -1,0 +1,18 @@
+.configuration-buttons {
+  button {
+    @apply px-4;
+    @apply py-2;
+    @apply m-1;
+    @apply rounded;
+    @apply border-2;
+    @apply border-2;
+    @apply inline-flex;
+    @apply items-center;
+    @apply font-semibold;
+
+    &:hover {
+      @apply text-white;
+      @apply border-transparent;
+    }
+  }
+}

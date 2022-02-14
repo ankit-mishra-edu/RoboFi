@@ -1,20 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AutomationConfigEntryComponent } from './entry.component';
 
-import { EntryComponent } from './entry.component';
-
-describe('EntryComponent', () => {
-  let component: EntryComponent;
-  let fixture: ComponentFixture<EntryComponent>;
+describe('AutomationConfigEntryComponent', () => {
+  let component: AutomationConfigEntryComponent;
+  let fixture: ComponentFixture<AutomationConfigEntryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EntryComponent ]
-    })
-    .compileComponents();
+      declarations: [AutomationConfigEntryComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EntryComponent);
+    fixture = TestBed.createComponent(AutomationConfigEntryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

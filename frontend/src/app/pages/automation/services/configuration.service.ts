@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ENDPOINT_UTILS } from '@app/@core/utils/endpoints';
 import { AuthService } from '@app/pages/auth/services/auth.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
 
 @Injectable({
@@ -12,36 +12,82 @@ export class AutomationConfigurationService {
   constructor(private _http: HttpClient, private _authService: AuthService) {}
 
   CONFIGURATION_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.automation.root}/${ENDPOINT_UTILS.config.automation.configuration}`;
+  CONFIGURATION_ENTRY_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.automation.root}/${ENDPOINT_UTILS.config.automation.configEntry}`;
 
+  // CURRENT/SELECTED CONFIGURATION ENTRY TO BE SHARED ACROSS COMPONENTS
+  private _configurationSubject: BehaviorSubject<IAutomationConfiguration> =
+    new BehaviorSubject<IAutomationConfiguration>(
+      {} as IAutomationConfiguration,
+    );
+
+  get configuration$(): Observable<IAutomationConfiguration> {
+    return this._configurationSubject.asObservable();
+  }
+
+  set configuration(configurationData: IAutomationConfiguration) {
+    this._configurationSubject.next(configurationData);
+  }
+
+  // CONFIGURATION CRUD
   configurationByUserId$: Observable<IAutomationConfiguration> = this._http
     .get<IAutomationConfiguration>(this.CONFIGURATION_URL, {
       params: new HttpParams().set('user', this._authService.loggedInUser.id),
     })
     .pipe(share());
 
+  createConfigurationForUser$ = (
+    configuration: IAutomationConfiguration,
+  ): Observable<IAutomationConfiguration> =>
+    this._http
+      .post<IAutomationConfiguration>(this.CONFIGURATION_URL, configuration)
+      .pipe(share());
+
+  updateConfigurationForUser$ = (
+    id: number,
+    updatedConfiguration: IAutomationConfiguration,
+  ): Observable<IAutomationConfiguration> => {
+    return this._http
+      .patch<IAutomationConfiguration>(
+        `${this.CONFIGURATION_URL}/${id}`,
+        updatedConfiguration,
+      )
+      .pipe(share());
+  };
+
+  deleteConfigurationOfUser$ = (
+    id: number,
+  ): Observable<IAutomationConfiguration> => {
+    return this._http
+      .delete<IAutomationConfiguration>(`${this.CONFIGURATION_URL}/${id}`)
+      .pipe(share());
+  };
+
+  // CONFIGURATION ENTRY CRUD
   configEntryById$ = (id: number): Observable<IAutomationConfiguration> => {
     return this._http
-      .get<IAutomationConfiguration>(`${this.CONFIGURATION_URL}/${id}`)
+      .get<IAutomationConfiguration>(`${this.CONFIGURATION_ENTRY_URL}/${id}`)
       .pipe(share());
   };
 
   updateConfigEntry$ = (
     id: number,
     updatedConfigEntry: IAutomationConfigurationEntry,
-    originalConfiguration: IAutomationConfiguration,
-  ): Observable<IAutomationConfiguration> => {
-    // originalConfiguration.entries
+  ): Observable<IAutomationConfigurationEntry> => {
     return this._http
-      .patch<IAutomationConfiguration>(
-        `${this.CONFIGURATION_URL}/${id}`,
+      .patch<IAutomationConfigurationEntry>(
+        `${this.CONFIGURATION_ENTRY_URL}/${id}`,
         updatedConfigEntry,
       )
       .pipe(share());
   };
 
-  deleteSpecification$ = (id: number): Observable<IAutomationConfiguration> => {
+  deleteConfigurationEntry$ = (
+    id: number,
+  ): Observable<IAutomationConfigurationEntry> => {
     return this._http
-      .delete<IAutomationConfiguration>(`${this.CONFIGURATION_URL}/${id}`)
+      .delete<IAutomationConfigurationEntry>(
+        `${this.CONFIGURATION_ENTRY_URL}/${id}`,
+      )
       .pipe(share());
   };
 }

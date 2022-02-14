@@ -58,7 +58,12 @@ export const ROUTER_UTILS = {
       configuration: {
         root: 'configuration',
         viewAll: 'view-all',
-        viewOrEdit: 'view-or-edit',
+
+        entry: {
+          root: 'entry',
+          create: 'add',
+          viewOrEdit: 'view-or-edit',
+        },
       },
       microbot: {
         root: 'microbots',
