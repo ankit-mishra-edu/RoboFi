@@ -5,6 +5,7 @@ import { SharedModule } from '@app/components/shared.module';
 import { AutomationPipeModule } from '../../pipes/automation-pipe.module';
 import { CreateSpecificationPage } from './create/create.page';
 import { SpecificationRoutingModule } from './specification-routing.module';
+import { SpecificationComponent } from './view-all/specification/specification.component';
 import { ViewAllSpecificationPage } from './view-all/view-all.page';
 import { ViewOrEditSpecificationPage } from './view-or-edit/view-or-edit.page';
 
@@ -13,6 +14,7 @@ import { ViewOrEditSpecificationPage } from './view-or-edit/view-or-edit.page';
     ViewAllSpecificationPage,
     CreateSpecificationPage,
     ViewOrEditSpecificationPage,
+    SpecificationComponent,
   ],
   imports: [
     CommonModule,

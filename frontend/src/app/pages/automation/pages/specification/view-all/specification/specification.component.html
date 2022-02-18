@@ -4,17 +4,17 @@
   <i
     aria-hidden="true"
     class="text-2xl cursor-pointer bi bi-eye-fill primary"
-    (click)="ViewMicrobot(microbot)"
+    (click)="ViewSpecification(specification)"
   ></i>
   <i
     aria-hidden="true"
     class="text-2xl cursor-pointer bi bi-pencil-square secondary"
-    (click)="EditMicrobot(microbot)"
+    (click)="EditSpecification(specification)"
   ></i>
   <i
     aria-hidden="true"
     class="text-2xl cursor-pointer bi bi-archive-fill danger"
-    (click)="DeleteMicrobot(microbot)"
+    (click)="DeleteSpecification(specification)"
   ></i>
 </div>
 
@@ -25,16 +25,19 @@
     <div
       class="mx-1 mb-2 text-xl font-bold text-center text-gray-900 bg-gray-200  rounded-3xl"
     >
-      {{ microbot.Name }}
+      {{ specification.Name }}
     </div>
-    <p class="h-20 overflow-y-auto text-base text-gray-700">
-      {{ microbot.Description }}
+    <p class="w-full h-20 overflow-y-auto text-base text-gray-700">
+      {{ specification.Description }}
     </p>
   </div>
   <div class="flex items-center">
-    <p class="pr-1 text-gray-900">Technology -</p>
-    <p class="leading-none text-gray-900">
-      {{ ' ' + microbot.Technology }}
+    <p class="pr-1 text-gray-900">- By</p>
+    <p
+      *ngFor="let author of specification.Authors"
+      class="leading-none text-gray-900"
+    >
+      {{ ' ' + author.Name }}
     </p>
   </div>
 </div>
