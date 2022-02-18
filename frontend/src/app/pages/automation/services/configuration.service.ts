@@ -14,7 +14,7 @@ export class AutomationConfigurationService {
   CONFIGURATION_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.automation.root}/${ENDPOINT_UTILS.config.automation.configuration}`;
   CONFIGURATION_ENTRY_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.automation.root}/${ENDPOINT_UTILS.config.automation.configEntry}`;
 
-  // CURRENT/SELECTED CONFIGURATION ENTRY TO BE SHARED ACROSS COMPONENTS
+  // CURRENT/SELECTED CONFIGURATION TO BE SHARED ACROSS COMPONENTS
   private _configurationSubject: BehaviorSubject<IAutomationConfiguration> =
     new BehaviorSubject<IAutomationConfiguration>(
       {} as IAutomationConfiguration,
@@ -26,6 +26,20 @@ export class AutomationConfigurationService {
 
   set configuration(configurationData: IAutomationConfiguration) {
     this._configurationSubject.next(configurationData);
+  }
+
+  // CURRENT/SELECTED CONFIGURATION ENTRY TO BE SHARED ACROSS COMPONENTS
+  private _configEntrySubject: BehaviorSubject<IAutomationConfigurationEntry> =
+    new BehaviorSubject<IAutomationConfigurationEntry>(
+      {} as IAutomationConfigurationEntry,
+    );
+
+  get configEntry$(): Observable<IAutomationConfigurationEntry> {
+    return this._configEntrySubject.asObservable();
+  }
+
+  set configEntry(configEntryData: IAutomationConfigurationEntry) {
+    this._configEntrySubject.next(configEntryData);
   }
 
   // CONFIGURATION CRUD
@@ -63,9 +77,13 @@ export class AutomationConfigurationService {
   };
 
   // CONFIGURATION ENTRY CRUD
-  configEntryById$ = (id: number): Observable<IAutomationConfiguration> => {
+  configEntryById$ = (
+    id: number,
+  ): Observable<IAutomationConfigurationEntry> => {
     return this._http
-      .get<IAutomationConfiguration>(`${this.CONFIGURATION_ENTRY_URL}/${id}`)
+      .get<IAutomationConfigurationEntry>(
+        `${this.CONFIGURATION_ENTRY_URL}/${id}`,
+      )
       .pipe(share());
   };
 

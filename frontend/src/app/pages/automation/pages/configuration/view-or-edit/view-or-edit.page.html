@@ -1,5 +1,5 @@
 <div
-  *ngIf="configuration$|async as configuration; else configurationDataNotAvailable"
+  *ngIf="configEntry$|async as configEntry; else configEntryDataNotAvailable"
   class="z-10 py-12 transition duration-150 ease-in-out dark:bg-gray-700"
   id="modal"
 >
@@ -30,7 +30,7 @@
       <h1
         class="mb-4 font-bold leading-tight tracking-normal text-gray-800  font-lg"
       >
-        Enter Config Entry Details
+        {{ mode === 'edit' ? "Update" : ''}} Config Entry Details
       </h1>
       <div class="form-wrapper">
         <form [formGroup]="configEntryForm">
@@ -41,8 +41,9 @@
           >
           <input
             id="name"
-            class="flex items-center"
             formControlName="name"
+            class="flex items-center"
+            [readonly]="mode === 'view'"
             placeholder="Enter config entry name..."
           />
           <label
@@ -52,8 +53,9 @@
           >
           <input
             id="value"
-            class="flex items-center"
             formControlName="value"
+            class="flex items-center"
+            [readonly]="mode === 'view'"
             placeholder="Enter value..."
           />
         </form>
@@ -61,15 +63,16 @@
 
       <div class="flex flex-wrap items-center justify-start w-full">
         <button
+          (click)="UpdateConfigEntry()"
+          *ngIf="configEntryForm.invalid"
           [disabled]="configEntryForm.invalid"
-          (click)="UpdateConfigurationForUser()"
           class="text-green-700 border-green-500 hover:bg-green-500"
         >
           Add Config Entry
         </button>
         <button
           class="text-red-700 border-red-500 hover:bg-red-500"
-          (click)="CancleUpdateConfiguration()"
+          (click)="CancleUpdateConfigEntry()"
         >
           Cancel
         </button>
@@ -78,9 +81,9 @@
   </div>
 </div>
 
-<ng-template #configurationDataNotAvailable>
+<ng-template #configEntryDataNotAvailable>
   <app-spinner [spinnerSize]="'1.5rem'"
-    >{{ " Fetching requested configuration details from backend...."
+    >{{ " Fetching requested configuration entry details from backend...."
     }}</app-spinner
   >
 </ng-template>

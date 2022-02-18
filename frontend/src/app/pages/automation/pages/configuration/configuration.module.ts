@@ -7,12 +7,14 @@ import { ConfigurationRoutingModule } from './configuration-routing.module';
 import { AutomationAddConfigEntryPage } from './create/create.page';
 import { AutomationConfigEntryComponent } from './view-all/entry/entry.component';
 import { AutomationViewAllConfigurationPage } from './view-all/view-all.page';
+import { AutomationViewOrEditConfigEntryPage } from './view-or-edit/view-or-edit.page';
 
 @NgModule({
   declarations: [
     AutomationViewAllConfigurationPage,
     AutomationConfigEntryComponent,
     AutomationAddConfigEntryPage,
+    AutomationViewOrEditConfigEntryPage,
   ],
   imports: [
     CommonModule,

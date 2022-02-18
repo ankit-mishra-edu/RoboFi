@@ -56,11 +56,11 @@ export const ROUTER_UTILS = {
       home: 'home',
       dashboard: 'dashboard',
       configuration: {
-        root: 'configuration',
+        root: 'configurations',
         viewAll: 'view-all',
 
         entry: {
-          root: 'entry',
+          root: 'entries',
           create: 'add',
           viewOrEdit: 'view-or-edit',
         },

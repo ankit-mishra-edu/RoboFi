@@ -17,13 +17,13 @@
         <td>{{ configEntryIndex }}</td>
         <td>{{ configEntry.name }}</td>
         <td>{{ configEntry.value }}</td>
-        <td (click)="DeleteConfigEntry(configEntry)">
+        <td (click)="ViewConfigEntry(configEntry)">
           <i
             aria-hidden="true"
             class="cursor-pointer bi bi-eye-fill primary"
           ></i>
         </td>
-        <td (click)="DeleteConfigEntry(configEntry)">
+        <td (click)="EditConfigEntry(configEntry)">
           <i
             aria-hidden="true"
             class="cursor-pointer bi bi-pencil-square secondary"

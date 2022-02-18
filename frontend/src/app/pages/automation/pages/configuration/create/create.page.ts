@@ -7,8 +7,8 @@ import {
   ConfigurationForm,
 } from '@app/pages/automation/forms';
 import { AutomationConfigurationService } from '@app/pages/automation/services/configuration.service';
-import { Observable } from 'rxjs';
-import { share, tap } from 'rxjs/operators';
+import { iif, Observable } from 'rxjs';
+import { share, switchMap, tap } from 'rxjs/operators';
 import { isInValid, isValid } from '../../../validators/custom.validator';
 
 @Component({
@@ -41,23 +41,34 @@ export class AutomationAddConfigEntryPage implements OnInit {
     this.configurationFormObj = new ConfigurationForm(this._formBuilder);
     this.configurationForm = this.configurationFormObj.InitForm();
 
-    this.configuration$ = this._autoConfigService.configuration$.pipe(
-      share(),
-      tap((configuration: IAutomationConfiguration) => {
-        this.configurationForm.patchValue(configuration);
-        configuration.entries.forEach(
-          (configEntry: IAutomationConfigurationEntry) =>
-            this.AddConfigEntry(configEntry),
-        );
-      }),
-    );
+    this.configuration$ = this._autoConfigService.configuration$
+      .pipe(
+        switchMap((configuration: IAutomationConfiguration) =>
+          iif(
+            () => configuration.id != undefined,
+            this._autoConfigService.configuration$,
+            this._autoConfigService.configurationByUserId$,
+          ),
+        ),
+      )
+      .pipe(
+        share(),
+        tap((configuration: IAutomationConfiguration) => {
+          this.configurationForm.patchValue(configuration);
+          configuration.entries.forEach(
+            (configEntry: IAutomationConfigurationEntry) =>
+              this.AddConfigEntry(configEntry),
+          );
+
+          this.configEntryForm.patchValue({
+            id: this.value_e(1, 'id').value,
+            user: <IUser>this.value('user').value,
+          });
+        }),
+      );
   }
 
   UpdateConfigurationForUser() {
-    this.configEntryForm.patchValue({
-      id: this.value_e(1, 'id').value,
-      user: <IUser>this.value('user').value,
-    });
     this.AddConfigEntry(this.configEntryForm.value);
     this._autoConfigService
       .updateConfigurationForUser$(
