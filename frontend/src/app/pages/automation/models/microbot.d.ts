@@ -1,8 +1,8 @@
 interface IMicrobot {
   id: number;
-  username: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-  password: string;
+  Name: string;
+  Technology: string;
+  Description: string;
+  Version: string;
+  specification: ISpecification;
 }
