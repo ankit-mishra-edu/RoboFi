@@ -9,10 +9,10 @@
     </button>
   </div>
   <ng-container
-    *ngIf="allSpecifications$ | async; else specificationDataNotFetched"
+    *ngIf="allSpecifications$ | async as allSpecifications; else specificationDataNotFetched"
   >
     <ng-container
-      *ngIf="allSpecifications$ | filterAutomationSpecification | async as filteredSpecifications; else filteredSpecificationsDataNotAvailable"
+      *ngIf="allSpecifications | filterAutomationSpecification | async as filteredSpecifications; else filteredSpecificationsDataNotAvailable"
     >
       <div class="flex flex-wrap">
         <div
