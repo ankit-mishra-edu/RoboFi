@@ -63,8 +63,8 @@
 
       <div class="flex flex-wrap items-center justify-start w-full">
         <button
+          *ngIf="mode === 'edit'"
           (click)="UpdateConfigEntry()"
-          *ngIf="configEntryForm.invalid"
           [disabled]="configEntryForm.invalid"
           class="text-green-700 border-green-500 hover:bg-green-500"
         >
