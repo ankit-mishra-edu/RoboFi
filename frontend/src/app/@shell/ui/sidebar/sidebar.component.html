@@ -34,37 +34,21 @@
 
   <div class="flex flex-col pb-4 text-black">
     <app-search-box class="my-2" *ngIf="isSidebarOpen"></app-search-box>
-    <p *ngIf="isSidebarOpen" class="p-2 font-semibold">Technologies</p>
-    <p *ngIf="!isSidebarOpen" class="p-2 font-semibold">Tech</p>
-    <div class="flex flex-col cursor-pointer">
+    <div class="flex flex-col">
       <a
-        [routerLink]="technology.value"
         routerLinkActive="bg-gray-100"
-        *ngFor="let technology of technologies | keyvalue"
+        [routerLink]="[configPath.automation.root]"
         [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
         class="pt-1 pl-1 my-1.5 rounded-l-3xl hover:bg-gray-100"
       >
         <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
-          {{ technology.key[0] | titlecase }}
+          <i class="bi bi-bezier" aria-hidden="true"></i>
         </span>
         <span *ngIf="isSidebarOpen">
-          {{ technology.key }}
+          {{ 'Automation' }}
         </span>
       </a>
-      <hr class="py-2" />
-      <a
-        routerLinkActive="bg-gray-100"
-        [routerLink]="[configPath.settings.root]"
-        [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
-        class="pt-1 pl-1 my-1.5 rounded-l-3xl hover:bg-gray-100"
-      >
-        <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
-          <i class="bi bi-gear" aria-hidden="true"></i>
-        </span>
-        <span *ngIf="isSidebarOpen">
-          {{ 'Settings' }}
-        </span>
-      </a>
+
       <a
         routerLinkActive="bg-gray-100"
         [routerLink]="[
@@ -89,17 +73,37 @@
           {{ (isLoggedIn$ | async) ? 'User' : 'Auth' }}
         </span>
       </a>
+
       <a
         routerLinkActive="bg-gray-100"
-        [routerLink]="[configPath.automation.root]"
+        [routerLink]="[configPath.settings.root]"
         [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
         class="pt-1 pl-1 my-1.5 rounded-l-3xl hover:bg-gray-100"
       >
         <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
-          <i class="bi bi-bezier" aria-hidden="true"></i>
+          <i class="bi bi-gear" aria-hidden="true"></i>
         </span>
         <span *ngIf="isSidebarOpen">
-          {{ 'Automation' }}
+          {{ 'Settings' }}
+        </span>
+      </a>
+
+      <hr class="py-2" />
+
+      <p *ngIf="isSidebarOpen" class="p-2 font-semibold">Technologies</p>
+      <p *ngIf="!isSidebarOpen" class="p-2 font-semibold">Tech</p>
+      <a
+        [routerLink]="technology.value"
+        routerLinkActive="bg-gray-100"
+        *ngFor="let technology of technologies | keyvalue"
+        [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
+        class="pt-1 pl-1 my-1.5 rounded-l-3xl hover:bg-gray-100"
+      >
+        <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
+          {{ technology.key[0] | titlecase }}
+        </span>
+        <span *ngIf="isSidebarOpen">
+          {{ technology.key }}
         </span>
       </a>
 
