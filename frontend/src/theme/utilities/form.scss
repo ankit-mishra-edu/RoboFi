@@ -6,7 +6,10 @@ div.form-wrapper {
       @apply py-4;
 
       .form-control {
-        inline-size: min(300px, 70%);
+        min-width: 240px;
+        inline-size: 70%;
+
+        // inline-size: max(300px, 70%);
 
         // &.highlight {
         //   border: 1px solid;
