@@ -172,22 +172,3 @@ export class SpecificationForm {
     }
   }
 }
-
-export class MicrobotForms {
-  // public static EditProfileForm(currentUser: IUser): FormGroup {
-  //   return new FormBuilder().group({
-  //     user: [currentUser?.id],
-  //     bio: ['', [Validators.maxLength(150)]],
-  //     address: new FormBuilder().group({
-  //       user: [currentUser],
-  //       city: [''],
-  //       state: [''],
-  //       street: [''],
-  //       zip_code: [''],
-  //     }),
-  //     birth_date: [null],
-  //     email_confirmed: [false],
-  //     image: [null],
-  //   });
-  // }
-}

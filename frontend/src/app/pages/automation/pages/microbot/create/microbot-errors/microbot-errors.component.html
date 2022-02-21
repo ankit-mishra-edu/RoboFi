@@ -1,0 +1,32 @@
+<div class="mx-3 my-3 table-responsive caption-top">
+  <caption class="w-full text-center font-semibold text-2xl">
+    Errors
+  </caption>
+  <table
+    class="
+      table
+      w-full
+      text-sm
+      bg-gray-300
+      border-collapse
+      dark:text-white dark:bg-gray-700
+    "
+  >
+    <thead>
+      <tr class="rounded-xl">
+        <th>#</th>
+        <th>Code</th>
+        <th>Message</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Error of Errors; let index = index">
+        <td>{{ index }}</td>
+        <td>{{ Error.Code }}</td>
+        <td>{{ Error.Message }}</td>
+        <td>{{ Error.Description }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
