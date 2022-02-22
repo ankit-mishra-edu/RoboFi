@@ -38,7 +38,7 @@ export class CreateMicrobotPage implements OnInit, OnDestroy {
   specifications$!: Observable<ISpecification[]>;
 
   ngOnInit(): void {
-    this.specifications$ = this._specificationService.allSpecifications$;
+    this.specifications$ = this._specificationService.getSpecifications$();
 
     this.createMicrobotFormObj = new MicrobotForms(this._formBuilder);
     this.createMicrobotForm = this.createMicrobotFormObj.InitForm();

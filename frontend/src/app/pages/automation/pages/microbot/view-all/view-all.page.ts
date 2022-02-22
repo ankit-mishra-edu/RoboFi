@@ -16,7 +16,7 @@ export class ViewAllMicrobotPage implements OnInit, OnDestroy {
   microbots$!: Observable<IMicrobot[]>;
 
   ngOnInit(): void {
-    this.microbots$ = this._micrbotService.allMicrobots$;
+    this.microbots$ = this._micrbotService.getMicrobots$();
   }
 
   onMicrobotDelete(microbot: IMicrobot) {

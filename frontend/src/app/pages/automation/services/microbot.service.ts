@@ -24,9 +24,8 @@ export class MicrobotService {
     this._microbotSubject.next(microbot);
   }
 
-  allMicrobots$: Observable<IMicrobot[]> = this._http
-    .get<IMicrobot[]>(this.MICROBOT_URL)
-    .pipe(share());
+  getMicrobots$ = (): Observable<IMicrobot[]> =>
+    this._http.get<IMicrobot[]>(this.MICROBOT_URL).pipe(share());
 
   createMicrobot$ = (microbot: IMicrobot): Observable<IMicrobot> => {
     return this._http

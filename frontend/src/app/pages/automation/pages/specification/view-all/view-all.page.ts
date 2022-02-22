@@ -21,7 +21,7 @@ export class ViewAllSpecificationPage implements OnInit {
   specifications$!: Observable<ISpecification[]>;
 
   ngOnInit(): void {
-    this.specifications$ = this._specificationService.allSpecifications$;
+    this.specifications$ = this._specificationService.getSpecifications$();
   }
 
   onSpecificationDelete(microbot: ISpecification) {

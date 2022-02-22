@@ -24,9 +24,8 @@ export class SpecificationService {
     this._specificationSubject.next(specification);
   }
 
-  allSpecifications$: Observable<ISpecification[]> = this._http
-    .get<ISpecification[]>(this.SPECIFICATION_URL)
-    .pipe(share());
+  getSpecifications$ = (): Observable<ISpecification[]> =>
+    this._http.get<ISpecification[]>(this.SPECIFICATION_URL).pipe(share());
 
   CreateSpecification$ = (
     specification: ISpecification,
