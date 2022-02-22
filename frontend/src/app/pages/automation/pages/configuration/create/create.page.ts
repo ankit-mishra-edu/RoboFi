@@ -61,7 +61,7 @@ export class AutomationAddConfigEntryPage implements OnInit {
           );
 
           this.configEntryForm.patchValue({
-            id: this.value_e(1, 'id').value,
+            id: 0,
             user: <IUser>this.value('user').value,
           });
         }),

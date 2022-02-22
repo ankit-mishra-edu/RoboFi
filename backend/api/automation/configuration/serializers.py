@@ -17,6 +17,22 @@ class ConfigurationEntrySerializer(serializers.ModelSerializer):
         model = Entry
         fields = ['id', 'user', 'value', 'name']
 
+    def to_internal_value(self, data):
+        internal_data = super().to_internal_value(data)
+        try:
+            user_id = data.get('user').get('id')
+        except:
+            user_id = data.get('user')
+        try:
+            user = User.objects.get(pk=user_id)
+        except User.DoesNotExist:
+            raise ValidationError(
+                {'user': ['Invalid user primary key']},
+                code='invalid',
+            )
+        internal_data['user'] = user
+        return internal_data
+
 
 class ConfigurationSerializer(WritableNestedModelSerializer):
     user = UserSerializer(read_only=True)
