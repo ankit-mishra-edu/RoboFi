@@ -27,6 +27,9 @@ class Configuration(models.Model):
 
 
 class Specification(models.Model):
+    class Meta:
+        unique_together = ('Name', 'Version',)
+
     id: int = models.AutoField(primary_key=True)
     Name: str = models.CharField(
         max_length=120, db_index=True, null=False, blank=False)
@@ -51,6 +54,9 @@ class Specification(models.Model):
 
 
 class Microbot(models.Model):
+    class Meta:
+        unique_together = ('Name', 'Version', 'Technology',)
+
     id: int = models.AutoField(primary_key=True)
     Name: str = models.CharField(
         max_length=120, db_index=True, null=False, blank=False)

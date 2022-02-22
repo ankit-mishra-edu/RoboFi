@@ -13,6 +13,7 @@ class Entry(models.Model):
     class Meta:
         verbose_name = "entry"
         verbose_name_plural = "entries"
+        unique_together = ('user', 'name',)
 
     id: int = models.AutoField(primary_key=True)
     user: User = models.ForeignKey(
