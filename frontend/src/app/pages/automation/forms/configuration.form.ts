@@ -35,7 +35,7 @@ export class ConfigurationForm {
   ): FormGroup {
     return this._formBuilder.group({
       id: [configEntry.id, [Validators.required]],
-      user: [configEntry.user?.id, [Validators.required]],
+      user: [configEntry.user, [Validators.required]],
       name: [configEntry.name, [Validators.required]],
       value: [configEntry.value, [Validators.required]],
     });
