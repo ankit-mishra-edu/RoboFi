@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from ..models import Microbot
 from .details import (create_details_file, delete_details_file,
                       update_details_file)
+from .readme import (create_readme_file, delete_readme_file,
+                     update_readme_file)
 from .serializers import MicrobotSerializer
 
 # Create your views here.
@@ -27,6 +29,7 @@ class MicrobotList(views.APIView):
         if serializer.is_valid():
             serializer.save()
             create_details_file(request, deepcopy(serializer.data))
+            create_readme_file(request, deepcopy(serializer.data))
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -57,6 +60,7 @@ class MicrobotDetail(views.APIView):
             if serializer.is_valid(raise_exception=False):
                 serializer.save()
                 update_details_file(request, deepcopy(serializer.data))
+                update_readme_file(request, deepcopy(serializer.data))
                 return Response(serializer.data)
             return Response(serializer.errors)
         except Exception as exception:
@@ -70,5 +74,6 @@ class MicrobotDetail(views.APIView):
 
         serializer = self.serializer_class(microbot_to_be_deleted)
         delete_details_file(request, deepcopy(serializer.data))
+        delete_readme_file(request, deepcopy(serializer.data))
         microbot_to_be_deleted.delete()
         return Response(serializer.data, status=200)

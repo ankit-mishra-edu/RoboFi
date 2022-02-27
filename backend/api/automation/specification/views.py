@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from ..models import Specification
 from .details import (create_details_file, delete_details_file,
                       update_details_file)
+from .readme import create_readme_file, delete_readme_file, update_readme_file
 from .serializers import SpecificationSerializer
 
 # Create your views here.
@@ -26,6 +27,7 @@ class SpecificationList(views.APIView):
         if serializer.is_valid():
             serializer.save()
             create_details_file(request, deepcopy(serializer.data))
+            create_readme_file(request, deepcopy(serializer.data))
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -56,6 +58,7 @@ class SpecificationDetail(views.APIView):
             if serializer.is_valid(raise_exception=False):
                 serializer.save()
                 update_details_file(request, deepcopy(serializer.data))
+                update_readme_file(request, deepcopy(serializer.data))
                 return Response(serializer.data)
             return Response(serializer.errors)
         except Exception as exception:
@@ -70,5 +73,6 @@ class SpecificationDetail(views.APIView):
 
         serializer = self.serializer_class(specification_to_be_deleted)
         delete_details_file(request, deepcopy(serializer.data))
+        delete_readme_file(request, deepcopy(serializer.data))
         specification_to_be_deleted.delete()
         return Response(serializer.data, status=200)

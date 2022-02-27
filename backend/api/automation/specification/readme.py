@@ -7,14 +7,12 @@ from ..Framework.git_remote_repo import (create_file_with_content, delete_file,
 from ..models import Configuration
 
 
-def create_details_file(request, specification_details: dict = None):
+def create_readme_file(request, specification_details: dict = None):
     try:
         config_entries = Configuration.objects.get(
             user=request.user).entries.all()
 
-        specification_path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{getDetailsFileName(config_entries)}"
-        details_file_path = f"{specification_path}/{getDetailsFileName(config_entries)}"
-        readme_file_path = f"{specification_path}/{getReadmeFileName(config_entries)}"
+        readme_file_path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{getDetailsFileName(config_entries)}/{getReadmeFileName(config_entries)}"
 
         specification_details.pop("id")
 
@@ -26,11 +24,6 @@ def create_details_file(request, specification_details: dict = None):
         print(f"Exception Occured : {e}")
 
     try:
-        content = json.dumps(specification_details, indent=4)
-        commit_message = f"Create Specification {specification_details.get('Name')} {getDetailsFileName(config_entries)} V{specification_details.get('Version')}"
-        create_file_with_content(
-            path=details_file_path, message=commit_message, content=content, token=getToken(config_entries), repo_name=getRepoName(config_entries))
-
         content = f"###{specification_details.get('Name')}_V{specification_details.get('Version')}"
         commit_message = f"Create Specification {specification_details.get('Name')} {getReadmeFileName(config_entries)} V{specification_details.get('Version')}"
         create_file_with_content(
@@ -44,12 +37,12 @@ def create_details_file(request, specification_details: dict = None):
     return True
 
 
-def update_details_file(request, specification_details: dict = None):
+def update_readme_file(request, specification_details: dict = None):
     try:
         config_entries = Configuration.objects.get(
             user=request.user).entries.all()
 
-        details_file_path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{getDetailsFileName(config_entries)}/{getDetailsFileName(config_entries)}"
+        readme_file_path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{getDetailsFileName(config_entries)}/{getReadmeFileName(config_entries)}"
 
         specification_details.pop("id")
 
@@ -61,9 +54,9 @@ def update_details_file(request, specification_details: dict = None):
         print(f"Exception Occured : {e}")
 
     try:
-        content = json.dumps(specification_details, indent=4)
-        commit_message = f"Update Specification {specification_details.get('Name')} {getDetailsFileName(config_entries)} V{specification_details.get('Version')}"
-        update_file(path=details_file_path,
+        content = f"###{specification_details.get('Name')}_V{specification_details.get('Version')}"
+        commit_message = f"Update Specification {specification_details.get('Name')} {getReadmeFileName(config_entries)} V{specification_details.get('Version')}"
+        update_file(path=readme_file_path,
                     message=commit_message, content=content, token=getToken(config_entries), repo_name=getRepoName(config_entries))
 
     except Exception as e:
@@ -74,15 +67,15 @@ def update_details_file(request, specification_details: dict = None):
     return True
 
 
-def delete_details_file(request, specification_details: dict = None):
+def delete_readme_file(request, specification_details: dict = None):
     try:
         config_entries = Configuration.objects.get(
             user=request.user).entries.all()
 
-        details_file_path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{getDetailsFileName(config_entries)}/{getDetailsFileName(config_entries)}"
+        readme_file_path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{getDetailsFileName(config_entries)}/{getReadmeFileName(config_entries)}"
 
-        commit_message = f"Delete Specification {specification_details.get('Name')} {getDetailsFileName(config_entries)} V{specification_details.get('Version')}"
-        delete_file(path=details_file_path,
+        commit_message = f"Delete Specification {specification_details.get('Name')} {getReadmeFileName(config_entries)} V{specification_details.get('Version')}"
+        delete_file(path=readme_file_path,
                     message=commit_message, token=getToken(config_entries), repo_name=getRepoName(config_entries))
 
     except Exception as e:
