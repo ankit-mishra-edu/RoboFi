@@ -41,7 +41,7 @@ def create_details_file(request, microbot_details: dict = None):
 
     except Exception as e:
         print(
-            f"Exception while creating Details file for {microbot_details.get('Name')} : {e.__str__()}")
+            f"Exception while creating Microbot Details file for {microbot_details.get('Name')} : {e.__str__()}")
         return False
 
     return True
@@ -75,7 +75,7 @@ def update_details_file(request, microbot_details: dict = None):
 
     except Exception as e:
         print(
-            f"Exception while Updating Details file for {microbot_details.get('Name')} : {e.__str__()}")
+            f"Exception while Updating Microbot Details file for {microbot_details.get('Name')} : {e.__str__()}")
         return False
 
     return True
@@ -108,7 +108,7 @@ def delete_details_file(request, microbot_details: dict = None):
 
     except Exception as e:
         print(
-            f"Exception while Updating Details file for {microbot_details.get('Name')} : {e.__str__()}")
+            f"Exception while Deleting Microbot Details file for {microbot_details.get('Name')} : {e.__str__()}")
         return False
 
     return True

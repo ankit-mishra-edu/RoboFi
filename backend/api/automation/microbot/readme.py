@@ -35,7 +35,7 @@ def create_readme_file(request, microbot_details: dict = None):
 
     except Exception as e:
         print(
-            f"Exception while creating Details file for {microbot_details.get('Name')} : {e.__str__()}")
+            f"Exception while creating Microbot Readme file for {microbot_details.get('Name')} : {e.__str__()}")
         return False
 
     return True
@@ -69,7 +69,7 @@ def update_readme_file(request, microbot_details: dict = None):
 
     except Exception as e:
         print(
-            f"Exception while Updating Details file for {microbot_details.get('Name')} : {e.__str__()}")
+            f"Exception while Updating Microbot Readme file for {microbot_details.get('Name')} : {e.__str__()}")
         return False
 
     return True
@@ -102,7 +102,7 @@ def delete_readme_file(request, microbot_details: dict = None):
 
     except Exception as e:
         print(
-            f"Exception while Updating Details file for {microbot_details.get('Name')} : {e.__str__()}")
+            f"Exception while Deleting Microbot Readme file for {microbot_details.get('Name')} : {e.__str__()}")
         return False
 
     return True

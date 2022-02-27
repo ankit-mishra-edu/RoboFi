@@ -31,7 +31,7 @@ def create_readme_file(request, specification_details: dict = None):
 
     except Exception as e:
         print(
-            f"Exception while creating Details file for {specification_details.get('Name')} : {e.__str__()}")
+            f"Exception while creating Specification Readme file for {specification_details.get('Name')} : {e.__str__()}")
         return False
 
     return True
@@ -61,7 +61,7 @@ def update_readme_file(request, specification_details: dict = None):
 
     except Exception as e:
         print(
-            f"Exception while Updating Details file for {specification_details.get('Name')} : {e.__str__()}")
+            f"Exception while Updating Specification Readme file for {specification_details.get('Name')} : {e.__str__()}")
         return False
 
     return True
@@ -80,7 +80,7 @@ def delete_readme_file(request, specification_details: dict = None):
 
     except Exception as e:
         print(
-            f"Exception while Updating Details file for {specification_details.get('Name')} : {e.__str__()}")
+            f"Exception while Deleting Specification Readme file for {specification_details.get('Name')} : {e.__str__()}")
         return False
 
     return True
