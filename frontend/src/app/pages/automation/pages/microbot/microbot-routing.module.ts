@@ -22,6 +22,10 @@ const microbotRoutes: Routes = [
     path: `${ROUTER_UTILS.config.automation.specification}/:id/:mode`,
     component: ViewOrEditMicrobotPage,
   },
+  {
+    path: `${ROUTER_UTILS.config.automation.microbot.viewOrEdit}/:id/:mode`,
+    component: ViewOrEditMicrobotPage,
+  },
 ];
 
 @NgModule({

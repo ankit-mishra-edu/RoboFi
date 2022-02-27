@@ -1,0 +1,32 @@
+<div class="mx-3 my-3 table-responsive caption-top">
+  <caption class="w-full text-center font-semibold text-2xl">
+    Outputs
+  </caption>
+  <table
+    class="
+      table
+      w-full
+      text-sm
+      bg-gray-300
+      border-collapse
+      dark:text-white dark:bg-gray-700
+    "
+  >
+    <thead>
+      <tr class="rounded-xl">
+        <th>#</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Output of Outputs; let index = index">
+        <td>{{ index }}</td>
+        <td>{{ Output.Name }}</td>
+        <td>{{ Output.Type }}</td>
+        <td>{{ Output.Description }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

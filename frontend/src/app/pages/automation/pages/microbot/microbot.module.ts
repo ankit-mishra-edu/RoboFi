@@ -10,6 +10,7 @@ import { MicrobotOutputsComponent } from './create/microbot-outputs/microbot-out
 import { MicrobotRoutingModule } from './microbot-routing.module';
 import { MicrobotComponent } from './view-all/microbot/microbot.component';
 import { ViewAllMicrobotPage } from './view-all/view-all.page';
+import { ViewOrEditMicrobotPage } from './view-or-edit/view-or-edit.page';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ViewAllMicrobotPage } from './view-all/view-all.page';
     MicrobotInputsComponent,
     MicrobotOutputsComponent,
     MicrobotErrorsComponent,
+    ViewOrEditMicrobotPage,
   ],
   imports: [
     CommonModule,
