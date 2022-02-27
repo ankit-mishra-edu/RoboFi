@@ -1,123 +1,124 @@
 <section class="content">
-  <div
-    class="row"
+  <ng-container
     *ngIf="userProfile$ | async as userProfile; else profileDataNotFetched"
   >
-    <div class="col-md-4 col-sm-12">
-      <div class="box box-primary">
-        <div class="box-body">
-          <div class="text-center">
-            <img
-              *ngIf="userProfile"
-              class="profile-user-img img-responsive img-circle"
-              [src]="media_url + userProfile?.image"
-              alt="User profile picture"
-            />
-
-            <div
-              *ngIf="!userProfile"
-              class="text-center fa fa-spinner fa-spin"
-            ></div>
-          </div>
-
-          <h3 class="text-center profile-username">
-            {{ userProfile?.address?.user?.first_name }} {{ " " }} {{
-            userProfile?.address?.user?.last_name }}
-          </h3>
-
-          <p class="text-center text-muted">{{ userProfile?.bio }}</p>
-
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <b class="form-label">Username</b>
-              <a class="pull-right" name="username">
-                {{ userProfile?.address?.user?.username }}
-              </a>
-            </li>
-
-            <li class="list-group-item">
-              <b class="form-label">DOB</b>
-              <a class="pull-right" name="birth_date"
-                >{{ userProfile?.birth_date }}</a
-              >
-            </li>
-
-            <li class="list-group-item">
-              <b class="form-label">Email</b>
-              <a class="pull-right" name="email">
-                {{ userProfile?.address?.user?.email }}
-              </a>
-            </li>
-
-            <li class="list-group-item">
-              <b class="form-label">Email Status</b>
-              <a
-                class="pull-right"
-                *ngIf="userProfile?.email_confirmed"
-                name="email_confirmed"
-              >
-                {{ "Verified" }}
-              </a>
-              <a
-                class="pull-right"
-                *ngIf="!userProfile?.email_confirmed"
-                name="email_confirmed"
-              >
-                {{ "Not Verified" }}
-              </a>
-            </li>
-          </ul>
-
-          <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
-        </div>
-      </div>
-
-      <div class="box box-primary">
-        <div class="box-body">
-          <div class="box-header with-border">
-            <h3 class="box-title">About Me</h3>
-          </div>
+    <div class="md:grid md:grid-cols-3">
+      <div class="flex flex-col">
+        <div class="box box-primary">
           <div class="box-body">
-            <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-            <br />
-            <p class="text-muted">Test text......</p>
+            <div class="text-center">
+              <img
+                *ngIf="userProfile"
+                class="profile-user-img img-responsive img-circle"
+                [src]="media_url + userProfile?.image"
+                alt="User profile picture"
+              />
 
-            <hr />
+              <div
+                *ngIf="!userProfile"
+                class="text-center fa fa-spinner fa-spin"
+              ></div>
+            </div>
 
-            <strong
-              ><i class="fa fa-map-marker margin-r-5"></i> Location</strong
-            >
-            <br />
-            <p class="text-muted">
-              {{ userProfile?.address?.street + ", " +
-              userProfile?.address?.city + ", " + userProfile?.address?.state }}
-            </p>
+            <h3 class="text-center profile-username">
+              {{ userProfile?.address?.user?.first_name }} {{ " " }} {{
+              userProfile?.address?.user?.last_name }}
+            </h3>
 
-            <hr />
+            <p class="text-center text-muted">{{ userProfile?.bio }}</p>
 
-            <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <b class="form-label">Username</b>
+                <a class="pull-right" name="username">
+                  {{ userProfile?.address?.user?.username }}
+                </a>
+              </li>
 
-            <ul id="image">
-              <li class="label label-danger">UI Design</li>
-              <li class="label label-success">Coding</li>
-              <li class="label label-info">Javascript</li>
-              <li class="label label-warning">PHP</li>
-              <li class="label label-primary">Node.js</li>
+              <li class="list-group-item">
+                <b class="form-label">DOB</b>
+                <a class="pull-right" name="birth_date"
+                  >{{ userProfile?.birth_date }}</a
+                >
+              </li>
+
+              <li class="list-group-item">
+                <b class="form-label">Email</b>
+                <a class="pull-right" name="email">
+                  {{ userProfile?.address?.user?.email }}
+                </a>
+              </li>
+
+              <li class="list-group-item">
+                <b class="form-label">Email Status</b>
+                <a
+                  class="pull-right"
+                  *ngIf="userProfile?.email_confirmed"
+                  name="email_confirmed"
+                >
+                  {{ "Verified" }}
+                </a>
+                <a
+                  class="pull-right"
+                  *ngIf="!userProfile?.email_confirmed"
+                  name="email_confirmed"
+                >
+                  {{ "Not Verified" }}
+                </a>
+              </li>
             </ul>
 
-            <hr />
+            <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+          </div>
+        </div>
 
-            <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-            <br />
-            <p>Test twxt for Notes.</p>
+        <div class="box box-primary">
+          <div class="box-body">
+            <div class="box-header with-border">
+              <h3 class="box-title">About Me</h3>
+            </div>
+            <div class="box-body">
+              <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+              <br />
+              <p class="text-muted">Test text......</p>
+
+              <hr />
+
+              <strong
+                ><i class="fa fa-map-marker margin-r-5"></i> Location</strong
+              >
+              <br />
+              <p class="text-muted">
+                {{ userProfile?.address?.street + ", " +
+                userProfile?.address?.city + ", " + userProfile?.address?.state
+                }}
+              </p>
+
+              <hr />
+
+              <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+
+              <ul id="image">
+                <li class="label label-danger">UI Design</li>
+                <li class="label label-success">Coding</li>
+                <li class="label label-info">Javascript</li>
+                <li class="label label-warning">PHP</li>
+                <li class="label label-primary">Node.js</li>
+              </ul>
+
+              <hr />
+
+              <strong
+                ><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong
+              >
+              <br />
+              <p>Test twxt for Notes.</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-8 col-sm-12">
-      <!-- <app-view-post></app-view-post> -->
-    </div>
-  </div>
+  </ng-container>
 
   <ng-template #profileDataNotFetched>
     <app-spinner [spinnerSize]="'1.5rem'"

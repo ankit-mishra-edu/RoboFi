@@ -1,42 +1,42 @@
 div.form-wrapper {
+  @apply m-8;
+  @apply p-4;
+  @apply shadow-2xl;
+
   form {
-    @apply m-4;
-
     .form-group {
-      @apply py-4;
-
-      .form-control {
-        min-width: 240px;
-        inline-size: 70%;
-
-        // inline-size: max(300px, 70%);
-
-        // &.highlight {
-        //   border: 1px solid;
-        //   color: var(--color-primary);
-        // }
-      }
-
-      .extended-control {
-        inline-size: 100%;
-      }
+      @apply py-2;
 
       .form-heading {
-        font-weight: bold;
+        @apply text-3xl;
+        @apply font-bold;
+        // @apply text-center;
+        @apply font-display;
       }
 
       .form-label {
         font-size: 17px;
         font-weight: bold;
         color: var(--color-secondary);
+
+        &.required {
+          &:after {
+            content: '*';
+            color: red;
+            font-size: 17px;
+            margin-left: 5px;
+            font-weight: bold;
+          }
+        }
       }
 
-      .form-label.required:after {
-        content: '*';
-        color: red;
-        font-size: 17px;
-        margin-left: 5px;
-        font-weight: bold;
+      .form-control {
+        min-width: 240px;
+        inline-size: 70%;
+      }
+
+      .extended-control {
+        inline-size: 100%;
       }
 
       .is-valid {

@@ -1,67 +1,62 @@
-<div class="edit-details container-md">
-  <ng-container *ngIf="!isUserConfirmed">
-    <div
+<div class="edit-details">
+  <ng-container *ngIf="!isUserConfirmed; else userConfirmed">
+    <ng-container
       *ngIf="userProfile$ | async as userProfile; else userProfileNotFetched"
-      class="row"
     >
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <div
-          *ngIf="loggedInUser$ | async as loggedInUser"
-          class="lockscreen-wrapper"
-        >
-          <div class="lockscreen-logo">
-            <p>Confirm Password</p>
+      <div
+        *ngIf="loggedInUser$ | async as loggedInUser"
+        class="lockscreen-wrapper"
+      >
+        <div class="lockscreen-logo">
+          <p>Confirm Password</p>
+        </div>
+        <div class="lockscreen-name">{{ loggedInUser.username }}</div>
+
+        <div class="lockscreen-item">
+          <div class="lockscreen-image">
+            <img [src]="MEDIA_URL + userProfile.image" alt="User Image" />
           </div>
-          <div class="lockscreen-name">{{ loggedInUser.username }}</div>
 
-          <div class="lockscreen-item">
-            <div class="lockscreen-image">
-              <img [src]="MEDIA_URL + userProfile.image" alt="User Image" />
-            </div>
+          <form [formGroup]="confirmUserForm" class="lockscreen-credentials">
+            <div class="input-group">
+              <input
+                autofocus
+                id="password"
+                type="password"
+                class="form-control focus:outline-none"
+                formControlName="password"
+                aria-describedby="button-addon"
+              />
 
-            <form [formGroup]="confirmUserForm" class="lockscreen-credentials">
-              <div class="input-group">
-                <input
-                  autofocus
-                  id="password"
-                  type="password"
-                  class="form-control focus:outline-none"
-                  formControlName="password"
-                  aria-describedby="button-addon"
-                />
-
-                <small
-                  *ngIf="
+              <small
+                *ngIf="
                     value_c('password').touched &&
                     value_c('password').errors?.required
                   "
-                  class="invalid-feedback"
-                  >{{ "Password is Mandatory." }}</small
-                >
+                class="invalid-feedback"
+                >{{ "Password is Mandatory." }}</small
+              >
 
-                <button
-                  (click)="confirmUser(loggedInUser.username)"
-                  type="submit"
-                  class="btn"
-                  id="button-addon"
-                  [disabled]="confirmUserForm.invalid"
-                >
-                  <i
-                    class="fa fa-arrow-right text-muted"
-                    [ngClass]="{
+              <button
+                (click)="confirmUser(loggedInUser.username)"
+                type="submit"
+                class="btn"
+                id="button-addon"
+                [disabled]="confirmUserForm.invalid"
+              >
+                <i
+                  class="fa fa-arrow-right text-muted"
+                  [ngClass]="{
                       'form-valid': !confirmUserForm.invalid,
                       'form-invalid': confirmUserForm.invalid
                     }"
-                  ></i>
-                </button>
-              </div>
-            </form>
-          </div>
+                ></i>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-      <div class="col-md-2"></div>
-    </div>
+    </ng-container>
 
     <ng-template #userProfileNotFetched>
       <app-spinner
@@ -73,14 +68,13 @@
     </ng-template>
   </ng-container>
 
-  <ng-container *ngIf="isUserConfirmed">
-    <div *ngIf="allUsers$ | async; else allUsersNotFetched" class="row">
-      <div class="col-lg-1 col-md-1"></div>
-      <div class="col-md-8 col-lg-5">
+  <ng-template #userConfirmed>
+    <ng-container *ngIf="allUsers$ | async; else allUsersNotFetched">
+      <div class="md:grid md:grid-cols-3">
         <div class="form-wrapper">
           <form [formGroup]="editDetailsForm">
             <div class="form-group">
-              <h3 class="mb-3 form-heading">Edit Details</h3>
+              <div class="form-heading">Edit Details</div>
               <div class="form-group">
                 <label for="username" class="form-label required"
                   >Username</label
@@ -210,8 +204,7 @@
           </form>
         </div>
       </div>
-      <div class="col-md-3 col-lg-6"></div>
-    </div>
+    </ng-container>
 
     <ng-template #allUsersNotFetched>
       <app-spinner
@@ -221,5 +214,5 @@
         Fetching required details from backend...
       </app-spinner>
     </ng-template>
-  </ng-container>
+  </ng-template>
 </div>
