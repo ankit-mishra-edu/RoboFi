@@ -12,9 +12,7 @@ def create_details_file(request, specification_details: dict = None):
         config_entries = Configuration.objects.get(
             user=request.user).entries.all()
 
-        specification_path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{getDetailsFileName(config_entries)}"
-        details_file_path = f"{specification_path}/{getDetailsFileName(config_entries)}"
-        readme_file_path = f"{specification_path}/{getReadmeFileName(config_entries)}"
+        details_file_path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{getDetailsFileName(config_entries)}/{getDetailsFileName(config_entries)}"
 
         specification_details.pop("id")
 
@@ -30,11 +28,6 @@ def create_details_file(request, specification_details: dict = None):
         commit_message = f"Create Specification {specification_details.get('Name')} {getDetailsFileName(config_entries)} V{specification_details.get('Version')}"
         create_file_with_content(
             path=details_file_path, message=commit_message, content=content, token=getToken(config_entries), repo_name=getRepoName(config_entries))
-
-        content = f"###{specification_details.get('Name')}_V{specification_details.get('Version')}"
-        commit_message = f"Create Specification {specification_details.get('Name')} {getReadmeFileName(config_entries)} V{specification_details.get('Version')}"
-        create_file_with_content(
-            path=readme_file_path, message=commit_message, content=content, token=getToken(config_entries), repo_name=getRepoName(config_entries))
 
     except Exception as e:
         print(

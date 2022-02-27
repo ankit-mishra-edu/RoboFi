@@ -27,8 +27,8 @@ class MicrobotList(views.APIView):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            create_readme_file(request, deepcopy(serializer.data))
             create_details_file(request, deepcopy(serializer.data))
+            create_readme_file(request, deepcopy(serializer.data))
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -58,8 +58,8 @@ class MicrobotDetail(views.APIView):
                 microbot, data=request.data, partial=True)
             if serializer.is_valid(raise_exception=False):
                 serializer.save()
-                update_readme_file(request, deepcopy(serializer.data))
                 update_details_file(request, deepcopy(serializer.data))
+                update_readme_file(request, deepcopy(serializer.data))
                 return Response(serializer.data)
             return Response(serializer.errors)
         except Exception as exception:
@@ -72,7 +72,7 @@ class MicrobotDetail(views.APIView):
             return Response(data={'detail': f"Invalid id {pk} for Microbot"}, status=404)
 
         serializer = self.serializer_class(microbot_to_be_deleted)
-        delete_readme_file(request, deepcopy(serializer.data))
         delete_details_file(request, deepcopy(serializer.data))
+        delete_readme_file(request, deepcopy(serializer.data))
         microbot_to_be_deleted.delete()
         return Response(serializer.data, status=200)

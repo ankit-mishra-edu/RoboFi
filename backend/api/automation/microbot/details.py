@@ -12,9 +12,7 @@ def create_details_file(request, microbot_details: dict = None):
         config_entries = Configuration.objects.get(
             user=request.user).entries.all()
 
-        microbot_path = f"microbots/{microbot_details.get('Technology')}/BotCodes/{microbot_details.get('Name')}/V{microbot_details.get('Version').replace('.', '')}"
-        details_file_path = f"{microbot_path}/{getDetailsFileName(config_entries)}"
-        readme_file_path = f"{microbot_path}/{getReadmeFileName(config_entries)}"
+        details_file_path = f"microbots/{microbot_details.get('Technology')}/BotCodes/{microbot_details.get('Name')}/V{microbot_details.get('Version').replace('.', '')}/{getDetailsFileName(config_entries)}"
 
         microbot_details.get("specification").pop("Version")
         microbot_details.get("specification").pop("Description")
@@ -34,10 +32,6 @@ def create_details_file(request, microbot_details: dict = None):
         commit_message = f"Create Microbot {microbot_details.get('Name')} {getDetailsFileName(config_entries)} {microbot_details.get('Technology')} V{microbot_details.get('Version')}"
         create_file_with_content(
             path=details_file_path, message=commit_message, content=content, token=getToken(config_entries), repo_name=getRepoName(config_entries))
-
-        commit_message = f"Create Microbot {microbot_details.get('Name')} {getReadmeFileName(config_entries)} {microbot_details.get('Technology')} V{microbot_details.get('Version')}"
-        create_file_with_content(
-            path=readme_file_path, message=commit_message, content='', token=getToken(config_entries), repo_name=getRepoName(config_entries))
 
     except Exception as e:
         print(
