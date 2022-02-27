@@ -24,7 +24,7 @@ def create_readme_file(request, specification_details: dict = None):
         print(f"Exception Occured : {e}")
 
     try:
-        content = f"### {specification_details.get('Name')}_V{specification_details.get('Version')}"
+        content = f"# {specification_details.get('Name')}_V{specification_details.get('Version')}"
         commit_message = f"Create Specification {specification_details.get('Name')} {getReadmeFileName(config_entries)} V{specification_details.get('Version')}"
         create_file_with_content(
             path=readme_file_path, message=commit_message, content=content, token=getToken(config_entries), repo_name=getRepoName(config_entries))
@@ -54,7 +54,7 @@ def update_readme_file(request, specification_details: dict = None):
         print(f"Exception Occured : {e}")
 
     try:
-        content = f"### {specification_details.get('Name')}_V{specification_details.get('Version')}"
+        content = f"# {specification_details.get('Name')}_V{specification_details.get('Version')}"
         commit_message = f"Update Specification {specification_details.get('Name')} {getReadmeFileName(config_entries)} V{specification_details.get('Version')}"
         update_file(path=readme_file_path,
                     message=commit_message, content=content, token=getToken(config_entries), repo_name=getRepoName(config_entries))
