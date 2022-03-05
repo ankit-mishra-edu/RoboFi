@@ -14,7 +14,9 @@ export class SpeechService {
       this.speechRecognition =
         new webkitSpeechRecognition() || new SpeechRecognition();
     } catch (error) {
-      console.error(error);
+      console.warn('Speech Recognition is not available in this browser.');
+      alert('Speech Recognition is not available in this browser.');
+      // console.error(error);
     }
   }
 
