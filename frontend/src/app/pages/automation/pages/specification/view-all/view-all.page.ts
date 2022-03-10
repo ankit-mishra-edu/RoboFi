@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@app/@core/utils/router.utils';
 import { SpecificationService } from '@app/pages/automation/services/specification.service';
@@ -8,7 +8,7 @@ import { Observable, Subject } from 'rxjs';
   templateUrl: './view-all.page.html',
   styleUrls: ['./view-all.page.scss'],
 })
-export class ViewAllSpecificationPage implements OnInit {
+export class ViewAllSpecificationPage implements OnInit, OnDestroy {
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
@@ -24,7 +24,8 @@ export class ViewAllSpecificationPage implements OnInit {
     this.specifications$ = this._specificationService.getSpecifications$();
   }
 
-  onSpecificationDelete(microbot: ISpecification) {
+  onSpecificationDelete(specification: ISpecification): void {
+    console.log(specification);
     this.ngOnInit();
   }
 

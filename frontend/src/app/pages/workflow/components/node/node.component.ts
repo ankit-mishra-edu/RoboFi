@@ -22,7 +22,7 @@ export class NodeComponent implements OnInit {
     this.yOffset = this.node.y || 0;
   }
 
-  onMove(e: any) {
+  onMove(e: any): void {
     if (this.workflow.draggable) {
       this.node.x = e.x;
       this.node.y = e.y;

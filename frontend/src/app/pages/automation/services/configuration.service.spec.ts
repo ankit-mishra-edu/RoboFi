@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { AutomationConfigurationService } from './configuration.service';
 
-import { ConfigurationService } from './configuration.service';
-
-describe('ConfigurationService', () => {
-  let service: ConfigurationService;
+describe('AutomationConfigurationService', () => {
+  let service: AutomationConfigurationService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ConfigurationService);
+    service = TestBed.inject(AutomationConfigurationService);
   });
 
   it('should be created', () => {

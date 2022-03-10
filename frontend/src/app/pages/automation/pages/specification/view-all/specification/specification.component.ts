@@ -3,7 +3,6 @@ import {
   EventEmitter,
   Input,
   OnDestroy,
-  OnInit,
   Output,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,7 +16,7 @@ import { takeUntil, tap } from 'rxjs/operators';
   templateUrl: './specification.component.html',
   styleUrls: ['./specification.component.scss'],
 })
-export class SpecificationComponent implements OnInit, OnDestroy {
+export class SpecificationComponent implements OnDestroy {
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
@@ -34,9 +33,7 @@ export class SpecificationComponent implements OnInit, OnDestroy {
 
   SPECIFICATION_PATH = ROUTER_UTILS.config.automation.specification;
 
-  ngOnInit(): void {}
-
-  EditSpecification(specificationToBeEdited: ISpecification) {
+  EditSpecification(specificationToBeEdited: ISpecification): void {
     this._specificationService.specification = specificationToBeEdited;
     this._router.navigate(
       [this.SPECIFICATION_PATH.viewOrEdit, specificationToBeEdited.id, 'edit'],
@@ -46,7 +43,7 @@ export class SpecificationComponent implements OnInit, OnDestroy {
     );
   }
 
-  ViewSpecification(specificationToBeViewed: ISpecification) {
+  ViewSpecification(specificationToBeViewed: ISpecification): void {
     this._specificationService.specification = specificationToBeViewed;
     this._router.navigate(
       [this.SPECIFICATION_PATH.viewOrEdit, specificationToBeViewed.id, 'view'],
@@ -56,7 +53,7 @@ export class SpecificationComponent implements OnInit, OnDestroy {
     );
   }
 
-  DeleteSpecification(specificationToBeDeleted: ISpecification) {
+  DeleteSpecification(specificationToBeDeleted: ISpecification): void {
     if (
       confirm(
         `Do you want to delete the Specification with name ${specificationToBeDeleted.Name} ?\n
@@ -73,7 +70,7 @@ It will delete the microbots and other entities using this specification.`,
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy$.complete();
     this.destroy$.unsubscribe();
   }

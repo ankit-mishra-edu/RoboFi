@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CreateMicrobotPage } from './create.page';
 
-describe('AccountPage', () => {
+describe('CreateMicrobotPage', () => {
   let component: CreateMicrobotPage;
   let fixture: ComponentFixture<CreateMicrobotPage>;
 

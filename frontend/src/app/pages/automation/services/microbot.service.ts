@@ -16,7 +16,7 @@ export class MicrobotService {
   private _microbotSubject: BehaviorSubject<IMicrobot> =
     new BehaviorSubject<IMicrobot>({} as IMicrobot);
 
-  get microbot$() {
+  get microbot$(): Observable<IMicrobot> {
     return this._microbotSubject.asObservable();
   }
 

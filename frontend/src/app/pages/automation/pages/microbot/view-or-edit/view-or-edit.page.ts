@@ -78,7 +78,7 @@ export class ViewOrEditMicrobotPage implements OnInit, OnDestroy {
           ? of({} as ISpecification)
           : this._specificationService
               .specificationById$(selectedSpecificationId)
-              .pipe(catchError((error) => of({} as ISpecification))),
+              .pipe(catchError(() => of({} as ISpecification))),
       ),
     );
   }

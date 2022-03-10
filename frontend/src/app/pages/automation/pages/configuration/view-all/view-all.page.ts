@@ -49,21 +49,22 @@ export class AutomationViewAllConfigurationPage implements OnInit {
   }
 
   // ADD CONFIG ENTRY TO FORM
-  get configEntryFormsArr() {
+  get configEntryFormsArr(): FormArray {
     return this.configurationFormObj.configEntryFormsArr;
   }
 
-  AddConfigEntry(configEntry: IAutomationConfigurationEntry) {
+  AddConfigEntry(configEntry: IAutomationConfigurationEntry): void {
     this.configurationFormObj.AddConfigEntry(configEntry);
   }
 
   // REFRESH UI ON CONFIGURATION ENTRY CRUD OPERATIONS
-  onConfigurationChange(_: IAutomationConfigurationEntry) {
+  onConfigurationChange(event: IAutomationConfigurationEntry): void {
+    console.log(event);
     this.ngOnInit();
   }
 
   // CONFIGURATION CRUD OPERATIONS
-  onCreateConfigurationOfUser() {
+  onCreateConfigurationOfUser(): void {
     this.configurationForm.patchValue({
       user: this._authService.loggedInUser.id,
     });
@@ -72,7 +73,7 @@ export class AutomationViewAllConfigurationPage implements OnInit {
       .subscribe(() => this.ngOnInit());
   }
 
-  onAddConfigEntryForUser() {
+  onAddConfigEntryForUser(): void {
     this._autoConfigService.configuration = this.configurationForm.value;
     this._router.navigate(
       [this.configurationPath.entry.root, this.configurationPath.entry.create],
@@ -82,7 +83,7 @@ export class AutomationViewAllConfigurationPage implements OnInit {
     );
   }
 
-  onDeleteConfigurationOfUser(id: number) {
+  onDeleteConfigurationOfUser(id: number): void {
     this._autoConfigService
       .deleteConfigurationOfUser$(id)
       .subscribe(() => this.ngOnInit());

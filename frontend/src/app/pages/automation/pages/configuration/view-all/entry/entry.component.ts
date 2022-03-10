@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@app/@core/utils/router.utils';
 import { AutomationConfigurationService } from '@app/pages/automation/services/configuration.service';
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './entry.component.html',
   styleUrls: ['./entry.component.scss'],
 })
-export class AutomationConfigEntryComponent implements OnInit {
+export class AutomationConfigEntryComponent {
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
@@ -25,9 +25,7 @@ export class AutomationConfigEntryComponent implements OnInit {
   addScheduleSubs!: Subscription;
   deleteTriggerSubs!: Subscription;
 
-  ngOnInit(): void {}
-
-  DeleteConfigEntry(configEntry: IAutomationConfigurationEntry) {
+  DeleteConfigEntry(configEntry: IAutomationConfigurationEntry): void {
     if (
       confirm(
         `Do you want to delete the Configuration entry with name ${configEntry.name} ?\n
@@ -42,7 +40,7 @@ It will delete this entry from user's configuration.`,
     }
   }
 
-  EditConfigEntry(configEntry: IAutomationConfigurationEntry) {
+  EditConfigEntry(configEntry: IAutomationConfigurationEntry): void {
     this._autoConfigService.configEntry = configEntry;
     this._router.navigate(
       [
@@ -57,7 +55,7 @@ It will delete this entry from user's configuration.`,
     );
   }
 
-  ViewConfigEntry(configEntry: IAutomationConfigurationEntry) {
+  ViewConfigEntry(configEntry: IAutomationConfigurationEntry): void {
     this._autoConfigService.configEntry = configEntry;
     this._router.navigate(
       [

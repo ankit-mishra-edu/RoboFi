@@ -3,7 +3,6 @@ import {
   EventEmitter,
   Input,
   OnDestroy,
-  OnInit,
   Output,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,7 +16,7 @@ import { takeUntil, tap } from 'rxjs/operators';
   templateUrl: './microbot.component.html',
   styleUrls: ['./microbot.component.scss'],
 })
-export class MicrobotComponent implements OnInit, OnDestroy {
+export class MicrobotComponent implements OnDestroy {
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
@@ -34,9 +33,7 @@ export class MicrobotComponent implements OnInit, OnDestroy {
 
   MICROBOT_PATH = ROUTER_UTILS.config.automation.microbot;
 
-  ngOnInit(): void {}
-
-  EditMicrobot(microbotToBeEdited: IMicrobot) {
+  EditMicrobot(microbotToBeEdited: IMicrobot): void {
     this._microbotService.microbot = microbotToBeEdited;
     this._router.navigate(
       [this.MICROBOT_PATH.viewOrEdit, microbotToBeEdited.id, 'edit'],
@@ -46,7 +43,7 @@ export class MicrobotComponent implements OnInit, OnDestroy {
     );
   }
 
-  ViewMicrobot(microbotToBeViewed: IMicrobot) {
+  ViewMicrobot(microbotToBeViewed: IMicrobot): void {
     this._microbotService.microbot = microbotToBeViewed;
     this._router.navigate(
       [this.MICROBOT_PATH.viewOrEdit, microbotToBeViewed.id, 'view'],
@@ -56,7 +53,7 @@ export class MicrobotComponent implements OnInit, OnDestroy {
     );
   }
 
-  DeleteMicrobot(microbotToBeDeleted: IMicrobot) {
+  DeleteMicrobot(microbotToBeDeleted: IMicrobot): void {
     if (
       confirm(
         `Do you want to delete the Microbot with name ${microbotToBeDeleted.Name} ?\n
@@ -73,7 +70,7 @@ It will delete the entities using this microbot.`,
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy$.complete();
     this.destroy$.unsubscribe();
   }

@@ -1,14 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-microbot-errors',
   templateUrl: './microbot-errors.component.html',
   styleUrls: ['./microbot-errors.component.scss'],
 })
-export class MicrobotErrorsComponent implements OnInit {
-  constructor() {}
-
+export class MicrobotErrorsComponent {
   @Input('Errors') Errors!: ISpecificationError[];
-
-  ngOnInit(): void {}
 }

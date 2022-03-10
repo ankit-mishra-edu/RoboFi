@@ -19,7 +19,8 @@ export class ViewAllMicrobotPage implements OnInit, OnDestroy {
     this.microbots$ = this._micrbotService.getMicrobots$();
   }
 
-  onMicrobotDelete(microbot: IMicrobot) {
+  onMicrobotDelete(microbot: IMicrobot): void {
+    console.log(microbot);
     this.ngOnInit();
   }
 

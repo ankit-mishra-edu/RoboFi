@@ -16,7 +16,7 @@ export class SpecificationService {
   private _specificationSubject: BehaviorSubject<ISpecification> =
     new BehaviorSubject<ISpecification>({} as ISpecification);
 
-  get specification$() {
+  get specification$(): Observable<ISpecification> {
     return this._specificationSubject.asObservable();
   }
 

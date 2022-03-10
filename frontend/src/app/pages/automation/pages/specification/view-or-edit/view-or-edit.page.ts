@@ -1,5 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+} from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@app/@core/utils/router.utils';
 import {
@@ -8,8 +13,8 @@ import {
 } from '@app/pages/auth/validators/custom.validator';
 import { SpecificationForm } from '@app/pages/automation/forms';
 import { SpecificationService } from '@app/pages/automation/services/specification.service';
-import { Observable } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { switchMap, takeUntil, tap } from 'rxjs/operators';
 
 @Component({
   templateUrl: './view-or-edit.page.html',
@@ -23,8 +28,9 @@ export class ViewOrEditSpecificationPage implements OnInit, OnDestroy {
     private _specificationService: SpecificationService,
   ) {}
 
+  destroy$ = new Subject();
+
   mode!: 'edit' | 'view';
-  routeParams$!: Observable<Params>;
   specification$!: Observable<ISpecification>;
   specificationPath = ROUTER_UTILS.config.automation.specification;
 
@@ -33,10 +39,8 @@ export class ViewOrEditSpecificationPage implements OnInit, OnDestroy {
   viewOrEditSpecificationForm!: FormGroup;
   viewOrEditSpecificationFormObj!: SpecificationForm;
 
-  ngOnInit() {
-    this.routeParams$ = this._route.params;
-
-    this.specification$ = this.routeParams$.pipe(
+  ngOnInit(): void {
+    this.specification$ = this._route.params.pipe(
       tap((routeParams: Params) => (this.mode = routeParams.mode)),
       switchMap((routeParams: Params) =>
         this._specificationService.specificationById$(routeParams.id).pipe(
@@ -96,11 +100,15 @@ export class ViewOrEditSpecificationPage implements OnInit, OnDestroy {
   UpdateSpecification = (id: number): void => {
     this._specificationService
       .updateSpecification$(id, this.viewOrEditSpecificationForm.value)
-      .subscribe(() =>
-        this._router.navigate([this.specificationPath.viewAll], {
-          relativeTo: this._route.parent,
-        }),
-      );
+      .pipe(
+        takeUntil(this.destroy$),
+        tap(() =>
+          this._router.navigate([this.specificationPath.viewAll], {
+            relativeTo: this._route.parent,
+          }),
+        ),
+      )
+      .subscribe();
   };
 
   value(controlName: string): AbstractControl {
@@ -138,91 +146,94 @@ export class ViewOrEditSpecificationPage implements OnInit, OnDestroy {
   }
 
   // Input Parameters
-  get inputFormsArr() {
+  get inputFormsArr(): FormArray {
     return this.viewOrEditSpecificationFormObj.inputFormsArr;
   }
 
-  AddSpecificationInput(...input: [string?, string?, string?, string?]) {
+  AddSpecificationInput(...input: [string?, string?, string?, string?]): void {
     this.viewOrEditSpecificationFormObj.AddSpecificationInput(...input);
   }
 
-  DeleteSpecificationInput(index: number) {
+  DeleteSpecificationInput(index: number): void {
     this.viewOrEditSpecificationFormObj.DeleteSpecificationInput(index);
   }
 
-  DeleteAllSpecificationInput() {
+  DeleteAllSpecificationInput(): void {
     this.viewOrEditSpecificationFormObj.DeleteAllSpecificationInput();
   }
 
   // Output Parameters
-  get outputFormsArr() {
+  get outputFormsArr(): FormArray {
     return this.viewOrEditSpecificationFormObj.outputFormsArr;
   }
 
-  AddSpecificationOutput(...outputs: [string, string, string]) {
+  AddSpecificationOutput(...outputs: [string, string, string]): void {
     this.viewOrEditSpecificationFormObj.AddSpecificationOutput(...outputs);
   }
 
-  DeleteSpecificationOutput(index: number) {
+  DeleteSpecificationOutput(index: number): void {
     this.viewOrEditSpecificationFormObj.DeleteSpecificationOutput(index);
   }
 
-  DeleteAllSpecificationOutput() {
+  DeleteAllSpecificationOutput(): void {
     this.viewOrEditSpecificationFormObj.DeleteAllSpecificationOutput();
   }
 
   // Error
-  get errorFormsArr() {
+  get errorFormsArr(): FormArray {
     return this.viewOrEditSpecificationFormObj.errorFormsArr;
   }
 
-  AddSpecificationError(...errors: [string, string, string]) {
+  AddSpecificationError(...errors: [string, string, string]): void {
     this.viewOrEditSpecificationFormObj.AddSpecificationError(...errors);
   }
 
-  DeleteSpecificationError(index: number) {
+  DeleteSpecificationError(index: number): void {
     this.viewOrEditSpecificationFormObj.DeleteSpecificationError(index);
   }
 
-  DeleteAllSpecificationError() {
+  DeleteAllSpecificationError(): void {
     this.viewOrEditSpecificationFormObj.DeleteAllSpecificationError();
   }
 
   // Dependencies
-  get dependencyFormsArr() {
+  get dependencyFormsArr(): FormArray {
     return this.viewOrEditSpecificationFormObj.dependencyFormsArr;
   }
 
-  AddSpecificationDependency(...dependencies: [string, string, string]) {
+  AddSpecificationDependency(...dependencies: [string, string, string]): void {
     this.viewOrEditSpecificationFormObj.AddSpecificationDependency(
       ...dependencies,
     );
   }
 
-  DeleteSpecificationDependency(index: number) {
+  DeleteSpecificationDependency(index: number): void {
     this.viewOrEditSpecificationFormObj.DeleteSpecificationDependency(index);
   }
 
-  DeleteAllSpecificationDependency() {
+  DeleteAllSpecificationDependency(): void {
     this.viewOrEditSpecificationFormObj.DeleteAllSpecificationDependency();
   }
 
   // Authors
-  get authorFormsArr() {
+  get authorFormsArr(): FormArray {
     return this.viewOrEditSpecificationFormObj.authorFormsArr;
   }
 
-  AddSpecificationAuthor(...authors: [string, string, string]) {
+  AddSpecificationAuthor(...authors: [string, string, string]): void {
     this.viewOrEditSpecificationFormObj.AddSpecificationAuthor(...authors);
   }
 
-  DeleteSpecificationAuthor(index: number) {
+  DeleteSpecificationAuthor(index: number): void {
     this.viewOrEditSpecificationFormObj.DeleteSpecificationAuthor(index);
   }
 
-  DeleteAllSpecificationAuthor() {
+  DeleteAllSpecificationAuthor(): void {
     this.viewOrEditSpecificationFormObj.DeleteAllSpecificationAuthor();
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy(): void {
+    this.destroy$.complete();
+    this.destroy$.unsubscribe();
+  }
 }

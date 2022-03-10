@@ -32,7 +32,7 @@ export class AutomationViewOrEditConfigEntryPage implements OnInit {
   configEntry$!: Observable<IAutomationConfigurationEntry>;
   configurationPath = ROUTER_UTILS.config.automation.configuration;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.configEntryFormObj = new ConfigurationEntryForm(this._formBuilder);
     this.configEntryForm = this.configEntryFormObj.InitForm();
 
@@ -57,17 +57,17 @@ export class AutomationViewOrEditConfigEntryPage implements OnInit {
     );
   }
 
-  UpdateConfigEntry() {
+  UpdateConfigEntry(): void {
     this._autoConfigService
       .updateConfigEntry$(this.value('id').value, this.configEntryForm.value)
-      .subscribe((_: IAutomationConfigurationEntry) =>
+      .subscribe(() =>
         this._router.navigate([this.configurationPath.viewAll], {
           relativeTo: this._route.parent?.parent,
         }),
       );
   }
 
-  CancleUpdateConfigEntry() {
+  CancleUpdateConfigEntry(): void {
     this._router.navigate([this.configurationPath.viewAll], {
       relativeTo: this._route.parent?.parent,
     });

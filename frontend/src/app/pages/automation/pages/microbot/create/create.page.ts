@@ -49,7 +49,7 @@ export class CreateMicrobotPage implements OnInit, OnDestroy {
       switchMap((selectedSpecificationId: number) =>
         this._specificationService
           .specificationById$(selectedSpecificationId)
-          .pipe(catchError((error) => of({} as ISpecification))),
+          .pipe(catchError(() => of({} as ISpecification))),
       ),
     );
   }

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CreateSpecificationPage } from './create.page';
+import { AutomationAddConfigEntryPage } from './create.page';
 
 describe('AccountPage', () => {
-  let component: CreateSpecificationPage;
-  let fixture: ComponentFixture<CreateSpecificationPage>;
+  let component: AutomationAddConfigEntryPage;
+  let fixture: ComponentFixture<AutomationAddConfigEntryPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CreateSpecificationPage],
+      declarations: [AutomationAddConfigEntryPage],
       teardown: { destroyAfterEach: false },
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateSpecificationPage);
+    fixture = TestBed.createComponent(AutomationAddConfigEntryPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@app/@core/utils/router.utils';
 import {
@@ -34,7 +39,7 @@ export class AutomationAddConfigEntryPage implements OnInit {
   configuration$!: Observable<IAutomationConfiguration>;
   configurationPath = ROUTER_UTILS.config.automation.configuration;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.configEntryFormObj = new ConfigurationEntryForm(this._formBuilder);
     this.configEntryForm = this.configEntryFormObj.InitForm();
 
@@ -68,21 +73,21 @@ export class AutomationAddConfigEntryPage implements OnInit {
       );
   }
 
-  UpdateConfigurationForUser() {
+  UpdateConfigurationForUser(): void {
     this.AddConfigEntry(this.configEntryForm.value);
     this._autoConfigService
       .updateConfigurationForUser$(
         this.value('id').value,
         this.configurationForm.value,
       )
-      .subscribe((_: IAutomationConfiguration) =>
+      .subscribe(() =>
         this._router.navigate([this.configurationPath.viewAll], {
           relativeTo: this._route.parent?.parent,
         }),
       );
   }
 
-  CancleUpdateConfiguration() {
+  CancleUpdateConfiguration(): void {
     this._router.navigate([this.configurationPath.viewAll], {
       relativeTo: this._route.parent?.parent,
     });
@@ -98,11 +103,11 @@ export class AutomationAddConfigEntryPage implements OnInit {
   }
 
   // Input Parameters
-  get configEntryFormsArr() {
+  get configEntryFormsArr(): FormArray {
     return this.configurationFormObj.configEntryFormsArr;
   }
 
-  AddConfigEntry(configEntry: IAutomationConfigurationEntry) {
+  AddConfigEntry(configEntry: IAutomationConfigurationEntry): void {
     this.configurationFormObj.AddConfigEntry(configEntry);
   }
 }

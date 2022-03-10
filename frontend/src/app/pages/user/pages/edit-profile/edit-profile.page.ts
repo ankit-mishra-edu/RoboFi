@@ -57,7 +57,7 @@ export class EditProfilePage implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  onFileSelect(event: any) {
+  onFileSelect(event: any): void {
     if (event.target.files.length > 0) {
       const formData = new FormData();
       formData.append('image', event.target.files[0]);

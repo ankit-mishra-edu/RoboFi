@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-connector',
   templateUrl: './connector.component.html',
-  styleUrls: ['./connector.component.scss']
+  styleUrls: ['./connector.component.scss'],
 })
-export class ConnectorComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class ConnectorComponent {}

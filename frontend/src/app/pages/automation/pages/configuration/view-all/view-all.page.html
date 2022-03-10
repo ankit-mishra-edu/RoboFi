@@ -12,7 +12,7 @@
     </button>
     <button
       (click)="onCreateConfigurationOfUser()"
-      *ngIf="configurationByUserId.user == undefined"
+      *ngIf="configurationByUserId.user === undefined"
       class="text-green-700 border-green-500 hover:bg-green-500"
     >
       <i class="px-1 bi bi-plus-lg" aria-hidden="true"></i>
@@ -44,14 +44,14 @@
       <div class="col-md-8">
         <h4
           *ngIf="
-          !((configurationByUserId.entries| json) == '[]') &&
-          (filteredConfigEntries | json) == '[]'
+          !((configurationByUserId.entries| json) === '[]') &&
+          (filteredConfigEntries | json) === '[]'
         "
         >
           No Configuration entries found as per the searched keyword. Try with
           some different keyword.
         </h4>
-        <h4 *ngIf="(configurationByUserId.entries| json) == '[]'">
+        <h4 *ngIf="(configurationByUserId.entries| json) === '[]'">
           No Configuration entry found to display
         </h4>
       </div>

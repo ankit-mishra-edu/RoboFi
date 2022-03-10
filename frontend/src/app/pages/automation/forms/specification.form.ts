@@ -5,7 +5,7 @@ export class SpecificationForm {
 
   specificationForm!: FormGroup;
 
-  public InitForm() {
+  public InitForm(): FormGroup {
     this.specificationForm = this._formBuilder.group({
       Name: ['', [Validators.required]],
       Description: ['', [Validators.required]],
@@ -26,7 +26,7 @@ export class SpecificationForm {
     Type?: string,
     DefaultValue?: string,
     Description?: string,
-  ) {
+  ): FormGroup {
     return this._formBuilder.group({
       Name: [Name, Validators.required],
       Type: [Type, Validators.required],
@@ -35,7 +35,11 @@ export class SpecificationForm {
     });
   }
 
-  public initOutputRow(Name?: string, Type?: string, Description?: string) {
+  public initOutputRow(
+    Name?: string,
+    Type?: string,
+    Description?: string,
+  ): FormGroup {
     return this._formBuilder.group({
       Name: [Name, Validators.required],
       Type: [Type, Validators.required],
@@ -43,7 +47,11 @@ export class SpecificationForm {
     });
   }
 
-  public initErrorRow(Message?: string, Code?: string, Description?: string) {
+  public initErrorRow(
+    Message?: string,
+    Code?: string,
+    Description?: string,
+  ): FormGroup {
     return this._formBuilder.group({
       Message: [Message, Validators.required],
       Code: [Code, Validators.required],
@@ -51,7 +59,11 @@ export class SpecificationForm {
     });
   }
 
-  public initDependencyRow(Name?: string, Type?: string, Description?: string) {
+  public initDependencyRow(
+    Name?: string,
+    Type?: string,
+    Description?: string,
+  ): FormGroup {
     return this._formBuilder.group({
       Name: [Name, Validators.required],
       Type: [Type, Validators.required],
@@ -59,7 +71,11 @@ export class SpecificationForm {
     });
   }
 
-  public initAuthorRow(Name?: string, Email?: string, Contact?: string) {
+  public initAuthorRow(
+    Name?: string,
+    Email?: string,
+    Contact?: string,
+  ): FormGroup {
     return this._formBuilder.group({
       Name: [Name, Validators.required],
       Email: [Email, Validators.required],
@@ -72,15 +88,15 @@ export class SpecificationForm {
     return this.specificationForm.get('Inputs') as FormArray;
   }
 
-  AddSpecificationInput(...inputs: [string?, string?, string?, string?]) {
+  AddSpecificationInput(...inputs: [string?, string?, string?, string?]): void {
     this.inputFormsArr.push(this.initInputRow(...inputs));
   }
 
-  DeleteSpecificationInput(index: number) {
+  DeleteSpecificationInput(index: number): void {
     this.inputFormsArr.removeAt(index);
   }
 
-  DeleteAllSpecificationInput() {
+  DeleteAllSpecificationInput(): void {
     if (this.inputFormsArr.length > 0) {
       while (this.inputFormsArr.length !== 0) {
         this.inputFormsArr.removeAt(0);
@@ -93,15 +109,15 @@ export class SpecificationForm {
     return this.specificationForm.get('Outputs') as FormArray;
   }
 
-  AddSpecificationOutput(...outputs: [string?, string?, string?]) {
+  AddSpecificationOutput(...outputs: [string?, string?, string?]): void {
     this.outputFormsArr.push(this.initOutputRow(...outputs));
   }
 
-  DeleteSpecificationOutput(index: number) {
+  DeleteSpecificationOutput(index: number): void {
     this.outputFormsArr.removeAt(index);
   }
 
-  DeleteAllSpecificationOutput() {
+  DeleteAllSpecificationOutput(): void {
     if (this.outputFormsArr.length > 0) {
       while (this.outputFormsArr.length !== 0) {
         this.outputFormsArr.removeAt(0);
@@ -114,15 +130,15 @@ export class SpecificationForm {
     return this.specificationForm.get('Errors') as FormArray;
   }
 
-  AddSpecificationError(...errors: [string?, string?, string?]) {
+  AddSpecificationError(...errors: [string?, string?, string?]): void {
     this.errorFormsArr.push(this.initErrorRow(...errors));
   }
 
-  DeleteSpecificationError(index: number) {
+  DeleteSpecificationError(index: number): void {
     this.errorFormsArr.removeAt(index);
   }
 
-  DeleteAllSpecificationError() {
+  DeleteAllSpecificationError(): void {
     if (this.errorFormsArr.length > 0) {
       while (this.errorFormsArr.length !== 0) {
         this.errorFormsArr.removeAt(0);
@@ -135,15 +151,17 @@ export class SpecificationForm {
     return this.specificationForm.get('Dependencies') as FormArray;
   }
 
-  AddSpecificationDependency(...dependencies: [string?, string?, string?]) {
+  AddSpecificationDependency(
+    ...dependencies: [string?, string?, string?]
+  ): void {
     this.dependencyFormsArr.push(this.initDependencyRow(...dependencies));
   }
 
-  DeleteSpecificationDependency(index: number) {
+  DeleteSpecificationDependency(index: number): void {
     this.dependencyFormsArr.removeAt(index);
   }
 
-  DeleteAllSpecificationDependency() {
+  DeleteAllSpecificationDependency(): void {
     if (this.dependencyFormsArr.length > 0) {
       while (this.dependencyFormsArr.length !== 0) {
         this.dependencyFormsArr.removeAt(0);
@@ -156,15 +174,15 @@ export class SpecificationForm {
     return this.specificationForm.get('Authors') as FormArray;
   }
 
-  AddSpecificationAuthor(...authors: [string?, string?, string?]) {
+  AddSpecificationAuthor(...authors: [string?, string?, string?]): void {
     this.authorFormsArr.push(this.initAuthorRow(...authors));
   }
 
-  DeleteSpecificationAuthor(index: number) {
+  DeleteSpecificationAuthor(index: number): void {
     this.authorFormsArr.removeAt(index);
   }
 
-  DeleteAllSpecificationAuthor() {
+  DeleteAllSpecificationAuthor(): void {
     if (this.authorFormsArr.length > 0) {
       while (this.authorFormsArr.length !== 0) {
         this.authorFormsArr.removeAt(0);

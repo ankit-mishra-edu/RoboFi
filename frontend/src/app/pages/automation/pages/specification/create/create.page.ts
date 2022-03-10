@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@app/@core/utils/router.utils';
 import { SpecificationForm } from '@app/pages/automation/forms';
@@ -24,18 +29,18 @@ export class CreateSpecificationPage implements OnInit {
   createSpecificationFormObj!: SpecificationForm;
   specificationPath = ROUTER_UTILS.config.automation.specification;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.createSpecificationFormObj = new SpecificationForm(this._formBuilder);
     this.createSpecificationFormObj.InitForm();
     this.createSpecificationForm =
       this.createSpecificationFormObj.specificationForm;
   }
 
-  CreateSpecification() {
+  CreateSpecification(): void {
     console.log(this.createSpecificationForm.value);
     this._specificationService
       .CreateSpecification$(this.createSpecificationForm.value)
-      .subscribe((createSpecificationResponse: ISpecification) =>
+      .subscribe(() =>
         this._router.navigate([this.specificationPath.viewAll], {
           relativeTo: this._route.parent,
         }),
@@ -77,87 +82,87 @@ export class CreateSpecificationPage implements OnInit {
   }
 
   // Input Parameters
-  get inputFormsArr() {
+  get inputFormsArr(): FormArray {
     return this.createSpecificationFormObj.inputFormsArr;
   }
 
-  AddSpecificationInput() {
+  AddSpecificationInput(): void {
     this.createSpecificationFormObj.AddSpecificationInput();
   }
 
-  DeleteSpecificationInput(index: number) {
+  DeleteSpecificationInput(index: number): void {
     this.createSpecificationFormObj.DeleteSpecificationInput(index);
   }
 
-  DeleteAllSpecificationInput() {
+  DeleteAllSpecificationInput(): void {
     this.createSpecificationFormObj.DeleteAllSpecificationInput();
   }
 
   // Output Parameters
-  get outputFormsArr() {
+  get outputFormsArr(): FormArray {
     return this.createSpecificationFormObj.outputFormsArr;
   }
 
-  AddSpecificationOutput() {
+  AddSpecificationOutput(): void {
     this.createSpecificationFormObj.AddSpecificationOutput();
   }
 
-  DeleteSpecificationOutput(index: number) {
+  DeleteSpecificationOutput(index: number): void {
     this.createSpecificationFormObj.DeleteSpecificationOutput(index);
   }
 
-  DeleteAllSpecificationOutput() {
+  DeleteAllSpecificationOutput(): void {
     this.createSpecificationFormObj.DeleteAllSpecificationOutput();
   }
 
   // Error
-  get errorFormsArr() {
+  get errorFormsArr(): FormArray {
     return this.createSpecificationFormObj.errorFormsArr;
   }
 
-  AddSpecificationError() {
+  AddSpecificationError(): void {
     this.createSpecificationFormObj.AddSpecificationError();
   }
 
-  DeleteSpecificationError(index: number) {
+  DeleteSpecificationError(index: number): void {
     this.createSpecificationFormObj.DeleteSpecificationError(index);
   }
 
-  DeleteAllSpecificationError() {
+  DeleteAllSpecificationError(): void {
     this.createSpecificationFormObj.DeleteAllSpecificationError();
   }
 
   // Dependencies
-  get dependencyFormsArr() {
+  get dependencyFormsArr(): FormArray {
     return this.createSpecificationFormObj.dependencyFormsArr;
   }
 
-  AddSpecificationDependency() {
+  AddSpecificationDependency(): void {
     this.createSpecificationFormObj.AddSpecificationDependency();
   }
 
-  DeleteSpecificationDependency(index: number) {
+  DeleteSpecificationDependency(index: number): void {
     this.createSpecificationFormObj.DeleteSpecificationDependency(index);
   }
 
-  DeleteAllSpecificationDependency() {
+  DeleteAllSpecificationDependency(): void {
     this.createSpecificationFormObj.DeleteAllSpecificationDependency();
   }
 
   // Authors
-  get authorFormsArr() {
+  get authorFormsArr(): FormArray {
     return this.createSpecificationFormObj.authorFormsArr;
   }
 
-  AddSpecificationAuthor() {
+  AddSpecificationAuthor(): void {
     this.createSpecificationFormObj.AddSpecificationAuthor();
   }
 
-  DeleteSpecificationAuthor(index: number) {
+  DeleteSpecificationAuthor(index: number): void {
     this.createSpecificationFormObj.DeleteSpecificationAuthor(index);
   }
 
-  DeleteAllSpecificationAuthor() {
+  DeleteAllSpecificationAuthor(): void {
     this.createSpecificationFormObj.DeleteAllSpecificationAuthor();
   }
 }

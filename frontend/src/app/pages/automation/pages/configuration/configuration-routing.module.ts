@@ -27,14 +27,6 @@ const configurationRoutes: Routes = [
       },
     ],
   },
-  // {
-  //   path: `${ROUTER_UTILS.config.automation.configuration.entry.root}/${ROUTER_UTILS.config.automation.configuration.entry.create}`,
-  //   component: AutomationAddConfigEntryPage,
-  // },
-  // {
-  //   path: `${ROUTER_UTILS.config.automation.configuration.entry.root}/${ROUTER_UTILS.config.automation.configuration.entry.viewOrEdit}/:id/:mode`,
-  //   component: AutomationViewOrEditConfigEntryPage,
-  // },
 ];
 
 @NgModule({

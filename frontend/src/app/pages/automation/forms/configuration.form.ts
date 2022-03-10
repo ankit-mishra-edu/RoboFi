@@ -45,7 +45,7 @@ export class ConfigurationForm {
     return this.configurationForm.get('entries') as FormArray;
   }
 
-  AddConfigEntry(configEntry: IAutomationConfigurationEntry) {
+  AddConfigEntry(configEntry: IAutomationConfigurationEntry): void {
     this.configEntryFormsArr.push(this.InitConfigEntryForm(configEntry));
   }
 }
