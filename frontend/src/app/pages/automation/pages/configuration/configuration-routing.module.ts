@@ -15,13 +15,26 @@ const configurationRoutes: Routes = [
     component: AutomationViewAllConfigurationPage,
   },
   {
-    path: `${ROUTER_UTILS.config.automation.configuration.entry.root}/${ROUTER_UTILS.config.automation.configuration.entry.create}`,
-    component: AutomationAddConfigEntryPage,
+    path: `${ROUTER_UTILS.config.automation.configuration.entry.root}`,
+    children: [
+      {
+        path: `${ROUTER_UTILS.config.automation.configuration.entry.create}`,
+        component: AutomationAddConfigEntryPage,
+      },
+      {
+        path: `${ROUTER_UTILS.config.automation.configuration.entry.viewOrEdit}/:id/:mode`,
+        component: AutomationViewOrEditConfigEntryPage,
+      },
+    ],
   },
-  {
-    path: `${ROUTER_UTILS.config.automation.configuration.entry.root}/${ROUTER_UTILS.config.automation.configuration.entry.viewOrEdit}/:id/:mode`,
-    component: AutomationViewOrEditConfigEntryPage,
-  },
+  // {
+  //   path: `${ROUTER_UTILS.config.automation.configuration.entry.root}/${ROUTER_UTILS.config.automation.configuration.entry.create}`,
+  //   component: AutomationAddConfigEntryPage,
+  // },
+  // {
+  //   path: `${ROUTER_UTILS.config.automation.configuration.entry.root}/${ROUTER_UTILS.config.automation.configuration.entry.viewOrEdit}/:id/:mode`,
+  //   component: AutomationViewOrEditConfigEntryPage,
+  // },
 ];
 
 @NgModule({

@@ -77,14 +77,14 @@ export class AutomationAddConfigEntryPage implements OnInit {
       )
       .subscribe((_: IAutomationConfiguration) =>
         this._router.navigate([this.configurationPath.viewAll], {
-          relativeTo: this._route.parent,
+          relativeTo: this._route.parent?.parent,
         }),
       );
   }
 
   CancleUpdateConfiguration() {
     this._router.navigate([this.configurationPath.viewAll], {
-      relativeTo: this._route.parent,
+      relativeTo: this._route.parent?.parent,
     });
   }
 

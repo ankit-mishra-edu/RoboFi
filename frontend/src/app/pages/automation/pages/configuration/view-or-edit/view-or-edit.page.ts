@@ -62,14 +62,14 @@ export class AutomationViewOrEditConfigEntryPage implements OnInit {
       .updateConfigEntry$(this.value('id').value, this.configEntryForm.value)
       .subscribe((_: IAutomationConfigurationEntry) =>
         this._router.navigate([this.configurationPath.viewAll], {
-          relativeTo: this._route.parent,
+          relativeTo: this._route.parent?.parent,
         }),
       );
   }
 
   CancleUpdateConfigEntry() {
     this._router.navigate([this.configurationPath.viewAll], {
-      relativeTo: this._route.parent,
+      relativeTo: this._route.parent?.parent,
     });
   }
 
