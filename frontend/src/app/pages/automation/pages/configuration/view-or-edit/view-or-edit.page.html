@@ -5,7 +5,16 @@
 >
   <div role="alert" class="container w-11/12 max-w-lg mx-auto md:w-2/3">
     <div
-      class="relative px-5 py-8 bg-white border border-gray-400 rounded shadow-md  md:px-10"
+      class="
+        relative
+        px-5
+        py-8
+        bg-white
+        border border-gray-400
+        rounded
+        shadow-md
+        md:px-10
+      "
     >
       <div class="flex justify-start w-full mb-3 text-gray-600">
         <svg
@@ -28,7 +37,14 @@
         </svg>
       </div>
       <h1
-        class="mb-4 font-bold leading-tight tracking-normal text-gray-800  font-lg"
+        class="
+          mb-4
+          font-bold
+          leading-tight
+          tracking-normal
+          text-gray-800
+          font-lg
+        "
       >
         {{ mode === 'edit' ? "Update" : ''}} Config Entry Details
       </h1>
@@ -36,7 +52,13 @@
         <form [formGroup]="configEntryForm">
           <label
             for="name"
-            class="text-sm font-bold leading-tight tracking-normal text-gray-800 "
+            class="
+              text-sm
+              font-bold
+              leading-tight
+              tracking-normal
+              text-gray-800
+            "
             >Config Entry Name</label
           >
           <input
@@ -48,7 +70,13 @@
           />
           <label
             for="value"
-            class="text-sm font-bold leading-tight tracking-normal text-gray-800 "
+            class="
+              text-sm
+              font-bold
+              leading-tight
+              tracking-normal
+              text-gray-800
+            "
             >Config Entry Value</label
           >
           <input
