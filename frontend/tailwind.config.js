@@ -1,7 +1,7 @@
 module.exports = {
   prefix: '',
   purge: {
-    enabled: process.env.TAILWIND_MODE === 'build',
+    enabled: false,
     content: ['./src/**/*.{html,ts}', './projects/**/*.{html,ts}'],
   },
   darkMode: 'class',
