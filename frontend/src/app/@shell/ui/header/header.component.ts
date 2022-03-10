@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
 
   path = ROUTER_UTILS.config;
   media_url = environment.MEDIA_BASE_URL;
-  isNavbarOpen: boolean = false;
+  isNavbarOpen = false;
 
   isLoggedIn$!: Observable<boolean>;
   loggedInUser$!: Observable<IUser>;
@@ -49,13 +49,13 @@ export class HeaderComponent implements OnInit {
       ),
       share(),
     );
-  }
 
-  ToggleNavbar() {
-    document.querySelector('app-navbar')?.classList?.add('collapse');
-    document
-      .querySelector('app-navbar')
-      ?.classList?.toggle('show', this.isNavbarOpen);
-    this.isNavbarOpen = !this.isNavbarOpen;
+    document.querySelector('#menu-toggler')?.addEventListener('click', () => {
+      if (document.querySelector('app-navbar')?.classList.contains('hidden')) {
+        document.querySelector('app-navbar')?.classList.remove('hidden');
+      } else {
+        document.querySelector('app-navbar')?.classList.add('hidden');
+      }
+    });
   }
 }
