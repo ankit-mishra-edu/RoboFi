@@ -42,12 +42,10 @@
       "value": "https://<<APP NAME>>.herokuapp.com"
     },
     "DEBUG": {
-      "required": true,
       "value": "false",
       "description": "A boolean that turns on/off debug mode."
     },
     "DISABLE_COLLECTSTATIC": {
-      "required": true,
       "value": "true",
       "description": "Disable Heroku's automatic 'collectstatic' build step."
     },
