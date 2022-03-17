@@ -6,9 +6,9 @@
     "e2e": "ng e2e",
     "test": "ng test",
     "lint": "ng lint",
-    "build": "cd ./frontend/ && ng build --configuration production --output-path ../backend/static/robofi --deploy-url /static/robofi/ --output-hashing none",
+    "build": "ng build --configuration production --output-path ../backend/static/robofi --deploy-url /static/robofi/ --output-hashing none",
     "start": "node server.js",
-    "postinstall": "cd ./frontend/ && ng build --aot"
+    "postinstall": "ng build --aot"
   },
   "private": true,
   "dependencies": {
