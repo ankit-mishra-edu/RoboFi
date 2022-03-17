@@ -23,7 +23,7 @@ SECRET_KEY = environment.get('SECRET_KEY')
 
 ALLOWED_HOSTS = [environment.get('ALLOWED_HOSTS')]
 CORS_ORIGIN_WHITELIST = environment.get('ALLOWED_ORIGINS').split(',')
-
+CSRF_TRUSTED_ORIGINS = environment.get('ALLOWED_ORIGINS').split(',')
 if DEBUG:
     import mimetypes
     mimetypes.add_type("application/javascript", ".js", True)

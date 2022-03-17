@@ -1,26 +1,9 @@
 <header
   style="min-height: 64px"
-  class="
-    fixed
-    top-0
-    w-full
-    shadow-lg
-    bg-gray-50
-    dark:bg-gray-600
-    backdrop-blur-lg backdrop-filter
-  "
+  class="fixed top-0 w-full shadow-lg  bg-gray-50 dark:bg-gray-600 backdrop-blur-lg backdrop-filter"
 >
   <nav
-    class="
-      container
-      flex
-      items-center
-      justify-between
-      h-full
-      py-2
-      mx-auto
-      center
-    "
+    class="container flex items-center justify-between h-full py-2 mx-auto  center"
   >
     <a
       [routerLink]="[path.base.home]"
@@ -50,20 +33,7 @@
       >
         <button
           type="button"
-          class="
-            flex
-            items-center
-            max-w-xs
-            text-sm
-            bg-gray-800
-            rounded-full
-            cursor-pointer
-            focus:outline-none
-            focus:ring-2
-            focus:ring-offset-2
-            focus:ring-offset-gray-800
-            focus:ring-white
-          "
+          class="flex items-center max-w-xs text-sm bg-gray-800 rounded-full cursor-pointer  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
           id="userProfileMenuButton"
           data-bs-toggle="dropdown"
           aria-expanded="false"
@@ -77,21 +47,7 @@
         </button>
 
         <div
-          class="
-            absolute
-            right-0
-            w-48
-            py-1
-            mt-2
-            origin-top-right
-            bg-white
-            border-none
-            rounded-md
-            shadow-lg
-            dropdown-menu
-            ring-1 ring-black ring-opacity-5
-            focus:outline-none
-          "
+          class="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white border-none rounded-md shadow-lg  dropdown-menu ring-1 ring-black ring-opacity-5 focus:outline-none"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="userProfileMenuButton"
@@ -103,14 +59,7 @@
               path.user.profile,
               (loggedInUser$ | async)?.id
             ]"
-            class="
-              block
-              px-4
-              py-2
-              text-sm text-gray-700
-              cursor-pointer
-              hover:bg-gray-400 hover:text-gray-100
-            "
+            class="block px-4 py-2 text-sm text-gray-700 cursor-pointer  hover:bg-gray-400 hover:text-gray-100"
             role="menuitem"
             tabindex="-1"
             id="user-menu-item-0"
@@ -121,14 +70,7 @@
             tabindex="-1"
             id="user-menu-item-1"
             [routerLink]="[path.settings.root]"
-            class="
-              block
-              px-4
-              py-2
-              text-sm text-gray-700
-              cursor-pointer
-              hover:bg-gray-400 hover:text-gray-100
-            "
+            class="block px-4 py-2 text-sm text-gray-700 cursor-pointer  hover:bg-gray-400 hover:text-gray-100"
             >Settings</a
           >
 
@@ -137,14 +79,7 @@
             tabindex="-1"
             role="menuitem"
             id="user-menu-item-2"
-            class="
-              block
-              px-4
-              py-2
-              text-sm text-gray-700
-              cursor-pointer
-              hover:bg-gray-400 hover:text-gray-100
-            "
+            class="block px-4 py-2 text-sm text-gray-700 cursor-pointer  hover:bg-gray-400 hover:text-gray-100"
             >Sign out</a
           >
         </div>

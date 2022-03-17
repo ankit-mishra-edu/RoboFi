@@ -1,27 +1,43 @@
 # Robofi
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+Full Stack Web application using PostgreSQL, Angular & Django.
 
-## Development server
+## Technologies Used
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Angular
+- Django
+- PostgreSQL
 
-## Code scaffolding
+## Deployment
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Heroku
 
-## Build
+On the first deployment, some initial configuration is required. Click the button to get started:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/amishm766/RoboFi)
 
-## Running unit tests
+- App name: Pick a name for your project. Note the name needs to be copied into a couple of the config vars (see below).
+- Region: Wherever you like.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Config Vars
 
-## Running end-to-end tests
+Heroku config vars impact multiple aspects of the system:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- The Heroku "app"
+- The Heroku build pipeline
+- The Django and Angular runtime
 
-## Further help
+Several variables must be set when first deploying the app:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- ALLOWED_HOSTS: Update the placeholder with the 'App name'.
+- ALLOWED_ORIGINS: Update the placeholder with the 'App name'.
+- API_BASE_URL: Update the placeholder with the 'App name'.
+- EMAIL_HOST_USER: Update the placeholder with the 'App name'.
+- EMAIL_HOST_PASSWORD: Update the placeholder with the 'App name'.
+
+Some variables are optional and/or customisable:
+
+- DEBUG: Optional. Set to true or false.
+- SECRET_KEY: Optional. Set as per days.
+- REFRESH_TOKEN_EXPIRATION_TIME: Optional. Set as per days.
+- ACCESS_TOKEN_EXPIRATION_TIME: Optional. Set as per minutes.

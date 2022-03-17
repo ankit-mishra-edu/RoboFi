@@ -7,7 +7,7 @@
   "stack": "heroku-20",
   "success_url": "/",
   "website": "https://github.com/amishm766/RoboFi",
-  "scripts": { },
+  "scripts": {},
   "buildpacks": [
     {
       "url": "https://github.com/negativetwelve/heroku-buildpack-subdir"
@@ -62,7 +62,8 @@
     },
     "REFRESH_TOKEN_EXPIRATION_TIME": {
       "required": true,
-      "description": "Expiration time for refresh token for JWT."
+      "value": 1,
+      "description": "Expiration time (in days) for REFRESH TOKEN for JWT."
     },
     "SECRET_KEY": {
       "required": true,

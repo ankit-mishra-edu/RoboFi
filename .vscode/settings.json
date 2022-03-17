@@ -8,13 +8,23 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "css.validate": false,
   "scss.validate": false,
   "editor.guides.bracketPairs": true,
-  "editor.hover.above": false,
   "html.completion.attributeDefaultValue": "doublequotes",
   "python.formatting.autopep8Args": ["--ignore=E402"],
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.autoClosingDelete": "always",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
