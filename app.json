@@ -1,0 +1,79 @@
+{
+  "name": "RoboFi",
+  "description": "Full Stack Web application using PostgreSQL, Angular & Django",
+  "environments": {},
+  "keywords": [],
+  "repository": "https://github.com/amishm766/RoboFi",
+  "stack": "heroku-20",
+  "success_url": "/",
+  "website": "https://github.com/amishm766/RoboFi",
+  "scripts": { },
+  "buildpacks": [
+    {
+      "url": "https://github.com/negativetwelve/heroku-buildpack-subdir"
+    }
+  ],
+  "addons": [
+    {
+      "plan": "heroku-postgresql:hobby-dev"
+    },
+    {
+      "plan": "cloudinary:starter"
+    }
+  ],
+  "env": {
+    "ACCESS_TOKEN_EXPIRATION_TIME": {
+      "required": true,
+      "value": "5",
+      "description": "Expiration time (in minutes) for ACCESS TOKEN for JWT."
+    },
+    "ALLOWED_HOSTS": {
+      "required": true,
+      "value": "<<APP NAME>>.herokuapp.com",
+      "description": "A list of strings representing the host/domain names that this Django site can serve."
+    },
+    "ALLOWED_ORIGINS": {
+      "required": true,
+      "value": "https://<<APP NAME>>.herokuapp.com,http://<<APP NAME>>.herokuapp.com",
+      "description": "A list of strings representing the host/domain names that this Django site can serve."
+    },
+    "API_BASE_URL": {
+      "required": true,
+      "description": "The base URL for the API.",
+      "value": "https://<<APP NAME>>.herokuapp.com"
+    },
+    "DEBUG": {
+      "required": true,
+      "value": "false",
+      "description": "A boolean that turns on/off debug mode."
+    },
+    "DISABLE_COLLECTSTATIC": {
+      "required": true,
+      "value": "true",
+      "description": "Disable Heroku's automatic 'collectstatic' build step."
+    },
+    "EMAIL_HOST_PASSWORD": {
+      "required": true,
+      "description": "Password for sending email."
+    },
+    "EMAIL_HOST_USER": {
+      "required": true,
+      "description": "Username for sending email."
+    },
+    "REFRESH_TOKEN_EXPIRATION_TIME": {
+      "required": true,
+      "description": "Expiration time for refresh token for JWT."
+    },
+    "SECRET_KEY": {
+      "required": true,
+      "generator": "secret",
+      "description": "A secret key for verifying the integrity of signed cookies."
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  }
+}
