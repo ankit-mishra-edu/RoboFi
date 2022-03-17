@@ -14,8 +14,11 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "css.validate": false,
-  "scss.validate": false,
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "css.validate": true,
+  "scss.validate": true,
   "editor.guides.bracketPairs": true,
   "html.completion.attributeDefaultValue": "doublequotes",
   "python.formatting.autopep8Args": ["--ignore=E402"],
@@ -23,7 +26,7 @@
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
   "editor.tabSize": 2,
-  "editor.wordWrap": "wordWrapColumn",
+  // "editor.wordWrap": "wordWrapColumn",
   "editor.autoClosingDelete": "always",
   "editor.bracketPairColorization.enabled": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode"
