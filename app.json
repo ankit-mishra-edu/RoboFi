@@ -23,7 +23,6 @@
   ],
   "env": {
     "ACCESS_TOKEN_EXPIRATION_TIME": {
-      "required": true,
       "value": "5",
       "description": "Expiration time (in minutes) for ACCESS TOKEN for JWT."
     },
@@ -61,12 +60,10 @@
       "description": "Username for sending email."
     },
     "REFRESH_TOKEN_EXPIRATION_TIME": {
-      "required": true,
       "value": 1,
       "description": "Expiration time (in days) for REFRESH TOKEN for JWT."
     },
     "SECRET_KEY": {
-      "required": true,
       "generator": "secret",
       "description": "A secret key for verifying the integrity of signed cookies."
     }
