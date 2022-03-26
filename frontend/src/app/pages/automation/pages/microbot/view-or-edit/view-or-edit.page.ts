@@ -9,7 +9,7 @@ import {
 import { MicrobotForms } from '@app/pages/automation/forms';
 import { MicrobotService } from '@app/pages/automation/services/microbot.service';
 import { SpecificationService } from '@app/pages/automation/services/specification.service';
-import { iif, Observable, of, Subject } from 'rxjs';
+import { combineLatest, iif, Observable, of, Subject } from 'rxjs';
 import {
   catchError,
   startWith,
@@ -71,14 +71,14 @@ export class ViewOrEditMicrobotPage implements OnInit, OnDestroy {
       ),
     );
 
-    this.specification$ = this.value('specification').valueChanges.pipe(
-      startWith({}),
-      switchMap((selectedSpecificationId: any) =>
-        typeof selectedSpecificationId === 'object'
-          ? of({} as ISpecification)
-          : this._specificationService
-              .specificationById$(selectedSpecificationId)
-              .pipe(catchError(() => of({} as ISpecification))),
+    this.specification$ = combineLatest([
+      this.microbot$,
+      this.value('specification').valueChanges,
+    ]).pipe(
+      switchMap(([microbot, selectedSpecificationId]: [IMicrobot, number]) =>
+        this._specificationService
+          .specificationById$(selectedSpecificationId)
+          .pipe(catchError(() => of(microbot.specification))),
       ),
     );
   }

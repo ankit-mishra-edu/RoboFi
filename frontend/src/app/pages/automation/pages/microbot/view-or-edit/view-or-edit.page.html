@@ -1,145 +1,145 @@
-<ng-container
-  *ngIf="specification$ |async as specification; else specificationLoading"
->
-  <ng-container *ngIf="microbot$ |async as microbot; else microbotLoading">
-    <ng-container
-      *ngIf="specifications$ |async as specifications; else specificationsLoading"
-    >
-      <div class="create-microbot form-wrapper">
-        <form [formGroup]="viewOrEditMicrobotForm">
-          <div class="mx-3 form-group">
-            <h1 class="mb-4 text-center form-heading">Create Microbot</h1>
+<ng-container *ngIf="microbot$ |async as microbot; else microbotLoading">
+  <ng-container
+    *ngIf="specifications$ |async as specifications; else specificationsLoading"
+  >
+    <div class="create-microbot form-wrapper">
+      <form [formGroup]="viewOrEditMicrobotForm">
+        <div class="mx-3 form-group">
+          <h1 class="mb-4 text-center form-heading">Create Microbot</h1>
 
-            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div class="form-group Name">
-                <label for="Name" class="form-label required">Name</label>
-                <input
-                  id="Name"
-                  type="text"
-                  name="Name"
-                  class="form-control"
-                  formControlName="Name"
-                  [readonly]="mode === 'view'"
-                  [ngClass]="{
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div class="form-group Name">
+              <label for="Name" class="form-label required">Name</label>
+              <input
+                id="Name"
+                type="text"
+                name="Name"
+                class="form-control"
+                formControlName="Name"
+                [readonly]="mode === 'view'"
+                [ngClass]="{
                     'is-invalid': isInValid(value('Name')),
                     'is-valid': isValid(value('Name'))
                   }"
-                />
-                <small
-                  *ngIf="
+              />
+              <small
+                *ngIf="
                 value('Name').touched &&
                 value('Name').errors?.required
               "
-                  class="invalid-feedback"
-                  >{{ "Name is Mandatory." }}</small
-                >
-              </div>
-              <div class="form-group Version">
-                <label for="Version" class="form-label">Version</label>
-                <input
-                  id="Version"
-                  name="Version"
-                  class="form-control"
-                  formControlName="Version"
-                  [readonly]="mode === 'view'"
-                  [ngClass]="{
+                class="invalid-feedback"
+                >{{ "Name is Mandatory." }}</small
+              >
+            </div>
+            <div class="form-group Version">
+              <label for="Version" class="form-label">Version</label>
+              <input
+                id="Version"
+                name="Version"
+                class="form-control"
+                formControlName="Version"
+                [readonly]="mode === 'view'"
+                [ngClass]="{
                     'is-invalid': isInValid(value('Version')),
                     'is-valid': isValid(value('Version'))
                   }"
-                />
-              </div>
+              />
             </div>
+          </div>
 
-            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div class="form-group Technology">
-                <label for="Technology" class="form-label required"
-                  >Technology</label
-                >
-                <select
-                  id="Technology"
-                  name="Technology"
-                  class="form-control form-select"
-                  formControlName="Technology"
-                  [ngClass]="{
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div class="form-group Technology">
+              <label for="Technology" class="form-label required"
+                >Technology</label
+              >
+              <select
+                id="Technology"
+                name="Technology"
+                class="form-control form-select"
+                formControlName="Technology"
+                [ngClass]="{
                     'is-invalid': isInValid(value('Technology')),
                     'is-valid': isValid(value('Technology'))
                   }"
-                >
-                  <option value="">Select Technology...</option>
-                  <option value="Python">Python</option>
-                  <option value="Java">Java</option>
-                  <option value="Dot-Net">Dot-Net</option>
-                  <option value="Others">Others</option>
-                </select>
-                <small
-                  *ngIf="
+              >
+                <option value="">Select Technology...</option>
+                <option value="Python">Python</option>
+                <option value="Java">Java</option>
+                <option value="Dot-Net">Dot-Net</option>
+                <option value="Others">Others</option>
+              </select>
+              <small
+                *ngIf="
                 value('Technology').touched &&
                 value('Technology').errors?.required
               "
-                  class="invalid-feedback"
-                  >{{ "Technology is Mandatory." }}</small
-                >
-              </div>
+                class="invalid-feedback"
+                >{{ "Technology is Mandatory." }}</small
+              >
+            </div>
 
-              <div class="form-group Description">
-                <label for="Description" class="form-label required"
-                  >Description</label
-                >
-                <textarea
-                  rows="1"
-                  id="Description"
-                  name="Description"
-                  class="form-control"
-                  formControlName="Description"
-                  [readonly]="mode === 'view'"
-                  [ngClass]="{
+            <div class="form-group Description">
+              <label for="Description" class="form-label required"
+                >Description</label
+              >
+              <textarea
+                rows="1"
+                id="Description"
+                name="Description"
+                class="form-control"
+                formControlName="Description"
+                [readonly]="mode === 'view'"
+                [ngClass]="{
                     'is-invalid': isInValid(value('Description')),
                     'is-valid': isValid(value('Description'))
                   }"
-                ></textarea>
-                <small
-                  *ngIf="
+              ></textarea>
+              <small
+                *ngIf="
                     value('Description').touched &&
                     value('Description').errors?.required
                   "
-                  class="invalid-feedback"
-                  >{{ "Description is Mandatory." }}</small
-                >
-              </div>
+                class="invalid-feedback"
+                >{{ "Description is Mandatory." }}</small
+              >
             </div>
+          </div>
 
-            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div class="form-group specification">
-                <label for="specification" class="form-label required"
-                  >Specification</label
-                >
-                <select
-                  id="specification"
-                  name="specification"
-                  class="form-control form-select"
-                  formControlName="specification"
-                  [ngClass]="{
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div class="form-group specification">
+              <label for="specification" class="form-label required"
+                >Specification</label
+              >
+              <select
+                id="specification"
+                name="specification"
+                class="form-control form-select"
+                formControlName="specification"
+                [ngClass]="{
                     'is-invalid': isInValid(value('specification')),
                     'is-valid': isValid(value('specification'))
                   }"
+              >
+                <option value="">Select Specification...</option>
+                <option
+                  *ngFor="let specification of specifications"
+                  [value]="specification.id"
                 >
-                  <option value="">Select Specification...</option>
-                  <option
-                    *ngFor="let specification of specifications"
-                    [value]="specification.id"
-                  >
-                    {{specification.Name + "_V" +
-                    specification.Version.replaceAll('.', '_')}}
-                  </option>
-                </select>
-                <small
-                  *ngIf="value('specification').touched && value('specification').errors?.required"
-                  class="invalid-feedback"
-                  >{{ "Technology is Mandatory." }}</small
-                >
-              </div>
+                  {{specification.Name + "_V" +
+                  specification.Version.replaceAll('.', '_')}}
+                </option>
+              </select>
+              <small
+                *ngIf="value('specification').touched && value('specification').errors?.required"
+                class="invalid-feedback"
+                >{{ "Technology is Mandatory." }}</small
+              >
             </div>
+          </div>
 
+          <ng-container
+            *ngIf="specification$ |async as specification; else specificationLoading"
+          >
             <app-microbot-inputs
               [Inputs]="specification.Inputs"
             ></app-microbot-inputs>
@@ -151,41 +151,41 @@
             <app-microbot-errors
               [Errors]="specification.Errors"
             ></app-microbot-errors>
+          </ng-container>
 
-            <button
-              (click)="UpdateMicrobot(microbot.id)"
-              type="submit"
-              class="btn"
-              [disabled]="viewOrEditMicrobotForm.invalid"
-              *ngIf="mode === 'edit'"
-              [ngClass]="{
+          <ng-template #specificationLoading>
+            <app-spinner [spinnerSize]="'1.5rem'"
+              >{{ " Fetching Specification details from backend....."
+              }}</app-spinner
+            >
+          </ng-template>
+
+          <button
+            (click)="UpdateMicrobot(microbot.id)"
+            type="submit"
+            class="btn"
+            [disabled]="viewOrEditMicrobotForm.invalid"
+            *ngIf="mode === 'edit'"
+            [ngClass]="{
                 'form-valid': !viewOrEditMicrobotForm.invalid,
                 'form-invalid': viewOrEditMicrobotForm.invalid
               }"
-            >
-              Update Microbot
-            </button>
-          </div>
-        </form>
-      </div>
-    </ng-container>
-    <ng-template #specificationsLoading>
-      <app-spinner [spinnerSize]="'1.5rem'"
-        >{{ " Fetching required data from backend....." }}</app-spinner
-      >
-    </ng-template>
+          >
+            Update Microbot
+          </button>
+        </div>
+      </form>
+    </div>
   </ng-container>
-
-  <ng-template #microbotLoading>
+  <ng-template #specificationsLoading>
     <app-spinner [spinnerSize]="'1.5rem'"
-      >{{ " Fetching required microbot details from backend....."
-      }}</app-spinner
+      >{{ " Fetching required data from backend....." }}</app-spinner
     >
   </ng-template>
 </ng-container>
 
-<ng-template #specificationLoading>
-  <app-spinner [spinnerSize]="'1.5rem'" *ngIf="isValid(value('specification'))"
-    >{{ " Fetching Specification details from backend....." }}</app-spinner
+<ng-template #microbotLoading>
+  <app-spinner [spinnerSize]="'1.5rem'"
+    >{{ " Fetching required microbot details from backend....." }}</app-spinner
   >
 </ng-template>
