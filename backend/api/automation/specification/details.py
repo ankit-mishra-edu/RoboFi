@@ -81,7 +81,7 @@ def delete_details_file(request, specification_details: dict = None):
         config_entries = Configuration.objects.get(
             user=request.user).entries.all()
 
-        path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{getDetailsFileName(config_entries)}/{getDetailsFileName(config_entries)}"
+        path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{getDetailsFileName(config_entries)}"
 
         commit_message = f"Delete Specification {specification_details.get('Name')} {getDetailsFileName(config_entries)} V{specification_details.get('Version')}"
         GitHubRepo(getToken(config_entries),
