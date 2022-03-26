@@ -115,9 +115,5 @@ def getRepoName(config_entries) -> str:
     return config_entries.get(name='gitRemoteRepo').value
 
 
-def getDetailsFileName(config_entries) -> str:
-    return config_entries.get(name='microbotDetailsFileName').value or settings.AUTOMATION_DETAILS_FILE_NAME
-
-
 def getReadmeFileName(config_entries) -> str:
-    return config_entries.get(name='microbotReadmeFileName').value or settings.AUTOMATION_README_FILE_NAME
+    return config_entries.get(name='microbotReadmeFileName').value
