@@ -78,11 +78,3 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = environment.get('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = environment.get('EMAIL_HOST_PASSWORD', '')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
-# # Automation Variables
-
-# AUTOMATION_REPO = environment.get("AUTOMATION_REPO")
-# AUTOMATION_TOKEN = environment.get("AUTOMATION_TOKEN")
-# AUTOMATION_README_FILE_NAME = environment.get("AUTOMATION_DETAILS_FILE_NAME")
-# AUTOMATION_DETAILS_FILE_NAME = environment.get("AUTOMATION_DETAILS_FILE_NAME")

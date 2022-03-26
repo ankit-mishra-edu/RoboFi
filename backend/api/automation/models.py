@@ -113,26 +113,3 @@ def create_default_entries(sender, instance: Configuration, created, **kwargs):
             'name'), value=entry.get('value')) for entry in default_entries)
         instance.entries.add(*entries)
         instance.save()
-
-# @receiver(pre_save, sender=Configuration)
-# def create_default_entries(sender, instance: Configuration, **kwargs):
-#     if instance.id is not None:
-#         default_entries = [
-#             {"name": "gitRemoteRepo", "value": None},
-#             {'name': "gitRemoteToken", "value": None},
-#             {'name': "specificationReadmeFileName", 'value': "README.md"},
-#             {'name': "specificationDetailsFileName", 'value': "Details.json"},
-#             {'name': "microbotReadmeFileName", 'value': "README.md"},
-#             {'name': "microbotDetailsFileName", 'value': "Details.json"},
-#         ]
-#         print('Creating Entries')
-#         print(instance)
-#         print(instance.id, instance.user)
-#         print(instance.entries.all())
-#         entries = tuple(Entry.objects.create(user=instance.user, name=entry.get(
-#             'name'), value=entry.get('value')) for entry in default_entries)
-#         instance.entries.add(*entries)
-#         print(instance.entries.all())
-#         # instance.save()
-#         # instance.save_base()
-#         print(instance.entries.all())

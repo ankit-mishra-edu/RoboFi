@@ -1,15 +1,9 @@
 import json
 
 from django.conf import settings
-
-# from ..Framework.git_remote_repo import (create_file_with_content, delete_file,
-#                                          update_file)
+from ..models import Configuration
 
 from ..Framework.core.GitRemoteRepo import GitHubRepo
-
-# from ..Framework.core.GitRemoteRepo import (create_file_with_content, delete_file,
-#                                          update_file)
-from ..models import Configuration
 
 
 def create_details_file(request, microbot_details: dict = None):
@@ -37,9 +31,6 @@ def create_details_file(request, microbot_details: dict = None):
         commit_message = f"Create Microbot {microbot_details.get('Name')} {getDetailsFileName(config_entries)} {microbot_details.get('Technology')} V{microbot_details.get('Version')}"
         GitHubRepo(getToken(config_entries),
                    repo_name=getRepoName(config_entries)).update_repo_file(path=path, message=commit_message, content=content, action="create")
-
-        # create_file_with_content(
-        #     path=path, message=commit_message, content=content, token=getToken(config_entries), repo_name=getRepoName(config_entries))
 
     except Exception as e:
         print(
@@ -75,9 +66,6 @@ def update_details_file(request, microbot_details: dict = None):
         GitHubRepo(getToken(config_entries),
                    repo_name=getRepoName(config_entries)).update_repo_file(path=path, message=commit_message, content=content, action="update")
 
-        # update_file(path=path,
-        #             message=commit_message, content=content, token=getToken(config_entries), repo_name=getRepoName(config_entries))
-
     except Exception as e:
         print(
             f"Exception while Updating Microbot Details file for {microbot_details.get('Name')} : {e.__str__()}")
@@ -110,9 +98,6 @@ def delete_details_file(request, microbot_details: dict = None):
         commit_message = f"Delete {microbot_details.get('Name')} {getDetailsFileName(config_entries)} {microbot_details.get('Technology')} V{microbot_details.get('Version')}"
         GitHubRepo(getToken(config_entries),
                    repo_name=getRepoName(config_entries)).update_repo(path=path, message=commit_message, action="delete")
-
-        # delete_file(path=path,
-        #             message=commit_message, token=getToken(config_entries), repo_name=getRepoName(config_entries))
 
     except Exception as e:
         print(

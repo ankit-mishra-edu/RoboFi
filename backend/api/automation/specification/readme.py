@@ -1,15 +1,9 @@
 import json
 
 from django.conf import settings
-
-# from ..Framework.git_remote_repo import (create_file_with_content, delete_file,
-#                                          update_file)
+from ..models import Configuration
 
 from ..Framework.core.GitRemoteRepo import GitHubRepo
-
-# from ..Framework.core.GitRemoteRepo import (create_file_with_content, delete_file,
-#                                          update_file)
-from ..models import Configuration
 
 
 def create_readme_file(request, specification_details: dict = None):
