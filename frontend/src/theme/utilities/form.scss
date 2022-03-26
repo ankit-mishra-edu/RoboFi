@@ -9,9 +9,8 @@ div.form-wrapper {
 
       .form-heading {
         @apply text-3xl;
-        @apply font-bold;
-        // @apply text-center;
-        @apply font-display;
+        @apply text-center;
+        @apply font-extrabold;
       }
 
       .form-label {

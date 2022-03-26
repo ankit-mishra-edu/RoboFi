@@ -4,7 +4,12 @@
   <div class="mx-4 view-or-edit-specification form-wrapper">
     <form [formGroup]="viewOrEditSpecificationForm">
       <div class="form-group">
-        <h1 class="mt-3 text-center form-heading">Create Specification</h1>
+        <legend *ngIf="mode === 'edit'" class="form-heading">
+          Update Specification
+        </legend>
+        <legend *ngIf="mode === 'view'" class="form-heading">
+          {{specification.Name}}
+        </legend>
         <div class="mx-2 row">
           <div class="col-md-6 col-sm-12">
             <div class="form-group Name">
@@ -106,7 +111,7 @@
 
         <!-- Inputs -->
         <div class="flex flex-wrap form-group">
-          <h3 class="md:w-1/2 sm:w-full form-heading">Inputs</h3>
+          <legend class="md:w-1/2 sm:w-full">Inputs</legend>
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
@@ -217,7 +222,7 @@
 
         <!-- Outputs -->
         <div class="flex flex-wrap form-group">
-          <h3 class="md:w-1/2 sm:w-full form-heading">Outputs</h3>
+          <legend class="md:w-1/2 sm:w-full">Outputs</legend>
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
@@ -319,7 +324,7 @@
 
         <!-- Errors -->
         <div class="flex flex-wrap form-group">
-          <h3 class="md:w-1/2 sm:w-full form-heading">Errors</h3>
+          <legend class="md:w-1/2 sm:w-full">Errors</legend>
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
@@ -419,7 +424,7 @@
 
         <!-- Dependencies -->
         <div class="flex flex-wrap form-group">
-          <h3 class="md:w-1/2 sm:w-full form-heading">Dependency</h3>
+          <legend class="md:w-1/2 sm:w-full">Dependency</legend>
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
@@ -521,7 +526,7 @@
 
         <!-- Authors -->
         <div class="flex flex-wrap form-group">
-          <h3 class="md:w-1/2 sm:w-full form-heading">Authors</h3>
+          <legend class="md:w-1/2 sm:w-full">Authors</legend>
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
