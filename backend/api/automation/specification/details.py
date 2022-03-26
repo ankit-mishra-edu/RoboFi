@@ -17,7 +17,7 @@ def create_details_file(request, specification_details: dict = None):
         config_entries = Configuration.objects.get(
             user=request.user).entries.all()
 
-        path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{getDetailsFileName(config_entries)}/{getDetailsFileName(config_entries)}"
+        path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{getDetailsFileName(config_entries)}"
 
         specification_details.pop("id")
 
@@ -49,7 +49,7 @@ def update_details_file(request, specification_details: dict = None):
         config_entries = Configuration.objects.get(
             user=request.user).entries.all()
 
-        path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{getDetailsFileName(config_entries)}/{getDetailsFileName(config_entries)}"
+        path = f"specifications/{specification_details.get('Name')}/V{specification_details.get('Version').replace('.', '')}/{getDetailsFileName(config_entries)}"
 
         specification_details.pop("id")
 
