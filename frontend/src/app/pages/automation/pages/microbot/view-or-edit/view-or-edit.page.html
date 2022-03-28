@@ -5,7 +5,9 @@
     <div class="create-microbot form-wrapper">
       <form [formGroup]="viewOrEditMicrobotForm">
         <div class="mx-3 form-group">
-          <h1 class="mb-4 text-center form-heading">Create Microbot</h1>
+          <legend *ngIf="mode === 'edit'" class="form-heading">
+            {{mode === 'edit' ? "Update Microbot" : microbot.Name}}
+          </legend>
 
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div class="form-group Name">
