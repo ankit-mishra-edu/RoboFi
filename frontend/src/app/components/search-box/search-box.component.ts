@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchBoxService } from '@app/@core/services/search-box/search-box.service';
-import { SpeechService } from '@app/@core/services/search-box/speech.service';
+import { SearchBoxService } from '@core/services/search-box/search-box.service';
+import { SpeechService } from '@core/services/search-box/speech.service';
 import { Observable } from 'rxjs';
 import { share, tap } from 'rxjs/operators';
 

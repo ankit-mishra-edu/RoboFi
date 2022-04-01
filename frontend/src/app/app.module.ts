@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { WebShellModule } from '@shell/ft/web-shell.module';
-import { CoreModule } from './@core/core.module';
+import { WebShellModule } from '@shell/web/web-shell.module';
+import { CoreModule } from '@core/core.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
