@@ -3,10 +3,10 @@
   "description": "Full Stack Web application using PostgreSQL, Angular & Django",
   "environments": {},
   "keywords": [],
-  "repository": "https://github.com/amishm766/RoboFi",
+  "repository": "https://github.com/ankit-mishra-edu/RoboFi",
   "stack": "heroku-20",
   "success_url": "/",
-  "website": "https://github.com/amishm766/RoboFi",
+  "website": "https://github.com/ankit-mishra-edu/RoboFi",
   "scripts": {},
   "buildpacks": [
     {
