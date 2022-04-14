@@ -1,1 +1,1 @@
-web: sh -c 'cd ./backend/ && daphne robofi.handlers.asgi:application --port $PORT --bind 0.0.0.0'
+web: sh -c 'cd ./backend/ && hypercorn robofi.handlers.asgi:application --bind 0.0.0.0:$PORT'
