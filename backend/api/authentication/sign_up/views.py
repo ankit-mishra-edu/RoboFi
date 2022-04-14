@@ -54,8 +54,8 @@ Ankit
             'amishm766@gmail.com',
             [request.data['email']]
         )
-        email.send()
-        # email.send(fail_silently=True)
+        #email.send()
+        email.send(fail_silently=True)
 
 
 class ActivationView(views.APIView):
