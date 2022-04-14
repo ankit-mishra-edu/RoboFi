@@ -23,6 +23,7 @@
   ],
   "env": {
     "ACCESS_TOKEN_EXPIRATION_TIME": {
+      "required": false,
       "value": "5",
       "description": "Expiration time (in minutes) for ACCESS TOKEN for JWT."
     },
@@ -42,14 +43,17 @@
       "value": "https://<<APP NAME>>.herokuapp.com"
     },
     "DEBUG": {
+      "required": false,
       "value": "false",
       "description": "A boolean that turns on/off debug mode."
     },
     "DISABLE_COLLECTSTATIC": {
+      "required": false,
       "value": "true",
       "description": "Disable Heroku's automatic 'collectstatic' build step."
     },
     "EMAIL_HOST_PASSWORD": {
+      "required": false,
       "required": true,
       "description": "Password for sending email."
     },
@@ -58,6 +62,7 @@
       "description": "Username for sending email."
     },
     "REFRESH_TOKEN_EXPIRATION_TIME": {
+      "required": false,
       "value": 1,
       "description": "Expiration time (in days) for REFRESH TOKEN for JWT."
     },
