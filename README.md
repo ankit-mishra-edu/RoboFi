@@ -14,7 +14,7 @@ Full Stack Web application using PostgreSQL, Angular & Django.
 
 On the first deployment, some initial configuration is required. Click the button to get started:
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/amishm766/RoboFi)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ankit-mishra-edu/RoboFi)
 
 - App name: Pick a name for your project. Note the name needs to be copied into a couple of the config vars (see below).
 - Region: Wherever you like.
@@ -29,11 +29,11 @@ Heroku config vars impact multiple aspects of the system:
 
 Several variables must be set when first deploying the app:
 
-- ALLOWED_HOSTS: Update the placeholder with the 'App name'.
-- ALLOWED_ORIGINS: Update the placeholder with the 'App name'.
-- API_BASE_URL: Update the placeholder with the 'App name'.
-- EMAIL_HOST_USER: Update the placeholder with the 'App name'.
-- EMAIL_HOST_PASSWORD: Update the placeholder with the 'App name'.
+- ALLOWED_HOSTS: Replace <<APP NAME>> with the name of application.
+- ALLOWED_ORIGINS: Replace <<APP NAME>> with the name of application.
+- API_BASE_URL: Replace <<APP NAME>> with the name of application.
+- EMAIL_HOST_USER: Update Email address for sending emails.
+- EMAIL_HOST_PASSWORD: Update Password address for sending emails.
 
 Some variables are optional and/or customisable:
 
