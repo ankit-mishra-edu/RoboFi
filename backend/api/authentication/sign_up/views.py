@@ -39,7 +39,7 @@ class SignUpView(views.APIView):
         subject = "Activation link for RoboFi Application."
         body = f"""Hi {user.username},
 
-Please click on the following link to activate your registered account on AE scheduler web application.
+Please click on the following link to activate your registered account on Robofi web application.
 
 Activation Link : {activation_link}
 
@@ -54,7 +54,7 @@ Ankit
             'amishm766@gmail.com',
             [request.data['email']]
         )
-        #email.send()
+        # email.send()
         email.send(fail_silently=True)
 
 
