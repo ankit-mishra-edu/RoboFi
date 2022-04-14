@@ -13,10 +13,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 
-from .config import *
+from ..configs.config import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Application definition
 INSTALLED_APPS = [
@@ -53,10 +53,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'robofi.urls'
+ROOT_URLCONF = 'robofi.routes.urls'
 AUTH_USER_MODEL = 'users.User'
-WSGI_APPLICATION = 'robofi.wsgi.application'
-ASGI_APPLICATION = 'robofi.asgi.application'
+WSGI_APPLICATION = 'robofi.handlers.wsgi.application'
+ASGI_APPLICATION = 'robofi.handlers.asgi.application'
 
 
 TEMPLATES = [

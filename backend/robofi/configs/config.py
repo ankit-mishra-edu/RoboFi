@@ -1,11 +1,12 @@
 import os
-from datetime import timedelta
-from pathlib import Path
-
+import mimetypes
 import dj_database_url
+from pathlib import Path
+from datetime import timedelta
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Setting Environment variables
 
@@ -24,14 +25,12 @@ SECRET_KEY = environment.get('SECRET_KEY')
 ALLOWED_HOSTS = [environment.get('ALLOWED_HOSTS')]
 CORS_ORIGIN_WHITELIST = environment.get('ALLOWED_ORIGINS').split(',')
 CSRF_TRUSTED_ORIGINS = environment.get('ALLOWED_ORIGINS').split(',')
+
 if DEBUG:
-    import mimetypes
     mimetypes.add_type("application/javascript", ".js", True)
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-
 DATABASES = {
     'default': dj_database_url.parse(
         environment.get('DATABASE_URL'), conn_max_age=600)
