@@ -52,5 +52,5 @@ frontend/dist
 
 
 backend/static/robofi
-backend/robofi/environment.py
+backend/robofi/config/environment.py
 backend/automate
