@@ -29,9 +29,9 @@ Heroku config vars impact multiple aspects of the system:
 
 Several variables must be set when first deploying the app:
 
-- ALLOWED_HOSTS: Replace <<APP NAME>> with the name of application.
-- ALLOWED_ORIGINS: Replace <<APP NAME>> with the name of application.
-- API_BASE_URL: Replace <<APP NAME>> with the name of application.
+- ALLOWED_HOSTS: Replace 'APP NAME' with the name of application.
+- ALLOWED_ORIGINS: Replace 'APP NAME' with the name of application.
+- API_BASE_URL: Replace 'APP NAME' with the name of application.
 - EMAIL_HOST_USER: Update Email address for sending emails.
 - EMAIL_HOST_PASSWORD: Update Password address for sending emails.
 
