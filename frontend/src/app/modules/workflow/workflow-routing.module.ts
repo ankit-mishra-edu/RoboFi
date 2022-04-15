@@ -7,18 +7,10 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: ROUTER_UTILS.config.workflow.editor,
-    data: {
-      title: 'Editor',
-      robots: 'noindex, nofollow',
-    },
   },
   {
     path: 'editor',
     component: EditorComponent,
-    data: {
-      title: 'Editor',
-      robots: 'noindex, nofollow',
-    },
   },
 ];
 

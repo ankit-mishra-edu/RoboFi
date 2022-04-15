@@ -10,16 +10,21 @@
       class="flex flex-row px-2 text-2xl font-bold no-underline cursor-pointer"
     >
       <img
+        alt=""
         class="w-8 h-8 mx-1"
-        alt="User profile photo"
         [src]="media_url + 'v1643117127/robofi/ui/favicon.ico'"
       />
-      <span class="text-gray-400">Robo</span>Fi
+      <span class="dark:text-gray-100">Robo</span>Fi
     </a>
 
     <app-navbar class="hidden md:block"></app-navbar>
 
-    <button type="button" id="menu-toggler" class="md:hidden">
+    <button
+      type="button"
+      id="menu-toggler"
+      class="md:hidden"
+      aria-label="navbar-toggle"
+    >
       <i class="bi bi-list" aria-hidden="true"></i>
     </button>
 
@@ -33,36 +38,37 @@
       >
         <button
           type="button"
-          class="flex items-center max-w-xs text-sm bg-gray-800 rounded-full cursor-pointer  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-          id="userProfileMenuButton"
-          data-bs-toggle="dropdown"
           aria-expanded="false"
+          data-bs-toggle="dropdown"
+          id="userProfileMenuButton"
+          aria-label="user-profile-toggle"
+          class="flex items-center max-w-xs text-sm bg-gray-800 rounded-full cursor-pointer  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
         >
           <span class="sr-only">Open user menu</span>
           <img
+            alt=""
             class="w-12 h-12 rounded-full"
             [src]="media_url + userProfile.image"
-            alt=""
           />
         </button>
 
         <div
-          class="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white border-none rounded-md shadow-lg  dropdown-menu ring-1 ring-black ring-opacity-5 focus:outline-none"
           role="menu"
+          tabindex="-1"
           aria-orientation="vertical"
           aria-labelledby="userProfileMenuButton"
-          tabindex="-1"
+          class="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white border-none rounded-md shadow-lg  dropdown-menu ring-1 ring-black ring-opacity-5 focus:outline-none"
         >
           <a
+            tabindex="-1"
             [routerLink]="[
               path.user.root,
               path.user.profile,
               (loggedInUser$ | async)?.id
             ]"
-            class="block px-4 py-2 text-sm text-gray-700 cursor-pointer  hover:bg-gray-400 hover:text-gray-100"
             role="menuitem"
-            tabindex="-1"
             id="user-menu-item-0"
+            class="block px-4 py-2 text-sm text-gray-700 cursor-pointer  hover:bg-gray-400 hover:text-gray-100"
             >Your Profile</a
           >
 
@@ -75,10 +81,10 @@
           >
 
           <a
-            [routerLink]="[path.user.root, path.user.signOut]"
             tabindex="-1"
             role="menuitem"
             id="user-menu-item-2"
+            [routerLink]="[path.user.root, path.user.signOut]"
             class="block px-4 py-2 text-sm text-gray-700 cursor-pointer  hover:bg-gray-400 hover:text-gray-100"
             >Sign out</a
           >

@@ -12,22 +12,22 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SideBarComponent implements OnInit {
-  configPath = ROUTER_UTILS.config;
-  isLoggedIn$!: Observable<boolean>;
+  constructor(
+    private _technologyService: TechnologyService,
+    private _authService: AuthService,
+  ) {}
+
   isSidebarOpen = false;
+  configPath = ROUTER_UTILS.config;
+  ADMIN_URL = environment.ADMIN_URL;
+  isLoggedIn$!: Observable<boolean>;
+  technologyPath$!: Observable<any>;
+
   technologies!: {
     Python: string;
     Java: string;
     'Dot NET': string;
   };
-  ADMIN_URL = environment.ADMIN_URL;
-
-  technologyPath$!: Observable<any>;
-
-  constructor(
-    private _technologyService: TechnologyService,
-    private _authService: AuthService,
-  ) {}
 
   ngOnInit(): void {
     this.isLoggedIn$ = this._authService.isLoggedIn$;
@@ -39,5 +39,9 @@ export class SideBarComponent implements OnInit {
           ROUTER_UTILS.config.technology[selectedTechnology],
       ),
     );
+  }
+
+  navigateToAdmin(): void {
+    window.open(this.ADMIN_URL);
   }
 }

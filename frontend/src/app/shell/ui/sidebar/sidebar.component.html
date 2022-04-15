@@ -1,11 +1,9 @@
-<div
-  class="flex flex-col h-full bg-gray-300 dark:bg-gray-500"
-  [ngClass]="isSidebarOpen ? 'w-48' : 'w-14'"
->
+<div class="sidebar" [ngClass]="isSidebarOpen ? 'w-48' : 'w-14'">
   <button
     type="button"
     class="flex p-2"
     name="sidebar-toggle"
+    aria-label="sidebar-toggle"
     [ngClass]="{ 'ml-auto': isSidebarOpen }"
     (click)="isSidebarOpen = !isSidebarOpen"
   >
@@ -33,56 +31,63 @@
     </svg>
   </button>
 
-  <div class="flex flex-col pb-4 text-black">
+  <div class="sidebar-wrapper">
     <app-search-box class="my-2" *ngIf="isSidebarOpen"></app-search-box>
-    <div class="flex flex-col">
-      <a
+    <div class="sidebar-link-wrapper">
+      <button
         name="automation"
-        routerLinkActive="bg-gray-100"
+        class="sidebar-link"
+        aria-label="automation"
+        routerLinkActive="active"
         [routerLink]="[configPath.automation.root]"
         [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
-        class="pt-1 pl-1 my-1.5 rounded-l-3xl hover:bg-gray-100"
       >
-        <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
-          <i class="bi bi-bezier" aria-hidden="true"></i>
+        <span [ngClass]="isSidebarOpen ? 'hidden' : ''" class="px-2 text-3xl">
+          <i
+            aria-hidden="false"
+            class="bi bi-bezier"
+            aria-placeholder="automation"
+          ></i>
         </span>
-        <span *ngIf="isSidebarOpen">
+        <span [ngClass]="isSidebarOpen ? '' : 'hidden'">
           {{ 'Automation' }}
         </span>
-      </a>
+      </button>
 
-      <a
+      <button
+        class="sidebar-link"
         name="authentication"
-        routerLinkActive="bg-gray-100"
+        routerLinkActive="active"
+        aria-label="authentication"
+        [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
         [routerLink]="[
           (isLoggedIn$ | async) ? configPath.user.root : configPath.auth.root
         ]"
-        [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
-        class="pt-1 pl-1 my-1.5 rounded-l-3xl hover:bg-gray-100"
       >
         <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
           <i
-            *ngIf="isLoggedIn$ | async"
-            class="bi bi-person"
             aria-hidden="true"
+            class="bi bi-person"
+            *ngIf="isLoggedIn$ | async"
           ></i>
           <i
-            *ngIf="(isLoggedIn$ | async) === false"
-            class="bi bi-person"
             aria-hidden="true"
+            class="bi bi-person"
+            *ngIf="(isLoggedIn$ | async) === false"
           ></i>
         </span>
         <span *ngIf="isSidebarOpen">
           {{ (isLoggedIn$ | async) ? 'User' : 'Auth' }}
         </span>
-      </a>
+      </button>
 
-      <a
+      <button
         name="settings"
-        routerLinkActive="bg-gray-100"
+        class="sidebar-link"
+        aria-label="settings"
+        routerLinkActive="active"
         [routerLink]="[configPath.settings.root]"
         [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
-        class="pt-1 pl-1 my-1.5 rounded-l-3xl hover:bg-gray-100"
       >
         <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
           <i class="bi bi-gear" aria-hidden="true"></i>
@@ -90,37 +95,17 @@
         <span *ngIf="isSidebarOpen">
           {{ 'Settings' }}
         </span>
-      </a>
+      </button>
 
-      <hr class="py-2" />
-
-      <p *ngIf="isSidebarOpen" class="p-2 font-semibold">Technologies</p>
-      <p *ngIf="!isSidebarOpen" class="p-2 font-semibold">Tech</p>
-      <a
-        [name]="'technology-' + technology.key"
-        [routerLink]="technology.value"
-        routerLinkActive="bg-gray-100"
-        *ngFor="let technology of technologies | keyvalue"
-        [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
-        class="pt-1 pl-1 my-1.5 rounded-l-3xl hover:bg-gray-100"
-      >
-        <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
-          {{ technology.key[0] | titlecase }}
-        </span>
-        <span *ngIf="isSidebarOpen">
-          {{ technology.key }}
-        </span>
-      </a>
-
-      <a
+      <button
         name="admin"
         target="_blank"
-        class="nav-link"
-        [href]="ADMIN_URL"
+        (click)="navigateToAdmin()"
+        aria-label="admin"
+        class="sidebar-link"
         rel="noopener noreferrer"
-        routerLinkActive="bg-gray-100"
+        routerLinkActive="active"
         [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
-        class="pt-1 pl-1 my-1.5 rounded-l-3xl hover:bg-gray-100"
       >
         <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
           <i class="bi bi-people" aria-hidden="true"></i>
@@ -128,7 +113,28 @@
         <span *ngIf="isSidebarOpen">
           {{ 'Admin' }}
         </span>
-      </a>
+      </button>
+
+      <hr class="py-2" />
+
+      <p *ngIf="!isSidebarOpen" class="p-2 font-semibold">Tech</p>
+      <p *ngIf="isSidebarOpen" class="p-2 font-semibold">Technologies</p>
+
+      <button
+        class="sidebar-link"
+        routerLinkActive="active"
+        [routerLink]="technology.value"
+        [name]="'technology-' + technology.key"
+        *ngFor="let technology of technologies | keyvalue"
+        [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
+      >
+        <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
+          {{ technology.key[0] | titlecase }}
+        </span>
+        <span *ngIf="isSidebarOpen">
+          {{ technology.key }}
+        </span>
+      </button>
     </div>
   </div>
 </div>

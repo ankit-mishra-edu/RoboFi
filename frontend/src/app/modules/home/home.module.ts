@@ -13,8 +13,8 @@ import { HomePage } from './home.page';
         component: HomePage,
         data: {
           title: 'Home',
-          description: 'Angular based Automation dashboard.',
           robots: 'index, follow',
+          description: 'Angular based Automation dashboard.',
         },
       },
     ]),

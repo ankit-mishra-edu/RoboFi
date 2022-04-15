@@ -13,66 +13,34 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: ROUTER_UTILS.config.settings.appearance,
-    data: {
-      title: 'Settings',
-      robots: 'noindex, nofollow',
-    },
   },
   {
     path: ROUTER_UTILS.config.settings.account,
     component: AccountPage,
-    data: {
-      title: 'Settings',
-      robots: 'noindex, nofollow',
-    },
   },
   {
     path: ROUTER_UTILS.config.settings.appearance,
     component: AppearancePage,
-    data: {
-      title: 'Settings',
-      robots: 'noindex, nofollow',
-    },
   },
   {
     path: ROUTER_UTILS.config.settings.billing,
     component: BillingPage,
-    data: {
-      title: 'Settings',
-      robots: 'noindex, nofollow',
-    },
   },
   {
     path: ROUTER_UTILS.config.settings.blockedUsers,
     component: BlockedUsersPage,
-    data: {
-      title: 'Settings',
-      robots: 'noindex, nofollow',
-    },
   },
   {
     path: ROUTER_UTILS.config.settings.notifications,
     component: NotificationsPage,
-    data: {
-      title: 'Settings',
-      robots: 'noindex, nofollow',
-    },
   },
   {
     path: ROUTER_UTILS.config.settings.security,
     component: SecurityPage,
-    data: {
-      title: 'Settings',
-      robots: 'noindex, nofollow',
-    },
   },
   {
     path: ROUTER_UTILS.config.settings.securityLog,
     component: SecurityLogPage,
-    data: {
-      title: 'Settings',
-      robots: 'noindex, nofollow',
-    },
   },
 ];
 

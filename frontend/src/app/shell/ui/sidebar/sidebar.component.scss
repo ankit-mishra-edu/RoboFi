@@ -1,0 +1,34 @@
+.sidebar {
+  @apply flex;
+  @apply flex-col;
+  @apply h-full;
+  @apply bg-gray-300;
+  @apply dark:bg-gray-500;
+
+  .sidebar-wrapper {
+    @apply flex;
+    @apply flex-col;
+    @apply pb-4;
+    @apply text-black;
+
+    .sidebar-link-wrapper {
+      @apply flex;
+      @apply flex-col;
+
+      .sidebar-link {
+        @apply pt-1;
+        @apply pl-1;
+        @apply my-1.5;
+        @apply rounded-l-3xl;
+
+        &:hover {
+          @apply hover:bg-gray-100;
+        }
+
+        &.active {
+          @apply bg-gray-100;
+        }
+      }
+    }
+  }
+}

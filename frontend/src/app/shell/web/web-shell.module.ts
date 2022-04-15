@@ -14,12 +14,22 @@ const APP_ROUTES: Routes = [
     path: ROUTER_UTILS.config.base.home,
     loadChildren: () =>
       import('@modules/home/home.module').then((m) => m.HomeModule),
+    data: {
+      title: 'Home',
+      robots: 'index, follow',
+      description: 'Application homepage.',
+    },
   },
   {
     path: ROUTER_UTILS.config.auth.root,
     canLoad: [NoAuthGuard],
     loadChildren: async () =>
       import('@modules/auth/auth.module').then((m) => m.AuthModule),
+    data: {
+      title: 'Authentication',
+      robots: 'index, follow',
+      description: 'User authentications.',
+    },
   },
   {
     path: ROUTER_UTILS.config.settings.root,
@@ -27,6 +37,11 @@ const APP_ROUTES: Routes = [
     canActivate: [AuthGuard],
     loadChildren: async () =>
       import('@modules/settings/settings.module').then((m) => m.SettingsModule),
+    data: {
+      title: 'Settings',
+      robots: 'index, follow',
+      description: 'Applications settings.',
+    },
   },
   {
     path: ROUTER_UTILS.config.user.root,
@@ -34,6 +49,11 @@ const APP_ROUTES: Routes = [
     canActivate: [AuthGuard],
     loadChildren: async () =>
       import('@modules/user/user.module').then((m) => m.UserModule),
+    data: {
+      title: 'User',
+      robots: 'index, follow',
+      description: 'User details.',
+    },
   },
   {
     path: ROUTER_UTILS.config.workflow.root,
@@ -41,6 +61,11 @@ const APP_ROUTES: Routes = [
     canActivate: [AuthGuard],
     loadChildren: async () =>
       import('@modules/workflow/workflow.module').then((m) => m.WorkflowModule),
+    data: {
+      title: 'Workflow',
+      robots: 'index, follow',
+      description: 'Workflow.',
+    },
   },
 
   {
@@ -51,6 +76,11 @@ const APP_ROUTES: Routes = [
       import('@modules/automation/automation.module').then(
         (m) => m.AutomationModule,
       ),
+    data: {
+      title: 'Automation',
+      robots: 'index, follow',
+      description: 'Automation module.',
+    },
   },
   {
     path: '**',
@@ -59,6 +89,11 @@ const APP_ROUTES: Routes = [
         (m) => m.NotFoundModule,
       ),
     component: NotFoundPage,
+    data: {
+      title: 'Not Found',
+      robots: 'index, follow',
+      description: 'Page not found.',
+    },
   },
 ];
 

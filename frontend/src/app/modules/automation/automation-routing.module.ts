@@ -9,55 +9,50 @@ const automationRoutes: Routes = [
   {
     path: ROUTER_UTILS.config.automation.home,
     component: AutomationHomePage,
-    data: {
-      title: 'Automation | Home',
-      robots: 'noindex, nofollow',
-    },
   },
   {
     path: ROUTER_UTILS.config.automation.dashboard,
     component: AutomationDashboardPage,
-    data: {
-      title: 'Automation | Dashboard',
-      robots: 'noindex, nofollow',
-    },
   },
   {
     path: ROUTER_UTILS.config.automation.configuration.root,
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],
-    data: {
-      title: 'Automation | Configuration',
-      robots: 'noindex, nofollow',
-    },
     loadChildren: async () =>
       import('./pages/configuration/configuration.module').then(
         (m) => m.ConfigurationModule,
       ),
+    data: {
+      title: 'Automation | Configuration',
+      robots: 'noindex, nofollow',
+      description: 'Automation configurations.',
+    },
   },
   {
     path: ROUTER_UTILS.config.automation.specification.root,
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],
-    data: {
-      title: 'Automation | Specification',
-      robots: 'noindex, nofollow',
-    },
     loadChildren: async () =>
       import('./pages/specification/specification.module').then(
         (m) => m.SpecificationModule,
       ),
+    data: {
+      title: 'Automation | Specification',
+      robots: 'noindex, nofollow',
+      description: 'Automation specifications.',
+    },
   },
   {
     path: ROUTER_UTILS.config.automation.microbot.root,
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],
+    loadChildren: async () =>
+      import('./pages/microbot/microbot.module').then((m) => m.MicrobotModule),
     data: {
       title: 'Automation | Microbot',
       robots: 'noindex, nofollow',
+      description: 'Automation microbots.',
     },
-    loadChildren: async () =>
-      import('./pages/microbot/microbot.module').then((m) => m.MicrobotModule),
   },
 ];
 
