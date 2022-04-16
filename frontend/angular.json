@@ -27,7 +27,12 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "aot": true,
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/assets",
+              "src/robots.txt",
+              "src/sitemap.xml",
+              "src/favicon.ico"
+            ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.css",
               "./node_modules/bootstrap-icons/font/bootstrap-icons.css",
