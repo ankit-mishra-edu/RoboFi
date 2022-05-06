@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@core/utils/router.utils';
 import { AuthService } from '@modules/auth/services/auth.service';
 import { ConfigurationForm } from '@modules/automation/forms';
+import { AutoConfigStore } from '@modules/automation/store/configuration/configuration.store';
 import { Observable } from 'rxjs';
 import { share, tap } from 'rxjs/operators';
-import { AutomationConfigurationService } from '../../../services/configuration.service';
+import { AutoConfigService } from '../../../services/configuration.service';
 
 @Component({
   templateUrl: './view-all.page.html',
@@ -18,7 +19,8 @@ export class AutomationViewAllConfigurationPage implements OnInit {
     private _route: ActivatedRoute,
     private _formBuilder: FormBuilder,
     private _authService: AuthService,
-    private _autoConfigService: AutomationConfigurationService,
+    private _autoConfigStore: AutoConfigStore,
+    private _autoConfigService: AutoConfigService,
   ) {}
 
   configurationForm!: FormGroup;
@@ -74,7 +76,7 @@ export class AutomationViewAllConfigurationPage implements OnInit {
   }
 
   onAddConfigEntryForUser(): void {
-    this._autoConfigService.configuration = this.configurationForm.value;
+    this._autoConfigStore.configuration = this.configurationForm.value;
     this._router.navigate(
       [this.configurationPath.entry.root, this.configurationPath.entry.create],
       {

@@ -8,39 +8,39 @@ import { share } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class AutomationConfigurationService {
+export class AutoConfigService {
   constructor(private _http: HttpClient, private _authService: AuthService) {}
 
   CONFIGURATION_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.automation.root}/${ENDPOINT_UTILS.config.automation.configuration}`;
   CONFIGURATION_ENTRY_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.automation.root}/${ENDPOINT_UTILS.config.automation.configEntry}`;
 
-  // CURRENT/SELECTED CONFIGURATION TO BE SHARED ACROSS COMPONENTS
-  private _configurationSubject: BehaviorSubject<IAutomationConfiguration> =
-    new BehaviorSubject<IAutomationConfiguration>(
-      {} as IAutomationConfiguration,
-    );
+  // // CURRENT/SELECTED CONFIGURATION TO BE SHARED ACROSS COMPONENTS
+  // private _configurationSubject: BehaviorSubject<IAutomationConfiguration> =
+  //   new BehaviorSubject<IAutomationConfiguration>(
+  //     {} as IAutomationConfiguration,
+  //   );
 
-  get configuration$(): Observable<IAutomationConfiguration> {
-    return this._configurationSubject.asObservable();
-  }
+  // get configuration$(): Observable<IAutomationConfiguration> {
+  //   return this._configurationSubject.asObservable();
+  // }
 
-  set configuration(configurationData: IAutomationConfiguration) {
-    this._configurationSubject.next(configurationData);
-  }
+  // set configuration(configurationData: IAutomationConfiguration) {
+  //   this._configurationSubject.next(configurationData);
+  // }
 
-  // CURRENT/SELECTED CONFIGURATION ENTRY TO BE SHARED ACROSS COMPONENTS
-  private _configEntrySubject: BehaviorSubject<IAutomationConfigurationEntry> =
-    new BehaviorSubject<IAutomationConfigurationEntry>(
-      {} as IAutomationConfigurationEntry,
-    );
+  // // CURRENT/SELECTED CONFIGURATION ENTRY TO BE SHARED ACROSS COMPONENTS
+  // private _configEntrySubject: BehaviorSubject<IAutomationConfigurationEntry> =
+  //   new BehaviorSubject<IAutomationConfigurationEntry>(
+  //     {} as IAutomationConfigurationEntry,
+  //   );
 
-  get configEntry$(): Observable<IAutomationConfigurationEntry> {
-    return this._configEntrySubject.asObservable();
-  }
+  // get configEntry$(): Observable<IAutomationConfigurationEntry> {
+  //   return this._configEntrySubject.asObservable();
+  // }
 
-  set configEntry(configEntryData: IAutomationConfigurationEntry) {
-    this._configEntrySubject.next(configEntryData);
-  }
+  // set configEntry(configEntryData: IAutomationConfigurationEntry) {
+  //   this._configEntrySubject.next(configEntryData);
+  // }
 
   // CONFIGURATION CRUD
   configurationByUserId$: Observable<IAutomationConfiguration> = this._http

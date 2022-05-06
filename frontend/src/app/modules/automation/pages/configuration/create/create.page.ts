@@ -11,7 +11,8 @@ import {
   ConfigurationEntryForm,
   ConfigurationForm,
 } from '@modules/automation/forms';
-import { AutomationConfigurationService } from '@modules/automation/services/configuration.service';
+import { AutoConfigService } from '@modules/automation/services/configuration.service';
+import { AutoConfigStore } from '@modules/automation/store/configuration/configuration.store';
 import { iif, Observable } from 'rxjs';
 import { share, switchMap, tap } from 'rxjs/operators';
 import { isInValid, isValid } from '../../../validators/custom.validator';
@@ -25,7 +26,8 @@ export class AutomationAddConfigEntryPage implements OnInit {
     private _router: Router,
     private _route: ActivatedRoute,
     private _formBuilder: FormBuilder,
-    private _autoConfigService: AutomationConfigurationService,
+    private _autoConfigStore: AutoConfigStore,
+    private _autoConfigService: AutoConfigService,
   ) {}
 
   isValid = isValid;
@@ -46,12 +48,12 @@ export class AutomationAddConfigEntryPage implements OnInit {
     this.configurationFormObj = new ConfigurationForm(this._formBuilder);
     this.configurationForm = this.configurationFormObj.InitForm();
 
-    this.configuration$ = this._autoConfigService.configuration$
+    this.configuration$ = this._autoConfigStore.configuration$
       .pipe(
         switchMap((configuration: IAutomationConfiguration) =>
           iif(
             () => configuration.id != undefined,
-            this._autoConfigService.configuration$,
+            this._autoConfigStore.configuration$,
             this._autoConfigService.configurationByUserId$,
           ),
         ),

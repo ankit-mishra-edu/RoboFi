@@ -3,76 +3,74 @@ div.form-wrapper {
   @apply p-4;
   @apply shadow-2xl;
 
-  form {
-    .form-group {
-      @apply py-2;
+  .form-group {
+    @apply py-2;
 
-      .form-heading {
-        @apply text-3xl;
-        @apply text-center;
-        @apply font-extrabold;
-      }
+    .form-heading {
+      @apply text-3xl;
+      @apply text-center;
+      @apply font-extrabold;
+    }
 
-      .form-label {
-        font-size: 17px;
-        font-weight: bold;
-        color: var(--color-secondary);
+    .form-label {
+      font-size: 17px;
+      font-weight: bold;
+      color: var(--color-secondary);
 
-        &.required {
-          &:after {
-            content: '*';
-            color: red;
-            font-size: 17px;
-            margin-left: 5px;
-            font-weight: bold;
-          }
+      &.required {
+        &:after {
+          content: '*';
+          color: red;
+          font-size: 17px;
+          margin-left: 5px;
+          font-weight: bold;
         }
       }
+    }
 
-      .form-control {
-        min-width: 240px;
-        inline-size: 70%;
+    .form-control {
+      min-width: 240px;
+      inline-size: 70%;
+    }
+
+    .extended-control {
+      min-width: 200px;
+      inline-size: 100%;
+    }
+
+    .is-valid {
+      border: 1px solid #42a948;
+      border-left: 5px solid #42a948 !important;
+    }
+
+    .is-invalid {
+      border: 1px solid #a94442;
+      border-left: 5px solid #a94442 !important;
+    }
+
+    .form-valid {
+      color: green;
+      font-weight: bolder;
+      border-radius: 3px 17px;
+      border: green solid 2px;
+
+      &:hover {
+        color: white;
+        background-color: green;
+        border: transparent solid 2px;
       }
+    }
 
-      .extended-control {
-        min-width: 200px;
-        inline-size: 100%;
-      }
+    .form-invalid {
+      color: red;
+      font-weight: bolder;
+      border-radius: 3px 17px;
+      border: red solid 2px;
 
-      .is-valid {
-        border: 1px solid #42a948;
-        border-left: 5px solid #42a948 !important;
-      }
-
-      .is-invalid {
-        border: 1px solid #a94442;
-        border-left: 5px solid #a94442 !important;
-      }
-
-      .form-valid {
-        color: green;
-        font-weight: bolder;
-        border-radius: 3px 17px;
-        border: green solid 2px;
-
-        &:hover {
-          color: white;
-          background-color: green;
-          border: transparent solid 2px;
-        }
-      }
-
-      .form-invalid {
-        color: red;
-        font-weight: bolder;
-        border-radius: 3px 17px;
-        border: red solid 2px;
-
-        &:hover {
-          color: white;
-          border: transparent solid 2px;
-          background-color: red !important;
-        }
+      &:hover {
+        color: white;
+        border: transparent solid 2px;
+        background-color: red !important;
       }
     }
   }

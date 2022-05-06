@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@core/utils';
-import { AutomationConfigurationService } from '@modules/automation/services/configuration.service';
+import { AutoConfigService } from '@modules/automation/services/configuration.service';
+import { AutoConfigStore } from '@modules/automation/store/configuration/configuration.store';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,7 +14,8 @@ export class AutomationConfigEntryComponent {
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
-    private _autoConfigService: AutomationConfigurationService,
+    private _autoConfigStore: AutoConfigStore,
+    private _autoConfigService: AutoConfigService,
   ) {}
 
   @Input('filteredConfigEntry') configEntry!: IAutomationConfigurationEntry;
@@ -41,7 +43,7 @@ It will delete this entry from user's configuration.`,
   }
 
   EditConfigEntry(configEntry: IAutomationConfigurationEntry): void {
-    this._autoConfigService.configEntry = configEntry;
+    this._autoConfigStore.configEntry = configEntry;
     this._router.navigate(
       [
         ROUTER_UTILS.config.automation.configuration.entry.root,
@@ -56,7 +58,7 @@ It will delete this entry from user's configuration.`,
   }
 
   ViewConfigEntry(configEntry: IAutomationConfigurationEntry): void {
-    this._autoConfigService.configEntry = configEntry;
+    this._autoConfigStore.configEntry = configEntry;
     this._router.navigate(
       [
         ROUTER_UTILS.config.automation.configuration.entry.root,

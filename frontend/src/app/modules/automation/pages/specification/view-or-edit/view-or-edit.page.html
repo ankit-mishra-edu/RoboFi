@@ -1,124 +1,127 @@
 <ng-container
-  *ngIf="specification$|async as specification; else specificationDataNotAvailable"
+  *ngIf="specification$|async as specification; else loadingSpecification"
 >
   <div class="mx-4 view-or-edit-specification form-wrapper">
-    <form [formGroup]="viewOrEditSpecificationForm">
-      <div class="form-group">
-        <legend *ngIf="mode === 'edit'" class="form-heading">
-          Update Specification
-        </legend>
-        <legend *ngIf="mode === 'view'" class="form-heading">
-          {{specification.Name}}
-        </legend>
-        <div class="mx-2 row">
-          <div class="col-md-6 col-sm-12">
-            <div class="form-group Name">
-              <label for="Name" class="form-label required">Name</label>
-              <input
-                id="Name"
-                type="text"
-                formControlName="Name"
-                [readonly]="mode === 'view'"
-                class="form-control highlight"
-                [ngClass]="{
+    <form
+      class="form-group"
+      [formGroup]="viewOrEditSpecificationForm"
+      (ngSubmit)="UpdateSpecification(specification.id)"
+    >
+      <legend class="form-heading">
+        {{ mode === 'edit' ? "Update Specification" : mode === 'view' ?
+        specification.Name : ''}}
+      </legend>
+
+      <div class="flex flex-wrap mx-2">
+        <div class="md:w-1/2 sm:w-full">
+          <div class="form-group Name">
+            <label for="Name" class="form-label required">Name</label>
+            <input
+              id="Name"
+              type="text"
+              formControlName="Name"
+              [readonly]="mode === 'view'"
+              class="form-control highlight"
+              [ngClass]="{
                   'is-invalid': isInValid(value('Name')),
                   'is-valid': isValid(value('Name'))
                 }"
-              />
-              <small
-                *ngIf="
+            />
+            <small
+              *ngIf="
                 value('Name').touched &&
                 value('Name').errors?.required
               "
-                class="invalid-feedback"
-                >{{ "Name is Mandatory." }}</small
-              >
-            </div>
+              class="invalid-feedback"
+              >{{ "Name is Mandatory." }}</small
+            >
+          </div>
 
-            <div class="form-group Version">
-              <label for="Version" class="form-label required">Version</label>
-              <input
-                type="text"
-                id="Version"
-                formControlName="Version"
-                [readonly]="mode === 'view'"
-                class="form-control highlight"
-                [ngClass]="{
+          <div class="form-group Version">
+            <label for="Version" class="form-label required">Version</label>
+            <input
+              type="text"
+              id="Version"
+              formControlName="Version"
+              [readonly]="mode === 'view'"
+              class="form-control highlight"
+              [ngClass]="{
                   'is-invalid': isInValid(value('Version')),
                   'is-valid': isValid(value('Version'))
                 }"
-              />
-              <small
-                *ngIf="
+            />
+            <small
+              *ngIf="
                 value('Version').touched &&
                 value('Version').errors?.required
               "
-                class="invalid-feedback"
-                >{{ "Version is Mandatory." }}</small
-              >
-            </div>
+              class="invalid-feedback"
+              >{{ "Version is Mandatory." }}</small
+            >
           </div>
-          <div class="col-md-6 col-sm-12">
-            <div class="form-group Category">
-              <label for="Category" class="form-label required">Category</label>
-              <input
-                type="text"
-                id="Category"
-                formControlName="Category"
-                [readonly]="mode === 'view'"
-                class="form-control highlight"
-                [ngClass]="{
+        </div>
+        <div class="md:w-1/2 sm:w-full">
+          <div class="form-group Category">
+            <label for="Category" class="form-label required">Category</label>
+            <input
+              type="text"
+              id="Category"
+              formControlName="Category"
+              [readonly]="mode === 'view'"
+              class="form-control highlight"
+              [ngClass]="{
                   'is-invalid': isInValid(value('Category')),
                   'is-valid': isValid(value('Category'))
                 }"
-              />
-              <small
-                *ngIf="
+            />
+            <small
+              *ngIf="
                 value('Category').touched &&
                 value('Category').errors?.required
               "
-                class="invalid-feedback"
-                >{{ "Category is Mandatory." }}</small
-              >
-            </div>
+              class="invalid-feedback"
+              >{{ "Category is Mandatory." }}</small
+            >
+          </div>
 
-            <div class="form-group Description">
-              <label for="Description" class="form-label required"
-                >Description</label
-              >
-              <input
-                type="text"
-                id="Description"
-                formControlName="Description"
-                [readonly]="mode === 'view'"
-                class="form-control highlight"
-                [ngClass]="{
+          <div class="form-group Description">
+            <label for="Description" class="form-label required"
+              >Description</label
+            >
+            <input
+              type="text"
+              id="Description"
+              formControlName="Description"
+              [readonly]="mode === 'view'"
+              class="form-control highlight"
+              [ngClass]="{
                   'is-invalid': isInValid(value('Description')),
                   'is-valid': isValid(value('Description'))
                 }"
-              />
-              <small
-                *ngIf="
+            />
+            <small
+              *ngIf="
                 value('Description').touched &&
                 value('Version').errors?.required
               "
-                class="invalid-feedback"
-                >{{ "Description is Mandatory." }}</small
-              >
-            </div>
+              class="invalid-feedback"
+              >{{ "Description is Mandatory." }}</small
+            >
           </div>
         </div>
+      </div>
 
-        <!-- Inputs -->
-        <div class="flex flex-wrap form-group">
-          <legend class="md:w-1/2 sm:w-full">Inputs</legend>
+      <div class="form-group Inputs">
+        <div class="flex flex-wrap">
+          <legend class="mb-0 md:w-1/2 sm:w-full">Inputs</legend>
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
-              (click)="AddSpecificationInput()"
               class="btn pull-right"
-              [disabled]="viewOrEditSpecificationForm.invalid || (mode === 'view')"
+              (click)="AddSpecificationInput()"
+              [disabled]="viewOrEditSpecificationForm.invalid"
               [ngClass]="{
+                'hidden': mode === 'view',
                 'form-valid': viewOrEditSpecificationForm.valid,
                 'form-invalid': viewOrEditSpecificationForm.invalid
               }"
@@ -128,13 +131,12 @@
           </div>
         </div>
 
-        <div formArrayName="Inputs" class="form-group">
-          <div
-            class="form-group"
+        <ng-container formArrayName="Inputs">
+          <ng-container
             [formGroupName]="i"
             *ngFor="let itemrow of inputFormsArr.controls; let i = index"
           >
-            <div class="flex flex-wrap -mx-1">
+            <div class="flex flex-wrap ml-4 -mx-1">
               <div class="p-1 md:w-3/12 sm:w-full form-group">
                 <label [for]="'Input-Name-' + i" class="form-label">Name</label>
                 <textarea
@@ -145,15 +147,15 @@
                   placeholder="Name of input..."
                   class="form-control extended-control highlight"
                   [ngClass]="{
-                    'is-invalid': isInValid(value_i(i, 'Name')),
-                    'is-valid': isValid(value_i(i, 'Name'))
-                  }"
+                      'is-invalid': isInValid(value_i(i, 'Name')),
+                      'is-valid': isValid(value_i(i, 'Name'))
+                    }"
                 ></textarea>
                 <small
                   *ngIf="
-                  value_i(i, 'Name').touched &&
-                  value_i(i, 'Name').errors?.required
-                "
+                    value_i(i, 'Name').touched &&
+                    value_i(i, 'Name').errors?.required
+                  "
                   class="invalid-feedback"
                   >{{ "Input name is Mandatory." }}</small
                 >
@@ -168,15 +170,15 @@
                   [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
-                    'is-invalid': isInValid(value_i(i, 'Type')),
-                    'is-valid': isValid(value_i(i, 'Type'))
-                  }"
+                      'is-invalid': isInValid(value_i(i, 'Type')),
+                      'is-valid': isValid(value_i(i, 'Type'))
+                    }"
                 ></textarea>
                 <small
                   *ngIf="
-                  value_i(i, 'Type').touched &&
-                  value_i(i, 'Type').errors?.required
-                "
+                    value_i(i, 'Type').touched &&
+                    value_i(i, 'Type').errors?.required
+                  "
                   class="invalid-feedback"
                   >{{ "Input type is Mandatory." }}</small
                 >
@@ -217,35 +219,36 @@
                 </i>
               </div>
             </div>
-          </div>
-        </div>
+          </ng-container>
+        </ng-container>
+      </div>
 
-        <!-- Outputs -->
-        <div class="flex flex-wrap form-group">
-          <legend class="md:w-1/2 sm:w-full">Outputs</legend>
+      <div class="form-group Outputs">
+        <div class="flex flex-wrap">
+          <legend class="mb-0 md:w-1/2 sm:w-full">Outputs</legend>
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
-              (click)="AddSpecificationOutput('','','')"
               class="btn pull-right"
-              [disabled]="viewOrEditSpecificationForm.invalid || (mode === 'view')"
+              (click)="AddSpecificationOutput('','','')"
+              [disabled]="viewOrEditSpecificationForm.invalid"
               [ngClass]="{
-                'form-valid': !viewOrEditSpecificationForm.invalid,
-                'form-invalid': viewOrEditSpecificationForm.invalid
-              }"
+                  'hidden': mode === 'view',
+                  'form-valid': !viewOrEditSpecificationForm.invalid,
+                  'form-invalid': viewOrEditSpecificationForm.invalid
+                }"
             >
               Add new Output
             </button>
           </div>
         </div>
 
-        <div formArrayName="Outputs" class="form-group">
-          <div
-            *ngFor="let itemrow of outputFormsArr.controls; let i = index"
-            class="form-group"
+        <ng-container formArrayName="Outputs">
+          <ng-container
             [formGroupName]="i"
+            *ngFor="let itemrow of outputFormsArr.controls; let i = index"
           >
-            <div class="flex flex-wrap -mx-1">
+            <div class="flex flex-wrap ml-4 -mx-1">
               <div class="p-1 md:w-3/12 sm:w-full form-group">
                 <label [for]="'Output-Name-' + i" class="form-label"
                   >Name</label
@@ -258,15 +261,15 @@
                   [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
-                    'is-invalid': isInValid(value_o(i, 'Name')),
-                    'is-valid': isValid(value_o(i, 'Name'))
-                  }"
+                      'is-invalid': isInValid(value_o(i, 'Name')),
+                      'is-valid': isValid(value_o(i, 'Name'))
+                    }"
                 ></textarea>
                 <small
                   *ngIf="
-                  value_o(i, 'Name').touched &&
-                  value_o(i, 'Name').errors?.required
-                "
+                    value_o(i, 'Name').touched &&
+                    value_o(i, 'Name').errors?.required
+                  "
                   class="invalid-feedback"
                   >{{ "Output name is Mandatory." }}</small
                 >
@@ -283,15 +286,15 @@
                   [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
-                    'is-invalid': isInValid(value_o(i, 'Type')),
-                    'is-valid': isValid(value_o(i, 'Type'))
-                  }"
+                      'is-invalid': isInValid(value_o(i, 'Type')),
+                      'is-valid': isValid(value_o(i, 'Type'))
+                    }"
                 ></textarea>
                 <small
                   *ngIf="
-                  value_o(i, 'Type').touched &&
-                  value_o(i, 'Type').errors?.required
-                "
+                    value_o(i, 'Type').touched &&
+                    value_o(i, 'Type').errors?.required
+                  "
                   class="invalid-feedback"
                   >{{ "Output type is Mandatory." }}</small
                 >
@@ -319,35 +322,36 @@
                 </i>
               </div>
             </div>
-          </div>
-        </div>
+          </ng-container>
+        </ng-container>
+      </div>
 
-        <!-- Errors -->
-        <div class="flex flex-wrap form-group">
-          <legend class="md:w-1/2 sm:w-full">Errors</legend>
+      <div class="form-group Errors">
+        <div class="flex flex-wrap">
+          <legend class="mb-0 md:w-1/2 sm:w-full">Errors</legend>
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
-              (click)="AddSpecificationError('','','')"
               class="btn pull-right"
-              [disabled]="viewOrEditSpecificationForm.invalid || (mode === 'view')"
+              (click)="AddSpecificationError('','','')"
+              [disabled]="viewOrEditSpecificationForm.invalid"
               [ngClass]="{
-                'form-valid': !viewOrEditSpecificationForm.invalid,
-                'form-invalid': viewOrEditSpecificationForm.invalid
-              }"
+                  'hidden': mode === 'view',
+                  'form-valid': !viewOrEditSpecificationForm.invalid,
+                  'form-invalid': viewOrEditSpecificationForm.invalid
+                }"
             >
               Add new Error
             </button>
           </div>
         </div>
 
-        <div formArrayName="Errors" class="form-group">
-          <div
-            *ngFor="let itemrow of errorFormsArr.controls; let i = index"
-            class="form-group"
+        <ng-container formArrayName="Errors">
+          <ng-container
             [formGroupName]="i"
+            *ngFor="let itemrow of errorFormsArr.controls; let i = index"
           >
-            <div class="flex flex-wrap -mx-1">
+            <div class="flex flex-wrap ml-4 -mx-1">
               <div class="p-1 md:w-3/12 sm:w-full form-group">
                 <label [for]="'Error-Message-' + i" class="form-label"
                   >Message</label
@@ -360,15 +364,15 @@
                   [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
-                    'is-invalid': isInValid(value_e(i, 'Message')),
-                    'is-valid': isValid(value_e(i, 'Message'))
-                  }"
+                      'is-invalid': isInValid(value_e(i, 'Message')),
+                      'is-valid': isValid(value_e(i, 'Message'))
+                    }"
                 ></textarea>
                 <small
                   *ngIf="
-                  value_e(i, 'Message').touched &&
-                  value_e(i, 'Message').errors?.required
-                "
+                    value_e(i, 'Message').touched &&
+                    value_e(i, 'Message').errors?.required
+                  "
                   class="invalid-feedback"
                   >{{ "Error message is Mandatory." }}</small
                 >
@@ -383,15 +387,15 @@
                   [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
-                    'is-invalid': isInValid(value_e(i, 'Code')),
-                    'is-valid': isValid(value_e(i, 'Code'))
-                  }"
+                      'is-invalid': isInValid(value_e(i, 'Code')),
+                      'is-valid': isValid(value_e(i, 'Code'))
+                    }"
                 ></textarea>
                 <small
                   *ngIf="
-                  value_e(i, 'Code').touched &&
-                  value_e(i, 'Code').errors?.required
-                "
+                    value_e(i, 'Code').touched &&
+                    value_e(i, 'Code').errors?.required
+                  "
                   class="invalid-feedback"
                   >{{ "Error code is Mandatory." }}</small
                 >
@@ -419,35 +423,36 @@
                 </i>
               </div>
             </div>
-          </div>
-        </div>
+          </ng-container>
+        </ng-container>
+      </div>
 
-        <!-- Dependencies -->
-        <div class="flex flex-wrap form-group">
-          <legend class="md:w-1/2 sm:w-full">Dependency</legend>
+      <div class="form-group Dependencies">
+        <div class="flex flex-wrap">
+          <legend class="mb-0 md:w-1/2 sm:w-full">Dependency</legend>
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
-              (click)="AddSpecificationDependency('','','')"
               class="btn pull-right"
-              [disabled]="viewOrEditSpecificationForm.invalid || (mode === 'view')"
+              (click)="AddSpecificationDependency('','','')"
+              [disabled]="viewOrEditSpecificationForm.invalid"
               [ngClass]="{
-                'form-valid': !viewOrEditSpecificationForm.invalid,
-                'form-invalid': viewOrEditSpecificationForm.invalid
-              }"
+                  'hidden': mode === 'view',
+                  'form-valid': !viewOrEditSpecificationForm.invalid,
+                  'form-invalid': viewOrEditSpecificationForm.invalid
+                }"
             >
               Add new Dependency
             </button>
           </div>
         </div>
 
-        <div formArrayName="Dependencies" class="form-group">
-          <div
-            *ngFor="let itemrow of dependencyFormsArr.controls; let i = index"
-            class="form-group"
+        <ng-container formArrayName="Dependencies">
+          <ng-container
             [formGroupName]="i"
+            *ngFor="let itemrow of dependencyFormsArr.controls; let i = index"
           >
-            <div class="flex flex-wrap -mx-1">
+            <div class="flex flex-wrap ml-4 -mx-1">
               <div class="p-1 md:w-3/12 sm:w-full form-group">
                 <label [for]="'Dependency-Name-' + i" class="form-label"
                   >Name</label
@@ -460,15 +465,15 @@
                   [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
-                    'is-invalid': isInValid(value_d(i, 'Name')),
-                    'is-valid': isValid(value_d(i, 'Name'))
-                  }"
+                      'is-invalid': isInValid(value_d(i, 'Name')),
+                      'is-valid': isValid(value_d(i, 'Name'))
+                    }"
                 ></textarea>
                 <small
                   *ngIf="
-                  value_d(i, 'Name').touched &&
-                  value_d(i, 'Name').errors?.required
-                "
+                    value_d(i, 'Name').touched &&
+                    value_d(i, 'Name').errors?.required
+                  "
                   class="invalid-feedback"
                   >{{ "Dependency name is Mandatory." }}</small
                 >
@@ -485,15 +490,15 @@
                   [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
-                    'is-invalid': isInValid(value_d(i, 'Type')),
-                    'is-valid': isValid(value_d(i, 'Type'))
-                  }"
+                      'is-invalid': isInValid(value_d(i, 'Type')),
+                      'is-valid': isValid(value_d(i, 'Type'))
+                    }"
                 ></textarea>
                 <small
                   *ngIf="
-                  value_d(i, 'Type').touched &&
-                  value_d(i, 'Type').errors?.required
-                "
+                    value_d(i, 'Type').touched &&
+                    value_d(i, 'Type').errors?.required
+                  "
                   class="invalid-feedback"
                   >{{ "Dependency type is Mandatory." }}</small
                 >
@@ -521,35 +526,36 @@
                 </i>
               </div>
             </div>
-          </div>
-        </div>
+          </ng-container>
+        </ng-container>
+      </div>
 
-        <!-- Authors -->
-        <div class="flex flex-wrap form-group">
-          <legend class="md:w-1/2 sm:w-full">Authors</legend>
+      <div class="form-group Authors">
+        <div class="flex flex-wrap">
+          <legend class="mb-0 md:w-1/2 sm:w-full">Authors</legend>
           <div class="md:w-1/2 sm:w-full">
             <button
               type="button"
-              (click)="AddSpecificationAuthor('','','')"
               class="btn pull-right"
-              [disabled]="viewOrEditSpecificationForm.invalid || (mode === 'view')"
+              (click)="AddSpecificationAuthor('','','')"
+              [disabled]="viewOrEditSpecificationForm.invalid"
               [ngClass]="{
-                'form-valid': !viewOrEditSpecificationForm.invalid,
-                'form-invalid': viewOrEditSpecificationForm.invalid
-              }"
+                  'hidden': mode === 'view',
+                  'form-valid': !viewOrEditSpecificationForm.invalid,
+                  'form-invalid': viewOrEditSpecificationForm.invalid
+                }"
             >
               Add new Author
             </button>
           </div>
         </div>
 
-        <div formArrayName="Authors" class="form-group">
-          <div
-            *ngFor="let itemrow of authorFormsArr.controls; let i = index"
-            class="form-group"
+        <ng-container formArrayName="Authors">
+          <ng-container
             [formGroupName]="i"
+            *ngFor="let itemrow of authorFormsArr.controls; let i = index"
           >
-            <div class="flex flex-wrap -mx-1">
+            <div class="flex flex-wrap ml-4 -mx-1">
               <div class="p-1 md:w-3/12 sm:w-full form-group">
                 <label [for]="'Author-Name-' + i" class="form-label"
                   >Name</label
@@ -562,15 +568,15 @@
                   [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
-                    'is-invalid': isInValid(value_a(i, 'Name')),
-                    'is-valid': isValid(value_a(i, 'Name'))
-                  }"
+                      'is-invalid': isInValid(value_a(i, 'Name')),
+                      'is-valid': isValid(value_a(i, 'Name'))
+                    }"
                 ></textarea>
                 <small
                   *ngIf="
-                  value_a(i, 'Name').touched &&
-                  value_a(i, 'Name').errors?.required
-                "
+                    value_a(i, 'Name').touched &&
+                    value_a(i, 'Name').errors?.required
+                  "
                   class="invalid-feedback"
                   >{{ "Author name is Mandatory." }}</small
                 >
@@ -587,15 +593,15 @@
                   [readonly]="mode === 'view'"
                   class="form-control extended-control highlight"
                   [ngClass]="{
-                    'is-invalid': isInValid(value_a(i, 'Email')),
-                    'is-valid': isValid(value_a(i, 'Email'))
-                  }"
+                      'is-invalid': isInValid(value_a(i, 'Email')),
+                      'is-valid': isValid(value_a(i, 'Email'))
+                    }"
                 ></textarea>
                 <small
                   *ngIf="
-                  value_a(i, 'Email').touched &&
-                  value_a(i, 'Email').errors?.required
-                "
+                    value_a(i, 'Email').touched &&
+                    value_a(i, 'Email').errors?.required
+                  "
                   class="invalid-feedback"
                   >{{ "Author email is Mandatory." }}</small
                 >
@@ -623,28 +629,27 @@
                 </i>
               </div>
             </div>
-          </div>
-        </div>
+          </ng-container>
+        </ng-container>
+      </div>
 
-        <button
-          class="btn"
-          type="submit"
-          *ngIf="mode === 'edit'"
-          [disabled]="viewOrEditSpecificationForm.invalid"
-          (click)="UpdateSpecification(specification.id)"
-          [ngClass]="{
+      <button
+        class="btn"
+        type="submit"
+        *ngIf="mode === 'edit'"
+        [disabled]="viewOrEditSpecificationForm.invalid"
+        [ngClass]="{
             'form-valid': !viewOrEditSpecificationForm.invalid,
             'form-invalid': viewOrEditSpecificationForm.invalid
           }"
-        >
-          Update
-        </button>
-      </div>
+      >
+        Update
+      </button>
     </form>
   </div>
 </ng-container>
 
-<ng-template #specificationDataNotAvailable>
+<ng-template #loadingSpecification>
   <app-spinner [spinnerSize]="'1.5rem'"
     >{{ " Fetching requested specification details from backend...."
     }}</app-spinner

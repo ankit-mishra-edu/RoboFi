@@ -26,15 +26,16 @@ export class ViewOrEditMicrobotPage implements OnInit, OnDestroy {
   isInValid = isInValid;
 
   destroy$ = new Subject();
-  MICROBOT_PATH = ROUTER_UTILS.config.automation.microbot;
 
-  viewOrEditMicrobotFormObj!: MicrobotForms;
   viewOrEditMicrobotForm!: FormGroup;
+  viewOrEditMicrobotFormObj!: MicrobotForms;
 
   mode!: 'view' | 'edit';
   microbot$!: Observable<IMicrobot>;
   specification$!: Observable<ISpecification>;
   specifications$!: Observable<ISpecification[]>;
+
+  MICROBOT_PATH = ROUTER_UTILS.config.automation.microbot;
 
   ngOnInit(): void {
     this.specifications$ = this._specificationService.getSpecifications$();

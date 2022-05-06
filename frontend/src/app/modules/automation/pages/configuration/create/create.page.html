@@ -1,20 +1,11 @@
 <div
-  *ngIf="configuration$|async as configuration; else configurationDataNotAvailable"
-  class="z-10 py-12 transition duration-150 ease-in-out dark:bg-gray-700"
   id="modal"
+  *ngIf="configuration$|async as configuration; else loadingConfiguration"
+  class="z-10 py-12 transition duration-150 ease-in-out dark:bg-gray-700"
 >
   <div role="alert" class="container w-11/12 max-w-lg mx-auto md:w-2/3">
     <div
-      class="
-        relative
-        px-5
-        py-8
-        bg-white
-        border border-gray-400
-        rounded
-        shadow-md
-        md:px-10
-      "
+      class="relative py-8 bg-white border border-gray-400 rounded shadow-md  sm:px-2 md:px-10"
     >
       <div class="flex justify-start w-full mb-3 text-gray-600">
         <svg
@@ -37,76 +28,59 @@
         </svg>
       </div>
       <h1
-        class="
-          mb-4
-          font-bold
-          leading-tight
-          tracking-normal
-          text-gray-800
-          font-lg
-        "
+        class="mb-4 font-bold leading-tight tracking-normal text-gray-800  font-lg"
       >
         Enter Config Entry Details
       </h1>
-      <div class="form-wrapper">
-        <form [formGroup]="configEntryForm">
-          <label
-            for="name"
-            class="
-              text-sm
-              font-bold
-              leading-tight
-              tracking-normal
-              text-gray-800
-            "
-            >Config Entry Name</label
-          >
-          <input
-            id="name"
-            class="flex items-center"
-            formControlName="name"
-            placeholder="Enter config entry name..."
-          />
-          <label
-            for="value"
-            class="
-              text-sm
-              font-bold
-              leading-tight
-              tracking-normal
-              text-gray-800
-            "
-            >Config Entry Value</label
-          >
-          <input
-            id="value"
-            class="flex items-center"
-            formControlName="value"
-            placeholder="Enter value..."
-          />
-        </form>
-      </div>
+      <form
+        [formGroup]="configEntryForm"
+        (ngSubmit)="UpdateConfigurationForUser()"
+      >
+        <label
+          for="name"
+          class="text-sm font-bold leading-tight tracking-normal text-gray-800"
+          >Config Entry Name</label
+        >
+        <input
+          id="name"
+          formControlName="name"
+          class="flex items-center"
+          placeholder="Enter config entry name..."
+        />
+        <label
+          for="value"
+          class="text-sm font-bold leading-tight tracking-normal text-gray-800"
+          >Config Entry Value</label
+        >
+        <input
+          id="value"
+          class="flex items-center"
+          formControlName="value"
+          placeholder="Enter value..."
+        />
 
-      <div class="flex flex-wrap items-center justify-start w-full">
-        <button
-          [disabled]="configEntryForm.invalid"
-          (click)="UpdateConfigurationForUser()"
-          class="text-green-700 border-green-500 hover:bg-green-500"
-        >
-          Add Config Entry
-        </button>
-        <button
-          class="text-red-700 border-red-500 hover:bg-red-500"
-          (click)="CancleUpdateConfiguration()"
-        >
-          Cancel
-        </button>
-      </div>
+        <div class="flex flex-wrap items-center justify-start w-full">
+          <button
+            type="submit"
+            [disabled]="configEntryForm.invalid"
+            class="text-green-700 border-green-500 hover:bg-green-500"
+          >
+            Add Config Entry
+          </button>
+          <button
+            type="button"
+            (click)="CancleUpdateConfiguration()"
+            class="text-red-700 border-red-500 hover:bg-red-500"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
 
-<ng-template #configurationDataNotAvailable>
+<ng-template #loadingConfiguration>
   <app-spinner [spinnerSize]="'1.5rem'"
     >{{ " Fetching requested configuration details from backend...."
     }}</app-spinner

@@ -8,10 +8,10 @@ export class MicrobotForms {
   public InitForm(): FormGroup {
     this.microbotForm = this._formBuilder.group({
       Name: [null, [Validators.required]],
-      Technology: [null, [Validators.required]],
+      Technology: ['Select Technology', [Validators.required]],
       Description: [null, [Validators.required]],
       Version: [null, []],
-      specification: [null, Validators.required],
+      specification: ['Select Specification', Validators.required],
     });
     return this.microbotForm;
   }

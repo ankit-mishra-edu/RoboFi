@@ -3,7 +3,8 @@ import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@core/utils/router.utils';
 import { ConfigurationEntryForm } from '@modules/automation/forms';
-import { AutomationConfigurationService } from '@modules/automation/services/configuration.service';
+import { AutoConfigService } from '@modules/automation/services/configuration.service';
+import { AutoConfigStore } from '@modules/automation/store/configuration/configuration.store';
 import { iif, Observable } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { isInValid, isValid } from '../../../validators/custom.validator';
@@ -17,14 +18,14 @@ export class AutomationViewOrEditConfigEntryPage implements OnInit {
     private _router: Router,
     private _route: ActivatedRoute,
     private _formBuilder: FormBuilder,
-    private _autoConfigService: AutomationConfigurationService,
+    private _autoConfigStore: AutoConfigStore,
+    private _autoConfigService: AutoConfigService,
   ) {}
 
   isValid = isValid;
   isInValid = isInValid;
 
   mode!: 'edit' | 'view';
-  routeParams$!: Observable<Params>;
 
   configEntryForm!: FormGroup;
   configEntryFormObj!: ConfigurationEntryForm;
@@ -36,16 +37,14 @@ export class AutomationViewOrEditConfigEntryPage implements OnInit {
     this.configEntryFormObj = new ConfigurationEntryForm(this._formBuilder);
     this.configEntryForm = this.configEntryFormObj.InitForm();
 
-    this.routeParams$ = this._route.params;
-
-    this.configEntry$ = this.routeParams$.pipe(
+    this.configEntry$ = this._route.params.pipe(
       tap((routeParams: Params) => (this.mode = routeParams.mode)),
       switchMap((routeParams: Params) =>
-        this._autoConfigService.configEntry$.pipe(
+        this._autoConfigStore.configEntry$.pipe(
           switchMap((configEntry: IAutomationConfigurationEntry) =>
             iif(
               () => configEntry.id != undefined,
-              this._autoConfigService.configEntry$,
+              this._autoConfigStore.configEntry$,
               this._autoConfigService.configEntryById$(routeParams.id),
             ),
           ),

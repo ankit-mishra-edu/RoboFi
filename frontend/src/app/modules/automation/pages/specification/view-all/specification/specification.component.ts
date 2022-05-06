@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@core/utils/router.utils';
 import { SpecificationService } from '@modules/automation/services/specification.service';
+import { AutoSpecificationStore } from '@modules/automation/store/specification/specification.store';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
@@ -20,6 +21,7 @@ export class SpecificationComponent implements OnDestroy {
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
+    private _autoSpecStore: AutoSpecificationStore,
     private _specificationService: SpecificationService,
   ) {}
 
@@ -34,7 +36,7 @@ export class SpecificationComponent implements OnDestroy {
   SPECIFICATION_PATH = ROUTER_UTILS.config.automation.specification;
 
   EditSpecification(specificationToBeEdited: ISpecification): void {
-    this._specificationService.specification = specificationToBeEdited;
+    this._autoSpecStore.specification = specificationToBeEdited;
     this._router.navigate(
       [this.SPECIFICATION_PATH.viewOrEdit, specificationToBeEdited.id, 'edit'],
       {
@@ -44,7 +46,7 @@ export class SpecificationComponent implements OnDestroy {
   }
 
   ViewSpecification(specificationToBeViewed: ISpecification): void {
-    this._specificationService.specification = specificationToBeViewed;
+    this._autoSpecStore.specification = specificationToBeViewed;
     this._router.navigate(
       [this.SPECIFICATION_PATH.viewOrEdit, specificationToBeViewed.id, 'view'],
       {

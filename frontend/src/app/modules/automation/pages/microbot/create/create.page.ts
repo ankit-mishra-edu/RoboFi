@@ -29,13 +29,14 @@ export class CreateMicrobotPage implements OnInit, OnDestroy {
   isInValid = isInValid;
 
   destroy$ = new Subject();
-  MICROBOT_PATH = ROUTER_UTILS.config.automation.microbot;
 
-  createMicrobotFormObj!: MicrobotForms;
   createMicrobotForm!: FormGroup;
+  createMicrobotFormObj!: MicrobotForms;
 
   specification$!: Observable<ISpecification>;
   specifications$!: Observable<ISpecification[]>;
+
+  MICROBOT_PATH = ROUTER_UTILS.config.automation.microbot;
 
   ngOnInit(): void {
     this.specifications$ = this._specificationService.getSpecifications$();
@@ -45,7 +46,10 @@ export class CreateMicrobotPage implements OnInit, OnDestroy {
 
     this.specification$ = this.value('specification').valueChanges.pipe(
       takeUntil(this.destroy$),
-      filter((selectedSpecificationId: any) => selectedSpecificationId != ''),
+      filter(
+        (selectedSpecificationId: any) =>
+          selectedSpecificationId != 'Select Specification',
+      ),
       switchMap((selectedSpecificationId: number) =>
         this._specificationService
           .specificationById$(selectedSpecificationId)

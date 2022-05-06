@@ -10,7 +10,8 @@ import { ROUTER_UTILS } from '@core/utils/router.utils';
 import { isInValid, isValid } from '@modules/auth/validators/custom.validator';
 import { SpecificationForm } from '@modules/automation/forms';
 import { SpecificationService } from '@modules/automation/services/specification.service';
-import { Observable, Subject } from 'rxjs';
+import { AutoSpecificationStore } from '@modules/automation/store/specification/specification.store';
+import { iif, Observable, Subject } from 'rxjs';
 import { switchMap, takeUntil, tap } from 'rxjs/operators';
 
 @Component({
@@ -22,6 +23,7 @@ export class ViewOrEditSpecificationPage implements OnInit, OnDestroy {
     private _router: Router,
     private _route: ActivatedRoute,
     private _formBuilder: FormBuilder,
+    private _autoSpecStore: AutoSpecificationStore,
     private _specificationService: SpecificationService,
   ) {}
 
@@ -40,7 +42,14 @@ export class ViewOrEditSpecificationPage implements OnInit, OnDestroy {
     this.specification$ = this._route.params.pipe(
       tap((routeParams: Params) => (this.mode = routeParams.mode)),
       switchMap((routeParams: Params) =>
-        this._specificationService.specificationById$(routeParams.id).pipe(
+        this._autoSpecStore.specification$.pipe(
+          switchMap((specification: ISpecification) =>
+            iif(
+              () => specification.id != undefined,
+              this._autoSpecStore.specification$,
+              this._specificationService.specificationById$(routeParams.id),
+            ),
+          ),
           tap((specification: ISpecification) => {
             this.viewOrEditSpecificationForm.patchValue(specification);
             specification.Inputs.forEach((input: ISpecificationInput) => {
