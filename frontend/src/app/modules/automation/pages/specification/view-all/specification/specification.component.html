@@ -1,48 +1,53 @@
 <div
-  class="flex justify-around h-12 text-center bg-green-300 rounded-t-lg  sm:flex-row lg:flex-col lg:h-48 lg:rounded-t-none lg:rounded-l-lg lg:w-1/6"
->
-  <i
-    aria-hidden="true"
-    (click)="ViewSpecification(specification)"
-    class="text-2xl cursor-pointer bi bi-eye-fill primary"
-  ></i>
-  <i
-    aria-hidden="true"
-    (click)="EditSpecification(specification)"
-    class="text-2xl cursor-pointer bi bi-pencil-square secondary"
-  ></i>
-  <i
-    aria-hidden="true"
-    (click)="DeleteSpecification(specification)"
-    class="text-2xl cursor-pointer bi bi-archive-fill danger"
-  ></i>
-</div>
-
-<div
-  class="flex flex-col justify-between w-full h-48 p-2 bg-white rounded-b-lg  lg:w-5/6 lg:rounded-b-none lg:rounded-r-lg"
+  [id]="'specification-' + specificationIndex"
+  class="w-full max-w-sm m-2 rounded-lg specification lg:flex"
 >
   <div
-    class="mx-1 mb-2 text-xl font-bold text-center text-gray-900 bg-gray-200  rounded-3xl"
+    class="flex justify-around h-12 text-center bg-green-300 rounded-t-lg  sm:flex-row lg:flex-col lg:h-48 lg:rounded-t-none lg:rounded-l-lg lg:w-1/6"
   >
-    {{ specification.Name }}
+    <i
+      aria-hidden="true"
+      (click)="ViewSpecification(specification)"
+      class="text-2xl cursor-pointer bi bi-eye-fill primary"
+    ></i>
+    <i
+      aria-hidden="true"
+      (click)="EditSpecification(specification)"
+      class="text-2xl cursor-pointer bi bi-pencil-square secondary"
+    ></i>
+    <i
+      aria-hidden="true"
+      (click)="DeleteSpecification(specification)"
+      class="text-2xl cursor-pointer bi bi-archive-fill danger"
+    ></i>
   </div>
-  <p
-    class="h-20 p-1 mb-1 overflow-y-auto text-base text-gray-700 bg-gray-200 rounded-lg "
+
+  <div
+    class="flex flex-col justify-between w-full h-48 p-2 bg-white rounded-b-lg  lg:w-5/6 lg:rounded-b-none lg:rounded-r-lg"
   >
-    {{ specification.Description }}
-  </p>
-  <div class="flex flex-wrap gap-2">
-    <div class="flex items-center px-2 bg-gray-200 rounded-lg w-fit">
-      <p class="pr-1 text-gray-900">Category -</p>
-      <p class="leading-none text-gray-900">
-        {{ ' ' + specification.Category }}
-      </p>
+    <div
+      class="mx-1 mb-2 text-xl font-bold text-center text-gray-900 bg-gray-200  rounded-3xl"
+    >
+      {{ specification.Name }}
     </div>
-    <div class="flex items-center px-2 bg-gray-200 rounded-lg w-fit">
-      <p class="pr-1 text-gray-900">Version -</p>
-      <p class="leading-none text-gray-900">
-        {{ ' ' + specification.Version }}
-      </p>
+    <p
+      class="h-20 p-1 mb-1 overflow-y-auto text-base text-gray-700 bg-gray-200 rounded-lg "
+    >
+      {{ specification.Description }}
+    </p>
+    <div class="flex flex-wrap gap-2">
+      <div class="flex items-center px-2 bg-gray-200 rounded-lg w-fit">
+        <p class="pr-1 text-gray-900">Category -</p>
+        <p class="leading-none text-gray-900">
+          {{ ' ' + specification.Category }}
+        </p>
+      </div>
+      <div class="flex items-center px-2 bg-gray-200 rounded-lg w-fit">
+        <p class="pr-1 text-gray-900">Version -</p>
+        <p class="leading-none text-gray-900">
+          {{ ' ' + specification.Version }}
+        </p>
+      </div>
     </div>
   </div>
 </div>

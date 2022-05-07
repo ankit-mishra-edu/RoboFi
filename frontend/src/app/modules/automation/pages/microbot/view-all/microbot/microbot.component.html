@@ -1,48 +1,53 @@
 <div
-  class="flex justify-around h-12 text-center bg-green-300 rounded-t-lg  sm:flex-row lg:flex-col lg:h-48 lg:rounded-t-none lg:rounded-l-lg lg:w-1/6"
+  [id]="'microbot-' + microbotIndex"
+  class="w-full max-w-sm m-2 rounded-lg microbot lg:flex"
 >
-  <i
-    aria-hidden="true"
-    (click)="ViewMicrobot(microbot)"
-    class="text-2xl cursor-pointer bi bi-eye-fill primary"
-  ></i>
-  <i
-    aria-hidden="true"
-    (click)="EditMicrobot(microbot)"
-    class="text-2xl cursor-pointer bi bi-pencil-square secondary"
-  ></i>
-  <i
-    aria-hidden="true"
-    (click)="DeleteMicrobot(microbot)"
-    class="text-2xl cursor-pointer bi bi-archive-fill danger"
-  ></i>
-</div>
+  <div
+    class="flex justify-around h-12 text-center bg-green-300 rounded-t-lg  sm:flex-row lg:flex-col lg:h-48 lg:rounded-t-none lg:rounded-l-lg lg:w-1/6"
+  >
+    <i
+      aria-hidden="true"
+      (click)="ViewMicrobot(microbot)"
+      class="text-2xl cursor-pointer bi bi-eye-fill primary"
+    ></i>
+    <i
+      aria-hidden="true"
+      (click)="EditMicrobot(microbot)"
+      class="text-2xl cursor-pointer bi bi-pencil-square secondary"
+    ></i>
+    <i
+      aria-hidden="true"
+      (click)="DeleteMicrobot(microbot)"
+      class="text-2xl cursor-pointer bi bi-archive-fill danger"
+    ></i>
+  </div>
 
-<div
-  class="flex flex-col justify-between w-full h-48 p-2 bg-white rounded-b-lg  lg:w-5/6 lg:rounded-b-none lg:rounded-r-lg"
->
   <div
-    class="mx-1 mb-2 text-xl font-bold text-center text-gray-900 bg-gray-200  rounded-3xl"
+    class="flex flex-col justify-between w-full h-48 p-2 bg-white rounded-b-lg  lg:w-5/6 lg:rounded-b-none lg:rounded-r-lg"
   >
-    {{ microbot.Name }}
-  </div>
-  <div
-    class="h-20 p-1 mb-1 overflow-y-auto text-base text-gray-700 bg-gray-200 rounded-lg "
-  >
-    {{ microbot.Description }}
-  </div>
-  <div class="flex flex-wrap gap-2">
-    <div class="flex items-center px-2 bg-gray-200 rounded-lg w-fit">
-      <p class="pr-1 text-gray-900">Technology -</p>
-      <p class="leading-none text-gray-900">
-        {{ ' ' + microbot.Technology }}
-      </p>
+    <div
+      class="mx-1 mb-2 text-xl font-bold text-center text-gray-900 bg-gray-200  rounded-3xl"
+    >
+      {{ microbot.Name }}
     </div>
-    <div class="flex items-center px-2 bg-gray-200 rounded-lg w-fit">
-      <p class="pr-1 text-gray-900">Version -</p>
-      <p class="leading-none text-gray-900">
-        {{ ' ' + microbot.Version }}
-      </p>
+    <div
+      class="h-20 p-1 mb-1 overflow-y-auto text-base text-gray-700 bg-gray-200 rounded-lg "
+    >
+      {{ microbot.Description }}
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <div class="flex items-center px-2 bg-gray-200 rounded-lg w-fit">
+        <p class="pr-1 text-gray-900">Technology -</p>
+        <p class="leading-none text-gray-900">
+          {{ ' ' + microbot.Technology }}
+        </p>
+      </div>
+      <div class="flex items-center px-2 bg-gray-200 rounded-lg w-fit">
+        <p class="pr-1 text-gray-900">Version -</p>
+        <p class="leading-none text-gray-900">
+          {{ ' ' + microbot.Version }}
+        </p>
+      </div>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="flex flex-col m-4 view-all-microbots">
+<div class="flex flex-col mx-4 my-3 view-all-microbots">
   <div class="m-2 create-specification-button right">
     <button
       [routerLink]="['../', MICROBOT_PATH.create]"
@@ -14,13 +14,11 @@
     <ng-container
       *ngIf="microbots | filterAutomationMicrobot | async as filteredMicrobots; else filteredMicrobotsDataNotAvailable"
     >
-      <div class="flex flex-wrap">
+      <div class="grid grid-cols-1 gap-3 md:grid-cols-3 lg:grid-cols-4">
         <app-microbot
           [filteredMicrobot]="microbot"
-          [id]="'microbot-' + filteredMicrobotIndex"
           (onMicrobotDelete)="onMicrobotDelete($event)"
           [filteredMicrobotIndex]="filteredMicrobotIndex"
-          class="w-full max-w-sm m-2 microbot md:w-1/3 lg:flex"
           *ngFor="let microbot of filteredMicrobots; let filteredMicrobotIndex=index"
         ></app-microbot>
       </div>

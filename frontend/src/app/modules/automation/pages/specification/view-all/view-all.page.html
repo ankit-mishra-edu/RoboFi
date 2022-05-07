@@ -1,4 +1,4 @@
-<div class="flex flex-col m-4 view-all-specifications">
+<div class="flex flex-col mx-4 my-3 view-all-specifications">
   <div class="m-2 create-specification-button right">
     <button
       [routerLink]="['../', SPECIFICATION_PATH.create]"
@@ -14,13 +14,11 @@
     <ng-container
       *ngIf="specifications | filterAutomationSpecification | async as filteredSpecifications; else filteredSpecificationsDataNotAvailable"
     >
-      <div class="flex flex-wrap">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
         <app-specification
           [filteredSpecification]="specification"
-          [id]="'specification-' + filteredSpecificationIndex"
           (onSpecificationDelete)="onSpecificationDelete($event)"
           [filteredSpecificationIndex]="filteredSpecificationIndex"
-          class="w-full max-w-sm m-2 specification md:w-1/3 lg:flex"
           *ngFor="let specification of filteredSpecifications; let filteredSpecificationIndex=index"
         ></app-specification>
       </div>
