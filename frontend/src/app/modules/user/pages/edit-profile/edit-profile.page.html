@@ -1,34 +1,63 @@
 <div class="edit-profile">
   <ng-container *ngIf="userProfile$ | async; else userProfileNotFetched">
-    <div class="md:grid md:grid-cols-3">
+    <div class="w-fit">
       <div class="form-wrapper">
         <form [formGroup]="editProfileForm">
           <div class="form-group">
             <legend class="form-heading">Edit Profile</legend>
-            <div class="form-group">
-              <label for="bio" class="form-label">Bio</label>
-              <textarea
-                id="bio"
-                rows="2"
-                cols="60"
-                class="form-control highlight"
-                formControlName="bio"
-              ></textarea>
+            <div class="gap-x-4 md:grid md:grid-cols-2">
+              <div class="form-group">
+                <label for="bio" class="form-label">Bio</label>
+                <textarea
+                  id="bio"
+                  rows="2"
+                  cols="60"
+                  class="form-control highlight"
+                  formControlName="bio"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="birth_date" class="form-label">Birth date</label>
+                <input
+                  type="date"
+                  id="birth_date"
+                  class="form-control highlight"
+                  formControlName="birth_date"
+                />
+              </div>
+
+              <div class="form-group form-file">
+                <label for="image" class="form-label">Profile photo</label>
+                <br />
+                <input
+                  id="image"
+                  type="file"
+                  formControlName="image"
+                  (change)="onFileSelect($event)"
+                  class="form-control form-control-file"
+                />
+              </div>
+
+              <div class="form-group form-check form-switch">
+                <input
+                  type="checkbox"
+                  id="email_confirmed"
+                  class="form-check-input"
+                  formControlName="email_confirmed"
+                />
+                <label for="email_confirmed" class="form-check-label form-label"
+                  >Email confirmed</label
+                >
+              </div>
             </div>
 
-            <div class="form-group">
-              <label for="birth_date" class="form-label">Birth date</label>
-              <input
-                type="date"
-                id="birth_date"
-                class="form-control highlight"
-                formControlName="birth_date"
-              />
-            </div>
+            <div class="text-2xl font-semibold">Address</div>
 
-            <div class="form-group" formGroupName="address">
-              <h4>Address</h4>
-
+            <div
+              formGroupName="address"
+              class="mx-4 gap-x-4 md:grid md:grid-cols-2 form-group"
+            >
               <div class="form-group">
                 <label for="street" class="form-label">Street</label>
                 <input
@@ -68,30 +97,6 @@
                   formControlName="zip_code"
                 />
               </div>
-            </div>
-
-            <div class="form-group form-check form-switch">
-              <input
-                type="checkbox"
-                id="email_confirmed"
-                class="form-check-input"
-                formControlName="email_confirmed"
-              />
-              <label for="email_confirmed" class="form-check-label form-label"
-                >Email confirmed</label
-              >
-            </div>
-
-            <div class="form-group form-file">
-              <label for="image" class="form-label">Profile photo</label>
-              <br />
-              <input
-                id="image"
-                type="file"
-                formControlName="image"
-                (change)="onFileSelect($event)"
-                class="form-control form-control-file"
-              />
             </div>
 
             <button
