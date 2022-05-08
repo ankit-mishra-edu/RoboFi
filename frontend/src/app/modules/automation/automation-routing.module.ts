@@ -7,6 +7,11 @@ import { AutomationHomePage } from './pages/home/home.page';
 
 const automationRoutes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: ROUTER_UTILS.config.automation.home,
+  },
+  {
     path: ROUTER_UTILS.config.automation.home,
     component: AutomationHomePage,
   },

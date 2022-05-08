@@ -20,8 +20,12 @@ export class ViewAllMicrobotPage implements OnInit, OnDestroy {
   }
 
   onMicrobotDelete(microbot: IMicrobot): void {
-    console.log(microbot);
+    console.log('Deleted Microbot', microbot);
     this.ngOnInit();
+  }
+
+  trackBy(index: number, microbot: IMicrobot): number {
+    return microbot.id;
   }
 
   ngOnDestroy(): void {

@@ -25,8 +25,12 @@ export class ViewAllSpecificationPage implements OnInit, OnDestroy {
   }
 
   onSpecificationDelete(specification: ISpecification): void {
-    console.log(specification);
+    console.log('Deleted Specification', specification);
     this.ngOnInit();
+  }
+
+  trackBy(index: number, specification: ISpecification): number {
+    return specification.id;
   }
 
   ngOnDestroy(): void {

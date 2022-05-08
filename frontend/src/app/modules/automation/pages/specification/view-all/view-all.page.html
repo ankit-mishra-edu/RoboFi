@@ -9,28 +9,30 @@
     </button>
   </div>
   <ng-container
-    *ngIf="specifications$ | async as specifications; else specificationDataNotFetched"
+    *ngIf="specifications$ | async as specifications; else loadingSpecifications"
   >
     <ng-container
-      *ngIf="specifications | filterAutomationSpecification | async as filteredSpecifications; else filteredSpecificationsDataNotAvailable"
+      *ngIf="specifications | filterAutomationSpecification | async as filteredSpecifications; else loadingFilteredSpecifications"
     >
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+      <div
+        class="grid grid-cols-1 gap-4  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      >
         <app-specification
           [filteredSpecification]="specification"
+          [filteredSpecificationIndex]="filteredSpecIndex"
           (onSpecificationDelete)="onSpecificationDelete($event)"
-          [filteredSpecificationIndex]="filteredSpecificationIndex"
-          *ngFor="let specification of filteredSpecifications; let filteredSpecificationIndex=index"
+          *ngFor="let specification of filteredSpecifications; let filteredSpecIndex=index; trackBy: trackBy"
         ></app-specification>
       </div>
     </ng-container>
   </ng-container>
-  <ng-template #specificationDataNotFetched>
+  <ng-template #loadingSpecifications>
     <app-spinner [spinnerSize]="'1.5rem'"
-      >{{ " Fetching Specification data from backend....." }}</app-spinner
+      >{{ " Fetching Specifications data from backend....." }}</app-spinner
     >
   </ng-template>
 
-  <ng-template #filteredSpecificationsDataNotAvailable>
+  <ng-template #loadingFilteredSpecifications>
     <app-spinner [spinnerSize]="'1.5rem'"
       >{{ " Applying filter based on keyword....." }}</app-spinner
     >

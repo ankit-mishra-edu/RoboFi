@@ -8,29 +8,29 @@
       <span>Create Microbot</span>
     </button>
   </div>
-  <ng-container
-    *ngIf="microbots$ | async as microbots; else microbotDataNotFetched"
-  >
+  <ng-container *ngIf="microbots$ | async as microbots; else loadingMicrobots">
     <ng-container
-      *ngIf="microbots | filterAutomationMicrobot | async as filteredMicrobots; else filteredMicrobotsDataNotAvailable"
+      *ngIf="microbots | filterAutomationMicrobot | async as filteredMicrobots; else loadingFilteredMicrobots"
     >
-      <div class="grid grid-cols-1 gap-3 md:grid-cols-3 lg:grid-cols-4">
+      <div
+        class="grid grid-cols-1 gap-4  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      >
         <app-microbot
           [filteredMicrobot]="microbot"
           (onMicrobotDelete)="onMicrobotDelete($event)"
           [filteredMicrobotIndex]="filteredMicrobotIndex"
-          *ngFor="let microbot of filteredMicrobots; let filteredMicrobotIndex=index"
+          *ngFor="let microbot of filteredMicrobots; let filteredMicrobotIndex=index; trackBy: trackBy"
         ></app-microbot>
       </div>
     </ng-container>
   </ng-container>
-  <ng-template #microbotDataNotFetched>
+  <ng-template #loadingMicrobots>
     <app-spinner [spinnerSize]="'1.5rem'"
-      >{{ " Fetching Microbot data from backend....." }}</app-spinner
+      >{{ " Fetching Microbots data from backend....." }}</app-spinner
     >
   </ng-template>
 
-  <ng-template #filteredMicrobotsDataNotAvailable>
+  <ng-template #loadingFilteredMicrobots>
     <app-spinner [spinnerSize]="'1.5rem'"
       >{{ " Applying filter based on keyword....." }}</app-spinner
     >
