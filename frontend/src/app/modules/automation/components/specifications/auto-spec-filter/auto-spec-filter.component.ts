@@ -5,11 +5,11 @@ import { AutoSpecificationStore } from '@modules/automation/store/specification/
 import { Subject, takeUntil, tap } from 'rxjs';
 
 @Component({
-  selector: 'app-filter-auto-spec',
-  templateUrl: './filter-auto-spec.component.html',
-  styleUrls: ['./filter-auto-spec.component.scss'],
+  selector: 'app-auto-spec-filter',
+  templateUrl: './auto-spec-filter.component.html',
+  styleUrls: ['./auto-spec-filter.component.scss'],
 })
-export class FilterAutoSpecComponent implements OnInit, OnDestroy {
+export class AutoSpecFilterComponent implements OnInit, OnDestroy {
   constructor(
     private _formBuilder: FormBuilder,
     private _autoSpecStore: AutoSpecificationStore,

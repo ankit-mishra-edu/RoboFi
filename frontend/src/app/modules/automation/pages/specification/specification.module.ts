@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/components/shared.module';
-import { FilterAutoSpecComponent } from '@modules/automation/components/specifications/filter-auto-spec/filter-auto-spec.component';
+import { AutoSpecFilterComponent } from '@modules/automation/components/specifications/auto-spec-filter/auto-spec-filter.component';
 import { SpecificationComponent } from '@modules/automation/components/specifications/specification/specification.component';
 import { AutomationPipeModule } from '../../pipes/automation-pipe.module';
 import { CreateSpecificationPage } from './create/create.page';
@@ -16,7 +16,7 @@ import { ViewOrEditSpecificationPage } from './view-or-edit/view-or-edit.page';
     CreateSpecificationPage,
     ViewOrEditSpecificationPage,
     SpecificationComponent,
-    FilterAutoSpecComponent,
+    AutoSpecFilterComponent,
   ],
   imports: [
     CommonModule,
