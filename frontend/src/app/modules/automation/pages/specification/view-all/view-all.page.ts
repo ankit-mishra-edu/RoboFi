@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@core/utils/router.utils';
 import { SpecificationService } from '@modules/automation/services/specification.service';
 import { Observable, Subject } from 'rxjs';
