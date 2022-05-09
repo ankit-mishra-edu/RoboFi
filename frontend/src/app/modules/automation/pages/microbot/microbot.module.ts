@@ -8,7 +8,7 @@ import { MicrobotErrorsComponent } from './create/microbot-errors/microbot-error
 import { MicrobotInputsComponent } from './create/microbot-inputs/microbot-inputs.component';
 import { MicrobotOutputsComponent } from './create/microbot-outputs/microbot-outputs.component';
 import { MicrobotRoutingModule } from './microbot-routing.module';
-import { MicrobotComponent } from './view-all/microbot/microbot.component';
+import { MicrobotComponent } from '../../components/microbots/microbot/microbot.component';
 import { ViewAllMicrobotPage } from './view-all/view-all.page';
 import { ViewOrEditMicrobotPage } from './view-or-edit/view-or-edit.page';
 
