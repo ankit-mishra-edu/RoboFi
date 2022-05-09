@@ -6,6 +6,7 @@ import { isInValid, isValid } from '@modules/auth/validators/custom.validator';
 import { MicrobotForms } from '@modules/automation/forms';
 import { MicrobotService } from '@modules/automation/services/microbot.service';
 import { SpecificationService } from '@modules/automation/services/specification.service';
+import { AutoMicrobotStore } from '@modules/automation/store/microbot/microbot.store';
 import { combineLatest, iif, Observable, of, Subject } from 'rxjs';
 import { catchError, switchMap, takeUntil, tap } from 'rxjs/operators';
 
@@ -19,6 +20,7 @@ export class ViewOrEditMicrobotPage implements OnInit, OnDestroy {
     private _route: ActivatedRoute,
     private _formBuilder: FormBuilder,
     private _microbotService: MicrobotService,
+    private _autoMicrobotStore: AutoMicrobotStore,
     private _specificationService: SpecificationService,
   ) {}
 
@@ -46,11 +48,11 @@ export class ViewOrEditMicrobotPage implements OnInit, OnDestroy {
     this.microbot$ = this._route.params.pipe(
       tap((routeParams: Params) => (this.mode = routeParams.mode)),
       switchMap((routeParams: Params) =>
-        this._microbotService.microbot$.pipe(
+        this._autoMicrobotStore.microbot$.pipe(
           switchMap((microbot: IMicrobot) =>
             iif(
               () => microbot.id != undefined,
-              this._microbotService.microbot$,
+              this._autoMicrobotStore.microbot$,
               this._microbotService.microbotById$(routeParams.id),
             ).pipe(
               tap((microbot: IMicrobot) => {

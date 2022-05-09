@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@core/utils/router.utils';
 import { MicrobotService } from '@modules/automation/services/microbot.service';
+import { AutoMicrobotStore } from '@modules/automation/store/microbot/microbot.store';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 
@@ -21,6 +22,7 @@ export class MicrobotComponent implements OnDestroy {
     private _router: Router,
     private _route: ActivatedRoute,
     private _microbotService: MicrobotService,
+    private _autoMicrobotStore: AutoMicrobotStore,
   ) {}
 
   @Input('filteredMicrobot') microbot!: IMicrobot;
@@ -34,7 +36,7 @@ export class MicrobotComponent implements OnDestroy {
   MICROBOT_PATH = ROUTER_UTILS.config.automation.microbot;
 
   EditMicrobot(microbotToBeEdited: IMicrobot): void {
-    this._microbotService.microbot = microbotToBeEdited;
+    this._autoMicrobotStore.microbot = microbotToBeEdited;
     this._router.navigate(
       [this.MICROBOT_PATH.viewOrEdit, microbotToBeEdited.id, 'edit'],
       {
@@ -44,7 +46,7 @@ export class MicrobotComponent implements OnDestroy {
   }
 
   ViewMicrobot(microbotToBeViewed: IMicrobot): void {
-    this._microbotService.microbot = microbotToBeViewed;
+    this._autoMicrobotStore.microbot = microbotToBeViewed;
     this._router.navigate(
       [this.MICROBOT_PATH.viewOrEdit, microbotToBeViewed.id, 'view'],
       {

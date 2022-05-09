@@ -12,18 +12,6 @@ export class MicrobotService {
 
   MICROBOT_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.automation.root}/${ENDPOINT_UTILS.config.automation.microbot}`;
 
-  // CURRENT/SELECTED MICROBOT SHARING ACCROSS COMPONENTS
-  private _microbotSubject: BehaviorSubject<IMicrobot> =
-    new BehaviorSubject<IMicrobot>({} as IMicrobot);
-
-  get microbot$(): Observable<IMicrobot> {
-    return this._microbotSubject.asObservable();
-  }
-
-  set microbot(microbot: IMicrobot) {
-    this._microbotSubject.next(microbot);
-  }
-
   getMicrobots$ = (): Observable<IMicrobot[]> =>
     this._http.get<IMicrobot[]>(this.MICROBOT_URL).pipe(share());
 
