@@ -31,7 +31,7 @@
   input[type='search'] {
     border: solid 1px #ccc;
     padding: 5px 50px 5px 20px;
-    width: 80px;
+    // width: 80px;
 
     -webkit-border-radius: 10em;
     -moz-border-radius: 10em;
@@ -42,7 +42,7 @@
     transition: all 0.5s;
   }
   input[type='search']:focus {
-    width: 100px;
+    // width: 100px;
     background-color: #fff;
     border-color: #66cc75;
 

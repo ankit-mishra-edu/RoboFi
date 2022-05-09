@@ -5,6 +5,7 @@
   <div class="form">
     <input
       type="search"
+      [ngClass]="width"
       class="text-black"
       [ngModel]="searchBoxKeywords$ | async"
       (ngModelChange)="searchBoxTypedKeywords = $event"

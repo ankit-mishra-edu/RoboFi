@@ -1,23 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { SearchBoxService } from '@core/services/search-box/search-box.service';
 import { SpeechService } from '@core/services/search-box/speech.service';
-import { Observable } from 'rxjs';
-import { share, tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { share, takeUntil, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-box',
   templateUrl: './search-box.component.html',
   styleUrls: ['./search-box.component.scss'],
 })
-export class SearchBoxComponent implements OnInit {
+export class SearchBoxComponent implements OnInit, OnDestroy {
   constructor(
     private _searchBoxService: SearchBoxService,
     private _speechService: SpeechService,
   ) {}
 
+  destroy$ = new Subject();
+  @Input('width') width = 'w-20';
+
   ngOnInit(): void {
     this._searchBoxService.listenClicks$
       .pipe(
+        takeUntil(this.destroy$),
         tap(() => this._speechService.listen()),
         share(),
       )
@@ -42,5 +46,10 @@ export class SearchBoxComponent implements OnInit {
 
   set listenClicks(value: string) {
     this._searchBoxService.listenClicks = value;
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.complete();
+    this.destroy$.unsubscribe();
   }
 }
