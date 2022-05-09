@@ -190,3 +190,16 @@ export class SpecificationForm {
     }
   }
 }
+
+export class SpecificationFilterForm {
+  constructor(private _formBuilder: FormBuilder) {}
+
+  specificationFilterForm!: FormGroup;
+
+  public InitForm(): FormGroup {
+    this.specificationFilterForm = this._formBuilder.group({
+      filter: ['Name', [Validators.required]],
+    });
+    return this.specificationFilterForm;
+  }
+}

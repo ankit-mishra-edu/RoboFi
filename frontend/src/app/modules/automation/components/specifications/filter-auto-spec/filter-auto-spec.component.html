@@ -1,0 +1,43 @@
+<div class="px-0 py-2 m-0 form-wrapper">
+  <form class="p-0 mx-4 form-group" [formGroup]="specFilterForm">
+    <div class="grid grid-cols-1 gap-x-4 md:grid-cols-2 lg:grid-cols-4">
+      <div class="form-check form-switch">
+        <label for="spec-filter-name" class="form-check-label form-label"
+          >Name</label
+        >
+        <input
+          type="radio"
+          value="Name"
+          id="spec-filter-name"
+          class="form-check-input"
+          formControlName="filter"
+        />
+      </div>
+      <div class="form-check form-switch">
+        <label for="spec-filter-category" class="form-check-label form-label"
+          >Category</label
+        >
+        <input
+          type="radio"
+          value="Category"
+          id="spec-filter-category"
+          class="form-check-input"
+          formControlName="filter"
+        />
+      </div>
+      <div class="form-check form-switch">
+        <label for="spec-filter-version" class="form-check-label form-label"
+          >Version</label
+        >
+        <input
+          type="radio"
+          value="Version"
+          id="spec-filter-version"
+          class="form-check-input"
+          formControlName="filter"
+        />
+      </div>
+      <app-search-box [width]="'w-full'"></app-search-box>
+    </div>
+  </form>
+</div>

@@ -46,3 +46,5 @@ interface ISpecification {
   Dependencies: ISpecificationDependency[];
   Authors: ISpecificationAuthor[];
 }
+
+type AutoSpecFilterType = 'Name' | 'Category' | 'Version';

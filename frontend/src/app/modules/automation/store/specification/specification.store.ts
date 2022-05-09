@@ -16,4 +16,16 @@ export class AutoSpecificationStore {
   set specification(specification: ISpecification) {
     this._specificationSubject.next(specification);
   }
+
+  // CURRENT/SELECTED SPECIFICATION FILTER KEY SHARING ACCROSS COMPONENTS
+  private _specificationFilterKeySubject: BehaviorSubject<AutoSpecFilterType> =
+    new BehaviorSubject<AutoSpecFilterType>('Name');
+
+  get specificationFilterKey$(): Observable<AutoSpecFilterType> {
+    return this._specificationFilterKeySubject.asObservable();
+  }
+
+  set specificationFilterKey(specificationFilterKey: AutoSpecFilterType) {
+    this._specificationFilterKeySubject.next(specificationFilterKey);
+  }
 }
