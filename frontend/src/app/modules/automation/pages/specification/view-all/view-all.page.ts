@@ -9,11 +9,7 @@ import { Observable, Subject } from 'rxjs';
   styleUrls: ['./view-all.page.scss'],
 })
 export class ViewAllSpecificationPage implements OnInit, OnDestroy {
-  constructor(
-    private _router: Router,
-    private _route: ActivatedRoute,
-    private _specificationService: SpecificationService,
-  ) {}
+  constructor(private _specificationService: SpecificationService) {}
 
   destroy$ = new Subject();
   SPECIFICATION_PATH = ROUTER_UTILS.config.automation.specification;
