@@ -16,7 +16,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   ) {}
 
   destroy$ = new Subject();
-  @Input('width') width = 'w-20';
+  @Input('width') width = 'w-24';
 
   ngOnInit(): void {
     this._searchBoxService.listenClicks$

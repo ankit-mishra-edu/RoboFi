@@ -1,18 +1,16 @@
 <div
+  class="flex flex-row w-full px-2 form"
   *ngIf="placeholder$ | async as placeholder"
-  class="d-flex justify-content-center align-items-center"
 >
-  <div class="form">
-    <input
-      type="search"
-      [ngClass]="width"
-      class="text-black"
-      [ngModel]="searchBoxKeywords$ | async"
-      (ngModelChange)="searchBoxTypedKeywords = $event"
-      [placeholder]="'Search ' + placeholder + '...'"
-    />
-    <span class="btn left-pan" (click)="listenClicks = '1'"
-      ><i class="fa fa-microphone"></i
-    ></span>
-  </div>
+  <input
+    type="search"
+    [ngClass]="width"
+    class="text-black"
+    [ngModel]="searchBoxKeywords$ | async"
+    (ngModelChange)="searchBoxTypedKeywords = $event"
+    [placeholder]="'Search ' + placeholder + '...'"
+  />
+  <span class="ml-auto mr-2 btn left-pan" (click)="listenClicks = '1'"
+    ><i class="bi bi-mic"></i
+  ></span>
 </div>
