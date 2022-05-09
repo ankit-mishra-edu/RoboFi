@@ -1,0 +1,24 @@
+.view-all-microbots {
+  .flex {
+    .create-microbot-button {
+      @apply px-4;
+      @apply py-2;
+      @apply h-fit;
+      @apply w-fit;
+      @apply mt-auto;
+      @apply rounded;
+      @apply border-2;
+      @apply inline-flex;
+      @apply font-semibold;
+      @apply justify-center;
+      @apply text-green-700;
+      @apply border-green-500;
+
+      &:hover {
+        @apply text-white;
+        @apply bg-green-500;
+        @apply border-transparent;
+      }
+    }
+  }
+}

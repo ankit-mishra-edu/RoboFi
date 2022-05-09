@@ -1,13 +1,15 @@
 <div class="flex flex-col mx-4 my-3 view-all-microbots">
-  <div class="m-2 create-specification-button right">
+  <div class="flex flex-col gap-4 m-2 sm:flex-row">
+    <app-auto-microbot-filter></app-auto-microbot-filter>
     <button
+      class="create-microbot-button"
       [routerLink]="['../', MICROBOT_PATH.create]"
-      class="inline-flex items-center px-4 py-2 font-semibold text-green-700 border-2 border-green-500 rounded  hover:bg-green-500 hover:text-white hover:border-transparent"
     >
       <i class="px-1 bi bi-plus-lg" aria-hidden="true"></i>
-      <span>Create Microbot</span>
+      <span>Microbot</span>
     </button>
   </div>
+
   <ng-container *ngIf="microbots$ | async as microbots; else loadingMicrobots">
     <ng-container
       *ngIf="microbots | filterAutomationMicrobot | async as filteredMicrobots; else loadingFilteredMicrobots"
@@ -22,7 +24,19 @@
           *ngFor="let microbot of filteredMicrobots; let filteredMicrobotIndex=index; trackBy: trackBy"
         ></app-microbot>
       </div>
+
+      <app-spinner
+        [spinnerSize]="'1.5rem'"
+        *ngIf="microbots && ((filteredMicrobots |json) === '[]')"
+        >{{ " No microbot to show for requested filter. Try some different
+        filter." }}</app-spinner
+      >
     </ng-container>
+
+    <app-spinner [spinnerSize]="'1.5rem'" *ngIf="!microbots"
+      >{{ " No microbots available at backend. Create new Microbot" }}
+      <a [routerLink]="['../', MICROBOT_PATH.create]">here.....</a></app-spinner
+    >
   </ng-container>
   <ng-template #loadingMicrobots>
     <app-spinner [spinnerSize]="'1.5rem'"

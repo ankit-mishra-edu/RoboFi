@@ -16,3 +16,16 @@ export class MicrobotForms {
     return this.microbotForm;
   }
 }
+
+export class MicrobotFilterForm {
+  constructor(private _formBuilder: FormBuilder) {}
+
+  microbotFilterForm!: FormGroup;
+
+  public InitForm(): FormGroup {
+    this.microbotFilterForm = this._formBuilder.group({
+      filter: ['Name', [Validators.required]],
+    });
+    return this.microbotFilterForm;
+  }
+}

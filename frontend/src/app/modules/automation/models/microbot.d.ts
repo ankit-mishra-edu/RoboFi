@@ -6,3 +6,5 @@ interface IMicrobot {
   Version: string;
   specification: ISpecification;
 }
+
+type AutoMicrobotFilterType = 'Name' | 'Technology' | 'Version';
