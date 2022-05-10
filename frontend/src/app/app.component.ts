@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SeoService } from '@core/services/seo';
 import { ThemeService } from '@core/services/theme';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    alert('API Base URL is : ' + process.env['API_BASE_URL']);
+    alert('API Base URL is : ' + environment.API_BASE_URL);
     this.runGlobalServices();
   }
 
