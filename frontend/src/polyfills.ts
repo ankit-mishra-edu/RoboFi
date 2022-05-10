@@ -52,5 +52,9 @@ import 'zone.js'; // Included with Angular CLI.
  */
 
 (window as any).process = {
-  env: {},
+  env: {
+    ADMIN_URL: '',
+    API_BASE_URL: '',
+    CLOUDINARY_URL: '',
+  },
 };
