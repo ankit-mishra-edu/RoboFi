@@ -22,7 +22,7 @@ DEBUG = environment.get('DEBUG')
 
 SECRET_KEY = environment.get('SECRET_KEY')
 
-ALLOWED_HOSTS = [environment.get('ALLOWED_HOSTS')]
+ALLOWED_HOSTS = environment.get('ALLOWED_HOSTS').split(',')
 CORS_ORIGIN_WHITELIST = environment.get('ALLOWED_ORIGINS').split(',')
 CSRF_TRUSTED_ORIGINS = environment.get('ALLOWED_ORIGINS').split(',')
 
