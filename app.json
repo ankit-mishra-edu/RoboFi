@@ -40,7 +40,7 @@
     "API_BASE_URL": {
       "required": true,
       "description": "The base URL for the API.",
-      "value": "https://<<APP NAME>>.herokuapp.com"
+      "value": "https://<<APP NAME>>.herokuapp.com/api"
     },
     "DEBUG": {
       "required": false,
