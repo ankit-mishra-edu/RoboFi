@@ -7,6 +7,7 @@ import {
   NavigationStart,
   Router,
 } from '@angular/router';
+import { HttpLoaderStore } from '@components/http-loader/http-loader.store';
 import { AuthService } from '@modules/auth/services/auth.service';
 import { Observable } from 'rxjs';
 
@@ -19,8 +20,13 @@ import { Observable } from 'rxjs';
 export class LayoutComponent implements OnInit {
   routingIsDelayed!: boolean;
   isLoggedIn$!: Observable<boolean>;
+  waitingForResponse$!: Observable<boolean>;
 
-  constructor(private _router: Router, private authService: AuthService) {}
+  constructor(
+    private _router: Router,
+    private authService: AuthService,
+    private _httpLoaderStore: HttpLoaderStore,
+  ) {}
 
   ngOnInit(): void {
     this.isLoggedIn$ = this.authService.isLoggedIn$;
@@ -28,6 +34,8 @@ export class LayoutComponent implements OnInit {
     this._router.events.subscribe((routerEvent: Event) =>
       this.checkRouterEvent(routerEvent),
     );
+
+    this.waitingForResponse$ = this._httpLoaderStore.waitingForResponse$;
   }
 
   checkRouterEvent(routerEvent: Event): void {

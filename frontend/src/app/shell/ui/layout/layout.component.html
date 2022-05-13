@@ -7,6 +7,12 @@
       <app-spinner class="mt-6" spinnerSize="2rem" *ngIf="routingIsDelayed"
         >Loading resources for requested page...</app-spinner
       >
+
+      <app-http-loader
+        [dimension]="'100px'"
+        *ngIf="(waitingForResponse$ | async) === true"
+      ></app-http-loader>
+
       <ng-content *ngIf="!routingIsDelayed"></ng-content>
 
       <app-footer
