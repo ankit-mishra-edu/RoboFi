@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { SearchBoxStore } from '@components/search-box/search-box.store';
 import { MicrobotFilterForm } from '@modules/automation/forms';
 import { AutoMicrobotStore } from '@modules/automation/store/microbot/microbot.store';
 import { Subject, takeUntil, tap } from 'rxjs';
@@ -12,6 +13,7 @@ import { Subject, takeUntil, tap } from 'rxjs';
 export class FilterAutoMicrobotComponent implements OnInit, OnDestroy {
   constructor(
     private _formBuilder: FormBuilder,
+    private _searchBoxStore: SearchBoxStore,
     private _autoMicrobotStore: AutoMicrobotStore,
   ) {}
 
@@ -28,11 +30,11 @@ export class FilterAutoMicrobotComponent implements OnInit, OnDestroy {
       .get('filter')
       ?.valueChanges.pipe(
         takeUntil(this.destroy$),
-        tap(console.log),
-        tap(
-          (microbotFilterKey) =>
-            (this._autoMicrobotStore.microbotFilterKey = microbotFilterKey),
-        ),
+        tap((microbotFilterKey) => {
+          this._searchBoxStore.searchBoxTypedKeywords = '';
+          this._searchBoxStore.placeholder = `by ${microbotFilterKey}`;
+          this._autoMicrobotStore.microbotFilterKey = microbotFilterKey;
+        }),
       )
       .subscribe();
   }

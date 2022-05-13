@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { SearchBoxStore } from '@components/search-box/search-box.store';
 import { SpecificationFilterForm } from '@modules/automation/forms';
 import { AutoSpecificationStore } from '@modules/automation/store/specification/specification.store';
 import { Subject, takeUntil, tap } from 'rxjs';
@@ -12,6 +13,7 @@ import { Subject, takeUntil, tap } from 'rxjs';
 export class AutoSpecFilterComponent implements OnInit, OnDestroy {
   constructor(
     private _formBuilder: FormBuilder,
+    private _searchBoxStore: SearchBoxStore,
     private _autoSpecStore: AutoSpecificationStore,
   ) {}
 
@@ -28,10 +30,11 @@ export class AutoSpecFilterComponent implements OnInit, OnDestroy {
       .get('filter')
       ?.valueChanges.pipe(
         takeUntil(this.destroy$),
-        tap(
-          (specFilterKey) =>
-            (this._autoSpecStore.specificationFilterKey = specFilterKey),
-        ),
+        tap((specFilterKey) => {
+          this._searchBoxStore.searchBoxTypedKeywords = '';
+          this._searchBoxStore.placeholder = `by ${specFilterKey}`;
+          this._autoSpecStore.specificationFilterKey = specFilterKey;
+        }),
       )
       .subscribe();
   }
