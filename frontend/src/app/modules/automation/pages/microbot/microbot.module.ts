@@ -12,6 +12,8 @@ import { ViewAllMicrobotPage } from './view-all/view-all.page';
 import { ViewOrEditMicrobotPage } from './view-or-edit/view-or-edit.page';
 import { FilterAutoMicrobotComponent } from '@modules/automation/components/microbots/microbot-filter-auto/microbot-filter-auto.component';
 import { MicrobotPipeModule } from '@modules/automation/pipes/microbot/microbot-pipe.module';
+import { MicrobotService } from '@modules/automation/services/microbot.service';
+import { SpecificationService } from '@modules/automation/services/specification.service';
 
 @NgModule({
   declarations: [
@@ -31,5 +33,6 @@ import { MicrobotPipeModule } from '@modules/automation/pipes/microbot/microbot-
     ReactiveFormsModule,
     MicrobotPipeModule,
   ],
+  providers: [MicrobotService, SpecificationService],
 })
 export class MicrobotModule {}

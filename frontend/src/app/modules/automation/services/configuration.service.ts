@@ -2,45 +2,15 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ENDPOINT_UTILS } from '@core/utils';
 import { AuthService } from '@modules/auth/services/auth.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AutoConfigService {
   constructor(private _http: HttpClient, private _authService: AuthService) {}
 
   CONFIGURATION_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.automation.root}/${ENDPOINT_UTILS.config.automation.configuration}`;
   CONFIGURATION_ENTRY_URL = `/${ENDPOINT_UTILS.config.base.home}/${ENDPOINT_UTILS.config.automation.root}/${ENDPOINT_UTILS.config.automation.configEntry}`;
-
-  // // CURRENT/SELECTED CONFIGURATION TO BE SHARED ACROSS COMPONENTS
-  // private _configurationSubject: BehaviorSubject<IAutomationConfiguration> =
-  //   new BehaviorSubject<IAutomationConfiguration>(
-  //     {} as IAutomationConfiguration,
-  //   );
-
-  // get configuration$(): Observable<IAutomationConfiguration> {
-  //   return this._configurationSubject.asObservable();
-  // }
-
-  // set configuration(configurationData: IAutomationConfiguration) {
-  //   this._configurationSubject.next(configurationData);
-  // }
-
-  // // CURRENT/SELECTED CONFIGURATION ENTRY TO BE SHARED ACROSS COMPONENTS
-  // private _configEntrySubject: BehaviorSubject<IAutomationConfigurationEntry> =
-  //   new BehaviorSubject<IAutomationConfigurationEntry>(
-  //     {} as IAutomationConfigurationEntry,
-  //   );
-
-  // get configEntry$(): Observable<IAutomationConfigurationEntry> {
-  //   return this._configEntrySubject.asObservable();
-  // }
-
-  // set configEntry(configEntryData: IAutomationConfigurationEntry) {
-  //   this._configEntrySubject.next(configEntryData);
-  // }
 
   // CONFIGURATION CRUD
   configurationByUserId$: Observable<IAutomationConfiguration> = this._http

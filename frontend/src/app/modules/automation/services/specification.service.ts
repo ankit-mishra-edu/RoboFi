@@ -4,9 +4,7 @@ import { ENDPOINT_UTILS } from '@core/utils';
 import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class SpecificationService {
   constructor(private _http: HttpClient) {}
 
