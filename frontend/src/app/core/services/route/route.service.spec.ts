@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { RouteService } from './route.service';
+import { CurrentRouteService } from './current-route.service';
 
-describe('RouteService', () => {
-  let service: RouteService;
+describe('CurrentRouteService', () => {
+  let service: CurrentRouteService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({ teardown: { destroyAfterEach: false } });
-    service = TestBed.inject(RouteService);
+    service = TestBed.inject(CurrentRouteService);
   });
 
   it('should be created', () => {

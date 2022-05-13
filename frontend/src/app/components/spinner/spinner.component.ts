@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./spinner.component.scss'],
 })
 export class SpinnerComponent {
-  @Input() spinnerColor = 'black';
-  @Input() spinnerSize = '1rem';
+  @Input('spinnerSize') spinnerSize = '1rem';
+  @Input('spinnerColor') spinnerColor = 'black';
 }

@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, merge, Observable, Subject } from 'rxjs';
+import { SpeechService } from '@core/services/speech/speech.service';
 import {
+  BehaviorSubject,
   debounceTime,
   distinctUntilChanged,
+  merge,
+  Observable,
   share,
   startWith,
-} from 'rxjs/operators';
-import { SpeechService } from './speech.service';
+  Subject,
+} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SearchBoxService {
+export class SearchBoxStore {
   constructor(private _speechService: SpeechService) {}
 
   // Subject for Search Box
@@ -75,9 +78,5 @@ export class SearchBoxService {
 
   get searchBoxKeywords$(): Observable<string> {
     return this._searchBoxKeywords$;
-  }
-
-  ProcessKeywords(keyword = '', data: any = null, processingMethod: any): any {
-    return processingMethod(keyword, data);
   }
 }

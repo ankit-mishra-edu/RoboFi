@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { SearchBoxService } from '@core/services/search-box/search-box.service';
-import { SpeechService } from '@core/services/search-box/speech.service';
+import { SpeechService } from '@core/services/speech/speech.service';
 import { Observable, Subject } from 'rxjs';
 import { share, takeUntil, tap } from 'rxjs/operators';
+import { SearchBoxStore } from './search-box.store';
 
 @Component({
   selector: 'app-search-box',
@@ -11,15 +11,15 @@ import { share, takeUntil, tap } from 'rxjs/operators';
 })
 export class SearchBoxComponent implements OnInit, OnDestroy {
   constructor(
-    private _searchBoxService: SearchBoxService,
     private _speechService: SpeechService,
+    private _searchBoxStore: SearchBoxStore,
   ) {}
 
   destroy$ = new Subject();
   @Input('width') width = 'w-24';
 
   ngOnInit(): void {
-    this._searchBoxService.listenClicks$
+    this._searchBoxStore.listenClicks$
       .pipe(
         takeUntil(this.destroy$),
         tap(() => this._speechService.listen()),
@@ -29,23 +29,23 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   }
 
   get placeholder$(): Observable<string> {
-    return this._searchBoxService.placeholder$;
+    return this._searchBoxStore.placeholder$;
   }
 
   set searchBoxTypedKeywords(value: string) {
-    this._searchBoxService.searchBoxTypedKeywords = value;
+    this._searchBoxStore.searchBoxTypedKeywords = value;
   }
 
   get searchBoxKeywords$(): Observable<string> {
-    return this._searchBoxService.searchBoxKeywords$;
+    return this._searchBoxStore.searchBoxKeywords$;
   }
 
   get listenClicks$(): Observable<string> {
-    return this._searchBoxService.listenClicks$;
+    return this._searchBoxStore.listenClicks$;
   }
 
   set listenClicks(value: string) {
-    this._searchBoxService.listenClicks = value;
+    this._searchBoxStore.listenClicks = value;
   }
 
   ngOnDestroy(): void {

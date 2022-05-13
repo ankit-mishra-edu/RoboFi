@@ -1,21 +1,21 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SearchBoxService } from '@core/services/search-box/search-box.service';
+import { SearchBoxStore } from '@components/search-box/search-box.store';
 import { combineLatest, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Pipe({
-  name: 'filterAutomationConfigurations',
+  name: 'filterConfigs',
 })
-export class FilterAutomationConfigurationsPipe implements PipeTransform {
-  constructor(private _searchBoxService: SearchBoxService) {}
+export class FilterConfigurationsPipe implements PipeTransform {
+  constructor(private _searchBoxStore: SearchBoxStore) {}
 
   transform(
     automationConfiguration: IAutomationConfiguration,
   ): Observable<IAutomationConfigurationEntry[]> {
-    this._searchBoxService.searchBoxTypedKeywords = '';
+    this._searchBoxStore.searchBoxTypedKeywords = '';
     return combineLatest([
       of(automationConfiguration),
-      this._searchBoxService.searchBoxKeywords$,
+      this._searchBoxStore.searchBoxKeywords$,
     ]).pipe(
       map(([automationConfiguration, searchTerm]) =>
         searchTerm === ''

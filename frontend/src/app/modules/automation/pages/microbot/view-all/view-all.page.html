@@ -12,7 +12,7 @@
 
   <ng-container *ngIf="microbots$ | async as microbots; else loadingMicrobots">
     <ng-container
-      *ngIf="microbots | filterAutomationMicrobot | async as filteredMicrobots; else loadingFilteredMicrobots"
+      *ngIf="microbots | filterMicrobots | async as filteredMicrobots; else loadingFilteredMicrobots"
     >
       <div
         class="grid grid-cols-1 gap-4  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"

@@ -1,20 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FilterAutomationConfigurationsPipe } from './filter-automation-configurations.pipe';
-import { FilterAutomationSpecificationPipe } from './filter-automation-specification.pipe';
-import { FilterAutomationMicrobotPipe } from './filter-microbot.pipe';
+import { ConfigurationPipeModule } from './configuration/configuration-pipe.module';
+import { MicrobotPipeModule } from './microbot/microbot-pipe.module';
+import { SpecificationPipeModule } from './specification/specification-pipe.module';
 
 @NgModule({
-  declarations: [
-    FilterAutomationConfigurationsPipe,
-    FilterAutomationSpecificationPipe,
-    FilterAutomationMicrobotPipe,
+  imports: [
+    CommonModule,
+    MicrobotPipeModule,
+    ConfigurationPipeModule,
+    SpecificationPipeModule,
   ],
-  imports: [CommonModule],
   exports: [
-    FilterAutomationConfigurationsPipe,
-    FilterAutomationSpecificationPipe,
-    FilterAutomationMicrobotPipe,
+    MicrobotPipeModule,
+    ConfigurationPipeModule,
+    SpecificationPipeModule,
   ],
 })
 export class AutomationPipeModule {}

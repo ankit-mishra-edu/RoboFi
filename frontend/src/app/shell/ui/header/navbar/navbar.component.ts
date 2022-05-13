@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteService } from '@core/services/route';
-import { SearchBoxService } from '@core/services/search-box/search-box.service';
+import { SearchBoxStore } from '@components/search-box/search-box.store';
+import { CurrentRouteService } from '@core/services/route';
 import { ROUTER_UTILS } from '@core/utils/router.utils';
 import { AuthService } from '@modules/auth/services/auth.service';
 import { Observable } from 'rxjs';
@@ -15,13 +15,13 @@ export class NavbarComponent implements OnInit {
   currentRouteURL$!: Observable<string>;
 
   constructor(
-    private _routeService: RouteService,
     private _authService: AuthService,
-    private _searchBoxService: SearchBoxService,
+    private _searchBoxStore: SearchBoxStore,
+    private _currentRouteService: CurrentRouteService,
   ) {}
 
   ngOnInit(): void {
-    this.currentRouteURL$ = this._routeService.currentRouteURL$;
+    this.currentRouteURL$ = this._currentRouteService.currentRouteURL$;
   }
 
   routeIsHomeURL(currentRouteURL: string): boolean {
@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
       currentRouteURL.startsWith(`/${this.configPath.base.home}`) &&
       currentRouteURL.endsWith(`/${this.configPath.base.home}`)
     ) {
-      this._searchBoxService.placeholder = 'Home';
+      this._searchBoxStore.placeholder = 'Home';
       return true;
     }
     return false;
@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
 
   routeIsSettingsURL(currentRouteURL: string): boolean {
     if (currentRouteURL.includes(`/${this.configPath.settings.root}`)) {
-      this._searchBoxService.placeholder = 'Settings';
+      this._searchBoxStore.placeholder = 'Settings';
       return true;
     }
     return false;
@@ -45,31 +45,7 @@ export class NavbarComponent implements OnInit {
 
   routeIsAutomationURL(currentRouteURL: string): boolean {
     if (currentRouteURL.includes(`/${this.configPath.automation.root}`)) {
-      this._searchBoxService.placeholder = 'Automation';
-      return true;
-    }
-    return false;
-  }
-
-  routeIsTriggerURL(currentRouteURL: string): boolean {
-    if (currentRouteURL.includes('/trigger')) {
-      // this._navbarService.placeholder = 'Trigger';
-      return true;
-    }
-    return false;
-  }
-
-  routeIsServerURL(currentRouteURL: string): boolean {
-    if (currentRouteURL.includes('/server')) {
-      // this._navbarService.placeholder = 'Server';
-      return true;
-    }
-    return false;
-  }
-
-  routeIsHealthURL(currentRouteURL: string): boolean {
-    if (currentRouteURL.includes('/health')) {
-      // this._navbarService.placeholder = 'Health';
+      this._searchBoxStore.placeholder = 'Automation';
       return true;
     }
     return false;
@@ -84,7 +60,7 @@ export class NavbarComponent implements OnInit {
 
   routeIsUserURL(currentRouteURL: string): boolean {
     if (currentRouteURL.includes(`/${this.configPath.user.root}`)) {
-      this._searchBoxService.placeholder = 'Users';
+      this._searchBoxStore.placeholder = 'Users';
       return true;
     }
     return false;

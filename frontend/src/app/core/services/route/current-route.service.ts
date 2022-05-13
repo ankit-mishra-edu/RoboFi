@@ -6,7 +6,7 @@ import { filter, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class RouteService {
+export class CurrentRouteService {
   constructor(private _router: Router) {}
 
   // Data storage for URl of current route

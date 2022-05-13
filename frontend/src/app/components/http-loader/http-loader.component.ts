@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./http-loader.component.scss'],
 })
 export class HttpLoaderComponent {
-  @Input('dimension') dimension = '50px';
+  @Input('dimension') dimension = '3rem';
 }

@@ -1,23 +1,23 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SearchBoxService } from '@core/services/search-box/search-box.service';
+import { SearchBoxStore } from '@components/search-box/search-box.store';
+import { AutoMicrobotStore } from '@modules/automation/store/microbot/microbot.store';
 import { combineLatest, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AutoMicrobotStore } from '../store/microbot/microbot.store';
 
 @Pipe({
-  name: 'filterAutomationMicrobot',
+  name: 'filterMicrobots',
 })
-export class FilterAutomationMicrobotPipe implements PipeTransform {
+export class FilterMicrobotsPipe implements PipeTransform {
   constructor(
-    private _searchBoxService: SearchBoxService,
+    private _searchBoxStore: SearchBoxStore,
     private _autoMicrobotStore: AutoMicrobotStore,
   ) {}
 
   transform(automationMicrobots: IMicrobot[]): Observable<IMicrobot[]> {
-    this._searchBoxService.searchBoxTypedKeywords = '';
+    this._searchBoxStore.searchBoxTypedKeywords = '';
     return combineLatest([
       of(automationMicrobots),
-      this._searchBoxService.searchBoxKeywords$,
+      this._searchBoxStore.searchBoxKeywords$,
       this._autoMicrobotStore.microbotFilterKey$,
     ]).pipe(
       map(([autoMicrobots, searchTerm, microbotFilterKey]) =>

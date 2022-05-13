@@ -29,7 +29,7 @@
   </div>
 
   <ng-container
-    *ngIf="configurationByUserId | filterAutomationConfigurations | async as filteredConfigEntries; else filteredConfigurationDataNotAvailable"
+    *ngIf="configurationByUserId | filterConfigs | async as filteredConfigEntries; else filteredConfigurationDataNotAvailable"
   >
     <app-config-entry
       class="my-4"
