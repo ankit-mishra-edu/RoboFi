@@ -3,9 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard, NoAuthGuard } from '@core/guards';
 import { ROUTER_UTILS } from '@core/utils/router.utils';
-import { NotFoundModule } from '@shell/ui/not-found/not-found.module';
-import { FooterModule } from '../ui/footer/footer.module';
-import { HeaderModule } from '../ui/header/header.module';
 import { LayoutModule } from '../ui/layout/layout.module';
 import { NotFoundPage } from '../ui/not-found/not-found.page';
 
@@ -98,20 +95,7 @@ const APP_ROUTES: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(APP_ROUTES),
-    FooterModule,
-    HeaderModule,
-    LayoutModule,
-    NotFoundModule,
-  ],
-  exports: [
-    RouterModule,
-    FooterModule,
-    HeaderModule,
-    LayoutModule,
-    NotFoundModule,
-  ],
+  imports: [CommonModule, RouterModule.forRoot(APP_ROUTES)],
+  exports: [RouterModule, LayoutModule],
 })
 export class WebShellModule {}
