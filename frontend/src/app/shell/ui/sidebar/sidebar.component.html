@@ -98,13 +98,33 @@
       </button>
 
       <button
+        name="theme"
+        aria-label="theme"
+        class="sidebar-link"
+        (click)="ToggleTheme()"
+        [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
+      >
+        <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">
+          <i *ngIf="storedThemeIsDark" class="bi bi-sun" aria-hidden="true"></i>
+          <i
+            *ngIf="!storedThemeIsDark"
+            class="bi bi-moon-stars"
+            aria-hidden="true"
+          ></i>
+        </span>
+        <span *ngIf="isSidebarOpen">
+          {{ storedThemeIsDark ? 'Light' : 'Dark' }}
+        </span>
+      </button>
+
+      <button
         name="admin"
         target="_blank"
-        (click)="navigateToAdmin()"
         aria-label="admin"
         class="sidebar-link"
         rel="noopener noreferrer"
         routerLinkActive="active"
+        (click)="navigateToAdmin()"
         [ngClass]="isSidebarOpen ? 'h-8 ml-3' : 'h-11 ml-1'"
       >
         <span *ngIf="!isSidebarOpen" class="px-2 text-3xl">

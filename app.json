@@ -53,7 +53,6 @@
       "description": "Disable Heroku's automatic 'collectstatic' build step."
     },
     "EMAIL_HOST_PASSWORD": {
-      "required": false,
       "required": true,
       "description": "Password for sending email."
     },

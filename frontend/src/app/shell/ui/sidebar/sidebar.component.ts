@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTER_UTILS } from '@core/utils/router.utils';
-import { AuthService } from '@modules/auth/services/auth.service';
 import { TechnologyService } from '@core/services/route';
+import { ThemeList, ThemeService } from '@core/services/theme';
+import { ROUTER_UTILS } from '@core/utils/router.utils';
 import { environment } from '@environments/environment';
+import { AuthService } from '@modules/auth/services/auth.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -13,8 +14,9 @@ import { map } from 'rxjs/operators';
 })
 export class SideBarComponent implements OnInit {
   constructor(
-    private _technologyService: TechnologyService,
     private _authService: AuthService,
+    private _themeService: ThemeService,
+    private _technologyService: TechnologyService,
   ) {}
 
   isSidebarOpen = false;
@@ -43,5 +45,15 @@ export class SideBarComponent implements OnInit {
 
   navigateToAdmin(): void {
     window.open(this.ADMIN_URL);
+  }
+
+  get storedThemeIsDark(): boolean {
+    return this._themeService.storedTheme === ThemeList.Dark;
+  }
+
+  ToggleTheme(): void {
+    this._themeService.setTheme(
+      this.storedThemeIsDark ? ThemeList.Light : ThemeList.Dark,
+    );
   }
 }
