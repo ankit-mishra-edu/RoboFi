@@ -54,3 +54,4 @@ frontend/dist
 backend/static/robofi
 backend/robofi/configs/environment.py
 backend/automate
+migrations

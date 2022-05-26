@@ -8,14 +8,14 @@ from rest_framework.authtoken.models import Token
 
 class User(AbstractUser):
     id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=120, unique=True)
-    first_name = models.CharField(max_length=120, blank=True)
-    last_name = models.CharField(max_length=120, blank=True)
-    email = models.EmailField(max_length=254, unique=True)
-    password = models.CharField(max_length=254)
+    # username = models.CharField(max_length=120, unique=True)
+    # first_name = models.CharField(max_length=120, blank=True)
+    # last_name = models.CharField(max_length=120, blank=True)
+    # email = models.EmailField(max_length=254, unique=True)
+    # password = models.CharField(max_length=254)
 
-    USERNAME_FIELD = 'username'
-    objects = UserManager()
+    # USERNAME_FIELD = 'username'
+    # objects = UserManager()
 
     def __str__(self):
         return self.username
