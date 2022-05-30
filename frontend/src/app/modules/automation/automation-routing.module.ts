@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@core/guards';
 import { ROUTER_UTILS } from '@core/utils';
-import { AutomationDashboardPage } from './pages/dashboard/dashboard.page';
-import { AutomationHomePage } from './pages/home/home.page';
+import { AutomationDashboardPage } from './dashboard/pages/dashboard/dashboard.page';
+import { AutomationHomePage } from './home/pages/home/home.page';
 
 const automationRoutes: Routes = [
   {
@@ -24,7 +24,7 @@ const automationRoutes: Routes = [
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],
     loadChildren: async () =>
-      import('./pages/configuration/configuration.module').then(
+      import('./configuration/configuration.module').then(
         (m) => m.ConfigurationModule,
       ),
     data: {
@@ -38,7 +38,7 @@ const automationRoutes: Routes = [
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],
     loadChildren: async () =>
-      import('./pages/specification/specification.module').then(
+      import('./specification/specification.module').then(
         (m) => m.SpecificationModule,
       ),
     data: {
@@ -52,7 +52,7 @@ const automationRoutes: Routes = [
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],
     loadChildren: async () =>
-      import('./pages/microbot/microbot.module').then((m) => m.MicrobotModule),
+      import('./microbot/microbot.module').then((m) => m.MicrobotModule),
     data: {
       title: 'Automation | Microbot',
       robots: 'noindex, nofollow',
