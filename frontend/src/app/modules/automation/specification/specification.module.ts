@@ -8,7 +8,6 @@ import { CreateSpecificationPage } from './pages/create/create.page';
 import { ViewAllSpecificationPage } from './pages/view-all/view-all.page';
 import { ViewOrEditSpecificationPage } from './pages/view-or-edit/view-or-edit.page';
 import { SpecificationPipeModule } from './pipes/specification-pipe.module';
-import { SpecificationService } from './services/specification.service';
 import { SpecificationRoutingModule } from './specification-routing.module';
 
 @NgModule({
@@ -26,6 +25,5 @@ import { SpecificationRoutingModule } from './specification-routing.module';
     ReactiveFormsModule,
     SpecificationPipeModule,
   ],
-  providers: [SpecificationService],
 })
 export class SpecificationModule {}

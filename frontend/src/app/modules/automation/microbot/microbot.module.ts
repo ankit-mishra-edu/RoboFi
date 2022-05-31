@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@app/components/shared.module';
-import { SpecificationService } from '../specification/services/specification.service';
 import { FilterAutoMicrobotComponent } from './components/microbot-filter-auto/microbot-filter-auto.component';
 import { MicrobotComponent } from './components/microbot/microbot.component';
 import { MicrobotRoutingModule } from './microbot-routing.module';
@@ -13,7 +12,6 @@ import { MicrobotOutputsComponent } from './pages/create/microbot-outputs/microb
 import { ViewAllMicrobotPage } from './pages/view-all/view-all.page';
 import { ViewOrEditMicrobotPage } from './pages/view-or-edit/view-or-edit.page';
 import { MicrobotPipeModule } from './pipes/microbot-pipe.module';
-import { MicrobotService } from './services/microbot.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +31,5 @@ import { MicrobotService } from './services/microbot.service';
     ReactiveFormsModule,
     MicrobotPipeModule,
   ],
-  providers: [MicrobotService, SpecificationService],
 })
 export class MicrobotModule {}

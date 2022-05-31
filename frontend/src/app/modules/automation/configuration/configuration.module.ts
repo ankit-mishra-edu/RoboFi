@@ -8,7 +8,6 @@ import { AutomationAddConfigEntryPage } from './pages/create/create.page';
 import { AutomationViewAllConfigurationPage } from './pages/view-all/view-all.page';
 import { AutomationViewOrEditConfigEntryPage } from './pages/view-or-edit/view-or-edit.page';
 import { ConfigurationPipeModule } from './pipes/configuration-pipe.module';
-import { AutoConfigService } from './services/configuration.service';
 
 @NgModule({
   declarations: [
@@ -24,6 +23,5 @@ import { AutoConfigService } from './services/configuration.service';
     ReactiveFormsModule,
     ConfigurationPipeModule,
   ],
-  providers: [AutoConfigService],
 })
 export class ConfigurationModule {}
