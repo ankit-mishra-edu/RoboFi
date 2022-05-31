@@ -1,9 +1,9 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { patternValidator } from '@core/validators';
 import {
-  patternValidator,
   validateNotExists,
   validateNotTakenByOthers,
-} from '../validators/custom.validator';
+} from '@modules/user/validators/user.validator';
 
 export class AuthenticationForms {
   allUsersArray!: IUser[];

@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@core/utils/router.utils';
+import { isInValid, isValid } from '@core/validators';
 import { iif, Observable } from 'rxjs';
 import { share, switchMap, tap } from 'rxjs/operators';
 import {
@@ -15,7 +16,6 @@ import {
 } from '../../forms/configuration.form';
 import { AutoConfigService } from '../../services/configuration.service';
 import { AutoConfigStore } from '../../store/configuration.store';
-import { isInValid, isValid } from '../../validators/custom.validator';
 
 @Component({
   templateUrl: './create.page.html',

@@ -2,12 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@core/utils/router.utils';
+import { isInValid, isValid } from '@core/validators';
 import { Observable, of, Subject } from 'rxjs';
 import { catchError, filter, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { SpecificationService } from '../../../specification/services/specification.service';
 import { MicrobotForms } from '../../forms/microbot.form';
 import { MicrobotService } from '../../services/microbot.service';
-import { isInValid, isValid } from '../../validators/custom.validator';
 
 @Component({
   templateUrl: './create.page.html',

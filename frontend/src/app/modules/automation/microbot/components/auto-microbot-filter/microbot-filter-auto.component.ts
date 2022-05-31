@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { SearchBoxStore } from '@components/search-box/search-box.store';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { MicrobotFilterForm } from '../../forms/microbot.form';
-import { AutoMicrobotStore } from '../../store/microbot/microbot.store';
+import { AutoMicrobotStore } from '../../store/microbot.store';
 
 @Component({
   selector: 'app-auto-microbot-filter',

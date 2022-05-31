@@ -7,9 +7,9 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@core/utils/router.utils';
+import { isInValid, isValid } from '@core/validators';
 import { SpecificationForm } from '../../forms/specification.form';
 import { SpecificationService } from '../../services/specification.service';
-import { isInValid, isValid } from '../../validators/custom.validator';
 
 @Component({
   templateUrl: './create.page.html',

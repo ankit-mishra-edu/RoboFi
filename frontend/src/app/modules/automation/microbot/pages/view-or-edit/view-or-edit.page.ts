@@ -2,13 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@core/utils/router.utils';
-import { isInValid, isValid } from '@modules/auth/validators/custom.validator';
+import { isInValid, isValid } from '@core/validators';
 import { combineLatest, iif, Observable, of, Subject } from 'rxjs';
 import { catchError, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { SpecificationService } from '../../../specification/services/specification.service';
 import { MicrobotForms } from '../../forms/microbot.form';
 import { MicrobotService } from '../../services/microbot.service';
-import { AutoMicrobotStore } from '../../store/microbot/microbot.store';
+import { AutoMicrobotStore } from '../../store/microbot.store';
 
 @Component({
   templateUrl: './view-or-edit.page.html',

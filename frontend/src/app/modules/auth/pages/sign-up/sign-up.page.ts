@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { isInValid, isValid } from '@core/validators';
 import { UserService } from '@modules/user/services/user.service';
 import { Observable, Subscription, timer } from 'rxjs';
 import { share, switchMap, tap } from 'rxjs/operators';
 import { AuthenticationForms } from '../../forms/auth.form';
 import { AuthService } from '../../services/auth.service';
-import { isInValid, isValid } from '../../validators/custom.validator';
 
 @Component({
   templateUrl: './sign-up.page.html',

@@ -2,11 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 // All related to Forms
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { isInValid, isValid } from '@core/validators';
 import { AuthService } from '@modules/auth/services/auth.service';
-import { isInValid, isValid } from '@modules/auth/validators/custom.validator';
 import { Observable, Subscription } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
-import { UserForms } from '../../forms/change-password.form';
+import { UserForms } from '../../forms/user.form';
 import { UserService } from '../../services/user.service';
 
 @Component({

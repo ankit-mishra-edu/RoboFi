@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 // All related to Forms
 import { AbstractControl, FormGroup } from '@angular/forms';
+import { isInValid, isValid } from '@core/validators';
 import { environment } from '@environments/environment';
 import { UserDetailsForms } from '@modules/auth/forms/auth.form';
 import { AuthService } from '@modules/auth/services/auth.service';
-import { isInValid, isValid } from '@modules/auth/validators/custom.validator';
 import { Observable } from 'rxjs';
 import { share, switchMap, tap } from 'rxjs/operators';
 import { UserService } from '../../services/user.service';

@@ -10,7 +10,7 @@ import { ROUTER_UTILS } from '@core/utils/router.utils';
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import { MicrobotService } from '../../services/microbot.service';
-import { AutoMicrobotStore } from '../../store/microbot/microbot.store';
+import { AutoMicrobotStore } from '../../store/microbot.store';
 
 @Component({
   selector: 'app-microbot',

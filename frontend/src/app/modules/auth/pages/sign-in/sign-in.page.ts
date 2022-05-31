@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@core/utils/router.utils';
+import { isInValid, isValid } from '@core/validators';
 import { Subscription } from 'rxjs';
 import { AuthenticationForms } from '../../forms/auth.form';
 import { AuthService } from '../../services/auth.service';
-import { isInValid, isValid } from '../../validators/custom.validator';
 
 @Component({
   templateUrl: './sign-in.page.html',

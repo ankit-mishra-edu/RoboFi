@@ -1,4 +1,4 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 
 export function validateNotExists(allUsers: IUser[]): ValidatorFn {
@@ -58,25 +58,4 @@ export function validateNotTakenByOthers(
     }
     return of(validationStatus ? { alreadyTakenError: true } : null);
   };
-}
-
-export function patternValidator(
-  regex: RegExp,
-  error: ValidationErrors,
-): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } | null => {
-    if (!control.value) {
-      return null;
-    }
-    const valid = regex.test(control.value);
-    return valid ? null : error;
-  };
-}
-
-export function isInValid(control: AbstractControl): boolean {
-  return control.invalid && control.touched && control.dirty;
-}
-
-export function isValid(control: AbstractControl): boolean {
-  return control.valid && (control.touched || control.dirty);
 }

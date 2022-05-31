@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { SearchBoxStore } from '@components/search-box/search-box.store';
 import { combineLatest, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AutoMicrobotStore } from '../store/microbot/microbot.store';
+import { AutoMicrobotStore } from '../store/microbot.store';
 
 @Pipe({
   name: 'filterMicrobots',

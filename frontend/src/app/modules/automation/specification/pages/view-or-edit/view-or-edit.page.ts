@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@core/utils/router.utils';
-import { isInValid, isValid } from '@modules/auth/validators/custom.validator';
+import { isInValid, isValid } from '@core/validators';
 import { iif, Observable, Subject } from 'rxjs';
 import { switchMap, takeUntil, tap } from 'rxjs/operators';
 import { SpecificationForm } from '../../forms/specification.form';

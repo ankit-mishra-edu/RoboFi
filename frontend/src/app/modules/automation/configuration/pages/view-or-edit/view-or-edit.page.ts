@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ROUTER_UTILS } from '@core/utils/router.utils';
+import { isInValid, isValid } from '@core/validators';
 import { iif, Observable } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { ConfigurationEntryForm } from '../../forms/configuration.form';
 import { AutoConfigService } from '../../services/configuration.service';
 import { AutoConfigStore } from '../../store/configuration.store';
-import { isInValid, isValid } from '../../validators/custom.validator';
 
 @Component({
   templateUrl: './view-or-edit.page.html',

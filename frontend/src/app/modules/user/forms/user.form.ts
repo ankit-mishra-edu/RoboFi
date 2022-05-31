@@ -1,8 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  patternValidator,
-  validateNotTakenByOthers,
-} from '../validators/custom.validator';
+import { patternValidator } from '@core/validators';
+import { validateNotTakenByOthers } from '../validators/user.validator';
 
 export class UserForms {
   public static ConfirmUserForm(currentUser: IUser): FormGroup {

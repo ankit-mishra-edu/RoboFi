@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
+import { isInValid, isValid } from '@core/validators';
 import { AuthService } from '@modules/auth/services/auth.service';
-import { isInValid, isValid } from '@modules/auth/validators/custom.validator';
 import { Subscription } from 'rxjs';
-import { UserForms } from '../../forms/change-password.form';
+import { UserForms } from '../../forms/user.form';
 import { UserService } from '../../services/user.service';
 
 @Component({
