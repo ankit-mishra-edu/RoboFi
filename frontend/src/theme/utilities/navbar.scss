@@ -5,9 +5,10 @@ a.navbar-link {
   @apply text-sm;
   @apply rounded-md;
   @apply font-medium;
-  @apply text-gray-700;
+  // @apply text-gray-700;
   @apply whitespace-nowrap;
   @apply dark:text-gray-300;
+  color: var(--color-secondary);
   @apply dark:hover:bg-gray-500;
 
   &:hover {

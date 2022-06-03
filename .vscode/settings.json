@@ -29,5 +29,6 @@
   // "editor.wordWrap": "wordWrapColumn",
   "editor.autoClosingDelete": "always",
   "editor.bracketPairColorization.enabled": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "scss.lint.unknownAtRules": "ignore"
 }

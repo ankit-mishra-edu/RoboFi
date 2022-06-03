@@ -1,6 +1,6 @@
 div.form-wrapper {
   @apply m-8;
-  @apply p-4;
+  @apply px-4;
   @apply shadow-2xl;
 
   .form-group {
@@ -14,7 +14,7 @@ div.form-wrapper {
 
     .form-label {
       font-size: 17px;
-      font-weight: bold;
+      @apply font-normal;
       color: var(--color-secondary);
 
       &.required {

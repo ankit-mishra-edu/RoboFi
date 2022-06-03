@@ -9,7 +9,8 @@
     @apply pb-4;
     @apply flex;
     @apply flex-col;
-    @apply text-black;
+    // @apply text-black;
+    color: var(--color-secondary);
 
     .sidebar-link-wrapper {
       @apply flex;
