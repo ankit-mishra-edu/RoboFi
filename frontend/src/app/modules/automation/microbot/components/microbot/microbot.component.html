@@ -2,29 +2,25 @@
   [id]="'microbot-' + microbotIndex"
   class="w-full max-w-sm m-2 rounded-lg microbot lg:flex"
 >
-  <div
-    class="flex justify-around h-12 text-center bg-green-300 rounded-t-lg  sm:flex-row lg:flex-col lg:h-48 lg:rounded-t-none lg:rounded-l-lg lg:w-1/6"
-  >
+  <div class="microbot-crud-buttons">
     <i
       aria-hidden="true"
       (click)="ViewMicrobot(microbot)"
-      class="text-2xl cursor-pointer bi bi-eye-fill primary"
+      class="bi bi-eye-fill primary"
     ></i>
     <i
       aria-hidden="true"
       (click)="EditMicrobot(microbot)"
-      class="text-2xl cursor-pointer bi bi-pencil-square secondary"
+      class="bi bi-pencil-square secondary"
     ></i>
     <i
       aria-hidden="true"
       (click)="DeleteMicrobot(microbot)"
-      class="text-2xl cursor-pointer bi bi-archive-fill danger"
+      class="bi bi-archive-fill danger"
     ></i>
   </div>
 
-  <div
-    class="flex flex-col w-full h-48 p-2 text-gray-900 bg-white rounded-b-lg  lg:w-5/6 lg:rounded-b-none lg:rounded-r-lg"
-  >
+  <div class="microbot-details">
     <div
       class="mx-1 mb-2 text-xl font-bold text-center bg-gray-200 rounded-3xl"
     >

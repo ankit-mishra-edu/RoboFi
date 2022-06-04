@@ -7,4 +7,39 @@
     transform: translateY(-3px);
     box-shadow: 4px 3px 11px 6px gray;
   }
+
+  .microbot-crud-buttons {
+    @apply h-12;
+    @apply flex;
+    @apply lg:h-48;
+    @apply lg:w-1/6;
+    @apply sm:flex-row;
+    @apply lg:flex-col;
+    @apply text-center;
+    @apply rounded-t-lg;
+    @apply text-white;
+    @apply justify-around;
+    @apply lg:rounded-t-none;
+    @apply lg:rounded-l-lg;
+    background-color: var(--color-secondary);
+
+    i {
+      @apply text-2xl;
+      @apply cursor-pointer;
+    }
+  }
+
+  .microbot-details {
+    @apply p-2;
+    @apply h-48;
+    @apply flex;
+    @apply w-full;
+    @apply lg:w-5/6;
+    @apply flex-col;
+    @apply bg-white;
+    @apply rounded-b-lg;
+    @apply text-gray-900;
+    @apply lg:rounded-b-none;
+    @apply lg:rounded-r-lg;
+  }
 }
