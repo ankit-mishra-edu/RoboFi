@@ -9,6 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
       - name: Build the Docker image
-        run: cd frontend && docker build . --file Dockerfile --tag ankitmishraedu/robo-fi:1.0.0
+        uses: actions/checkout@v3
+        run: cd frontend && docker build . --file Dockerfile --tag ankitmishraedu/robo-fi:latest && docker push ankitmishraedu/robo-fi:latest
