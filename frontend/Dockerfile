@@ -4,16 +4,15 @@ FROM node:16.13.0-alpine as node
 # Set working directory.
 WORKDIR /usr/src/app
 
-# Copy app dependencies.
-CMD ["ls"]
-COPY package.json .
+# # Copy app dependencies.
+# COPY package.json .
+
+# Copy file from frontend.
+COPY . .
 
 # Install angular globally and app dependencies.
 RUN npm i -g @angular/cli@13.2.3
 RUN npm install
-
-# Copy file from frontend.
-COPY . .
 
 # Build angular app
 RUN ng build --configuration production
