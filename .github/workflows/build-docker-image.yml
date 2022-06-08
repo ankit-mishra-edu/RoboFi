@@ -1,0 +1,15 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build the Docker image
+        run: cd frontend && docker build . --file Dockerfile --tag ankitmishraedu/robo-fi:latest
