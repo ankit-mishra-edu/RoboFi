@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: cd frontend && docker build . --file Dockerfile --tag ankit-mishra-edu/robo-fi:1.0.0
+        run: cd frontend && docker build . --file Dockerfile --tag ankitmishraedu/robo-fi:1.0.0
