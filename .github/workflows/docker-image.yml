@@ -15,6 +15,6 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
+      - uses: actions/checkout@v3
       - name: Build the Docker image
-        uses: actions/checkout@v3
         run: cd frontend && docker build . --file Dockerfile --tag ankitmishraedu/robo-fi:latest && docker push ankitmishraedu/robo-fi:latest
