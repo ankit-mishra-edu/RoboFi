@@ -9,7 +9,7 @@ CMD ["ls"]
 COPY package.json .
 
 # Install angular globally and app dependencies.
-RUN npm i -g @angular/cli@11.2.4
+RUN npm i -g @angular/cli@13.2.3
 RUN npm install
 
 # Copy file from frontend.
