@@ -5,7 +5,7 @@ FROM node:16.13.0-alpine as node
 WORKDIR /usr/src/app
 
 # Copy app dependencies.
-RUN ls
+CMD ["ls"]
 COPY package.json .
 
 # Install angular globally and app dependencies.
