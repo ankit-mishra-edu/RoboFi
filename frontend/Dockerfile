@@ -14,17 +14,23 @@ COPY . .
 RUN npm i -g @angular/cli@13.2.3
 RUN npm install
 
+# Remove everything from the build folder
+RUN rm -rf /usr/src/app/dist/robo-fi/*
+
 # Build angular app
 RUN ng build --configuration production
 
+# Run node server.js
+CMD ["node", "server.js"]
 
-### Stage 2: delivery ###
-FROM nginx:1.21.6-alpine
 
-# Remove default nginx website
-RUN rm -rf /usr/share/nginx/html/*
+# ### Stage 2: delivery ###
+# FROM nginx:1.21.6-alpine
 
-# Copy output directory from node to nginx image.
-COPY --from=node /usr/src/app/dist/robo-fi /usr/share/nginx/html
+# # Remove default nginx website
+# RUN rm -rf /usr/share/nginx/html/*
+
+# # Copy output directory from node to nginx image.
+# COPY --from=node /usr/src/app/dist/robo-fi /usr/share/nginx/html
 
 EXPOSE 80
