@@ -17,8 +17,17 @@ jobs:
 
       - uses: actions/checkout@v3
 
-      - name: Build the Docker image
-        run: cd frontend && docker build . --file Dockerfile --tag ankitmishraedu/robo-fi:latest
+      - name: Change directory
+        uses: cd frontend
 
-      - name: Publish Docker image
-        run: docker push ankitmishraedu/robo-fi:latest
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: ankitmishraedu/robofi-frontend:latest
+
+      # - name: Build the Docker image
+      #   run: cd frontend && docker build . --file Dockerfile --tag ankitmishraedu/robofi-frontend:latest
+
+      # - name: Publish Docker image
+      #   run: docker push ankitmishraedu/robofi-frontend:latest
