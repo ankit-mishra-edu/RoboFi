@@ -14,9 +14,6 @@ COPY . .
 RUN npm i -g @angular/cli@13.2.3
 RUN npm install
 
-# Remove everything from the build folder
-RUN rm -rf /usr/src/app/dist/robo-fi/*
-
 # Build angular app
 RUN ng build --configuration production --output-hashing none
 
