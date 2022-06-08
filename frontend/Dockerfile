@@ -18,7 +18,7 @@ RUN npm install
 RUN rm -rf /usr/src/app/dist/robo-fi/*
 
 # Build angular app
-RUN ng build --configuration production
+RUN ng build --configuration production --output-hashing none
 
 # Run node server.js
 CMD ["node", "server.js"]
