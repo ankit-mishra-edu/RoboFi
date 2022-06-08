@@ -26,3 +26,5 @@ RUN rm -rf /usr/share/nginx/html/*
 
 # Copy output directory from node to nginx image.
 COPY --from=node /usr/src/app/dist/robo-fi /usr/share/nginx/html
+
+EXPOSE 80
