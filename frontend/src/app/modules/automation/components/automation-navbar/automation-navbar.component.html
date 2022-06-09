@@ -26,6 +26,18 @@
   <a
     class="navbar-link"
     routerLinkActive="active"
+    [routerLink]="[automationPath.root, automationPath.workflow.root]"
+    ><span class="px-1">
+      <i class="bi bi-bezier" aria-hidden="true"></i>
+    </span>
+    <span class="d-none d-md-inline-block">
+      {{ 'Workflow' }}
+    </span></a
+  >
+
+  <a
+    class="navbar-link"
+    routerLinkActive="active"
     [routerLink]="[automationPath.root, automationPath.specification.root]"
     ><span class="px-1">
       <i class="bi bi-layers" aria-hidden="true"></i>

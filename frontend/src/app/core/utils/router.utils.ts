@@ -77,6 +77,11 @@ export const ROUTER_UTILS = {
         viewAll: 'view-all',
         viewOrEdit: 'view-or-edit',
       },
+      workflow: {
+        root: 'workflow',
+        home: 'home',
+        editor: 'editor',
+      },
     },
   },
 };

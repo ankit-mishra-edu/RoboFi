@@ -1,0 +1,9 @@
+.accordion {
+  .accordion-item {
+    .accordion-header {
+      &:hover {
+        background-color: var(--color-secondary);
+      }
+    }
+  }
+}

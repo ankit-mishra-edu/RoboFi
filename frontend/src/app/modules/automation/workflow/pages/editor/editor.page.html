@@ -1,0 +1,153 @@
+<div class="workflow-editor-wrapper flex flex-col md:flex-row">
+  <div class="left-sidebar-wrapper flex flex-row">
+    <div *ngIf="isEditorSidebarOpen" class="left-sidebar">
+      <div class="mx-2 navigate-back">
+        <button
+          type="button"
+          name="sidebar-toggle"
+          [routerLink]="['../']"
+          aria-label="sidebar-toggle"
+          class="navigate-back-button btn"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
+            />
+          </svg>
+          <span class="text-sm">Back</span>
+        </button>
+      </div>
+      <div class="flex flex-col workflow-details-form">
+        <div class="form-wrapper m-0 py-0">
+          <form
+            class="form-group"
+            [formGroup]="editorForm"
+            (ngSubmit)="CreateWorkflow()"
+          >
+            <!-- <legend class="form-heading">Create Workflow</legend> -->
+
+            <div class="form-group name">
+              <label for="name" class="form-label required"
+                >Workflow Name
+              </label>
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                class="form-control highlight"
+                [ngClass]="{
+                  'is-invalid': isInValid(value('name')),
+                  'is-valid': isValid(value('name'))
+                }"
+              />
+              <small
+                *ngIf="value('name').touched && value('name').errors?.required"
+                class="invalid-feedback"
+                >{{ 'Name is Mandatory.' }}</small
+              >
+            </div>
+
+            <div class="form-group visibility flex gap-4">
+              <div class="form-check form-switch">
+                <label
+                  for="visibility-private"
+                  class="form-check-label form-label"
+                  >Private</label
+                >
+                <input
+                  type="radio"
+                  value="PRIVATE"
+                  id="visibility-private"
+                  class="form-check-input"
+                  formControlName="visibility"
+                />
+              </div>
+
+              <div class="form-check form-switch">
+                <label
+                  for="visibility-shared"
+                  class="form-check-label form-label"
+                  >Shared</label
+                >
+                <input
+                  type="radio"
+                  value="SHARED"
+                  id="visibility-shared"
+                  class="form-check-input"
+                  formControlName="visibility"
+                />
+              </div>
+            </div>
+
+            <button
+              class="btn"
+              type="submit"
+              [disabled]="editorForm.invalid"
+              [ngClass]="{
+                'form-valid': !editorForm.invalid,
+                'form-invalid': editorForm.invalid
+              }"
+            >
+              Create
+            </button>
+          </form>
+        </div>
+        <div class="microbots-by-category p-3">
+          <app-microbot-list-by-category
+            [microbotsByCategory]="microbotsByCategory"
+            *ngIf="
+              microbotsByCategory$ | async as microbotsByCategory;
+              else loadingMicrobots
+            "
+          ></app-microbot-list-by-category>
+          <ng-template #loadingMicrobots>
+            <app-spinner>Loading Microbots</app-spinner>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="highlighted-bar">
+      <button
+        type="button"
+        name="editor-toggle"
+        aria-label="editor-editor"
+        (click)="ToggleEditorSidebar()"
+        class="btn editor-toggler"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4 h-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            *ngIf="isEditorSidebarOpen"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
+          />
+          <path
+            *ngIf="!isEditorSidebarOpen"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 5l7 7-7 7M5 5l7 7-7 7"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="workflow-editor flex flex-row flex-auto bg-green-300"></div>
+  <div class="properties-panel-wrapper bg-blue-300">Right</div>
+</div>

@@ -20,17 +20,27 @@ const automationRoutes: Routes = [
     component: AutomationDashboardPage,
   },
   {
-    path: ROUTER_UTILS.config.automation.configuration.root,
+    path: ROUTER_UTILS.config.automation.workflow.root,
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],
     loadChildren: async () =>
-      import('./configuration/configuration.module').then(
-        (m) => m.ConfigurationModule,
-      ),
+      import('./workflow/workflow.module').then((m) => m.WorkflowModule),
     data: {
-      title: 'Automation | Configuration',
+      title: 'Automation | Workflow',
       robots: 'noindex, nofollow',
-      description: 'Automation configurations.',
+      description: 'Automation Workflow.',
+    },
+  },
+  {
+    path: ROUTER_UTILS.config.automation.microbot.root,
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard],
+    loadChildren: async () =>
+      import('./microbot/microbot.module').then((m) => m.MicrobotModule),
+    data: {
+      title: 'Automation | Microbot',
+      robots: 'noindex, nofollow',
+      description: 'Automation microbots.',
     },
   },
   {
@@ -48,15 +58,17 @@ const automationRoutes: Routes = [
     },
   },
   {
-    path: ROUTER_UTILS.config.automation.microbot.root,
+    path: ROUTER_UTILS.config.automation.configuration.root,
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],
     loadChildren: async () =>
-      import('./microbot/microbot.module').then((m) => m.MicrobotModule),
+      import('./configuration/configuration.module').then(
+        (m) => m.ConfigurationModule,
+      ),
     data: {
-      title: 'Automation | Microbot',
+      title: 'Automation | Configuration',
       robots: 'noindex, nofollow',
-      description: 'Automation microbots.',
+      description: 'Automation configurations.',
     },
   },
 ];

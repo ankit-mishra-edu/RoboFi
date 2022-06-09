@@ -53,19 +53,6 @@ const APP_ROUTES: Routes = [
     },
   },
   {
-    path: ROUTER_UTILS.config.workflow.root,
-    canLoad: [AuthGuard],
-    canActivate: [AuthGuard],
-    loadChildren: async () =>
-      import('@modules/workflow/workflow.module').then((m) => m.WorkflowModule),
-    data: {
-      title: 'Workflow',
-      robots: 'index, follow',
-      description: 'Workflow.',
-    },
-  },
-
-  {
     path: ROUTER_UTILS.config.automation.root,
     canLoad: [AuthGuard],
     canActivate: [AuthGuard],

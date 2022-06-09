@@ -1,0 +1,37 @@
+<div class="accordion accordion-flush border-2" id="microbotListByCatgory">
+  <div
+    class="accordion-item"
+    *ngFor="let microbotsByCategory of microbotsByCategory | keyvalue"
+  >
+    <div
+      class="accordion-header"
+      [id]="'flush-heading-' + microbotsByCategory.key"
+    >
+      <button
+        type="button"
+        aria-expanded="false"
+        data-bs-toggle="collapse"
+        class="accordion-button collapsed py-1 px-2 hover:text-white"
+        [attr.aria-controls]="'flush-collapse-' + microbotsByCategory.key"
+        [attr.data-bs-target]="'#flush-collapse-' + microbotsByCategory.key"
+      >
+        {{ microbotsByCategory.key }}
+      </button>
+    </div>
+    <div
+      class="accordion-collapse collapse"
+      data-bs-parent="#microbotListByCatgory"
+      [id]="'flush-collapse-' + microbotsByCategory.key"
+      [attr.aria-labelledby]="'flush-heading-' + microbotsByCategory.key"
+    >
+      <div class="accordion-body">
+        <ul>
+          <li class="p-4" *ngFor="let microbot of microbotsByCategory.value">
+            <span>{{ microbot.Name }}</span>
+            <span>{{ microbot.Technology }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
