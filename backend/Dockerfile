@@ -1,8 +1,15 @@
 FROM python:3.9.13-alpine3.15
 
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
 WORKDIR /usr/src/app/backend
 
 COPY requirements.txt .
+
+RUN apk add --update --no-cache --virtual .tmp-build-deps \
+    gcc libc-dev linux-headers postgresql-dev \
+    && apk add libffi-dev
 
 RUN \
   apk add --no-cache postgresql-libs && \
