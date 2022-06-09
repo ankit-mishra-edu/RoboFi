@@ -4,8 +4,12 @@ services:
     build: ./backend/
     ports:
       - '8081:8000'
+    command: hypercorn robofi.handlers.asgi:application --bind 0.0.0.0:8000
+    container_name: backend
 
   frontend:
     build: ./frontend/
     ports:
       - '80:80'
+    command: node server.js
+    container_name: frontend
