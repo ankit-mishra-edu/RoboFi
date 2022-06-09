@@ -2,7 +2,7 @@
 FROM node:16.13.0-alpine as node
 
 # Set working directory.
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/frontend
 
 # # Copy app dependencies.
 # COPY package.json .
