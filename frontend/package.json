@@ -6,9 +6,10 @@
     "e2e": "ng e2e",
     "test": "ng test",
     "lint": "ng lint",
-    "build": "ng build --configuration production --output-path ../backend/static/robofi --deploy-url /static/robofi/ --output-hashing none",
     "start": "node server.js",
-    "postinstall": "ng build --aot"
+    "postinstall": "ng build --aot",
+    "build:docker": "ng build --configuration production --output-hashing none",
+    "build": "ng build --configuration production --output-path ../backend/static/robofi --deploy-url /static/robofi/ --output-hashing none"
   },
   "private": true,
   "dependencies": {
