@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./backend/
+    ports:
+      - '8000:8000'
+    container_name: robofi_backend
+    command: hypercorn robofi.handlers.asgi:application --bind 0.0.0.0:8000
+
+  frontend:
+    build:
+      context: ./frontend/
+    ports:
+      - '80:80'
+    volumes:
+      - frontend_builds: /usr/src/app/frontend/dist/robo-fi
+    command: node server.js
+    container_name: robofi_frontend
+
+  volumes:
+    frontend_builds:
