@@ -40,11 +40,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
-    'django_celery_beat',
-]
 
-if CELERY_RESULT_BACKEND == 'django-db':
-    INSTALLED_APPS += ['django_celery_results', ]
+    # Celery
+    'django_celery_beat',
+    'django_celery_results',
+]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
