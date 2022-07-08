@@ -13,6 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from api.settings import urls as settings_url
+from channels.routing import URLRouter
 from django.contrib import admin
 from django.urls import include, path, re_path
 from django.views.generic.base import TemplateView
@@ -23,6 +25,11 @@ urlpatterns = [
     path('api/users/', include('api.users.urls'), name='users-api'),
     path('api/authentication/', include('api.authentication.urls'), name='auth-api'),
     path('api/automation/', include('api.automation.urls'), name='automation-api'),
+    path('api/settings/', include('api.settings.urls'), name='settings-api'),
     re_path(r'^.*', TemplateView.as_view(template_name="frontend.html"),
             name="frontend"),
+]
+
+websocket_urlpatterns = [
+    path(r'ws/settings/', URLRouter(settings_url.websocket_urlpatterns)),
 ]

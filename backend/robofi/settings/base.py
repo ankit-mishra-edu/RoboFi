@@ -21,7 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Application definition
 INSTALLED_APPS = [
-    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -29,13 +28,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'channels',
+    'corsheaders',
     'whitenoise.runserver_nostatic',
-
-    'api.users',
-    'api.automation.microbot',
-    'api.automation.specification',
-    'api.automation.configuration',
-    'api.automation',
 
     'rest_framework',
     'rest_framework.authtoken',
@@ -44,6 +39,16 @@ INSTALLED_APPS = [
     # Celery
     'django_celery_beat',
     'django_celery_results',
+
+    'api.users',
+    'api.automation.microbot',
+    'api.automation.specification',
+    'api.automation.configuration',
+    'api.automation',
+
+    'api.settings',
+    'api.settings.notification',
+
 ]
 
 MIDDLEWARE = [
@@ -60,7 +65,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'robofi.routes.urls'
 AUTH_USER_MODEL = 'users.User'
-WSGI_APPLICATION = 'robofi.handlers.wsgi.application'
+WSGI_APPLICATION = 'robofi.handlers.asgi.application'
 ASGI_APPLICATION = 'robofi.handlers.asgi.application'
 
 

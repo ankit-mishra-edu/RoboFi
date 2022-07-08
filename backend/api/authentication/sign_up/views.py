@@ -44,7 +44,7 @@ class SignUpView(views.APIView):
             subject=subject,
             email=token.user.username,  # who to email
             cc=[],
-            template="email.html",  # template to be used
+            template="authentication/email.html",  # template to be used
             context={"username": token.user.username,
                      "activation_link": activation_link}
         )

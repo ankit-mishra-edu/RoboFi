@@ -1,4 +1,8 @@
+import asyncio
+import json
+
 from api.users.models import User
+from channels.layers import get_channel_layer
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives, get_connection
 from django.template.loader import render_to_string
@@ -59,3 +63,15 @@ def create_email(self, user_id: int, **kwargs):
         email.attach_alternative(html_content, "text/html")
         email.send()
     return "Done"
+
+
+@shared_task(bind=True)
+def schedule_notification(self, notification, room_group_name):
+    asyncio.run((get_channel_layer().group_send)(
+        room_group_name,
+        {
+            "type": "notify",
+            "notification": notification
+        }
+    ))
+    return json.dumps(notification)
