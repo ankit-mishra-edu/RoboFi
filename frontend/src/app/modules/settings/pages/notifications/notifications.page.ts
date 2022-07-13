@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { isInValid, isValid } from '@core/validators';
 import { AuthService } from '@modules/auth/services/auth.service';
 import { NotificationForm } from '@modules/settings/forms/notification.form';
+import { UserService } from '@modules/user/services/user.service';
 import { Observable, tap } from 'rxjs';
 import { NotificationService } from '../../services/notification.service';
 
@@ -13,11 +15,16 @@ export class NotificationsPage implements OnInit {
   constructor(
     private _formBulder: FormBuilder,
     private _authService: AuthService,
+    private _userService: UserService,
     private _notificationService: NotificationService,
   ) {}
 
+  isValid = isValid;
+  isInValid = isInValid;
   notificationForm!: FormGroup;
   notifications = [] as INotification[];
+
+  receivers$!: Observable<IUser[]>;
   receivedNotification$!: Observable<INotification>;
 
   ngOnInit(): void {
@@ -33,6 +40,12 @@ export class NotificationsPage implements OnInit {
       this._formBulder,
       this._authService,
     ).InitForm();
+
+    this.receivers$ = this._userService.allUsers$;
+  }
+
+  value(controlName: string): AbstractControl {
+    return this.notificationForm.controls[controlName];
   }
 
   SendNotification(): void {

@@ -12,7 +12,7 @@ export class NotificationForm {
   public InitForm(): FormGroup {
     this.notificationForm = this._formBuilder.group({
       sender: [this._authService.loggedInUser.id, [Validators.required]],
-      receivers: [],
+      receivers: [[], [Validators.required]],
       content: [null, [Validators.required]],
     });
     return this.notificationForm;
