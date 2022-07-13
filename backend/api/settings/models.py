@@ -14,7 +14,7 @@ class Notification(models.Model):
     id = models.AutoField(primary_key=True)
     sender: User = models.ForeignKey(
         to=User, on_delete=models.CASCADE, related_name='notification_sender')
-    receiver: List[User] = models.ManyToManyField(
+    receivers: List[User] = models.ManyToManyField(
         to=User, related_name='notification_receiver', blank=False)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

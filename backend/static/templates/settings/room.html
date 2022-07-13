@@ -11,7 +11,7 @@
 
     <script>
       const chatSocket = new WebSocket(
-        'ws://' + window.location.host + '/ws/settings/notifications/',
+        'ws://' + window.location.host + '/ws/settings/notification/',
       );
 
       chatSocket.onmessage = function (e) {
@@ -38,9 +38,8 @@
         const message = messageInputDom.value;
         chatSocket.send(
           JSON.stringify({
-            sender: 1,
-            receiver: [1],
-            content: message,
+            type: '',
+            notification: { sender: 1, receiver: [1], content: message },
           }),
         );
         messageInputDom.value = '';

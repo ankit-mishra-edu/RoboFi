@@ -20,9 +20,9 @@ from .notification import routing as notification_routing
 from .notification import views
 
 urlpatterns = [
-    path('notifications/', view=views.notification_room)
+    # path('notification/', view=views.notification_room)
 ]
 
 websocket_urlpatterns = [
-    path(r'notifications/', URLRouter(notification_routing.websocket_urlpatterns)),
+    path(r'notification/', URLRouter(notification_routing.websocket_urlpatterns)),
 ]

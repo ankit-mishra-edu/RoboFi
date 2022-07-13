@@ -7,8 +7,11 @@ from .serializers import NotificationSerializer
 
 
 @database_sync_to_async
-def create_notification(notification):
-    notification = json.loads(notification)
+def create_notification(text_data):
+    notification = json.loads(text_data).get('notification', None)
+    if notification is None:
+        return
+
     serializer = NotificationSerializer(data=notification)
 
     if serializer.is_valid():
