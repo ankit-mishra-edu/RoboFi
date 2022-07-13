@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { getItem, removeItem, setItem, StorageItem } from '@core/utils';
-import { ROUTER_UTILS } from '@core/utils/router.utils';
 import { ENDPOINT_UTILS } from '@core/utils/endpoints.utils';
+import { ROUTER_UTILS } from '@core/utils/router.utils';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { share, tap } from 'rxjs/operators';
 
@@ -17,7 +17,7 @@ export class AuthService {
     };
     if (
       this.isLoggedIn &&
-      (<IUser>getItem(StorageItem.User)).username != undefined
+      (<IUser>getItem(StorageItem.User))?.username != undefined
     ) {
       this.loggedInUser = <IUser>getItem(StorageItem.User);
     } else {

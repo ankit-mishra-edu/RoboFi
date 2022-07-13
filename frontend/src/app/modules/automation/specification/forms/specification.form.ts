@@ -12,11 +12,11 @@ export class SpecificationForm {
       Category: ['', [Validators.required]],
       Version: ['', [Validators.required]],
 
-      Inputs: new FormBuilder().array([]),
-      Outputs: new FormBuilder().array([]),
-      Errors: new FormBuilder().array([]),
-      Dependencies: new FormBuilder().array([]),
-      Authors: new FormBuilder().array([]),
+      Inputs: this._formBuilder.array([]),
+      Outputs: this._formBuilder.array([]),
+      Errors: this._formBuilder.array([]),
+      Dependencies: this._formBuilder.array([]),
+      Authors: this._formBuilder.array([]),
     });
     return this.specificationForm;
   }
