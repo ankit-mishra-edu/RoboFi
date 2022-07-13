@@ -1,1 +1,60 @@
-<p>notifications works!</p>
+<div class="notifications">
+  <div class="grid grid-cols-3 gap-4 form-wrapper">
+    <div class="col-span-3 md:col-span-2 sm:col-span-1">
+      <legend>Notifications:</legend>
+      <ng-container
+        *ngIf="receivedNotification$ | async as receivedNotification"
+      >
+        <div
+          class="grid grid-cols-3 gap-4 notification"
+          *ngFor="let notification of notifications"
+        >
+          <div class="col-span-1 sender">
+            <span>Sender: {{notification.sender}}</span>
+          </div>
+          <div class="col-span-2 content">
+            <span>Message : {{notification.content}} </span>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <form
+      class="col-span-3 form-group md:col-span-1 sm:col-span-2"
+      [formGroup]="notificationForm"
+    >
+      <legend class="form-heading">Send Notification</legend>
+      <div class="form-group Reciever">
+        <label for="receivers" class="form-label required">Reciever:</label>
+        <select
+          multiple
+          id="receivers"
+          name="receivers"
+          class="form-select"
+          formControlName="receivers"
+        >
+          <option [value]="1">1</option>
+          <option [value]="2">2</option>
+          <option [value]="3">3</option>
+          <option [value]="4">4</option>
+        </select>
+      </div>
+      <div class="form-group Content">
+        <label for="content" class="form-label required">Content:</label>
+        <input
+          type="text"
+          id="content"
+          class="form-control"
+          formControlName="content"
+        />
+      </div>
+
+      <button
+        type="button"
+        (click)="SendNotification()"
+        [disabled]="notificationForm.invalid"
+      >
+        Send
+      </button>
+    </form>
+  </div>
+</div>

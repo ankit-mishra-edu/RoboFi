@@ -26,5 +26,9 @@ export const ENDPOINT_UTILS = {
       microbot: 'microbots',
       specification: 'specifications',
     },
+    settings: {
+      root: 'settings',
+      notification: 'notification',
+    },
   },
 };

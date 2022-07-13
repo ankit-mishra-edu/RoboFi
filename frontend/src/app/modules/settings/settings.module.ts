@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SharedModule } from '@components/shared.module';
 import { AccountPage } from './pages/account/account.page';
 import { AppearancePage } from './pages/appearance/appearance.page';
 import { BillingPage } from './pages/billing/billing.page';
@@ -19,6 +20,6 @@ import { SettingsRoutingModule } from './settings-routing.module';
     SecurityPage,
     SecurityLogPage,
   ],
-  imports: [CommonModule, SettingsRoutingModule],
+  imports: [CommonModule, SettingsRoutingModule, SharedModule],
 })
 export class SettingsModule {}

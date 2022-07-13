@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
+  WS_RECONNECT_INTERVAL: 5,
   API_BASE_URL: process.env['API_BASE_URL'] || 'http://localhost:8000/api',
+  WS_BASE_URL: process.env['WS_BASE_URL'] || 'ws://localhost:8000/ws',
   MEDIA_BASE_URL: `https://res.cloudinary.com/${
     process.env['CLOUDINARY_URL']?.includes(':')
       ? process.env['CLOUDINARY_URL']?.split(':')[2].split('@')[1]
